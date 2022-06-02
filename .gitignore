@@ -1,7 +1,7 @@
 # Vim
 *~
 *.sw[p_]
-
+1template.md
 # Sublime Text
 *.sublime-project
 *.sublime-workspace
