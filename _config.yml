@@ -104,7 +104,7 @@ analytics:
 author:
   name             : "카데(Kade)"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "카페와 데이터를 사랑하는 카데입니다."
+  bio              : 커피와 데이터를 사랑하는 카데입니다."
   location         : "AFI Data Scientist"
   email            : "cwryu6252@naver.com"
   links:
