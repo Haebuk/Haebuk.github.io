@@ -4,6 +4,7 @@ title: "[Dask] Dask 튜토리얼"
 categories: Python # 카테고리
 tag: [Dask]
 toc: true # 오른쪽에 table of contents 를 보여줌
+toc_sticky: true
 author_profile: true # 게시글 들어갔을 때 좌측에 프로필 가리기
 --- 
 # 들어가며
