@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on 지식 공유, 협업 ✈️ 성장</title>
+    <link>https://Haebuk.github.io/post/</link>
+    <description>Recent content in Posts on 지식 공유, 협업 ✈️ 성장</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Fri, 19 Aug 2022 13:18:41 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Test</title>
+      <link>https://Haebuk.github.io/post/test/</link>
+      <pubDate>Fri, 19 Aug 2022 13:18:41 +0900</pubDate>
+      
+      <guid>https://Haebuk.github.io/post/test/</guid>
+      <description>
+        
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>[Kubernetes] 보안</title>
+      <link>https://Haebuk.github.io/post/2022-07-10-%EB%B3%B4%EC%95%88/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://Haebuk.github.io/post/2022-07-10-%EB%B3%B4%EC%95%88/</guid>
+      <description>
+        
+          
+            보안 서비스 어카운트 사용자 어카운트(UserAccount): EKS에서는 IAM과 연결되어 있어 쿠버네티스 관리 대상이 아니고, 네임스페이스의 영향을 받지 않음 서비스 어카운트(ServiceAccount): 쿠버네티스에서만 사용, 파드에서 실행되는 프로세스를 위해 할당. 네임스페이스와 연결된 리소스 파드 기동 시 반드시 서비스 어카운트 한 개를 할당해야 하며, 서비스 어카운트 기반 인증/인가를 하고 있음 지정하지 않을 시 기본 서비스 어카운트가 할당 서비스 어카운트 생성 # 서비스 어카운트 생성 $ kubectl create serviceaccount sample-serviceaccount 인증이 필요한 개인 저장소에 저장된 이미지를 가져오기 위해 시크릿인 imagePullSecrets를 설정하는 경우 kubectl patch 명령어를 사용하거나 생성할 때 매니페스트를 사용하여 서비스 어카운트 생성 # 생성 후 kubectl patch 명령어로 적용 $ kubectl patch serviceaccount sample-serviceaccount \ -p &amp;#39;{&amp;#34;imagePullSecrets&amp;#34;: [{&amp;#34;name&amp;#34;: &amp;#34;myregistrykey&amp;#34;}]}&amp;#39; 서비스 어카운트와 토큰 생성할 때는 지정하지 않은 시크릿 항목이 존재 kubernetes.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>
