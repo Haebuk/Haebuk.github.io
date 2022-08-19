@@ -7,15 +7,129 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-KR</language><atom:link href="https://Haebuk.github.io/categories/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>[Kubernetes] 보안</title>
-      <link>https://Haebuk.github.io/post/2022-07-10-%EB%B3%B4%EC%95%88/</link>
+      <title>[Kubernetes] 리소스 관리와 오토 스케일링</title>
+      <link>https://Haebuk.github.io/post/2022-06-18-%E1%84%85%E1%85%B5%E1%84%89%E1%85%A9%E1%84%89%E1%85%B3%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5%E1%84%8B%E1%85%AA-%E1%84%8B%E1%85%A9%E1%84%90%E1%85%A9%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BC/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://Haebuk.github.io/post/2022-07-10-%EB%B3%B4%EC%95%88/</guid>
+      <guid>https://Haebuk.github.io/post/2022-06-18-%E1%84%85%E1%85%B5%E1%84%89%E1%85%A9%E1%84%89%E1%85%B3%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5%E1%84%8B%E1%85%AA-%E1%84%8B%E1%85%A9%E1%84%90%E1%85%A9%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BC/</guid>
+      <description>
+        
+          
+            리소스 관리와 오토 스케일링 리소스 제한 CPU/메모리 리소스 제한 CPU는 클럭 수가 아닌 1vCPU를 1,000m 단위로 지정 단위 리소스 유형 단위 CPU 1 = 1000m = 1 vCPU 메모리 1G = 1000M (1Gi = 1024Mi) Requests: 사용하는 리소스 최솟값 지정한 양의 리소스가 노드에 존재하지 않으면 스케줄링 되지 않음 Limits: 사용할 리소스의 최댓값 노드에 Limits로 지정한 리소스가 없어도 스케줄링 됨 Requests만 설정한 경우 Limits는 자동 설정되지 않고 부하가 최대로 상승할 때까지 리소스 계속 소비 파드가 많이 가동하는 노드에서 리소스 뻇기 발생, OOM 발생 Limits만 설정한 경우 은 값이 Requests에 설정 시스템에 할당된 리소스와 Eviction 매니저 일반 리소스는 고갈 시 쿠버네티스 자체가 동작하지 않거나 그 노드 전체에 영향 가능성 각 노드에는 kube-reserved, system-reserved 두 가지 리소스가 시스템용으로 확보 실제 파드 할당 가능 리소스는 리소스 총량 - (kube-reserved, system-reserved) Eviction 매니저가 시스템 전체가 과부하되지 않도록 관리 Allocatable, system-reserved, kube-reserved 실제 사용되는 리소스 합계가 Eviction Threshold 넘지 않는지 정기적으로 확인, 초과한 경우 파드 Evict Eviction Threshold는 soft, hard 두 가지 존재 soft: SIGTERM 신호를 보내 지정한 시간 후 파드 정지 hard: SIGKILL 신호를 보내 바로 파드 정지 Evict 우선 순위 Requests에 할당된 양보다 초과하여 리소스를 소비하고 있는 것 PodPriority가 낮은 것 Requests에 할당된 양보다 초과하여 소비하고 있는 리소스 양이 더 많은 것 GPU 등의 리소스 제한 엔비디아 GPU resources: requests: nvidia.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>[Kubernetes] 메인터넌스와 노드 정지</title>
+      <link>https://Haebuk.github.io/post/2022-06-22-%E1%84%86%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%82%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%8B%E1%85%AA-%E1%84%82%E1%85%A9%E1%84%83%E1%85%B3-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%8C%E1%85%B5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://Haebuk.github.io/post/2022-06-22-%E1%84%86%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%82%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%8B%E1%85%AA-%E1%84%82%E1%85%A9%E1%84%83%E1%85%B3-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%8C%E1%85%B5/</guid>
+      <description>
+        
+          
+            메인터넌스와 노드 정지 스케줄링 대상에서 제외와 북귀(cordon/uncordon) 쿠버네티스 노드는 두 상태를 가짐 SchedulingDisabled: 노드가 스케줄링 대상에서 제외 (파드 신규 생성 x), 이미 실행 중인 파드에는 영향 없음 SchedulingEnabled: 기본 상태 # 노드 중 하나를 SchedulingDisabled로 변경 $ kubectl cordon NODE_NAME # 노드 중 하나를 SchedulingEnabled로 변경 $ kubectl uncordon NODE_NAME 노드 배출 처리로 인한 파드 축출(drain) 실행 중인 파드를 축출해야 할 경우 사용 SchedulingDisabled 상태로 바꾼 후 각 파드에 SIGTERM 신호를 보내므로 cordon을 실행할 필요 없음 # 실행 중인 파드를 모두 축출(데몬셋 이외) $ kubectl drain NODE_NAME --force --ignore-daemonsets drain시 다음과 같은 케이스에서는 에러가 발생 디플로이먼트등으로 관리되지 않는 파드 삭제(단일 파드는 파드 삭제 후 재성성이 불가하기 때문) &amp;ndash;force옵션으로 해결 가능 로컬 스토리지 사용하는 파드 삭제(로컬 스토리지 데이터가 삭제되므로) &amp;ndash;delete-local-data로 해결 가능 데몬셋이 관리하는 파드 삭제 &amp;ndash;ignore-daemonset 옵션을 사용해 해결 가능 PodDisruptionBudget(PDB)을 사용한 안전한 축출 파드 축출 시 특정 디플로이먼트하에 있는 레플리카가 동시에 정지되면 다운타임이 발생 여러 노드에서 동시 배출 처리를 한 경우 해당 현상이 발생할 확률 증가 노드가 배출 처리를 할 때 파드를 정지할 수 있는 최대 수를 제한하는 리소스 최소 기동 개수와 최대 정지 개수를 보면서 노드상의 파드 축출 HPA에 의해 파드 수가 변화하는 환경에서는 백분율로 지정하는 것이 좋음 동시에 여러 노드를 배출 처리하는 경우에도 효과적 minAvailable, minUnavailable은 둘 중 하나만 설정 가능 파드에 여러 PDB가 연결되면 축출 실패 
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>[Kubernetes] 보안</title>
+      <link>https://Haebuk.github.io/post/2022-07-10-%E1%84%87%E1%85%A9%E1%84%8B%E1%85%A1%E1%86%AB/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://Haebuk.github.io/post/2022-07-10-%E1%84%87%E1%85%A9%E1%84%8B%E1%85%A1%E1%86%AB/</guid>
       <description>
         
           
             보안 서비스 어카운트 사용자 어카운트(UserAccount): EKS에서는 IAM과 연결되어 있어 쿠버네티스 관리 대상이 아니고, 네임스페이스의 영향을 받지 않음 서비스 어카운트(ServiceAccount): 쿠버네티스에서만 사용, 파드에서 실행되는 프로세스를 위해 할당. 네임스페이스와 연결된 리소스 파드 기동 시 반드시 서비스 어카운트 한 개를 할당해야 하며, 서비스 어카운트 기반 인증/인가를 하고 있음 지정하지 않을 시 기본 서비스 어카운트가 할당 서비스 어카운트 생성 # 서비스 어카운트 생성 $ kubectl create serviceaccount sample-serviceaccount 인증이 필요한 개인 저장소에 저장된 이미지를 가져오기 위해 시크릿인 imagePullSecrets를 설정하는 경우 kubectl patch 명령어를 사용하거나 생성할 때 매니페스트를 사용하여 서비스 어카운트 생성 # 생성 후 kubectl patch 명령어로 적용 $ kubectl patch serviceaccount sample-serviceaccount \ -p &amp;#39;{&amp;#34;imagePullSecrets&amp;#34;: [{&amp;#34;name&amp;#34;: &amp;#34;myregistrykey&amp;#34;}]}&amp;#39; 서비스 어카운트와 토큰 생성할 때는 지정하지 않은 시크릿 항목이 존재 kubernetes.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>[Kubernetes] 서비스 API 카테고리 내용 정리</title>
+      <link>https://Haebuk.github.io/post/2022-06-11-%E1%84%89%E1%85%A5%E1%84%87%E1%85%B5%E1%84%89%E1%85%B3api%E1%84%8F%E1%85%A1%E1%84%90%E1%85%A6%E1%84%80%E1%85%A9%E1%84%85%E1%85%B5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://Haebuk.github.io/post/2022-06-11-%E1%84%89%E1%85%A5%E1%84%87%E1%85%B5%E1%84%89%E1%85%B3api%E1%84%8F%E1%85%A1%E1%84%90%E1%85%A6%E1%84%80%E1%85%A9%E1%84%85%E1%85%B5/</guid>
+      <description>
+        
+          
+            서비스 API 카테고리 클러스터 컨테이너에 대한 엔드포인트를 제공하거나 레이블과 일치하는 컨테이너의 디스커버리에 사용되는 리소스
+서비스 ClusterIP ExternalIP(ClusterIP의 한 종류) NodePort LoadBalancer Headless(None) ExternalName Node-Selector 인그레스 파드는 서비스를 사용하지 않고도 파드간 통신이 가능하나, 서비스를 사용하면 두 가지 큰 장점이 있음
+파드에 트래픽 로드 밸런싱 서비스 디스커버리와 클러스터 내부 DNS 파드에 트래픽 로드 밸런싱 수신한 트래픽을 여러 파드에 로드 밸런싱 ClusterIP 클러스터 내부에서만 사용 가능한 가상 IP를 가진 엔드포인트 제공하는 로드 밸런서 구성 spec.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>[Kubernetes] 워크로드 API 정리</title>
+      <link>https://Haebuk.github.io/post/2022-06-05-%E1%84%8B%E1%85%AF%E1%84%8F%E1%85%B3%E1%84%85%E1%85%A9%E1%84%83%E1%85%B3api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://Haebuk.github.io/post/2022-06-05-%E1%84%8B%E1%85%AF%E1%84%8F%E1%85%B3%E1%84%85%E1%85%A9%E1%84%83%E1%85%B3api/</guid>
+      <description>
+        
+          
+            워크로드 API 카테고리 클러스터에 컨테이너를 기동시키기 위해 사용되는 리소스 Pod Replication Controller(Deprecated) ReplicaSet Deployment DaemonSet StatefulSet Job CronJob 파드 워크로드 리소스의 최소 단위 파드 디자인 패턴 종류 개요 사이드카 패턴 메인 컨테이너에 기능 추가 앰배서더 패턴 외부 시스템과의 통신 중계 어댑터 패턴 외부 접속을 위한 인터페이스 제공 파드 명령어 # 파드 생성 $ kubectl apply -f sample-pod.yaml # 파드 목록 표시 $ kubectl get pods # 파드 상세 정보 표시 $ kubectl get pods --output wide # 컨테이너에서 /bin/bash 실행 $ kubectl exec -it sample-pod -- /bin/bash root@sample-pod:/# (이후 컨테이너 내부에서 명령어 실행 가능) # 컨테이너에서 ls 명령어 실행 $ kubectl exec -it sample-pod -- /bin/ls # 다수의 컨테이너 포함한 파드의 경우 특정 컨테이너 지정 가능 $ kubectl exec -it sample-2pod -c nginx-container -- /bin/ls 파드 주의 사항 파드 내 컨테이너가 같은 포트로 바인드되면 안됨 쿠버네티스는 ENTRYPOINT를 command, CMD를 args라고 부름 파드명 제한 영어 소문자 또는 숫자 기호는 &amp;lsquo;-&amp;rsquo; 또는 &amp;lsquo;.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>[Kubernetes] 유연한 고급 스케줄링</title>
+      <link>https://Haebuk.github.io/post/2022-06-25-%E1%84%8B%E1%85%B2%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%92%E1%85%A1%E1%86%AB-%E1%84%80%E1%85%A9%E1%84%80%E1%85%B3%E1%86%B8-%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8C%E1%85%AE%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BC/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://Haebuk.github.io/post/2022-06-25-%E1%84%8B%E1%85%B2%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%92%E1%85%A1%E1%86%AB-%E1%84%80%E1%85%A9%E1%84%80%E1%85%B3%E1%86%B8-%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8C%E1%85%AE%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BC/</guid>
+      <description>
+        
+          
+            유연한 고급 스케줄링 필터링과 스코어링 필터링: 파드 스케줄시 충분한 리소스가 있는지, 필수 조건으로 지정한 레이블을 가진 노드인지 등을 체크 스코어링: 필터링 후 노드 목록에 순위를 매겨 가장 적합한 노드를 계산 필터링과 스코어링 이후 우선순위가 같은 스케줄링 대상 노드가 여러개 존재 시 무작위 선택 매니페스트에서 지정하는 스케줄링 사용자가 배치하고 싶은 노드를 선택하는 방법과 관리자가 배치하고 싶지 않은 노드를 지정하는 방법이 있음 쿠버네티스 사용자가 배치하고 싶은 노드를 선택하는 방법 종류 개요 nodeSelector(가장 단순한 노드 어피니티) 단순한 노드 어피니티 기능 노드 어피니티 특정 노드상에서만 실행 노드 안티어피니티 특정 노드 이외에서 실행 인터파트 어피니티 특정 파드가 존재하는 도메인(노드, 존)에서 실행 인터파트 안티어피니티 특정 파드가 존재하지 않는 도메인에서 실행 빌트인 노드 레이블과 레이블 추가 빌트인 노드 레이블: 노드에 미리 지정되어 있는 레이블 # 노드에 할당된 레이블 정보 $ kubectl get nodes -o json | jq &amp;#34;.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>[Kubernetes] 컨피그 &amp; 스토리지 API 카테고리</title>
+      <link>https://Haebuk.github.io/post/2022-06-16-%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%91%E1%85%B5%E1%84%80%E1%85%B3%E1%84%89%E1%85%B3%E1%84%90%E1%85%A9%E1%84%85%E1%85%B5%E1%84%8C%E1%85%B5api%E1%84%8F%E1%85%A1%E1%84%90%E1%85%A6%E1%84%80%E1%85%A9%E1%84%85%E1%85%B5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://Haebuk.github.io/post/2022-06-16-%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%91%E1%85%B5%E1%84%80%E1%85%B3%E1%84%89%E1%85%B3%E1%84%90%E1%85%A9%E1%84%85%E1%85%B5%E1%84%8C%E1%85%B5api%E1%84%8F%E1%85%A1%E1%84%90%E1%85%A6%E1%84%80%E1%85%A9%E1%84%85%E1%85%B5/</guid>
+      <description>
+        
+          
+            컨피그 &amp;amp; 스토리지 API 카테고리 컨테이너 설정 파일, 패스워드 같은 기밀 정보 추가 영구 볼륨 제공 시크릿 컨피그맵 영구 볼륨 클레임 환경 변수 사용 개별 컨테이너 설정 내용은 환경 변수나 파일이 저장되어 있는 영역을 마운트하여 전달하는 것이 일반적 파드 템플릿에 env 또는 envFrom 지정 다음과 같은 정보를 환경 변수에 포함 가능 정적 설정 파드 정보 컨테이너 정보 시크릿 리소스 기밀 정보 컨피그맵 리소스 설정값 정적 설정 spec.containers[].env에 정적인 값 설정 # sample-env 파드의 환경변수 확인 $ kubectl exec -it sample-env -- env | grep MAX_CONNECTION 컨테이너 기본 타임존: UTC -&amp;gt; 환경 변수 지정하여 변경 가능 # 타임존 설정 env: - name: TZ value: Asia/Seoul 파드 정보 fieldRef를 통해 참조 가능 # 파드가 기동 중인 노드 확인 $ kubectl get pods -o wide sample-env-pod # sample-env-pod 파드 환경 변수 &amp;#39;K8S_NODE&amp;#39; 확인 $ kubectl exec -it sample-env-pod -- env | grep K8S_NODE 컨테이너 정보 resourceFieldRef를 통해 참조 가능 $ kubectl exec -it sample-env-container -- env | grep CPU 환경 변수 사용시 주의 사항 command나 args로 실행할 명령어를 지정할 때는 ${}가 아닌 $()로 지정 매니페스트 내부에 정의된 환경 변수만 참조 가능 시크릿 범용 시크릿(Opaque) 스키마리스 시크릿 kubectl로 파일에서 값을 참조하여 생성(&amp;ndash;from-file) kubectl로 envfile에서 값을 참조하여 생성(&amp;ndash;from-env-file) kubectl로 직접 값을 전달하여 생성(&amp;ndash;from-literal) 매니페스트에서 생성(-f) 하나의 시크릿당 저장 가능한 데이터 사이즈는 총 1MB kubectl로 파일에서 값을 참조하여 생성(&amp;ndash;from-file) 일반적으로 파일명이 그대로 키가 되므로 확장자는 붙이지 않는 것이 좋음 파일 생성시 개행 코드 없도록 주의 # 시크릿에 포함된 값을 파일로 내보내기 $ echo -n &amp;#34;root&amp;#34; &amp;gt; .
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>[Kubernetes] 헬스 체크와 컨테이너 라이프 사이클</title>
+      <link>https://Haebuk.github.io/post/2022-06-19-%E1%84%92%E1%85%A6%E1%86%AF%E1%84%89%E1%85%B3%E1%84%8E%E1%85%A6%E1%84%8F%E1%85%B3%E1%84%8B%E1%85%AA-%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5-%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3%E1%86%AF/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://Haebuk.github.io/post/2022-06-19-%E1%84%92%E1%85%A6%E1%86%AF%E1%84%89%E1%85%B3%E1%84%8E%E1%85%A6%E1%84%8F%E1%85%B3%E1%84%8B%E1%85%AA-%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5-%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3%E1%86%AF/</guid>
+      <description>
+        
+          
+            헬스 체크와 컨테이너 라이프 사이클 헬스 체크 파드가 정상인지 판단하는 기능 이상 종료된 경우 spec.restartPolicy에 따라 파드 재시작 헬스체크 방법 Probe 종류 역할 실패 시 동작 Liveness Probe 파드 내부의 컨테이너가 정상 동작 중인지 확인 컨테이너 재가동 Readiness Probe 파드가 요청을 받아들일 수 있는지 확인 트래픽 차단(파드 재기동x) Startup Probe 파드의 첫 번째 기동이 완료되었는지 확인 다른 Probe 실행 시작 x Liveness Probe: 헬스 체크에 한 번 실패하면 재시작 없이는 복구가 어려울 때 사용 Readiness Probe: db에 정상적으로 접속되는지, 캐시에 로드가 끝났는지, 기동 시간이 오래 걸리는 프로세스가 끝났는지 등등 체크 실패한 경우 트래픽이 파드에 전송되지 않도록 함 Startup Probe: 처음 기동하는데 시간이 오래 걸릴 경우 사용, 완료까지 다른 Probe나 서비스가 시작되지 않음 헬스체크 방식 헬스 체크는 컨테이너별로 이루어짐 하나의 컨테이너라도 실패하면 전체 파드가 실패한 것으로 간주 헬스 체크 방식 내용 exec 명령어를 실행하고 종료 코드가 0이 아니면 실패 httpGet HTTP GET 요청 실행 후 Status Code가 200~399가 아니면 실패 tcpSocket TCP 세션이 연결되지 않으면 실패 명령어 기반의 체크(exec) 명령어로 실행하고 종료 코드로 확인 가장 유연성이 높은 체크 명령어는 컨테이너별로 실행 livenessProbe: exec: command: [&amp;#34;test&amp;#34;, &amp;#34;-e&amp;#34;, &amp;#34;/ok.
           
           
         

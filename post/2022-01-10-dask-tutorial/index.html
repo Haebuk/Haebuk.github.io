@@ -1,0 +1,698 @@
+
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-figures=""
+  
+    class="page"
+  
+  
+  >
+  <head>
+<title>[Dask] Dask 튜토리얼 | 지식 공유, 협업 ✈️ 성장</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+
+<meta property="og:locale" content="en" />
+
+<meta property="og:type" content="article">
+<meta name="description" content="들어가며 현업에서 간단하게 로컬에서 데이터를 뽑아보려해도 수 GB는 훌쩍 넘어가는 경우가 다반사기 때문에, Pandas로는 한계가 있음을 느꼈습니다.
+Dask를 사용하여 기초적인 병렬 계산, 데이터프레임 다루기, 간단한 신경망을 통해 학습하는 과정을 살펴보겠습니다. …" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:creator" content="">
+<meta name="twitter:title" content="[Dask] Dask 튜토리얼" />
+<meta name="twitter:image" content="https://Haebuk.github.io"/>
+<meta property="og:url" content="https://Haebuk.github.io/post/2022-01-10-dask-tutorial/" />
+<meta property="og:title" content="[Dask] Dask 튜토리얼" />
+<meta property="og:description" content="들어가며 현업에서 간단하게 로컬에서 데이터를 뽑아보려해도 수 GB는 훌쩍 넘어가는 경우가 다반사기 때문에, Pandas로는 한계가 있음을 느꼈습니다.
+Dask를 사용하여 기초적인 병렬 계산, 데이터프레임 다루기, 간단한 신경망을 통해 학습하는 과정을 살펴보겠습니다. …" />
+<meta property="og:image" content="https://Haebuk.github.io" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://Haebuk.github.io/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://Haebuk.github.io/icons/favicon-32x32.png">
+<link rel="manifest" href="https://Haebuk.github.io/icons/site.webmanifest">
+
+<link rel="canonical" href="https://Haebuk.github.io/post/2022-01-10-dask-tutorial/">
+
+
+
+<link rel="preload" href="https://Haebuk.github.io/css/styles.42e2c5f6d8cf9c52872666f8d8b2678ad0c426978b9d78aff3c33b7a1e7f6f97f54bcdaf0518a25fb0fe26367d04f8b07c683b3b38b331cb098daadee06b1f3e.css" integrity = "sha512-QuLF9tjPnFKHJmb42LJnitDEJpeLnXiv88M7eh5/b5f1S82vBRiiX7D&#43;JjZ9BPiwfGg7OzizMcsJjare4GsfPg==" as="style" crossorigin="anonymous">
+
+
+
+<link rel="preload" href="https://Haebuk.github.io/en/js/bundle.196e32081a62224415d8434dcf1e9156eb583ccd88f292c0ca5acb62995626357433971f4bc87a29fca931c7875eb6c77e04d363cca5699f49713ba73f68f567.js" as="script" integrity=
+"sha512-GW4yCBpiIkQV2ENNzx6RVutYPM2I8pLAylrLYplWJjV0M5cfS8h6KfypMceHXrbHfgTTY8ylaZ9JcTunP2j1Zw==" crossorigin="anonymous">
+
+
+<link rel="stylesheet" type="text/css" href="https://Haebuk.github.io/css/styles.42e2c5f6d8cf9c52872666f8d8b2678ad0c426978b9d78aff3c33b7a1e7f6f97f54bcdaf0518a25fb0fe26367d04f8b07c683b3b38b331cb098daadee06b1f3e.css" integrity="sha512-QuLF9tjPnFKHJmb42LJnitDEJpeLnXiv88M7eh5/b5f1S82vBRiiX7D&#43;JjZ9BPiwfGg7OzizMcsJjare4GsfPg==" crossorigin="anonymous">
+
+
+  </head>
+  <body
+    data-code="100"
+    data-lines="false"
+    id="documentTop"
+    data-lang="en"
+  >
+
+<header class="nav_header" >
+  <nav class="nav"><a href='https://Haebuk.github.io' class="nav_brand nav_item" title="지식 공유, 협업 ✈️ 성장">지식 공유, 협업 ✈️ 성장
+  <div class="nav_close">
+    <div><svg class="icon">
+  <title>open-menu</title>
+  <use xlink:href="#open-menu"></use>
+</svg>
+<svg class="icon">
+  <title>closeme</title>
+  <use xlink:href="#closeme"></use>
+</svg>
+</div>
+  </div>
+</a>
+
+    <div class='nav_body nav_body_left'>
+      
+      
+      
+        
+
+      
+<div class='follow'>
+<div class="color_mode">
+  <input type="checkbox" class="color_choice" id="mode">
+</div>
+
+</div>
+
+    </div>
+  </nav>
+</header>
+
+    <main>
+  
+<div class="grid-inverse wrap content">
+  <article class="post_content">
+    <h1 class="post_title">[Dask] Dask 튜토리얼</h1>
+  <div class="post_meta">
+    <span><svg class="icon">
+  <title>calendar</title>
+  <use xlink:href="#calendar"></use>
+</svg>
+</span>
+    <span class="post_date">
+      Jan 1, 0001</span>
+    <span class="post_time"> · 6 min read</span>
+    <span class="page_only">&nbsp;·
+  <div class="post_share">
+    Share on:
+    <a href="https://twitter.com/intent/tweet?text=%5bDask%5d%20Dask%20%ed%8a%9c%ed%86%a0%eb%a6%ac%ec%96%bc&url=https%3a%2f%2fHaebuk.github.io%2fpost%2f2022-01-10-dask-tutorial%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+      <svg class="icon">
+  <title>twitter</title>
+  <use xlink:href="#twitter"></use>
+</svg>
+
+    </a>
+    <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fHaebuk.github.io%2fpost%2f2022-01-10-dask-tutorial%2f&t=%5bDask%5d%20Dask%20%ed%8a%9c%ed%86%a0%eb%a6%ac%ec%96%bc" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+      <svg class="icon">
+  <title>facebook</title>
+  <use xlink:href="#facebook"></use>
+</svg>
+
+    </a>
+    <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow">
+      <svg class="icon">
+  <title>linkedin</title>
+  <use xlink:href="#linkedin"></use>
+</svg>
+
+    </a>
+    <a href="https://Haebuk.github.io/post/2022-01-10-dask-tutorial/" title="Copy Link" class="link link_yank">
+      <svg class="icon">
+  <title>copy</title>
+  <use xlink:href="#copy"></use>
+</svg>
+
+    </a>
+  </div>
+  </span>
+  </div>
+
+      <div class="post_toc">
+        <h2>Overview</h2>
+        <nav id="TableOfContents"></nav>
+      </div>
+    
+    <div class="post_body"><h1 id="들어가며">들어가며</h1>
+<p>현업에서 간단하게 로컬에서 데이터를 뽑아보려해도 수 GB는 훌쩍 넘어가는 경우가 다반사기 때문에, Pandas로는 한계가 있음을 느꼈습니다.</p>
+<p>Dask를 사용하여 기초적인 병렬 계산, 데이터프레임 다루기, 간단한 신경망을 통해 학습하는 과정을 살펴보겠습니다.</p>
+<p><a href="https://www.youtube.com/watch?v=Alwgx_1qsj4">https://www.youtube.com/watch?v=Alwgx_1qsj4</a>를 참고했습니다.</p>
+<p>예전에 촬영되어서 그대로 코드를 작성하면 작동하지 않는 코드가 여럿 있습니다. 2022년 1월 10일 기준으로 작동하도록 수정했습니다.</p>
+<h1 id="pre-required">Pre-required</h1>
+<p>dask와 함께 진행에는 영향이 없지만 아래에서 제공하는 시각화를 위해서는 graphviz 라이브러리를 설치해야합니다.</p>
+<p>또한 Machine Learning 파트에서 Tensorflow를 사용합니다. M1 맥북에서 실행했기 때문에 출력문에 약간의 차이가 발생할 수 있습니다.</p>
+<h1 id="basic">Basic</h1>
+<p>첫번째로 dask가 제공하는 병렬 계산에 대해 살펴보도록 하겠습니다.</p>
+<p>아래와 같이 함수가 작동할 때 마다 1초씩 대기하는 코드가 있습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> time <span style="color:#f92672">import</span> sleep
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">inc</span>(x):
+</span></span><span style="display:flex;"><span>    sleep(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> x <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add</span>(x, y):
+</span></span><span style="display:flex;"><span>    sleep(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> x <span style="color:#f92672">+</span> y
+</span></span></code></pre></div><p>한번 실행시켜 보겠습니다. x와 y에 1과 2를 할당하고 x와 y를 더합니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">%%</span>time
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> inc(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>y <span style="color:#f92672">=</span> inc(<span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>z <span style="color:#f92672">=</span> add(x, y)
+</span></span></code></pre></div><pre><code>CPU times: user 451 µs, sys: 697 µs, total: 1.15 ms
+Wall time: 3.01 s
+</code></pre>
+<p>1초, 1초, 1초 3번을 대기 했기때문에 총 실행시간이 약 3초가 나왔음을 알 수 있습니다.</p>
+<p>이를 Dask를 이용하여 기다리지 않고 계산하게 만들 수 있습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> dask <span style="color:#f92672">import</span> delayed
+</span></span></code></pre></div><p>이를 위해서 Dask의 <code>delayed</code> 모듈을 임포트합니다. delayed 모듈은 병렬로 계산하고자 하는 것이 있을 때 매우 효과적입니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@delayed</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">delayed_inc</span>(x):
+</span></span><span style="display:flex;"><span>    sleep(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> x <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@delayed</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">delayed_add</span>(x, y):
+</span></span><span style="display:flex;"><span>    sleep(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> x <span style="color:#f92672">+</span> y
+</span></span></code></pre></div><p>위에서 정의했던 <code>inc</code>와 <code>add</code>의 함수와 동일합니다. 단지 함수 위에 <code>@delayed</code> 데코레이터를 붙여주기만 하면 끝입니다.</p>
+<p>한 번 시간을 측정해보겠습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">%%</span>time
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> delayed(delayed_inc)(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>y <span style="color:#f92672">=</span> delayed(delayed_inc)(<span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>z <span style="color:#f92672">=</span> delayed(delayed_add)(x, y)
+</span></span></code></pre></div><p><code>delayed</code>메서드 안에 위에서 정의한 함수를 넣고 바깥에 함수 값을 할당합니다.</p>
+<pre><code>CPU times: user 116 µs, sys: 20 µs, total: 136 µs
+Wall time: 130 µs
+</code></pre>
+<p>놀랍게도 1초도 안걸려 모든 계산이 끝났습니다. (정확한 결론은 아래를 참조해주세요.)</p>
+<p>dask가 어떤 병렬 계산을 수행했는지 시각적으로 확인할 수 있습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>z<span style="color:#f92672">.</span>visualize()
+</span></span></code></pre></div><p><figure>
+  <picture>
+
+    
+      
+        
+        
+        
+        
+        
+        
+    <img
+      loading="lazy"
+      decoding="async"
+      alt="png"
+      
+        class="image_figure image_internal image_unprocessed"
+        src="/images/dask-tutorial_files/dask-tutorial_7_0.png"
+      
+      
+    />
+
+    </picture>
+</figure>
+</p>
+<p>위에서부터 차례로 코드를 실행하는 것이 아닌 병렬로 계산한다는 것을 알 수 있습니다.</p>
+<hr>
+<p>dask의 메서드로 정의한 값을 알아보려면 평소와는 다른 방법을 써야하는데요, 아래와 같습니다.</p>
+<p><code>z</code>값 (2+3=5)가 나오길 기대했지만, 엉뚱한 값이 나옵니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>z
+</span></span></code></pre></div><pre><code>Delayed('delayed_add-0e54f9e1-941d-49e9-903f-34e96b0dba54')
+</code></pre>
+<p>이는 실제 계산이 수행된 것이 아닌 어떤 메타데이터를 가르키고 있다고 볼 수 있습니다.</p>
+<p>우리가 원하는 계산을 수행하려면 <code>compute()</code>를 사용해야 합니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">%%</span>time
+</span></span><span style="display:flex;"><span>z<span style="color:#f92672">.</span>compute()
+</span></span></code></pre></div><pre><code>CPU times: user 1.76 ms, sys: 1.56 ms, total: 3.32 ms
+Wall time: 2.01 s
+
+5
+</code></pre>
+<p><code>z</code>의 값은 5가 나왔고, 실행 시간은 2초가 나왔습니다.
+각 <code>inc(x)</code> <code>inc(y)</code>가 병렬로 수행되는 데 1초, <code>add(x+y)</code>에서 1초가 소요되었기 때문입니다.</p>
+<h1 id="for-loop">For loop</h1>
+<p>조금 더 오래걸리는 예제를 살펴보겠습니다.</p>
+<p>파이썬의 for문은 악명이 자자한데요, 데이터 수를 무자비하게 늘리기보다는 앞에서 사용했던 함수를 사용해 시간을 늘려보겠습니다.</p>
+<p>1부터 8까지 담겨져 있는 파이썬 리스트를 선언합니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>data <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>]
+</span></span></code></pre></div><p>리스트에서 값을 뽑아 <code>inc</code>함수에 삽입하고 결과를 빈 리스트에 담아 최종 합을 산출하는 코드입니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">%%</span>time
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> data:
+</span></span><span style="display:flex;"><span>    y <span style="color:#f92672">=</span> inc(x)
+</span></span><span style="display:flex;"><span>    results<span style="color:#f92672">.</span>append(y)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>total <span style="color:#f92672">=</span> sum(results)
+</span></span></code></pre></div><pre><code>CPU times: user 1.19 ms, sys: 1.2 ms, total: 2.38 ms
+Wall time: 8.03 s
+</code></pre>
+<p><code>inc</code>가 총 8번 호출됐기 때문에 실행시간이 8초가 나왔습니다.</p>
+<p>이를 dask의 delayed 메서드로 병렬화시켜보겠습니다. 과연 모든 <code>inc</code>가 병렬로 계산되어 1초 남짓한 시간이 걸릴까요?</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">%%</span>time
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> data:
+</span></span><span style="display:flex;"><span>    y <span style="color:#f92672">=</span> delayed(delayed_inc)(x)
+</span></span><span style="display:flex;"><span>    results<span style="color:#f92672">.</span>append(y)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>total <span style="color:#f92672">=</span> delayed(sum)(results)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>total<span style="color:#f92672">.</span>compute()
+</span></span></code></pre></div><pre><code>CPU times: user 3.28 ms, sys: 2.15 ms, total: 5.43 ms
+Wall time: 1.01 s
+
+44
+</code></pre>
+<p>1부터 8까지 모두 더한 44가 결과값으로 나왔고, 실행시간은 예상한대로 1초가 나왔습니다. 모든 <code>inc</code> 함수가 병렬로 수행됐음이 분명합니다.</p>
+<p>검증을 위해 시각화해보겠습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>total<span style="color:#f92672">.</span>visualize()
+</span></span></code></pre></div><p><figure>
+  <picture>
+
+    
+      
+        
+        
+        
+        
+        
+        
+    <img
+      loading="lazy"
+      decoding="async"
+      alt="png"
+      
+        class="image_figure image_internal image_unprocessed"
+        src="/images/dask-tutorial_files/dask-tutorial_13_0.png"
+      
+      
+    />
+
+    </picture>
+</figure>
+</p>
+<p>처음에 이 그래프를 보고 감탄했던 기억이(&hellip;) 아름답게 병렬 계산을 하는 것을 알 수 있습니다.</p>
+<h1 id="dataframe">DataFrame</h1>
+<p>dask하면 생각나는 것이 바로 대용량 dataframe입니다. dask를 이용해 빠르게 로드하고 집계하는 방법에 대해 살펴보겠습니다.</p>
+<p>먼저 데이터는 약 200MB의 데이터로 뉴욕 공항의 항공기 이착륙 관련 데이터입니다.</p>
+<p>아래와 같이 데이터를 다운로드 하고 로드합니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> urllib
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;- Downloading NYC Flights dataset... &#34;</span>, end<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>, flush<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://storage.googleapis.com/dask-tutorial-data/nycflights.tar.gz&#34;</span>
+</span></span><span style="display:flex;"><span>filename, headers <span style="color:#f92672">=</span> urllib<span style="color:#f92672">.</span>request<span style="color:#f92672">.</span>urlretrieve(url, <span style="color:#e6db74">&#39;nycflights.tar.gz&#39;</span>)
+</span></span></code></pre></div><pre><code>- Downloading NYC Flights dataset... 
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> tarfile
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> tarfile<span style="color:#f92672">.</span>open(filename, mode<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;r:gz&#39;</span>) <span style="color:#66d9ef">as</span> flights:
+</span></span><span style="display:flex;"><span>    flights<span style="color:#f92672">.</span>extractall(<span style="color:#e6db74">&#39;data/&#39;</span>)
+</span></span></code></pre></div><p>여기까지 했다면 data폴더 안에 10개의 csv파일이 생성된 것을 확인할 수 있습니다.</p>
+<p>pandas를 사용할 경우 이를 반복문을 통해 <code>pd.concat</code>으로 순차적으로 데이터프레임을 합치는 방법으로 접근하는데요, dask는 아래와 같이 분할된 파일을 한번에 로드할 수 있는 기능을 제공합니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> dask.dataframe <span style="color:#66d9ef">as</span> dd
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df <span style="color:#f92672">=</span> dd<span style="color:#f92672">.</span>read_csv(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;data&#39;</span>, <span style="color:#e6db74">&#39;nycflights&#39;</span>, <span style="color:#e6db74">&#39;*.csv&#39;</span>), parse_dates<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;Date&#39;</span>: [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>]})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<p>pandas와는 다르게 모든 값이 감춰져있습니다. 이를 살펴보는 방법은 조금 후에 살펴보도록 하고, dask 데이터프레임 로드시 주의해야할 점에 대해 먼저 설명하겠습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df<span style="color:#f92672">.</span>head()
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<p><code>head()</code>메서드는 pandas와 동일한 기능을 제공합니다. <code>tail()</code>도 한 번 살펴볼까요?</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df<span style="color:#f92672">.</span>tail()
+</span></span></code></pre></div><pre><code>---------------------------------------------------------------------------
+
+ValueError                                Traceback (most recent call last)
+
+/var/folders/xm/8mvqw44j1md_q70lrkm9_wh00000gn/T/ipykernel_47466/281403043.py in &lt;module&gt;
+----&gt; 1 df.tail()
+
+
+/opt/homebrew/Caskroom/miniforge/base/envs/tensorflow/lib/python3.9/site-packages/dask/dataframe/core.py in tail(self, n, compute)
+   1143 
+   1144         if compute:
+-&gt; 1145             result = result.compute()
+   1146         return result
+   1147 
+
+... 중략 ...
+
+ValueError: Mismatched dtypes found in `pd.read_csv`/`pd.read_table`.
+
++----------------+---------+----------+
+| Column         | Found   | Expected |
++----------------+---------+----------+
+| CRSElapsedTime | float64 | int64    |
+| TailNum        | object  | float64  |
++----------------+---------+----------+
+
+The following columns also raised exceptions on conversion:
+
+- TailNum
+  ValueError(&quot;could not convert string to float: 'N54711'&quot;)
+
+Usually this is due to dask's dtype inference failing, and
+*may* be fixed by specifying dtypes manually by adding:
+
+dtype={'CRSElapsedTime': 'float64',
+       'TailNum': 'object'}
+
+to the call to `read_csv`/`read_table`.
+</code></pre>
+<p><code>tail()</code>은 <code>head()</code>와 다르게 오류가 발생합니다. 이는 dask가 dataframe을 생성할 때 데이터타입을 데이터의 초반 행을 통해 추론하기 때문입니다.</p>
+<p>오류문을 살펴보면 <code>CRSElapsedTime</code>은 int64를 기대했는데 float64였고, <code>TailNum</code>은 float64를 기대했는데 object가 나타났다고 합니다.</p>
+<p>이를 해결하기 위해서는 dask dataframe을 정의할 때 데이터타입을 명시해줘야 합니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df <span style="color:#f92672">=</span> dd<span style="color:#f92672">.</span>read_csv(
+</span></span><span style="display:flex;"><span>    os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;data&#39;</span>, <span style="color:#e6db74">&#39;nycflights&#39;</span>, <span style="color:#e6db74">&#39;*.csv&#39;</span>),
+</span></span><span style="display:flex;"><span>    parse_dates<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;Date&#39;</span>: [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>]},
+</span></span><span style="display:flex;"><span>    dtype<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;TailNum&#39;</span>: str,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;CRSElapsedTime&#39;</span>: float,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;Cancelled&#39;</span>: bool}
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p><code>CRSElapsedTime</code>과 <code>TailNum</code>의 데이터 타입을 명시하고, 이따가 사용할 <code>Cancelled</code>열도 미리 데이터 타입을 선언해주겠습니다.</p>
+<p>다시 한 번 마지막 값을 살펴보겠습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df<span style="color:#f92672">.</span>tail()
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<p>정상적으로 값이 출력됨을 알 수 있습니다.</p>
+<hr>
+<p>이번에는 간단한 집계함수를 사용해보겠습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">%</span>time df<span style="color:#f92672">.</span>DepDelay<span style="color:#f92672">.</span>max()<span style="color:#f92672">.</span>compute()
+</span></span></code></pre></div><pre><code>CPU times: user 3.18 s, sys: 526 ms, total: 3.71 s
+Wall time: 1.61 s
+
+1435.0
+</code></pre>
+<p>매우 빠르게 최대값을 산출해냄을 알 수 있습니다. dask는 이를 어떻게 계산했을까요?</p>
+<p>시각적으로 살펴보겠습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df<span style="color:#f92672">.</span>DepDelay<span style="color:#f92672">.</span>max()<span style="color:#f92672">.</span>visualize(rankdir<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;LR&#39;</span>, size<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;12, 12!&#39;</span>)
+</span></span></code></pre></div><p><figure>
+  <picture>
+
+    
+      
+        
+        
+        
+        
+        
+        
+    <img
+      loading="lazy"
+      decoding="async"
+      alt="png"
+      
+        class="image_figure image_internal image_unprocessed"
+        src="/images/dask-tutorial_files/dask-tutorial_23_0.png"
+      
+      
+    />
+
+    </picture>
+</figure>
+</p>
+<p>각각의 파티션(총 10개)에서 최대값 후보를 선정한다음에 최종 최대값을 선출해냄을 알 수 있습니다.</p>
+<p>단순하게 생각하면 pandas 집계보다 10배 빠르다고 볼 수도 있겠습니다.</p>
+<h1 id="ml-with-dask">ML with Dask</h1>
+<p>마지막으로 간단한 신경망을 통해 학습하는 방법을 살펴보고 마치겠습니다.</p>
+<p>먼저 학습에 사용할 데이터를 정의하고 정보를 확인합니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df_train <span style="color:#f92672">=</span> df[[<span style="color:#e6db74">&#39;CRSDepTime&#39;</span>, <span style="color:#e6db74">&#39;CRSArrTime&#39;</span>, <span style="color:#e6db74">&#39;Cancelled&#39;</span>]]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df_train<span style="color:#f92672">.</span>iloc[:, :<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>compute()<span style="color:#f92672">.</span>values
+</span></span></code></pre></div><pre><code>array([[1540, 1701],
+       [1540, 1701],
+       [1540, 1701],
+       ...,
+       [1645, 1901],
+       [1645, 1901],
+       [1645, 1901]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df_train<span style="color:#f92672">.</span>iloc[:, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>compute()<span style="color:#f92672">.</span>values
+</span></span></code></pre></div><pre><code>array([False, False, False, ..., False, False, False])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df_train<span style="color:#f92672">.</span>shape
+</span></span></code></pre></div><pre><code>(Delayed('int-94ab9ac8-9432-4a95-b40f-abdaca09c41e'), 3)
+</code></pre>
+<p>0번째 값은 dask delayed객체로 나오고, 1번째 값은 총 열 개수인 3이 나오는 것이 특징입니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df_train<span style="color:#f92672">.</span>isnull()<span style="color:#f92672">.</span>sum()<span style="color:#f92672">.</span>compute()
+</span></span></code></pre></div><pre><code>CRSDepTime    0
+CRSArrTime    0
+Cancelled     0
+dtype: int64
+</code></pre>
+<p>결측치는 없습니다. 아주 간단한 신경망을 정의하고 학습시켜보겠습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> tensorflow <span style="color:#66d9ef">as</span> tf
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> keras.models <span style="color:#f92672">import</span> Sequential
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> keras.layers <span style="color:#f92672">import</span> Dense
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> Sequential()
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>add(Dense(<span style="color:#ae81ff">20</span>, input_dim<span style="color:#f92672">=</span>df_train<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, activation<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;relu&#39;</span>))
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>add(Dense(<span style="color:#ae81ff">1</span>, activation<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;sigmoid&#39;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>compile(loss<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;binary_crossentropy&#39;</span>, optimizer<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;sgd&#39;</span>)
+</span></span></code></pre></div><p><code>from_tensor_slices</code>를 사용해 데이터프레임을 변환합니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>dataset <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>Dataset<span style="color:#f92672">.</span>from_tensor_slices(
+</span></span><span style="display:flex;"><span>    (df_train<span style="color:#f92672">.</span>iloc[:, :<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>compute()<span style="color:#f92672">.</span>values, df_train<span style="color:#f92672">.</span>iloc[:, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>compute()<span style="color:#f92672">.</span>values)
+</span></span><span style="display:flex;"><span>)<span style="color:#f92672">.</span>batch(<span style="color:#ae81ff">512</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>model<span style="color:#f92672">.</span>fit(dataset, epochs<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+</span></span></code></pre></div><pre><code>Epoch 1/5
+10203/10203 [==============================] - 38s 4ms/step - loss: 239.6750
+Epoch 2/5
+10203/10203 [==============================] - 38s 4ms/step - loss: 0.1011
+Epoch 3/5
+10203/10203 [==============================] - 38s 4ms/step - loss: 0.1006
+Epoch 4/5
+10203/10203 [==============================] - 39s 4ms/step - loss: 0.1006
+Epoch 5/5
+10203/10203 [==============================] - 39s 4ms/step - loss: 0.1006
+
+&lt;keras.callbacks.History at 0x298c5f040&gt;
+</code></pre>
+<p>여기서는 학습을 할 수 있다에 초점을 맞췄기 때문에, 성능 검증은 다루지 않습니다.</p>
+<h1 id="마치며">마치며</h1>
+<p>대용량 데이터에 적합한 라이브러리인 dask에 대해 기초를 다뤄봤습니다. 심화된 기능은 공식 홈페이지에 상세히 나와있습니다.</p>
+<p>dask의 기능을 좀 더 숙지한다면 매우 많은 부분에서 pandas를 대체할 수 있을것이라 기대합니다.</p>
+<p>더 소개할만한 기능을 수집해서 다음 포스팅에 공유하도록 하겠습니다. 감사합니다.</p>
+
+    </div>
+<div class="post_comments">
+  
+  
+  
+</div>
+
+
+
+
+  </article>
+<aside class="sidebar">
+  <section class="sidebar_inner">
+    <br>
+    
+
+
+    
+    
+    <h2 class="mt-4">Recent Posts</h2>
+    <ul class="flex-column">
+      <li>
+        <a href="https://Haebuk.github.io/post/2022-04-30.athena-lambda-partition-copy/" class="nav-link" title="[AWS Athena] AWS Lambda로 Athena 자동 파티셔닝 하기">[AWS Athena] AWS Lambda로 Athena 자동 파티셔닝 하기</a>
+      </li>
+      <li>
+        <a href="https://Haebuk.github.io/post/2022-01-09-aws-fundamental/" class="nav-link" title="[AWS] Data Analytics Fundamentals (Korean) 후기">[AWS] Data Analytics Fundamentals (Korean) 후기</a>
+      </li>
+      <li>
+        <a href="https://Haebuk.github.io/post/2022-01-01-aws-data-analytics-learning-plan2/" class="nav-link" title="[AWS] Data Analytics Learning Plan을 시작하며">[AWS] Data Analytics Learning Plan을 시작하며</a>
+      </li>
+      <li>
+        <a href="https://Haebuk.github.io/post/2022-01-10-dask-tutorial/" class="nav-link" title="[Dask] Dask 튜토리얼">[Dask] Dask 튜토리얼</a>
+      </li>
+      <li>
+        <a href="https://Haebuk.github.io/post/2022-06-03-docker-%E1%84%82%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5/" class="nav-link" title="[Docker] Docker 내용 정리">[Docker] Docker 내용 정리</a>
+      </li>
+      <li>
+        <a href="https://Haebuk.github.io/post/2021-12-19-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%8A%E1%85%A5%E1%86%AB%E1%84%8B%E1%85%B3%E1%84%85%E1%85%A9-%E1%84%8B%E1%85%A6%E1%86%AF%E1%84%85%E1%85%A1%E1%84%89%E1%85%B3%E1%84%90%E1%85%B5%E1%86%A8-%E1%84%89%E1%85%A5%E1%84%8E%E1%85%B5-%E1%84%8F%E1%85%AF%E1%84%85%E1%85%B5%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5/" class="nav-link" title="[Elastic Search] 파이썬으로 엘라스틱 서치 모든 데이터 쿼리하기">[Elastic Search] 파이썬으로 엘라스틱 서치 모든 데이터 쿼리하기</a>
+      </li>
+      <li>
+        <a href="https://Haebuk.github.io/post/2022-06-18-%E1%84%85%E1%85%B5%E1%84%89%E1%85%A9%E1%84%89%E1%85%B3%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5%E1%84%8B%E1%85%AA-%E1%84%8B%E1%85%A9%E1%84%90%E1%85%A9%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BC/" class="nav-link" title="[Kubernetes] 리소스 관리와 오토 스케일링">[Kubernetes] 리소스 관리와 오토 스케일링</a>
+      </li>
+      <li>
+        <a href="https://Haebuk.github.io/post/2022-06-22-%E1%84%86%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%82%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%8B%E1%85%AA-%E1%84%82%E1%85%A9%E1%84%83%E1%85%B3-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%8C%E1%85%B5/" class="nav-link" title="[Kubernetes] 메인터넌스와 노드 정지">[Kubernetes] 메인터넌스와 노드 정지</a>
+      </li>
+    </ul>
+    <div>
+      <h2 class="mt-4 taxonomy" id="categories-section">Categories</h2>
+      <nav class="tags_nav">
+        <a href='https://Haebuk.github.io/categories/kubernetes/' class="post_tag button button_translucent" title="kubernetes">
+          KUBERNETES
+          <span class="button_tally">8</span>
+        </a>
+        
+        <a href='https://Haebuk.github.io/categories/aws/' class="post_tag button button_translucent" title="aws">
+          AWS
+          <span class="button_tally">2</span>
+        </a>
+        
+        <a href='https://Haebuk.github.io/categories/python/' class="post_tag button button_translucent" title="python">
+          PYTHON
+          <span class="button_tally">2</span>
+        </a>
+        
+        <a href='https://Haebuk.github.io/categories/docker/' class="post_tag button button_translucent" title="docker">
+          DOCKER
+          <span class="button_tally">1</span>
+        </a>
+        
+        <a href='https://Haebuk.github.io/categories/elastic-search/' class="post_tag button button_translucent" title="elastic-search">
+          ELASTIC-SEARCH
+          <span class="button_tally">1</span>
+        </a>
+        
+        <a href='https://Haebuk.github.io/categories/etc/' class="post_tag button button_translucent" title="etc">
+          ETC
+          <span class="button_tally">1</span>
+        </a>
+        
+        <a href='https://Haebuk.github.io/categories/%ED%9A%8C%EA%B3%A0/' class="post_tag button button_translucent" title="회고">
+          회고
+          <span class="button_tally">1</span>
+        </a>
+        
+        
+      </nav>
+    </div>
+  </section>
+</aside>
+
+  
+</div>
+    </main><svg width="0" height="0" class="hidden">
+  <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
+    <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h151V331h-60v-90h60v-61c0-49.629 40.371-90 90-90h91v90h-91v61h91l-15 90h-76v181h121c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zm0 0"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.001 18.001" id="twitter">
+    <path d="M15.891 4.013c.808-.496 1.343-1.173 1.605-2.034a8.68 8.68 0 0 1-2.351.861c-.703-.756-1.593-1.14-2.66-1.14-1.043 0-1.924.366-2.643 1.078a3.56 3.56 0 0 0-1.076 2.605c0 .309.039.585.117.819-3.076-.105-5.622-1.381-7.628-3.837-.34.601-.51 1.213-.51 1.846 0 1.301.549 2.332 1.645 3.089-.625-.053-1.176-.211-1.645-.47 0 .929.273 1.705.82 2.388a3.623 3.623 0 0 0 2.115 1.291c-.312.08-.641.118-.979.118-.312 0-.533-.026-.664-.083.23.757.664 1.371 1.291 1.841a3.652 3.652 0 0 0 2.152.743C4.148 14.173 2.625 14.69.902 14.69c-.422 0-.721-.006-.902-.038 1.697 1.102 3.586 1.649 5.676 1.649 2.139 0 4.029-.542 5.674-1.626 1.645-1.078 2.859-2.408 3.639-3.974a10.77 10.77 0 0 0 1.172-4.892v-.468a7.788 7.788 0 0 0 1.84-1.921 8.142 8.142 0 0 1-2.11.593z"
+      ></path>
+  </symbol>
+  <symbol aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="mail">
+    <path  d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="calendar">
+    <path d="M452 40h-24V0h-40v40H124V0H84v40H60C26.916 40 0 66.916 0 100v352c0 33.084 26.916 60 60 60h392c33.084 0 60-26.916 60-60V100c0-33.084-26.916-60-60-60zm20 412c0 11.028-8.972 20-20 20H60c-11.028 0-20-8.972-20-20V188h432v264zm0-304H40v-48c0-11.028 8.972-20 20-20h24v40h40V80h264v40h40V80h24c11.028 0 20 8.972 20 20v48z"></path>
+    <path d="M76 230h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zM76 310h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zM76 390h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zm80-80h40v40h-40z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="github">
+    <path d="M255.968 5.329C114.624 5.329 0 120.401 0 262.353c0 113.536 73.344 209.856 175.104 243.872 12.8 2.368 17.472-5.568 17.472-12.384 0-6.112-.224-22.272-.352-43.712-71.2 15.52-86.24-34.464-86.24-34.464-11.616-29.696-28.416-37.6-28.416-37.6-23.264-15.936 1.728-15.616 1.728-15.616 25.696 1.824 39.2 26.496 39.2 26.496 22.848 39.264 59.936 27.936 74.528 21.344 2.304-16.608 8.928-27.936 16.256-34.368-56.832-6.496-116.608-28.544-116.608-127.008 0-28.064 9.984-51.008 26.368-68.992-2.656-6.496-11.424-32.64 2.496-68 0 0 21.504-6.912 70.4 26.336 20.416-5.696 42.304-8.544 64.096-8.64 21.728.128 43.648 2.944 64.096 8.672 48.864-33.248 70.336-26.336 70.336-26.336 13.952 35.392 5.184 61.504 2.56 68 16.416 17.984 26.304 40.928 26.304 68.992 0 98.72-59.84 120.448-116.864 126.816 9.184 7.936 17.376 23.616 17.376 47.584 0 34.368-.32 62.08-.32 70.496 0 6.88 4.608 14.88 17.6 12.352C438.72 472.145 512 375.857 512 262.353 512 120.401 397.376 5.329 255.968 5.329z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 212 212" id="gitlab">
+    <path d="M12.3 74.7h54L43.3 3c-1-3.6-6.4-3.6-7.6 0L12.3 74.8z" />
+    <path d="M12.3 74.7L.5 111c-1 3.2 0 6.8 3 8.8l101.6 74-92.5-119z"/>
+    <path d="M105 193.7l-38.6-119h-54l92.7 119z"/>
+    <path d="M105 193.7l38.7-119H66.4l38.7 119z"/>
+    <path d="M105 193.7l38.7-119H198l-93 119z"/>
+    <path d="M198 74.7l11.6 36.2c1 3 0 6.6-3 8.6l-101.5 74 93-119z"/>
+    <path d="M198 74.7h-54.3L167 3c1.2-3.6 6.4-3.6 7.6 0L198 74.8z"/> 
+  </symbol>
+  <symbol viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="rss">
+    <circle cx="3.429" cy="20.571" r="3.429"></circle>
+    <path d="M11.429 24h4.57C15.999 15.179 8.821 8.001 0 8v4.572c6.302.001 11.429 5.126 11.429 11.428z"></path>
+    <path d="M24 24C24 10.766 13.234 0 0 0v4.571c10.714 0 19.43 8.714 19.43 19.429z"></path>
+  </symbol>
+  <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="linkedin">
+    <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h362c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zM181 406h-60V196h60zm0-240h-60v-60h60zm210 240h-60V286c0-16.54-13.46-30-30-30s-30 13.46-30 30v120h-60V196h60v11.309C286.719 202.422 296.93 196 316 196c40.691.043 75 36.547 75 79.688zm0 0"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" id="to-top">
+    <path d="M604.501 440.509L325.398 134.956c-5.331-5.357-12.423-7.627-19.386-7.27-6.989-.357-14.056 1.913-19.387 7.27L7.499 440.509c-9.999 10.024-9.999 26.298 0 36.323s26.223 10.024 36.222 0l262.293-287.164L568.28 476.832c9.999 10.024 26.222 10.024 36.221 0 9.999-10.023 9.999-26.298 0-36.323z"></path>
+  </symbol>
+  <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="carly">
+    <path d="M504.971 239.029L448 182.059V84c0-46.317-37.682-84-84-84h-44c-13.255 0-24 10.745-24 24s10.745 24 24 24h44c19.851 0 36 16.149 36 36v108c0 6.365 2.529 12.47 7.029 16.971L454.059 256l-47.029 47.029A24.002 24.002 0 0 0 400 320v108c0 19.851-16.149 36-36 36h-44c-13.255 0-24 10.745-24 24s10.745 24 24 24h44c46.318 0 84-37.683 84-84v-98.059l56.971-56.971c9.372-9.372 9.372-24.568 0-33.941zM112 192V84c0-19.851 16.149-36 36-36h44c13.255 0 24-10.745 24-24S205.255 0 192 0h-44c-46.318 0-84 37.683-84 84v98.059l-56.971 56.97c-9.373 9.373-9.373 24.568 0 33.941L64 329.941V428c0 46.317 37.682 84 84 84h44c13.255 0 24-10.745 24-24s-10.745-24-24-24h-44c-19.851 0-36-16.149-36-36V320c0-6.365-2.529-12.47-7.029-16.971L57.941 256l47.029-47.029A24.002 24.002 0 0 0 112 192z"></path>
+  </symbol>
+  <symbol viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="copy">
+    <path d="M23 2.75A2.75 2.75 0 0 0 20.25 0H8.75A2.75 2.75 0 0 0 6 2.75v13.5A2.75 2.75 0 0 0 8.75 19h11.5A2.75 2.75 0 0 0 23 16.25zM18.25 14.5h-7.5a.75.75 0 0 1 0-1.5h7.5a.75.75 0 0 1 0 1.5zm0-3h-7.5a.75.75 0 0 1 0-1.5h7.5a.75.75 0 0 1 0 1.5zm0-3h-7.5a.75.75 0 0 1 0-1.5h7.5a.75.75 0 0 1 0 1.5z"></path>
+    <path d="M8.75 20.5a4.255 4.255 0 0 1-4.25-4.25V2.75c0-.086.02-.166.025-.25H3.75A2.752 2.752 0 0 0 1 5.25v16A2.752 2.752 0 0 0 3.75 24h12a2.752 2.752 0 0 0 2.75-2.75v-.75z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.001 512.001" id="closeme">
+    <path d="M284.286 256.002L506.143 34.144c7.811-7.811 7.811-20.475 0-28.285-7.811-7.81-20.475-7.811-28.285 0L256 227.717 34.143 5.859c-7.811-7.811-20.475-7.811-28.285 0-7.81 7.811-7.811 20.475 0 28.285l221.857 221.857L5.858 477.859c-7.811 7.811-7.811 20.475 0 28.285a19.938 19.938 0 0 0 14.143 5.857 19.94 19.94 0 0 0 14.143-5.857L256 284.287l221.857 221.857c3.905 3.905 9.024 5.857 14.143 5.857s10.237-1.952 14.143-5.857c7.811-7.811 7.811-20.475 0-28.285L284.286 256.002z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="open-menu">
+    <path d="M492 236H20c-11.046 0-20 8.954-20 20s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20zm0-160H20C8.954 76 0 84.954 0 96s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20zm0 320H20c-11.046 0-20 8.954-20 20s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="instagram">
+    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id=youtube>
+    <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="stackoverflow">
+    <path d="M21 27v-8h3v11H0V19h3v8h18z"></path><path d="M17.1.2L15 1.8l7.9 10.6 2.1-1.6L17.1.2zm3.7 14.7L10.6 6.4l1.7-2 10.2 8.5-1.7 2zM7.2 12.3l12 5.6 1.1-2.4-12-5.6-1.1 2.4zm-1.8 6.8l13.56 1.96.17-2.38-13.26-2.55-.47 2.97zM19 25H5v-3h14v3z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="xing">
+    <path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894 0 21.686 0h-3.498zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.461c.518 0 .766-.348.945-.667l3.734-6.609-2.378-4.155c-.172-.315-.434-.659-.962-.659H3.648v.016z"/>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71 55" id="discord">
+    <path d="M60.1045 4.8978C55.5792 2.8214 50.7265 1.2916 45.6527 0.41542C45.5603 0.39851 45.468 0.440769 45.4204 0.525289C44.7963 1.6353 44.105 3.0834 43.6209 4.2216C38.1637 3.4046 32.7345 3.4046 27.3892 4.2216C26.905 3.0581 26.1886 1.6353 25.5617 0.525289C25.5141 0.443589 25.4218 0.40133 25.3294 0.41542C20.2584 1.2888 15.4057 2.8186 10.8776 4.8978C10.8384 4.9147 10.8048 4.9429 10.7825 4.9795C1.57795 18.7309 -0.943561 32.1443 0.293408 45.3914C0.299005 45.4562 0.335386 45.5182 0.385761 45.5576C6.45866 50.0174 12.3413 52.7249 18.1147 54.5195C18.2071 54.5477 18.305 54.5139 18.3638 54.4378C19.7295 52.5728 20.9469 50.6063 21.9907 48.5383C22.0523 48.4172 21.9935 48.2735 21.8676 48.2256C19.9366 47.4931 18.0979 46.6 16.3292 45.5858C16.1893 45.5041 16.1781 45.304 16.3068 45.2082C16.679 44.9293 17.0513 44.6391 17.4067 44.3461C17.471 44.2926 17.5606 44.2813 17.6362 44.3151C29.2558 49.6202 41.8354 49.6202 53.3179 44.3151C53.3935 44.2785 53.4831 44.2898 53.5502 44.3433C53.9057 44.6363 54.2779 44.9293 54.6529 45.2082C54.7816 45.304 54.7732 45.5041 54.6333 45.5858C52.8646 46.6197 51.0259 47.4931 49.0921 48.2228C48.9662 48.2707 48.9102 48.4172 48.9718 48.5383C50.038 50.6034 51.2554 52.5699 52.5959 54.435C52.6519 54.5139 52.7526 54.5477 52.845 54.5195C58.6464 52.7249 64.529 50.0174 70.6019 45.5576C70.6551 45.5182 70.6887 45.459 70.6943 45.3942C72.1747 30.0791 68.2147 16.7757 60.1968 4.9823C60.1772 4.9429 60.1437 4.9147 60.1045 4.8978ZM23.7259 37.3253C20.2276 37.3253 17.3451 34.1136 17.3451 30.1693C17.3451 26.225 20.1717 23.0133 23.7259 23.0133C27.308 23.0133 30.1626 26.2532 30.1066 30.1693C30.1066 34.1136 27.28 37.3253 23.7259 37.3253ZM47.3178 37.3253C43.8196 37.3253 40.9371 34.1136 40.9371 30.1693C40.9371 26.225 43.7636 23.0133 47.3178 23.0133C50.9 23.0133 53.7545 26.2532 53.6986 30.1693C53.6986 34.1136 50.9 37.3253 47.3178 37.3253Z"/>
+  </symbol>
+</svg>
+
+
+<footer class="footer">
+  <div class="footer_inner wrap pale">
+    <img src='https://Haebuk.github.io/icons/apple-touch-icon.png' class="icon icon_2 transparent" alt="지식 공유, 협업 ✈️ 성장">
+    <p>Copyright&nbsp;<span class="year"></span>&nbsp;지식 공유, 협업 ✈️ 성장. All Rights Reserved</p><a class="to_top" href="#documentTop">
+  <svg class="icon">
+  <title>to-top</title>
+  <use xlink:href="#to-top"></use>
+</svg>
+
+</a>
+
+  </div>
+</footer>
+
+<script type="text/javascript" src="https://Haebuk.github.io/en/js/bundle.196e32081a62224415d8434dcf1e9156eb583ccd88f292c0ca5acb62995626357433971f4bc87a29fca931c7875eb6c77e04d363cca5699f49713ba73f68f567.js" integrity="sha512-GW4yCBpiIkQV2ENNzx6RVutYPM2I8pLAylrLYplWJjV0M5cfS8h6KfypMceHXrbHfgTTY8ylaZ9JcTunP2j1Zw==" crossorigin="anonymous"></script>
+  </body>
+</html>

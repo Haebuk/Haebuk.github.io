@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>etc on 지식 공유, 협업 ✈️ 성장</title>
+    <link>https://Haebuk.github.io/categories/etc/</link>
+    <description>Recent content in etc on 지식 공유, 협업 ✈️ 성장</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-KR</language><atom:link href="https://Haebuk.github.io/categories/etc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>깃허브 블로그 개시</title>
+      <link>https://Haebuk.github.io/post/2021-12-15-%E1%84%87%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3-%E1%84%80%E1%85%A2%E1%84%89%E1%85%B5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://Haebuk.github.io/post/2021-12-15-%E1%84%87%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3-%E1%84%80%E1%85%A2%E1%84%89%E1%85%B5/</guid>
+      <description>
+        
+          
+            첫 블로그 게시글 포스팅 안녕하세요. 카데입니다.
+평소 가지고 있는 생각과 정보공유를 목적으로 깃허브 블로그를 개설하게 되었습니다.
+취업 전에는 매일 작업한 코드를 올렸기 때문에 상관이 없었는데, 취직하고 나서는 올릴게 마땅치 않더라고요.
+깃허브 블로그 포스팅을 하면 커밋도 겸사겸사 할 수 있다는 사실을 알게 되어서 앞으로 애용하려고 합니다.
+주 포스팅은 책 리뷰나, 머신러닝, 딥러닝, 데이터분석, 실제 aws 사용기 등을 업로드할 예정입니다.
+앞으로 잘 부탁드립니다.
+print(&amp;#39;Hello World!&amp;#39;) Hello World!
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

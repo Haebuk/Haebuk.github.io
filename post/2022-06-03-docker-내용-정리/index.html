@@ -4,10 +4,12 @@
   lang="en"
   data-figures=""
   
+    class="page"
+  
   
   >
   <head>
-<title>Categories | 지식 공유, 협업 ✈️ 성장</title>
+<title>[Docker] Docker 내용 정리 | 지식 공유, 협업 ✈️ 성장</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,22 +19,23 @@
 <meta property="og:locale" content="en" />
 
 <meta property="og:type" content="article">
-<meta name="description" content="" />
+<meta name="description" content="Docker 내용 정리 도커 컨테이너 설계 도커 컨테이너 생성 시 주의해야 할 점 네 가지
+1 컨테이너당 1 프로세스 변경 불가능한 인프라(Immutable Infrastructure) 이미지로 생성 경량의 도커 이미지로 생성 실행 계정은 root 이외의 사용자로 설정 1. 1 컨테이너 …" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="">
-<meta name="twitter:title" content="Categories" />
+<meta name="twitter:title" content="[Docker] Docker 내용 정리" />
 <meta name="twitter:image" content="https://Haebuk.github.io"/>
-<meta property="og:url" content="https://Haebuk.github.io/categories/" />
-<meta property="og:title" content="Categories" />
-<meta property="og:description" content="" />
+<meta property="og:url" content="https://Haebuk.github.io/post/2022-06-03-docker-%E1%84%82%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5/" />
+<meta property="og:title" content="[Docker] Docker 내용 정리" />
+<meta property="og:description" content="Docker 내용 정리 도커 컨테이너 설계 도커 컨테이너 생성 시 주의해야 할 점 네 가지
+1 컨테이너당 1 프로세스 변경 불가능한 인프라(Immutable Infrastructure) 이미지로 생성 경량의 도커 이미지로 생성 실행 계정은 root 이외의 사용자로 설정 1. 1 컨테이너 …" />
 <meta property="og:image" content="https://Haebuk.github.io" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="https://Haebuk.github.io/icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://Haebuk.github.io/icons/favicon-32x32.png">
 <link rel="manifest" href="https://Haebuk.github.io/icons/site.webmanifest">
 
-<link rel="canonical" href="https://Haebuk.github.io/categories/">
-<link rel="alternate" type="application/rss+xml" href="https://Haebuk.github.io/categories/index.xml" title="지식 공유, 협업 ✈️ 성장" />
+<link rel="canonical" href="https://Haebuk.github.io/post/2022-06-03-docker-%E1%84%82%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5/">
 
 
 
@@ -89,19 +92,10 @@
 </header>
 
     <main>
-
-
-
+  
 <div class="grid-inverse wrap content">
-  <div>
-    <ul class="posts" id="posts">
-        <li class="post_item">
-  <div class="excerpt">
-    <div class="excerpt_header">
-      <h3 class="post_link">
-        <a href="https://Haebuk.github.io/categories/aws/" title="AWS">AWS</a>
-      </h3>
-      
+  <article class="post_content">
+    <h1 class="post_title">[Docker] Docker 내용 정리</h1>
   <div class="post_meta">
     <span><svg class="icon">
   <title>calendar</title>
@@ -110,18 +104,18 @@
 </span>
     <span class="post_date">
       Jan 1, 0001</span>
-    <span class="post_time"> · 0 min read</span>
+    <span class="post_time"> · 2 min read</span>
     <span class="page_only">&nbsp;·
   <div class="post_share">
     Share on:
-    <a href="https://twitter.com/intent/tweet?text=AWS&url=https%3a%2f%2fHaebuk.github.io%2fcategories%2faws%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+    <a href="https://twitter.com/intent/tweet?text=%5bDocker%5d%20Docker%20%eb%82%b4%ec%9a%a9%20%ec%a0%95%eb%a6%ac&url=https%3a%2f%2fHaebuk.github.io%2fpost%2f2022-06-03-docker-%25E1%2584%2582%25E1%2585%25A2%25E1%2584%258B%25E1%2585%25AD%25E1%2586%25BC-%25E1%2584%258C%25E1%2585%25A5%25E1%2586%25BC%25E1%2584%2585%25E1%2585%25B5%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
       <svg class="icon">
   <title>twitter</title>
   <use xlink:href="#twitter"></use>
 </svg>
 
     </a>
-    <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fHaebuk.github.io%2fcategories%2faws%2f&t=AWS" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+    <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fHaebuk.github.io%2fpost%2f2022-06-03-docker-%25E1%2584%2582%25E1%2585%25A2%25E1%2584%258B%25E1%2585%25AD%25E1%2586%25BC-%25E1%2584%258C%25E1%2585%25A5%25E1%2586%25BC%25E1%2584%2585%25E1%2585%25B5%2f&t=%5bDocker%5d%20Docker%20%eb%82%b4%ec%9a%a9%20%ec%a0%95%eb%a6%ac" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
       <svg class="icon">
   <title>facebook</title>
   <use xlink:href="#facebook"></use>
@@ -135,7 +129,7 @@
 </svg>
 
     </a>
-    <a href="https://Haebuk.github.io/categories/aws/" title="Copy Link" class="link link_yank">
+    <a href="https://Haebuk.github.io/post/2022-06-03-docker-%E1%84%82%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5/" title="Copy Link" class="link link_yank">
       <svg class="icon">
   <title>copy</title>
   <use xlink:href="#copy"></use>
@@ -146,407 +140,78 @@
   </span>
   </div>
 
-    </div>
-      <div class="excerpt_footer">
-        <div class="pale">
-          
-            <p></p>
-          
-          <br>
-          <a href="https://Haebuk.github.io/categories/aws/" title="Read More" class="excerpt_more button">Read More</a>
-        </div>
+      <div class="post_toc">
+        <h2>Overview</h2>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#도커-컨테이너-설계">도커 컨테이너 설계</a>
+      <ul>
+        <li><a href="#1-1-컨테이너당-1-프로세스">1. 1 컨테이너당 1 프로세스</a></li>
+        <li><a href="#2-변경-불가능한-인프라를-구현하는-이미지로-생성">2. 변경 불가능한 인프라를 구현하는 이미지로 생성</a></li>
+        <li><a href="#3-도커-이미지-경량화">3. 도커 이미지 경량화</a></li>
+        <li><a href="#4-실행-계정-권한-최소화">4. 실행 계정 권한 최소화</a></li>
+      </ul>
+    </li>
+    <li><a href="#entrypoint와-cmd"><code>ENTRYPOINT</code>와 <code>CMD</code></a></li>
+  </ul>
+</nav>
       </div>
-    </div>
-  </li>
-
-        <li class="post_item">
-  <div class="excerpt">
-    <div class="excerpt_header">
-      <h3 class="post_link">
-        <a href="https://Haebuk.github.io/categories/docker/" title="Docker">Docker</a>
-      </h3>
-      
-  <div class="post_meta">
-    <span><svg class="icon">
-  <title>calendar</title>
-  <use xlink:href="#calendar"></use>
-</svg>
-</span>
-    <span class="post_date">
-      Jan 1, 0001</span>
-    <span class="post_time"> · 0 min read</span>
-    <span class="page_only">&nbsp;·
-  <div class="post_share">
-    Share on:
-    <a href="https://twitter.com/intent/tweet?text=Docker&url=https%3a%2f%2fHaebuk.github.io%2fcategories%2fdocker%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
-      <svg class="icon">
-  <title>twitter</title>
-  <use xlink:href="#twitter"></use>
-</svg>
-
-    </a>
-    <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fHaebuk.github.io%2fcategories%2fdocker%2f&t=Docker" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
-      <svg class="icon">
-  <title>facebook</title>
-  <use xlink:href="#facebook"></use>
-</svg>
-
-    </a>
-    <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow">
-      <svg class="icon">
-  <title>linkedin</title>
-  <use xlink:href="#linkedin"></use>
-</svg>
-
-    </a>
-    <a href="https://Haebuk.github.io/categories/docker/" title="Copy Link" class="link link_yank">
-      <svg class="icon">
-  <title>copy</title>
-  <use xlink:href="#copy"></use>
-</svg>
-
-    </a>
-  </div>
-  </span>
-  </div>
+    
+    <div class="post_body"><h1 id="docker-내용-정리">Docker 내용 정리</h1>
+<h2 id="도커-컨테이너-설계">도커 컨테이너 설계</h2>
+<p>도커 컨테이너 생성 시 주의해야 할 점 네 가지</p>
+<ol>
+<li>1 컨테이너당 1 프로세스</li>
+<li>변경 불가능한 인프라(Immutable Infrastructure) 이미지로 생성</li>
+<li>경량의 도커 이미지로 생성</li>
+<li>실행 계정은 root 이외의 사용자로 설정</li>
+</ol>
+<h3 id="1-1-컨테이너당-1-프로세스">1. 1 컨테이너당 1 프로세스</h3>
+<ul>
+<li>기존 VM처럼 하나의 이미지 안에 여러 프로세스는 비추</li>
+<li>여러 프로세스 기동 시 주변 에코 시스템과 맞지 않거나 관리가 힘들어짐</li>
+</ul>
+<h3 id="2-변경-불가능한-인프라를-구현하는-이미지로-생성">2. 변경 불가능한 인프라를 구현하는 이미지로 생성</h3>
+<ul>
+<li>변경 불가능한 인프라: &ldquo;환경 변경 시 오래된 환경은 없애고 새로운 환경 생성&rdquo; 또는 &ldquo;한번 만든 환경은 절대 불변하게&rdquo;</li>
+<li>전자의 경우 쿠버네티스는 자동으로 만들어주지만 후자는 컨테이너 이미지 관리자가 고려해야 함</li>
+<li>도커 컨테이너는 버전 관리 가능하므로, 컨테이너 이미지 내에 애플리케이션 실행 바이너리 또는 관련 리소스를 가능한 포함시켜야 함</li>
+</ul>
+<h3 id="3-도커-이미지-경량화">3. 도커 이미지 경량화</h3>
+<ul>
+<li>컨테이너 실행 시 최초 1회는 이미지를 외부에서 pull해야 함</li>
+<li><code>dnf</code>, <code>yum</code>, <code>apt</code>로 패키지 설치 후 저장소 패키지 목록 등의 캐시파일 삭제</li>
+<li>멀티 스테이지 빌드 활용하여 이미지에 필요한 파일만 추가</li>
+<li>기본 이미지가 경량인 배포판 이미지 사용 (ex. alpine linux, distorless 등)</li>
+<li>도커 파일 최적화에 따라 레이어 줄이기</li>
+<li>도커 이미지 생성시 squash 사용</li>
+</ul>
+<h3 id="4-실행-계정-권한-최소화">4. 실행 계정 권한 최소화</h3>
+<ul>
+<li>root 사용자는 최대한 사용하지 않도록 한다.</li>
+</ul>
+<h2 id="entrypoint와-cmd"><code>ENTRYPOINT</code>와 <code>CMD</code></h2>
+<ul>
+<li>컨테이너가 기동할 때 실행하는 명령어를 지정할 때 사용</li>
+<li>아주 간단히 설명하면 <code>$ENTRYOINT $CMD</code>가 실행된다고 볼 수 있음</li>
+<li><code>ENTRYPOINT</code>에 바꿀 필요가 없는 부분을 정의하고 <code>CMD</code>에 기본값 인수 등을 정의하는 것이 일반적
+<ul>
+<li>예) <code>ENTRYPOINT</code>에 /bin/sleep 지정, <code>CMD</code>에 sleep 시간 지정</li>
+</ul>
+</li>
+</ul>
 
     </div>
-      <div class="excerpt_footer">
-        <div class="pale">
-          
-            <p></p>
-          
-          <br>
-          <a href="https://Haebuk.github.io/categories/docker/" title="Read More" class="excerpt_more button">Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
+<div class="post_comments">
+  
+  
+  
+</div>
 
-        <li class="post_item">
-  <div class="excerpt">
-    <div class="excerpt_header">
-      <h3 class="post_link">
-        <a href="https://Haebuk.github.io/categories/elastic-search/" title="elastic-search">elastic-search</a>
-      </h3>
-      
-  <div class="post_meta">
-    <span><svg class="icon">
-  <title>calendar</title>
-  <use xlink:href="#calendar"></use>
-</svg>
-</span>
-    <span class="post_date">
-      Jan 1, 0001</span>
-    <span class="post_time"> · 0 min read</span>
-    <span class="page_only">&nbsp;·
-  <div class="post_share">
-    Share on:
-    <a href="https://twitter.com/intent/tweet?text=elastic-search&url=https%3a%2f%2fHaebuk.github.io%2fcategories%2felastic-search%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
-      <svg class="icon">
-  <title>twitter</title>
-  <use xlink:href="#twitter"></use>
-</svg>
 
-    </a>
-    <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fHaebuk.github.io%2fcategories%2felastic-search%2f&t=elastic-search" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
-      <svg class="icon">
-  <title>facebook</title>
-  <use xlink:href="#facebook"></use>
-</svg>
 
-    </a>
-    <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow">
-      <svg class="icon">
-  <title>linkedin</title>
-  <use xlink:href="#linkedin"></use>
-</svg>
 
-    </a>
-    <a href="https://Haebuk.github.io/categories/elastic-search/" title="Copy Link" class="link link_yank">
-      <svg class="icon">
-  <title>copy</title>
-  <use xlink:href="#copy"></use>
-</svg>
-
-    </a>
-  </div>
-  </span>
-  </div>
-
-    </div>
-      <div class="excerpt_footer">
-        <div class="pale">
-          
-            <p></p>
-          
-          <br>
-          <a href="https://Haebuk.github.io/categories/elastic-search/" title="Read More" class="excerpt_more button">Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-
-        <li class="post_item">
-  <div class="excerpt">
-    <div class="excerpt_header">
-      <h3 class="post_link">
-        <a href="https://Haebuk.github.io/categories/etc/" title="etc">etc</a>
-      </h3>
-      
-  <div class="post_meta">
-    <span><svg class="icon">
-  <title>calendar</title>
-  <use xlink:href="#calendar"></use>
-</svg>
-</span>
-    <span class="post_date">
-      Jan 1, 0001</span>
-    <span class="post_time"> · 0 min read</span>
-    <span class="page_only">&nbsp;·
-  <div class="post_share">
-    Share on:
-    <a href="https://twitter.com/intent/tweet?text=etc&url=https%3a%2f%2fHaebuk.github.io%2fcategories%2fetc%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
-      <svg class="icon">
-  <title>twitter</title>
-  <use xlink:href="#twitter"></use>
-</svg>
-
-    </a>
-    <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fHaebuk.github.io%2fcategories%2fetc%2f&t=etc" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
-      <svg class="icon">
-  <title>facebook</title>
-  <use xlink:href="#facebook"></use>
-</svg>
-
-    </a>
-    <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow">
-      <svg class="icon">
-  <title>linkedin</title>
-  <use xlink:href="#linkedin"></use>
-</svg>
-
-    </a>
-    <a href="https://Haebuk.github.io/categories/etc/" title="Copy Link" class="link link_yank">
-      <svg class="icon">
-  <title>copy</title>
-  <use xlink:href="#copy"></use>
-</svg>
-
-    </a>
-  </div>
-  </span>
-  </div>
-
-    </div>
-      <div class="excerpt_footer">
-        <div class="pale">
-          
-            <p></p>
-          
-          <br>
-          <a href="https://Haebuk.github.io/categories/etc/" title="Read More" class="excerpt_more button">Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-
-        <li class="post_item">
-  <div class="excerpt">
-    <div class="excerpt_header">
-      <h3 class="post_link">
-        <a href="https://Haebuk.github.io/categories/kubernetes/" title="Kubernetes">Kubernetes</a>
-      </h3>
-      
-  <div class="post_meta">
-    <span><svg class="icon">
-  <title>calendar</title>
-  <use xlink:href="#calendar"></use>
-</svg>
-</span>
-    <span class="post_date">
-      Jan 1, 0001</span>
-    <span class="post_time"> · 0 min read</span>
-    <span class="page_only">&nbsp;·
-  <div class="post_share">
-    Share on:
-    <a href="https://twitter.com/intent/tweet?text=Kubernetes&url=https%3a%2f%2fHaebuk.github.io%2fcategories%2fkubernetes%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
-      <svg class="icon">
-  <title>twitter</title>
-  <use xlink:href="#twitter"></use>
-</svg>
-
-    </a>
-    <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fHaebuk.github.io%2fcategories%2fkubernetes%2f&t=Kubernetes" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
-      <svg class="icon">
-  <title>facebook</title>
-  <use xlink:href="#facebook"></use>
-</svg>
-
-    </a>
-    <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow">
-      <svg class="icon">
-  <title>linkedin</title>
-  <use xlink:href="#linkedin"></use>
-</svg>
-
-    </a>
-    <a href="https://Haebuk.github.io/categories/kubernetes/" title="Copy Link" class="link link_yank">
-      <svg class="icon">
-  <title>copy</title>
-  <use xlink:href="#copy"></use>
-</svg>
-
-    </a>
-  </div>
-  </span>
-  </div>
-
-    </div>
-      <div class="excerpt_footer">
-        <div class="pale">
-          
-            <p></p>
-          
-          <br>
-          <a href="https://Haebuk.github.io/categories/kubernetes/" title="Read More" class="excerpt_more button">Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-
-        <li class="post_item">
-  <div class="excerpt">
-    <div class="excerpt_header">
-      <h3 class="post_link">
-        <a href="https://Haebuk.github.io/categories/python/" title="Python">Python</a>
-      </h3>
-      
-  <div class="post_meta">
-    <span><svg class="icon">
-  <title>calendar</title>
-  <use xlink:href="#calendar"></use>
-</svg>
-</span>
-    <span class="post_date">
-      Jan 1, 0001</span>
-    <span class="post_time"> · 0 min read</span>
-    <span class="page_only">&nbsp;·
-  <div class="post_share">
-    Share on:
-    <a href="https://twitter.com/intent/tweet?text=Python&url=https%3a%2f%2fHaebuk.github.io%2fcategories%2fpython%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
-      <svg class="icon">
-  <title>twitter</title>
-  <use xlink:href="#twitter"></use>
-</svg>
-
-    </a>
-    <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fHaebuk.github.io%2fcategories%2fpython%2f&t=Python" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
-      <svg class="icon">
-  <title>facebook</title>
-  <use xlink:href="#facebook"></use>
-</svg>
-
-    </a>
-    <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow">
-      <svg class="icon">
-  <title>linkedin</title>
-  <use xlink:href="#linkedin"></use>
-</svg>
-
-    </a>
-    <a href="https://Haebuk.github.io/categories/python/" title="Copy Link" class="link link_yank">
-      <svg class="icon">
-  <title>copy</title>
-  <use xlink:href="#copy"></use>
-</svg>
-
-    </a>
-  </div>
-  </span>
-  </div>
-
-    </div>
-      <div class="excerpt_footer">
-        <div class="pale">
-          
-            <p></p>
-          
-          <br>
-          <a href="https://Haebuk.github.io/categories/python/" title="Read More" class="excerpt_more button">Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-
-        <li class="post_item">
-  <div class="excerpt">
-    <div class="excerpt_header">
-      <h3 class="post_link">
-        <a href="https://Haebuk.github.io/categories/%ED%9A%8C%EA%B3%A0/" title="회고">회고</a>
-      </h3>
-      
-  <div class="post_meta">
-    <span><svg class="icon">
-  <title>calendar</title>
-  <use xlink:href="#calendar"></use>
-</svg>
-</span>
-    <span class="post_date">
-      Jan 1, 0001</span>
-    <span class="post_time"> · 0 min read</span>
-    <span class="page_only">&nbsp;·
-  <div class="post_share">
-    Share on:
-    <a href="https://twitter.com/intent/tweet?text=%ed%9a%8c%ea%b3%a0&url=https%3a%2f%2fHaebuk.github.io%2fcategories%2f%25ED%259A%258C%25EA%25B3%25A0%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
-      <svg class="icon">
-  <title>twitter</title>
-  <use xlink:href="#twitter"></use>
-</svg>
-
-    </a>
-    <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fHaebuk.github.io%2fcategories%2f%25ED%259A%258C%25EA%25B3%25A0%2f&t=%ed%9a%8c%ea%b3%a0" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
-      <svg class="icon">
-  <title>facebook</title>
-  <use xlink:href="#facebook"></use>
-</svg>
-
-    </a>
-    <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow">
-      <svg class="icon">
-  <title>linkedin</title>
-  <use xlink:href="#linkedin"></use>
-</svg>
-
-    </a>
-    <a href="https://Haebuk.github.io/categories/%ED%9A%8C%EA%B3%A0/" title="Copy Link" class="link link_yank">
-      <svg class="icon">
-  <title>copy</title>
-  <use xlink:href="#copy"></use>
-</svg>
-
-    </a>
-  </div>
-  </span>
-  </div>
-
-    </div>
-      <div class="excerpt_footer">
-        <div class="pale">
-          
-            <p></p>
-          
-          <br>
-          <a href="https://Haebuk.github.io/categories/%ED%9A%8C%EA%B3%A0/" title="Read More" class="excerpt_more button">Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-
-      <li>
-      </li>
-    </ul>
-  </div>
+  </article>
 <aside class="sidebar">
   <section class="sidebar_inner">
     <br>
@@ -626,9 +291,8 @@
   </section>
 </aside>
 
+  
 </div>
-
-
     </main><svg width="0" height="0" class="hidden">
   <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
     <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h151V331h-60v-90h60v-61c0-49.629 40.371-90 90-90h91v90h-91v61h91l-15 90h-76v181h121c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zm0 0"></path>

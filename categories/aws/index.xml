@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AWS on 지식 공유, 협업 ✈️ 성장</title>
+    <link>https://Haebuk.github.io/categories/aws/</link>
+    <description>Recent content in AWS on 지식 공유, 협업 ✈️ 성장</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-KR</language><atom:link href="https://Haebuk.github.io/categories/aws/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[AWS] Data Analytics Fundamentals (Korean) 후기</title>
+      <link>https://Haebuk.github.io/post/2022-01-09-aws-fundamental/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://Haebuk.github.io/post/2022-01-09-aws-fundamental/</guid>
+      <description>
+        
+          
+            지난번 포스팅에서 data analytics learning plan을 수강한다고 언급했었는데요,(참조: [AWS] Data Analytics Learning Plan을 시작하며) 아무래도 영어로 된 강의다보니 첫 수강에 부담이 있었습니다.
+한국어로 된 유사한 강의가 있나 찾아보던 중 발견하게 되어 먼저 수강하기로 결정했습니다. (링크: Data Analytics Fundamentals (Korean), 수강신청을 하지 않았을 경우 접속이 되지 않을 수 있습니다. 먼저 aws skill builder에서 등록을 진행해주세요.)
+강의 구성 강의는 약 3시간 30분으로 이루어져 있습니다. 강의 구성은 5V에 대해 소개하는데요, 볼륨(Volume), 속도(Velocity), 다양성(Variety), 정확성(Veracity), 가치(Value)의 5V입니다.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>[AWS] Data Analytics Learning Plan을 시작하며</title>
+      <link>https://Haebuk.github.io/post/2022-01-01-aws-data-analytics-learning-plan2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://Haebuk.github.io/post/2022-01-01-aws-data-analytics-learning-plan2/</guid>
+      <description>
+        
+          
+            신년을 맞아 여러가지 공부를 할 것에 대해 찾아보던 도중에, AWS의 자격증 준비를 위해 AWS에서 자체적으로 제공하는 AWS Skill Builder에 대해 알게되었습니다. (aws skill builder 사이트) 요즘 회사에서 ML/DL보다는 거의 AWS 관련 업무만 하고 있기에, 등록하면 업무적으로나 커리어적으로나 매우 도움이 될 것 같았습니다.
+Korean으로 검색하면 한국어로 된 강의도 매우 많음을 알 수 있습니다. 하나의 아이템(강의)별로 올라와있습니다. 길이는 긴 경우에 3시간 짜리도 있습니다.
+이러한 강의들을 묶어서 사용자의 니즈에 맞춘 커리큘럼처럼 제공하는 플랜도 있습니다.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>
