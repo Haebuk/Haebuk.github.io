@@ -73,22 +73,6 @@
     </item>
     
     <item>
-      <title>[Kubernetes] 워크로드 API 정리</title>
-      <link>https://Haebuk.github.io/post/2022-06-05-%E1%84%8B%E1%85%AF%E1%84%8F%E1%85%B3%E1%84%85%E1%85%A9%E1%84%83%E1%85%B3api/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://Haebuk.github.io/post/2022-06-05-%E1%84%8B%E1%85%AF%E1%84%8F%E1%85%B3%E1%84%85%E1%85%A9%E1%84%83%E1%85%B3api/</guid>
-      <description>
-        
-          
-            워크로드 API 카테고리 클러스터에 컨테이너를 기동시키기 위해 사용되는 리소스 Pod Replication Controller(Deprecated) ReplicaSet Deployment DaemonSet StatefulSet Job CronJob 파드 워크로드 리소스의 최소 단위 파드 디자인 패턴 종류 개요 사이드카 패턴 메인 컨테이너에 기능 추가 앰배서더 패턴 외부 시스템과의 통신 중계 어댑터 패턴 외부 접속을 위한 인터페이스 제공 파드 명령어 # 파드 생성 $ kubectl apply -f sample-pod.yaml # 파드 목록 표시 $ kubectl get pods # 파드 상세 정보 표시 $ kubectl get pods --output wide # 컨테이너에서 /bin/bash 실행 $ kubectl exec -it sample-pod -- /bin/bash root@sample-pod:/# (이후 컨테이너 내부에서 명령어 실행 가능) # 컨테이너에서 ls 명령어 실행 $ kubectl exec -it sample-pod -- /bin/ls # 다수의 컨테이너 포함한 파드의 경우 특정 컨테이너 지정 가능 $ kubectl exec -it sample-2pod -c nginx-container -- /bin/ls 파드 주의 사항 파드 내 컨테이너가 같은 포트로 바인드되면 안됨 쿠버네티스는 ENTRYPOINT를 command, CMD를 args라고 부름 파드명 제한 영어 소문자 또는 숫자 기호는 &amp;lsquo;-&amp;rsquo; 또는 &amp;lsquo;.
-          
-          
-        
-      </description>
-    </item>
-    
-    <item>
       <title>[Kubernetes] 유연한 고급 스케줄링</title>
       <link>https://Haebuk.github.io/post/2022-06-25-%E1%84%8B%E1%85%B2%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%92%E1%85%A1%E1%86%AB-%E1%84%80%E1%85%A9%E1%84%80%E1%85%B3%E1%86%B8-%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8C%E1%85%AE%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BC/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

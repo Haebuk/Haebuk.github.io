@@ -9,7 +9,7 @@
   
   >
   <head>
-<title>[Kubernetes] 워크로드 API 정리 | 지식 공유, 협업 ✈️ 성장</title>
+<title>지식 공유, 협업 ✈️ 성장</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,10 +22,10 @@
 <meta name="description" content="워크로드 API 카테고리 클러스터에 컨테이너를 기동시키기 위해 사용되는 리소스 Pod Replication Controller(Deprecated) ReplicaSet Deployment DaemonSet StatefulSet Job CronJob …" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="">
-<meta name="twitter:title" content="[Kubernetes] 워크로드 API 정리" />
+<meta name="twitter:title" content="" />
 <meta name="twitter:image" content="https://Haebuk.github.io"/>
 <meta property="og:url" content="https://Haebuk.github.io/post/2022-06-05-%E1%84%8B%E1%85%AF%E1%84%8F%E1%85%B3%E1%84%85%E1%85%A9%E1%84%83%E1%85%B3api/" />
-<meta property="og:title" content="[Kubernetes] 워크로드 API 정리" />
+<meta property="og:title" content="" />
 <meta property="og:description" content="워크로드 API 카테고리 클러스터에 컨테이너를 기동시키기 위해 사용되는 리소스 Pod Replication Controller(Deprecated) ReplicaSet Deployment DaemonSet StatefulSet Job CronJob …" />
 <meta property="og:image" content="https://Haebuk.github.io" />
 
@@ -93,7 +93,7 @@
   
 <div class="grid-inverse wrap content">
   <article class="post_content">
-    <h1 class="post_title">[Kubernetes] 워크로드 API 정리</h1>
+    <h1 class="post_title"></h1>
   <div class="post_meta">
     <span><svg class="icon">
   <title>calendar</title>
@@ -106,14 +106,14 @@
     <span class="page_only">&nbsp;·
   <div class="post_share">
     Share on:
-    <a href="https://twitter.com/intent/tweet?text=%5bKubernetes%5d%20%ec%9b%8c%ed%81%ac%eb%a1%9c%eb%93%9c%20API%20%ec%a0%95%eb%a6%ac&url=https%3a%2f%2fHaebuk.github.io%2fpost%2f2022-06-05-%25E1%2584%258B%25E1%2585%25AF%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25A9%25E1%2584%2583%25E1%2585%25B3api%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+    <a href="https://twitter.com/intent/tweet?text=&url=https%3a%2f%2fHaebuk.github.io%2fpost%2f2022-06-05-%25E1%2584%258B%25E1%2585%25AF%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25A9%25E1%2584%2583%25E1%2585%25B3api%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
       <svg class="icon">
   <title>twitter</title>
   <use xlink:href="#twitter"></use>
 </svg>
 
     </a>
-    <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fHaebuk.github.io%2fpost%2f2022-06-05-%25E1%2584%258B%25E1%2585%25AF%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25A9%25E1%2584%2583%25E1%2585%25B3api%2f&t=%5bKubernetes%5d%20%ec%9b%8c%ed%81%ac%eb%a1%9c%eb%93%9c%20API%20%ec%a0%95%eb%a6%ac" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+    <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fHaebuk.github.io%2fpost%2f2022-06-05-%25E1%2584%258B%25E1%2585%25AF%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25A9%25E1%2584%2583%25E1%2585%25B3api%2f&t=" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
       <svg class="icon">
   <title>facebook</title>
   <use xlink:href="#facebook"></use>
@@ -138,66 +138,6 @@
   </span>
   </div>
 
-      <div class="post_toc">
-        <h2>Overview</h2>
-        <nav id="TableOfContents">
-  <ul>
-    <li><a href="#파드">파드</a>
-      <ul>
-        <li><a href="#파드-디자인-패턴">파드 디자인 패턴</a></li>
-        <li><a href="#파드-명령어">파드 명령어</a></li>
-        <li><a href="#파드-주의-사항">파드 주의 사항</a></li>
-      </ul>
-    </li>
-    <li><a href="#레플리카셋레플레케이션-컨트롤러">레플리카셋/레플레케이션 컨트롤러</a>
-      <ul>
-        <li><a href="#레플리카셋-명령어">레플리카셋 명령어</a></li>
-        <li><a href="#레플리카셋-주의점">레플리카셋 주의점</a></li>
-        <li><a href="#레플리카셋-스케일링">레플리카셋 스케일링</a></li>
-      </ul>
-    </li>
-    <li><a href="#디플로이먼트">디플로이먼트</a>
-      <ul>
-        <li><a href="#디플로이먼트-명령어">디플로이먼트 명령어</a></li>
-        <li><a href="#디플로이먼트-업데이트-전략">디플로이먼트 업데이트 전략</a></li>
-        <li><a href="#디플로이먼트-주의사항">디플로이먼트 주의사항</a></li>
-      </ul>
-    </li>
-    <li><a href="#데몬셋">데몬셋</a>
-      <ul>
-        <li><a href="#데몬셋-명령어">데몬셋 명령어</a></li>
-        <li><a href="#데몬셋-업데이트-전략">데몬셋 업데이트 전략</a></li>
-      </ul>
-    </li>
-    <li><a href="#스테이트풀셋">스테이트풀셋</a>
-      <ul>
-        <li><a href="#스테이트풀셋-명령어">스테이트풀셋 명령어</a></li>
-        <li><a href="#스테이트풀셋-스케일링">스테이트풀셋 스케일링</a></li>
-        <li><a href="#스테이트풀셋-업데이트-전략">스테이트풀셋 업데이트 전략</a></li>
-        <li><a href="#영구-볼륨-데이터-저장-확인">영구 볼륨 데이터 저장 확인</a></li>
-      </ul>
-    </li>
-    <li><a href="#잡">잡</a>
-      <ul>
-        <li><a href="#잡-명령어">잡 명령어</a></li>
-        <li><a href="#restartpolicy">restartPolicy</a></li>
-        <li><a href="#태스크와-작업-큐-병렬-실행">태스크와 작업 큐 병렬 실행</a></li>
-      </ul>
-    </li>
-    <li><a href="#크론잡">크론잡</a>
-      <ul>
-        <li><a href="#크론잡-일시정지">크론잡 일시정지</a></li>
-        <li><a href="#동시-실행-제어">동시 실행 제어</a></li>
-        <li><a href="#실행-시작-기한-제어">실행 시작 기한 제어</a></li>
-        <li><a href="#크론잡-이력">크론잡 이력</a></li>
-        <li><a href="#매니페스트-사용하지-않고-크론잡-생성">매니페스트 사용하지 않고 크론잡 생성</a></li>
-      </ul>
-    </li>
-    <li><a href="#정리">정리</a></li>
-  </ul>
-</nav>
-      </div>
-    
     <div class="post_body"><h1 id="워크로드-api-카테고리">워크로드 API 카테고리</h1>
 <ul>
 <li>클러스터에 컨테이너를 기동시키기 위해 사용되는 리소스
@@ -768,6 +708,9 @@
     <h2 class="mt-4">Recent Posts</h2>
     <ul class="flex-column">
       <li>
+        <a href="https://Haebuk.github.io/post/2022-06-05-%E1%84%8B%E1%85%AF%E1%84%8F%E1%85%B3%E1%84%85%E1%85%A9%E1%84%83%E1%85%B3api/" class="nav-link" title=""></a>
+      </li>
+      <li>
         <a href="https://Haebuk.github.io/post/2022-04-30.athena-lambda-partition-copy/" class="nav-link" title="[AWS Athena] AWS Lambda로 Athena 자동 파티셔닝 하기">[AWS Athena] AWS Lambda로 Athena 자동 파티셔닝 하기</a>
       </li>
       <li>
@@ -788,16 +731,13 @@
       <li>
         <a href="https://Haebuk.github.io/post/2022-06-18-%E1%84%85%E1%85%B5%E1%84%89%E1%85%A9%E1%84%89%E1%85%B3%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5%E1%84%8B%E1%85%AA-%E1%84%8B%E1%85%A9%E1%84%90%E1%85%A9%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BC/" class="nav-link" title="[Kubernetes] 리소스 관리와 오토 스케일링">[Kubernetes] 리소스 관리와 오토 스케일링</a>
       </li>
-      <li>
-        <a href="https://Haebuk.github.io/post/2022-06-22-%E1%84%86%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%82%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%8B%E1%85%AA-%E1%84%82%E1%85%A9%E1%84%83%E1%85%B3-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%8C%E1%85%B5/" class="nav-link" title="[Kubernetes] 메인터넌스와 노드 정지">[Kubernetes] 메인터넌스와 노드 정지</a>
-      </li>
     </ul>
     <div>
       <h2 class="mt-4 taxonomy" id="categories-section">Categories</h2>
       <nav class="tags_nav">
         <a href='https://Haebuk.github.io/categories/kubernetes/' class="post_tag button button_translucent" title="kubernetes">
           KUBERNETES
-          <span class="button_tally">8</span>
+          <span class="button_tally">7</span>
         </a>
         
         <a href='https://Haebuk.github.io/categories/aws/' class="post_tag button button_translucent" title="aws">
