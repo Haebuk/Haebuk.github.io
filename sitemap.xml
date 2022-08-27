@@ -3,30 +3,24 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://Haebuk.github.io/categories/</loc>
-    <lastmod>2022-08-27T16:51:33+09:00</lastmod>
+    <lastmod>2022-07-10T17:12:39+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/k8s/</loc>
-    <lastmod>2022-08-27T16:51:33+09:00</lastmod>
+    <lastmod>2022-07-10T17:12:39+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/tags/kubernetes/</loc>
-    <lastmod>2022-08-27T16:51:33+09:00</lastmod>
+    <lastmod>2022-07-10T17:12:39+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/categories/kubernetes/</loc>
-    <lastmod>2022-08-27T16:51:33+09:00</lastmod>
-  </url><url>
-    <loc>https://Haebuk.github.io/tags/study/</loc>
-    <lastmod>2022-08-27T16:51:33+09:00</lastmod>
+    <lastmod>2022-07-10T17:12:39+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/tags/</loc>
-    <lastmod>2022-08-27T16:51:33+09:00</lastmod>
-  </url><url>
-    <loc>https://Haebuk.github.io/k8s/%EC%9B%8C%ED%81%AC%EB%A1%9C%EB%93%9C-api/</loc>
-    <lastmod>2022-08-27T16:51:33+09:00</lastmod>
-  </url><url>
-    <loc>https://Haebuk.github.io/</loc>
-    <lastmod>2022-08-27T16:51:33+09:00</lastmod>
+    <lastmod>2022-07-10T17:12:39+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/k8s/%EB%B3%B4%EC%95%88/</loc>
+    <lastmod>2022-07-10T17:12:39+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/</loc>
     <lastmod>2022-07-10T17:12:39+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/k8s/%EC%9C%A0%EC%97%B0%ED%95%9C-%EA%B3%A0%EA%B8%89-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/</loc>
@@ -47,26 +41,22 @@
     <loc>https://Haebuk.github.io/k8s/%EC%84%9C%EB%B9%84%EC%8A%A4-api/</loc>
     <lastmod>2022-06-11T23:00:00+09:00</lastmod>
   </url><url>
-    <loc>https://Haebuk.github.io/post/2022-04-30.athena-lambda-partition-copy/</loc>
+    <loc>https://Haebuk.github.io/tags/study/</loc>
+    <lastmod>2022-06-10T16:51:33+09:00</lastmod>
   </url><url>
-    <loc>https://Haebuk.github.io/post/2022-01-09-aws-fundamental/</loc>
+    <loc>https://Haebuk.github.io/k8s/%EC%9B%8C%ED%81%AC%EB%A1%9C%EB%93%9C-api/</loc>
+    <lastmod>2022-06-10T16:51:33+09:00</lastmod>
   </url><url>
-    <loc>https://Haebuk.github.io/post/2022-01-01-aws-data-analytics-learning-plan2/</loc>
+    <loc>https://Haebuk.github.io/categories/dask/</loc>
+    <lastmod>2022-01-10T17:12:39+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/post/2022-01-10-dask-tutorial/</loc>
-  </url><url>
-    <loc>https://Haebuk.github.io/post/2022-06-03-docker-%E1%84%82%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5/</loc>
-  </url><url>
-    <loc>https://Haebuk.github.io/post/2021-12-19-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%8A%E1%85%A5%E1%86%AB%E1%84%8B%E1%85%B3%E1%84%85%E1%85%A9-%E1%84%8B%E1%85%A6%E1%86%AF%E1%84%85%E1%85%A1%E1%84%89%E1%85%B3%E1%84%90%E1%85%B5%E1%86%A8-%E1%84%89%E1%85%A5%E1%84%8E%E1%85%B5-%E1%84%8F%E1%85%AF%E1%84%85%E1%85%B5%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5/</loc>
-  </url><url>
-    <loc>https://Haebuk.github.io/categories/aws/</loc>
-  </url><url>
-    <loc>https://Haebuk.github.io/categories/docker/</loc>
-  </url><url>
-    <loc>https://Haebuk.github.io/categories/elastic-search/</loc>
+    <lastmod>2022-01-10T17:12:39+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/post/</loc>
+    <lastmod>2022-01-10T17:12:39+09:00</lastmod>
   </url><url>
-    <loc>https://Haebuk.github.io/categories/python/</loc>
+    <loc>https://Haebuk.github.io/tags/python/</loc>
+    <lastmod>2022-01-10T17:12:39+09:00</lastmod>
   </url>
 </urlset>

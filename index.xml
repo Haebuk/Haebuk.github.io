@@ -6,23 +6,7 @@
     <description>Recent content on 지식 공유, 협업 ✈️ 성장</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-KR</language>
-    <lastBuildDate>Sat, 27 Aug 2022 16:51:33 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>워크로드 API</title>
-      <link>https://Haebuk.github.io/k8s/%EC%9B%8C%ED%81%AC%EB%A1%9C%EB%93%9C-api/</link>
-      <pubDate>Sat, 27 Aug 2022 16:51:33 +0900</pubDate>
-      
-      <guid>https://Haebuk.github.io/k8s/%EC%9B%8C%ED%81%AC%EB%A1%9C%EB%93%9C-api/</guid>
-      <description>
-        
-          
-            워크로드 API 카테고리 클러스터에 컨테이너를 기동시키기 위해 사용되는 리소스 Pod Replication Controller(Deprecated) ReplicaSet Deployment DaemonSet StatefulSet Job CronJob 파드 워크로드 리소스의 최소 단위 파드 디자인 패턴 종류 개요 사이드카 패턴 메인 컨테이너에 기능 추가 앰배서더 패턴 외부 시스템과의 통신 중계 어댑터 패턴 외부 접속을 위한 인터페이스 제공 파드 명령어 # 파드 생성 $ kubectl apply -f sample-pod.yaml # 파드 목록 표시 $ kubectl get pods # 파드 상세 정보 표시 $ kubectl get pods --output wide # 컨테이너에서 /bin/bash 실행 $ kubectl exec -it sample-pod -- /bin/bash root@sample-pod:/# (이후 컨테이너 내부에서 명령어 실행 가능) # 컨테이너에서 ls 명령어 실행 $ kubectl exec -it sample-pod -- /bin/ls # 다수의 컨테이너 포함한 파드의 경우 특정 컨테이너 지정 가능 $ kubectl exec -it sample-2pod -c nginx-container -- /bin/ls 파드 주의 사항 파드 내 컨테이너가 같은 포트로 바인드되면 안됨 쿠버네티스는 ENTRYPOINT를 command, CMD를 args라고 부름 파드명 제한 영어 소문자 또는 숫자 기호는 &amp;lsquo;-&amp;rsquo; 또는 &amp;lsquo;.
-          
-          
-        
-      </description>
-    </item>
-    
+    <lastBuildDate>Sun, 10 Jul 2022 17:12:39 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>보안</title>
       <link>https://Haebuk.github.io/k8s/%EB%B3%B4%EC%95%88/</link>
@@ -131,6 +115,22 @@
             서비스 API 카테고리 클러스터 컨테이너에 대한 엔드포인트를 제공하거나 레이블과 일치하는 컨테이너의 디스커버리에 사용되는 리소스
 서비스 ClusterIP ExternalIP(ClusterIP의 한 종류) NodePort LoadBalancer Headless(None) ExternalName Node-Selector 인그레스 파드는 서비스를 사용하지 않고도 파드간 통신이 가능하나, 서비스를 사용하면 두 가지 큰 장점이 있음
 파드에 트래픽 로드 밸런싱 서비스 디스커버리와 클러스터 내부 DNS 파드에 트래픽 로드 밸런싱 수신한 트래픽을 여러 파드에 로드 밸런싱 ClusterIP 클러스터 내부에서만 사용 가능한 가상 IP를 가진 엔드포인트 제공하는 로드 밸런서 구성 spec.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>워크로드 API</title>
+      <link>https://Haebuk.github.io/k8s/%EC%9B%8C%ED%81%AC%EB%A1%9C%EB%93%9C-api/</link>
+      <pubDate>Fri, 10 Jun 2022 16:51:33 +0900</pubDate>
+      
+      <guid>https://Haebuk.github.io/k8s/%EC%9B%8C%ED%81%AC%EB%A1%9C%EB%93%9C-api/</guid>
+      <description>
+        
+          
+            워크로드 API 카테고리 클러스터에 컨테이너를 기동시키기 위해 사용되는 리소스 Pod Replication Controller(Deprecated) ReplicaSet Deployment DaemonSet StatefulSet Job CronJob 파드 워크로드 리소스의 최소 단위 파드 디자인 패턴 종류 개요 사이드카 패턴 메인 컨테이너에 기능 추가 앰배서더 패턴 외부 시스템과의 통신 중계 어댑터 패턴 외부 접속을 위한 인터페이스 제공 파드 명령어 # 파드 생성 $ kubectl apply -f sample-pod.yaml # 파드 목록 표시 $ kubectl get pods # 파드 상세 정보 표시 $ kubectl get pods --output wide # 컨테이너에서 /bin/bash 실행 $ kubectl exec -it sample-pod -- /bin/bash root@sample-pod:/# (이후 컨테이너 내부에서 명령어 실행 가능) # 컨테이너에서 ls 명령어 실행 $ kubectl exec -it sample-pod -- /bin/ls # 다수의 컨테이너 포함한 파드의 경우 특정 컨테이너 지정 가능 $ kubectl exec -it sample-2pod -c nginx-container -- /bin/ls 파드 주의 사항 파드 내 컨테이너가 같은 포트로 바인드되면 안됨 쿠버네티스는 ENTRYPOINT를 command, CMD를 args라고 부름 파드명 제한 영어 소문자 또는 숫자 기호는 &amp;lsquo;-&amp;rsquo; 또는 &amp;lsquo;.
           
           
         
