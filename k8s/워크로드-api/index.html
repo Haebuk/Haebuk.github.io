@@ -1,0 +1,963 @@
+
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-figures="true"
+  
+    class="page"
+  
+  
+  >
+  <head>
+<title>워크로드 API | 지식 공유, 협업 ✈️ 성장</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+
+
+<meta property="og:locale" content="en" />
+
+<meta property="og:type" content="article">
+<meta name="description" content="Article description." />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:creator" content="">
+<meta name="twitter:title" content="워크로드 API" />
+<meta name="twitter:image" content="https://Haebuk.github.io/images/Kubernetes-Logo.wine.png"/>
+<meta property="og:url" content="https://Haebuk.github.io/k8s/%EC%9B%8C%ED%81%AC%EB%A1%9C%EB%93%9C-api/" />
+<meta property="og:title" content="워크로드 API" />
+<meta property="og:description" content="Article description." />
+<meta property="og:image" content="https://Haebuk.github.io/images/Kubernetes-Logo.wine.png" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://Haebuk.github.io/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://Haebuk.github.io/icons/favicon-32x32.png">
+<link rel="manifest" href="https://Haebuk.github.io/icons/site.webmanifest">
+
+<link rel="canonical" href="https://Haebuk.github.io/k8s/%EC%9B%8C%ED%81%AC%EB%A1%9C%EB%93%9C-api/">
+
+
+
+<link rel="preload" href="https://Haebuk.github.io/css/styles.42e2c5f6d8cf9c52872666f8d8b2678ad0c426978b9d78aff3c33b7a1e7f6f97f54bcdaf0518a25fb0fe26367d04f8b07c683b3b38b331cb098daadee06b1f3e.css" integrity = "sha512-QuLF9tjPnFKHJmb42LJnitDEJpeLnXiv88M7eh5/b5f1S82vBRiiX7D&#43;JjZ9BPiwfGg7OzizMcsJjare4GsfPg==" as="style" crossorigin="anonymous">
+
+
+
+<link rel="preload" href="https://Haebuk.github.io/en/js/bundle.196e32081a62224415d8434dcf1e9156eb583ccd88f292c0ca5acb62995626357433971f4bc87a29fca931c7875eb6c77e04d363cca5699f49713ba73f68f567.js" as="script" integrity=
+"sha512-GW4yCBpiIkQV2ENNzx6RVutYPM2I8pLAylrLYplWJjV0M5cfS8h6KfypMceHXrbHfgTTY8ylaZ9JcTunP2j1Zw==" crossorigin="anonymous">
+
+
+<link rel="stylesheet" type="text/css" href="https://Haebuk.github.io/css/styles.42e2c5f6d8cf9c52872666f8d8b2678ad0c426978b9d78aff3c33b7a1e7f6f97f54bcdaf0518a25fb0fe26367d04f8b07c683b3b38b331cb098daadee06b1f3e.css" integrity="sha512-QuLF9tjPnFKHJmb42LJnitDEJpeLnXiv88M7eh5/b5f1S82vBRiiX7D&#43;JjZ9BPiwfGg7OzizMcsJjare4GsfPg==" crossorigin="anonymous">
+
+
+  </head>
+  <body
+    data-code="10"
+    data-lines="false"
+    id="documentTop"
+    data-lang="en"
+  >
+
+<header class="nav_header" >
+  <nav class="nav"><a href='https://Haebuk.github.io' class="nav_brand nav_item" title="지식 공유, 협업 ✈️ 성장">지식 공유, 협업 ✈️ 성장
+  <div class="nav_close">
+    <div><svg class="icon">
+  <title>open-menu</title>
+  <use xlink:href="#open-menu"></use>
+</svg>
+<svg class="icon">
+  <title>closeme</title>
+  <use xlink:href="#closeme"></use>
+</svg>
+</div>
+  </div>
+</a>
+
+    <div class='nav_body nav_body_left'>
+      
+      
+      
+        
+
+      
+<div class='follow'>
+<div class="color_mode">
+  <input type="checkbox" class="color_choice" id="mode">
+</div>
+
+</div>
+
+    </div>
+  </nav>
+</header>
+
+    <main>
+  
+<div class="grid-inverse wrap content">
+  <article class="post_content">
+    <h1 class="post_title">워크로드 API</h1>
+  <div class="post_meta">
+    <span><svg class="icon">
+  <title>calendar</title>
+  <use xlink:href="#calendar"></use>
+</svg>
+</span>
+    <span class="post_date">
+      Aug 27, 2022</span>
+    <span class="post_time"> · 9 min read</span><span>&nbsp;· <a href='https://Haebuk.github.io/tags/kubernetes/' title="kubernetes" class="post_tag button button_translucent">kubernetes
+        </a><a href='https://Haebuk.github.io/tags/study/' title="study" class="post_tag button button_translucent">study
+        </a>
+    </span>
+    <span class="page_only">&nbsp;·
+  <div class="post_share">
+    Share on:
+    <a href="https://twitter.com/intent/tweet?text=%ec%9b%8c%ed%81%ac%eb%a1%9c%eb%93%9c%20API&url=https%3a%2f%2fHaebuk.github.io%2fk8s%2f%25EC%259B%258C%25ED%2581%25AC%25EB%25A1%259C%25EB%2593%259C-api%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+      <svg class="icon">
+  <title>twitter</title>
+  <use xlink:href="#twitter"></use>
+</svg>
+
+    </a>
+    <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fHaebuk.github.io%2fk8s%2f%25EC%259B%258C%25ED%2581%25AC%25EB%25A1%259C%25EB%2593%259C-api%2f&t=%ec%9b%8c%ed%81%ac%eb%a1%9c%eb%93%9c%20API" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+      <svg class="icon">
+  <title>facebook</title>
+  <use xlink:href="#facebook"></use>
+</svg>
+
+    </a>
+    <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow">
+      <svg class="icon">
+  <title>linkedin</title>
+  <use xlink:href="#linkedin"></use>
+</svg>
+
+    </a>
+    <a href="https://Haebuk.github.io/k8s/%EC%9B%8C%ED%81%AC%EB%A1%9C%EB%93%9C-api/" title="Copy Link" class="link link_yank">
+      <svg class="icon">
+  <title>copy</title>
+  <use xlink:href="#copy"></use>
+</svg>
+
+    </a>
+  </div>
+  </span>
+  </div>
+<div class="post_featured"><figure>
+  <picture>
+
+    
+      
+        
+        
+        
+        
+        
+        
+    <img
+      loading="lazy"
+      decoding="async"
+      alt="k8s logo"
+      
+        class="image_figure image_featured image_internal image_unprocessed"
+        src="images/Kubernetes-Logo.wine.png"
+      
+      
+    />
+
+    </picture>
+</figure>
+
+      </div>
+      <div class="post_toc">
+        <h2>Overview</h2>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#파드">파드</a>
+      <ul>
+        <li><a href="#파드-디자인-패턴">파드 디자인 패턴</a></li>
+        <li><a href="#파드-명령어">파드 명령어</a></li>
+        <li><a href="#파드-주의-사항">파드 주의 사항</a></li>
+      </ul>
+    </li>
+    <li><a href="#레플리카셋레플레케이션-컨트롤러">레플리카셋/레플레케이션 컨트롤러</a>
+      <ul>
+        <li><a href="#레플리카셋-명령어">레플리카셋 명령어</a></li>
+        <li><a href="#레플리카셋-주의점">레플리카셋 주의점</a></li>
+        <li><a href="#레플리카셋-스케일링">레플리카셋 스케일링</a></li>
+      </ul>
+    </li>
+    <li><a href="#디플로이먼트">디플로이먼트</a>
+      <ul>
+        <li><a href="#디플로이먼트-명령어">디플로이먼트 명령어</a></li>
+        <li><a href="#디플로이먼트-업데이트-전략">디플로이먼트 업데이트 전략</a></li>
+        <li><a href="#디플로이먼트-주의사항">디플로이먼트 주의사항</a></li>
+      </ul>
+    </li>
+    <li><a href="#데몬셋">데몬셋</a>
+      <ul>
+        <li><a href="#데몬셋-명령어">데몬셋 명령어</a></li>
+        <li><a href="#데몬셋-업데이트-전략">데몬셋 업데이트 전략</a></li>
+      </ul>
+    </li>
+    <li><a href="#스테이트풀셋">스테이트풀셋</a>
+      <ul>
+        <li><a href="#스테이트풀셋-명령어">스테이트풀셋 명령어</a></li>
+        <li><a href="#스테이트풀셋-스케일링">스테이트풀셋 스케일링</a></li>
+        <li><a href="#스테이트풀셋-업데이트-전략">스테이트풀셋 업데이트 전략</a></li>
+        <li><a href="#영구-볼륨-데이터-저장-확인">영구 볼륨 데이터 저장 확인</a></li>
+      </ul>
+    </li>
+    <li><a href="#잡">잡</a>
+      <ul>
+        <li><a href="#잡-명령어">잡 명령어</a></li>
+        <li><a href="#restartpolicy">restartPolicy</a></li>
+        <li><a href="#태스크와-작업-큐-병렬-실행">태스크와 작업 큐 병렬 실행</a></li>
+      </ul>
+    </li>
+    <li><a href="#크론잡">크론잡</a>
+      <ul>
+        <li><a href="#크론잡-일시정지">크론잡 일시정지</a></li>
+        <li><a href="#동시-실행-제어">동시 실행 제어</a></li>
+        <li><a href="#실행-시작-기한-제어">실행 시작 기한 제어</a></li>
+        <li><a href="#크론잡-이력">크론잡 이력</a></li>
+        <li><a href="#매니페스트-사용하지-않고-크론잡-생성">매니페스트 사용하지 않고 크론잡 생성</a></li>
+      </ul>
+    </li>
+    <li><a href="#정리">정리</a></li>
+  </ul>
+</nav>
+      </div>
+    
+    <div class="post_body"><h1 id="워크로드-api-카테고리">워크로드 API 카테고리</h1>
+<ul>
+<li>클러스터에 컨테이너를 기동시키기 위해 사용되는 리소스
+<ul>
+<li>Pod</li>
+<li>Replication Controller(Deprecated)</li>
+<li>ReplicaSet</li>
+<li>Deployment</li>
+<li>DaemonSet</li>
+<li>StatefulSet</li>
+<li>Job</li>
+<li>CronJob</li>
+</ul>
+</li>
+</ul>
+<h2 id="파드">파드</h2>
+<ul>
+<li>워크로드 리소스의 최소 단위</li>
+</ul>
+<h3 id="파드-디자인-패턴">파드 디자인 패턴</h3>
+<table>
+<thead>
+<tr>
+<th>종류</th>
+<th>개요</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>사이드카 패턴</td>
+<td>메인 컨테이너에 기능 추가</td>
+</tr>
+<tr>
+<td>앰배서더 패턴</td>
+<td>외부 시스템과의 통신 중계</td>
+</tr>
+<tr>
+<td>어댑터 패턴</td>
+<td>외부 접속을 위한 인터페이스 제공</td>
+</tr>
+</tbody>
+</table>
+<h3 id="파드-명령어">파드 명령어</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 파드 생성</span>
+</span></span><span style="display:flex;"><span>$ kubectl apply -f sample-pod.yaml
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 파드 목록 표시</span>
+</span></span><span style="display:flex;"><span>$ kubectl get pods
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 파드 상세 정보 표시</span>
+</span></span><span style="display:flex;"><span>$ kubectl get pods --output wide
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 컨테이너에서 /bin/bash 실행</span>
+</span></span><span style="display:flex;"><span>$ kubectl exec -it sample-pod -- /bin/bash
+</span></span><span style="display:flex;"><span>root@sample-pod:/# <span style="color:#f92672">(</span>이후 컨테이너 내부에서 명령어 실행 가능<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 컨테이너에서 ls 명령어 실행</span>
+</span></span><span style="display:flex;"><span>$ kubectl exec -it sample-pod -- /bin/ls
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 다수의 컨테이너 포함한 파드의 경우 특정 컨테이너 지정 가능</span>
+</span></span><span style="display:flex;"><span>$ kubectl exec -it sample-2pod -c nginx-container -- /bin/ls
+</span></span></code></pre></div><h3 id="파드-주의-사항">파드 주의 사항</h3>
+<ul>
+<li>파드 내 컨테이너가 같은 포트로 바인드되면 안됨</li>
+<li>쿠버네티스는 <code>ENTRYPOINT</code>를 <code>command</code>, <code>CMD</code>를 <code>args</code>라고 부름</li>
+<li>파드명 제한
+<ul>
+<li>영어 소문자 또는 숫자</li>
+<li>기호는 &lsquo;-&rsquo; 또는 &lsquo;.&rsquo;</li>
+<li>시작과 끝은 영어 소문자</li>
+</ul>
+</li>
+</ul>
+<h2 id="레플리카셋레플레케이션-컨트롤러">레플리카셋/레플레케이션 컨트롤러</h2>
+<ul>
+<li>파드의 레플리카를 생성하고 지정한 파드 수를 유지하는 리소스</li>
+<li>노드나 파드에 장애가 발생했을 때도 지정한 파드 수를 유지하기 위해 다른 노드에서 파드를 기동하므로 장애 시에 많은 영향 받지 않음</li>
+<li>모니터링은 특정 레이블을 가진 파드 수를 계산하는 형태로 이루어짐</li>
+</ul>
+<h3 id="레플리카셋-명령어">레플리카셋 명령어</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 레플리카셋 생성</span>
+</span></span><span style="display:flex;"><span>$ kubectl apply -f sample-rs.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 레플리카셋 확인</span>
+</span></span><span style="display:flex;"><span>$ kubectl get replicasets -o wide
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 레이블 지정하여 파드 목록 표시</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 레플리카셋 이름-임의의 문자열로 명명 ex. sample-rs-cnvm5</span>
+</span></span><span style="display:flex;"><span>kubectl get pods -l app<span style="color:#f92672">=</span>sample-app -o wide
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 레플리카셋 상세 정보 표시 (증감 이력 등)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># kubectl describe replicaset sample-rs</span>
+</span></span></code></pre></div><h3 id="레플리카셋-주의점">레플리카셋 주의점</h3>
+<ul>
+<li>spec.selector와 spec.template.metadata.labels의 레이블의 일치하지 않으면 에러</li>
+<li>외부에서 같은 레이블을 가진 파드가 있으면 레플리카 수에 충족되는 만큼 파드 삭제</li>
+</ul>
+<h3 id="레플리카셋-스케일링">레플리카셋 스케일링</h3>
+<ul>
+<li>두 가지 방법
+<ul>
+<li>매니페스트 수정하여 <code>kubectl apply -f</code> 명령어 실행
+<ul>
+<li>IaC(Infrastructure as Code)를 구현하기 위해서라도 해당 방법 권장</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ sed -i -e <span style="color:#e6db74">&#39;s|replicas: 3|replicas: 4|&#39;</span> sample-rs.yaml
+</span></span><span style="display:flex;"><span>$ kubectl apply -f sample-rs.yaml
+</span></span></code></pre></div></li>
+<li><code>kubectl scale</code> 명령어를 사용하여 스케일 처리
+<ul>
+<li>레플리카셋 이외에도 디플로이먼트/스테이트풀셋/잡/크론잡에서 사용 가능</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 레플리카 수를 5로 변경</span>
+</span></span><span style="display:flex;"><span>$ kubectl scale replicaset sample-rs --replicas <span style="color:#ae81ff">5</span> 
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+<h2 id="디플로이먼트">디플로이먼트</h2>
+<ul>
+<li>여러 레플리카셋을 관리하며 롤링 업데이트나 롤백 등을 구현하는 리소스</li>
+<li>디플로이먼트 -&gt; 레플리카셋 -&gt; 파드 (관리 순서)</li>
+<li>롤링 업데이트 과정
+<ol>
+<li>신규 레플리카셋 생성</li>
+<li>신규 레플리카셋 레플리카 수(파드 수)를 단계적으로 늘림</li>
+<li>이전 레플리카셋의 레플리카 수(파드 수)를 단계적으로 줄임</li>
+<li>2,3 반복</li>
+<li>이전 레플리카셋은 레플리카 수를 0으로 유지</li>
+</ol>
+</li>
+<li>파드를 하나만 기동해도 디플로이먼트 사용을 권장(파드 장애시 자동 재생성, 롤링 업데이트 등)</li>
+</ul>
+<h3 id="디플로이먼트-명령어">디플로이먼트 명령어</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># --record를 사용하여 업데이트 이력을 저장. 디플로이먼트 가동 (deprecated option)</span>
+</span></span><span style="display:flex;"><span>$ kubectl apply -f sample-deployment.yaml --record
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 디플로이먼트 확인</span>
+</span></span><span style="display:flex;"><span>$ kubectl get deployments
+</span></span><span style="display:flex;"><span>NAME                READY   UP-TO-DATE   AVAILABLE   AGE
+</span></span><span style="display:flex;"><span>sample-deployment   3/3     <span style="color:#ae81ff">3</span>            <span style="color:#ae81ff">3</span>           2m30s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 레플리카셋 확인</span>
+</span></span><span style="display:flex;"><span>$ kubectl get replicasets
+</span></span><span style="display:flex;"><span>NAME                           DESIRED   CURRENT   READY   AGE
+</span></span><span style="display:flex;"><span>sample-deployment-77c7b569f6   <span style="color:#ae81ff">3</span>         <span style="color:#ae81ff">3</span>         <span style="color:#ae81ff">3</span>       2m39s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 파드 확인</span>
+</span></span><span style="display:flex;"><span>$ kubectl get pods
+</span></span><span style="display:flex;"><span>NAME                                 READY   STATUS    RESTARTS   AGE
+</span></span><span style="display:flex;"><span>sample-deployment-77c7b569f6-bnbcw   1/1     Running   <span style="color:#ae81ff">0</span>          2m44s
+</span></span><span style="display:flex;"><span>sample-deployment-77c7b569f6-fzh2m   1/1     Running   <span style="color:#ae81ff">0</span>          2m44s
+</span></span><span style="display:flex;"><span>sample-deployment-77c7b569f6-wjvbn   1/1     Running   <span style="color:#ae81ff">0</span>          2m44s
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 컨테이너 이미지 업데이트</span>
+</span></span><span style="display:flex;"><span>$ kubectl set image deployment sample-deployment nginx-container<span style="color:#f92672">=</span>nginx:1.17 --record
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 디플로이먼트 업데이트 상태 확인</span>
+</span></span><span style="display:flex;"><span>$ kubectl rollout status deployment sample-deployment
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 변경 이력 확인</span>
+</span></span><span style="display:flex;"><span>$ kubectl rollout history deployment sample-deployment
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 초기 상태의 디플로이먼트</span>
+</span></span><span style="display:flex;"><span>$ kubectl rollout history deployment sample-deployment --revision <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 한 번 업데이트된 후의 디플로이먼트</span>
+</span></span><span style="display:flex;"><span>$ kubectl rollout history deployment sample-deployment --revision <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 버전 지정하여 롤백</span>
+</span></span><span style="display:flex;"><span>$ kubectl rollout undo deployment sample-deployment --to-revision <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 직전 버전으로 롤백</span>
+</span></span><span style="display:flex;"><span>$ kubectl rollout undo deployment sample-deployment
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 업데이트 일시 정지</span>
+</span></span><span style="display:flex;"><span>$ kubectl rollout pause deployment sample-deployment
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 업데이트 일시 정지 해제</span>
+</span></span><span style="display:flex;"><span>$ kubectl rollout resume deployment sample-deployment
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 레플리카 수를 3에서 4로 변경한 매니페스트를 apply - 디플로이먼트 스케일링</span>
+</span></span><span style="display:flex;"><span>$ sed -i -e <span style="color:#e6db74">&#39;s|replicas: 3|replicas: 4|&#39;</span> sample-deployment.yaml
+</span></span><span style="display:flex;"><span>$ kubectl apply -f sample-deployment.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># kubectl scale 명령어</span>
+</span></span><span style="display:flex;"><span>$ kubectl scale deployment sample-deployment --replicas<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 매니페스트를 사용하지 않고 명령어로 디플로이먼트 생성</span>
+</span></span><span style="display:flex;"><span>$ kubectl create deployment sample-deployment-by-cli --image nginx:1.16
+</span></span></code></pre></div><h3 id="디플로이먼트-업데이트-전략">디플로이먼트 업데이트 전략</h3>
+<h4 id="recreate">Recreate</h4>
+<ul>
+<li>모든 파드 삭제하고 다시 파드 생성</li>
+<li>다운타임 발생하지만 추가 리소스를 사용하지 않으며 전환이 빠름
+<ul>
+<li>기존 레플리카셋의 레플리카 수를 0으로 하고 리소스 반환</li>
+<li>신규 레플리카셋 생성하고 레플리카 수 늘림</li>
+</ul>
+</li>
+</ul>
+<h4 id="rollingupdate">RollingUpdate</h4>
+<ul>
+<li>업데이트 중 정지 가능 최대 파드 수(maxUnavailable)와 생성 가능한 최대 파드 수(maxSurge)를 설정 가능</li>
+<li>추가 리소스를 사용하지 않도록 하거나 많은 리소스를 소비하지 않고 빠르게 전환하는 등의 동작 제어 가능</li>
+<li>maxUnavailable과 maxSurge 모두 0은 불가능</li>
+</ul>
+<h4 id="상세-업데이트-파라미터">상세 업데이트 파라미터</h4>
+<ul>
+<li>minReadySeconds(최소 대기 시간(초))
+<ul>
+<li>파드가 Ready 상태가 된 후 디플로이먼트 리소스에서 파드 기동이 완료되었다고 판단(다음 파드의 교체가 가능하다고 판단)하기까지의 최소 시간</li>
+</ul>
+</li>
+<li>revisionHistoryLimit(수정 버전 기록 제한)
+<ul>
+<li>디플로이먼트가 유지할 레플리카셋 수</li>
+<li>롤백이 가능한 이력 수</li>
+</ul>
+</li>
+<li>progressDeadlineSeconds(진행 기한 시간(초))
+<ul>
+<li>Recreate/RollingUpdate 처리 타임아웃 시간</li>
+<li>타임아웃 시간 경과시 자동 롤백</li>
+</ul>
+</li>
+</ul>
+<h3 id="디플로이먼트-주의사항">디플로이먼트 주의사항</h3>
+<ul>
+<li>실제 환경에서는 롤백 보다는 이전 매니테스트를 <code>kubectl apply</code>를 실행하여 적용하는 것이 호환성 면에서 좋음</li>
+<li>pause 상태에서는 업데이트가 즉시 반영되지 않고, 롤백도 되지 않음</li>
+</ul>
+<h2 id="데몬셋">데몬셋</h2>
+<ul>
+<li>레플리카셋의 특수 형태 (각 노드에 파드를 하나씩 배치)</li>
+<li>노드를 늘렸을 때도 데몬셋의 파드는 자동으로 늘어난 노드에서 기동</li>
+<li>로그 수집또는 모니터링 프로세스를 위해 사용</li>
+</ul>
+<h3 id="데몬셋-명령어">데몬셋 명령어</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 데몬셋 생성</span>
+</span></span><span style="display:flex;"><span>$ kubectl apply -f sample-ds.yaml
+</span></span></code></pre></div><h3 id="데몬셋-업데이트-전략">데몬셋 업데이트 전략</h3>
+<h4 id="ondelete">OnDelete</h4>
+<ul>
+<li>데몬셋 매니페스트를 수정해도 기존 파드는 업데이트 X
+<ul>
+<li>일반적으로 모니터링, 로그 전송에 사용되므로 업데이트는 다음에 다시 생성하거나 수동으로 임의의 시점에 하도록</li>
+<li>운영상 정지하면 안되는 파드, 업데이트가 급히 필요하지 않은 경우 사용 (이전 버전이 계속 사용되는 점 주의)</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 파드 업데이트 시 수동 정지 후 자동화된 복구 기능으로 새 파드 생성</span>
+</span></span><span style="display:flex;"><span>$ kubectl delete pod sample-ds-ondelete-xxxxx
+</span></span></code></pre></div><h4 id="rollingupdate-1">RollingUpdate</h4>
+<ul>
+<li>데몬셋에서는 하나의 노드에 동일 파드를 여러개 생성할 수 없음
+<ul>
+<li>maxSurge 설정 불가</li>
+<li>maxUnavailable만 지정하여 RollingUpdate</li>
+<li>maxUnavailable 0 불가</li>
+</ul>
+</li>
+</ul>
+<h2 id="스테이트풀셋">스테이트풀셋</h2>
+<ul>
+<li>DB와 같은 stateful한 워크로드에 사용하기 위한 리소스</li>
+<li>레플리카셋과의 주된 차이점
+<ul>
+<li>생성되는 파드의 접미사는 숫자 인덱스 (sample-statefulset-0, sample-statefulset-1, &hellip;)</li>
+<li>파드명 불변</li>
+<li>데이터를 영구적으로 저장하는 구조 (영구 볼륨을 사용하는 경우 파드 재기동시 같은 디스크 사용)</li>
+</ul>
+</li>
+<li>동시에 여러 파드가 생성되지 않고 하나씩 생성하며, Ready 상태가 되면 다음 파드를 생성
+<ul>
+<li><code>podManagemetPolicy</code>를 <code>Parallel</code>로 설정하여 병렬로 동시에 기동 가능</li>
+</ul>
+</li>
+</ul>
+<h3 id="스테이트풀셋-명령어">스테이트풀셋 명령어</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 스테이트풀셋 생성</span>
+</span></span><span style="display:flex;"><span>$ kubectl apply -f sample-statefulset.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 스테이트풀셋 확인</span>
+</span></span><span style="display:flex;"><span>$ kubectl get statefulsets
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 영구 볼륨 클레임 확인</span>
+</span></span><span style="display:flex;"><span>$ kubectl get persistentvolumeclaims
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 영구 볼륨 확인</span>
+</span></span><span style="display:flex;"><span>$ kubectl get persistentvolumes
+</span></span></code></pre></div><h3 id="스테이트풀셋-스케일링">스테이트풀셋 스케일링</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 레플리카 수를 3에서 4로 변경한 매니페스트를 apply</span>
+</span></span><span style="display:flex;"><span>$ sed -i -e <span style="color:#e6db74">&#39;s|replicas: 3|replicas: 4|&#39;</span> sample-statefulset.yaml
+</span></span><span style="display:flex;"><span>$ kubectl apply -f sample-statefulset.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># kubectl scale을 사용한 스케일링</span>
+</span></span><span style="display:flex;"><span>$ kubectl scale statefulset sample-statefulset --replicas<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>
+</span></span></code></pre></div><ul>
+<li>기본적으로 파드를 동시에 하나씩만 생성하고 삭제하므로 시간이 더 걸림</li>
+<li>스케일 아웃일 때는 인덱스가 가장 작은 것 부터 파드를 하나씩 생성하고, 이전에 생성된 파드가 Ready 상태가 되고 나서 다음 파드 생성</li>
+<li>스케일 인일 때는 인덱스가 가장 큰(가장 최근) 파드 부터 삭제</li>
+<li><strong>항상 0번째 파드가 먼저 생성되고 나중에 삭제되므로 마스터 노드로 사용하는 이중화 구조 애플리케이션에 적합</strong></li>
+</ul>
+<h3 id="스테이트풀셋-업데이트-전략">스테이트풀셋 업데이트 전략</h3>
+<h4 id="ondelete-1">Ondelete</h4>
+<ul>
+<li>데몬셋과 동일하게 매니페스트 변경해도 기존 파드는 그대로임</li>
+<li>영속성 영역을 가진 DB나 클러스터등에서 많이 사용하므로 임의의 시점이나 다음에 재기동할 때 업데이트</li>
+</ul>
+<h4 id="rollingupdate-2">RollingUpdate</h4>
+<ul>
+<li>maxSurge, maxUnavailable 둘 다 사용 불가능</li>
+<li>파드마다 Ready 상태인지 확인하고 업데이트</li>
+<li>Parallel로 설정되어 있는 경우에도 하나씩 업데이트가 이루어짐</li>
+<li>partition 설정시 전체 파드 중 어떤 파드까지 업데이트할지 지정 가능
+<ul>
+<li>전체에 영향을 주지 않고 부분적으로 업데이트를 확인할 수 있어 보다 안전</li>
+<li>수동으로 재기동해도 Ondelete와 달리 partition보다 작은 인덱스를 가진 파드는 업데이트 X
+<ul>
+<li>예) partition이 3이면 0,1,2 인덱스 파드는 업데이트 X</li>
+</ul>
+</li>
+<li>partition 값 수정하면 해당 값에 맞는 인덱스를 가진 파드들 업데이트됨</li>
+</ul>
+</li>
+</ul>
+<h3 id="영구-볼륨-데이터-저장-확인">영구 볼륨 데이터 저장 확인</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 컨테이너 내부에 영구 볼륨 마운트 확인</span>
+</span></span><span style="display:flex;"><span>$ kubectl exec -it sample-statefulset-0 -- df -h | grep /dev/sd
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 영구 볼륨에 sample.html 이 없는지 확인</span>
+</span></span><span style="display:flex;"><span>$ kubectl exec -it sample-statefulset-0 -- ls /usr/share/nginx/html/sample.html
+</span></span><span style="display:flex;"><span>ls: cannot access <span style="color:#e6db74">&#39;/usr/share/nginx/html/sample.html&#39;</span>: No such file or directory
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 영구 볼륨에 sample.html 생성</span>
+</span></span><span style="display:flex;"><span>kubectl exec -it sample-statefulset-0 -- touch /usr/share/nginx/html/sample.html
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 영구 볼륨에 sample.html 이 있는지 확인</span>
+</span></span><span style="display:flex;"><span>$ kubectl exec -it sample-statefulset-0 -- ls /usr/share/nginx/html/sample.html
+</span></span><span style="display:flex;"><span>/usr/share/nginx/html/sample.html
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 예상치 못한 파드 정지 1(파드 삭제)</span>
+</span></span><span style="display:flex;"><span>$ kubectl delete pod sample-statefulset-0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 예상치 못한 파드 정지 2(nginx 프로세스 정지)</span>
+</span></span><span style="display:flex;"><span>$ kubectl exec -it sample-statefulset-0 -- /bin/bash -c <span style="color:#e6db74">&#39;kill 1&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 파드 정지, 복구 후에도 파일 유실 없음</span>
+</span></span><span style="display:flex;"><span>$ kubectl exec -it sample-statefulset-0 -- ls /usr/share/nginx/html/sample.html
+</span></span><span style="display:flex;"><span>/usr/share/nginx/html/sample.html
+</span></span></code></pre></div><ul>
+<li>스테이트풀셋을 삭제해도 영구 볼륨은 해제되지 않음</li>
+<li>영구 볼륨 해제하지 않고 스테이트풀셋 재기동시 그대로 파드가 기동</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 스테이트풀셋이 확보한 영구 볼륨 해제</span>
+</span></span><span style="display:flex;"><span>$ kubectl delete persistentvolumeclaims www-sample-statefulset-<span style="color:#f92672">{</span>0..4<span style="color:#f92672">}</span>
+</span></span></code></pre></div><h2 id="잡">잡</h2>
+<ul>
+<li>컨테이너를 사용하여 한 번만 실행되는 리소스</li>
+<li>N개의 병렬로 실행하면서 지정한 횟수의 컨테이너 실행(정상 종료)를 보장하는 리소스</li>
+<li>파드의 정지가 정상 종료되는 작업에 적합 (레플리카셋의 경우 파드의 정지는 예상치 못한 에러임)</li>
+<li>잡에서는 정상 종료한 파드 수(COMPLETION)을 표기함</li>
+</ul>
+<h3 id="잡-명령어">잡 명령어</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 잡 생성</span>
+</span></span><span style="display:flex;"><span>$ kubectl apply -f sample-job.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 잡 목록 표시</span>
+</span></span><span style="display:flex;"><span>$ kubectl get jobs
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 잡이 생성한 파드 확인</span>
+</span></span><span style="display:flex;"><span>$ kubectl get pods --watch
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 잡 상태 모니터링</span>
+</span></span><span style="display:flex;"><span>$ kubectl get job sample-job-ttl --watch --output-watch-events
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 매니페스트를 사용하지 않고 명령어로 잡 생성</span>
+</span></span><span style="display:flex;"><span>$ kubectl create job sample-job-by-cli <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--image<span style="color:#f92672">=</span>amsy810/tools:v2.0 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-- sleep <span style="color:#ae81ff">30</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 크론잡 기반 잡 생성</span>
+</span></span><span style="display:flex;"><span>$ kubectl create job sample-job-from-cronjob --from cronjob/sample-cronjob
+</span></span></code></pre></div><h3 id="restartpolicy">restartPolicy</h3>
+<h4 id="never">Never</h4>
+<ul>
+<li>파드에 장애가 발생하면 신규 파드가 생성</li>
+</ul>
+<h4 id="onfailure">OnFailure</h4>
+<ul>
+<li>파드 장애 발생시 다시 동일한 파드를 사용하여 잡을 다시 시작</li>
+<li>RESTART 카운터가 증가</li>
+<li>파드 IP 주소는 변경 X, 영구 볼륨이나 hostPath 마운트하지 않은 경우 데이터 유실</li>
+</ul>
+<h3 id="태스크와-작업-큐-병렬-실행">태스크와 작업 큐 병렬 실행</h3>
+<ul>
+<li>completion: 몇 회 완료시 잡을 성공으로 표기할 것인지(기본값 1), 변경 불가</li>
+<li>parallelism: 병렬성 지정(기본값 1), 변경 가능</li>
+<li>backoffLimit: 실패 허용 횟수, 변경 가능</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>워크로드</th>
+<th>completions</th>
+<th>parallelism</th>
+<th>backoffLimit</th>
+<th>목적</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1회만 실행하는 태스크</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>성공 유무에 관계 없이 반드시 1회 실행</td>
+</tr>
+<tr>
+<td>N개 병렬로 실행시키는 태스크</td>
+<td>M</td>
+<td>N</td>
+<td>P</td>
+<td>병렬 태스크 수행</td>
+</tr>
+<tr>
+<td>한 개씩 실행하는 작업 큐</td>
+<td>미지정</td>
+<td>1</td>
+<td>P</td>
+<td>한 번 정상 종료할 때까지 한 개씩 실행</td>
+</tr>
+<tr>
+<td>N개 병렬로 실행하는 작업 큐</td>
+<td>미지정</td>
+<td>N</td>
+<td>P</td>
+<td>큰 처리 전체가 정상 종료할 때까지 몇 개의 병렬 수로 계속 실행하고픈 경우</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 병렬성을 2에서 3으로 변경한 매니페스트 apply</span>
+</span></span><span style="display:flex;"><span>$ sed -e <span style="color:#e6db74">&#39;s|parallelism: 1|parallelism: 2|&#39;</span> sample-job.yaml | kubectl apply -f -
+</span></span></code></pre></div><h2 id="크론잡">크론잡</h2>
+<ul>
+<li>스케줄링된 시간에 잡 생성</li>
+<li>크론잡 -&gt; 잡 -&gt; 파드 (3계층 관리 구조)</li>
+</ul>
+<h3 id="크론잡-일시정지">크론잡 일시정지</h3>
+<ul>
+<li>점검이나 어떤 이유로 잡 생성 원하지 않을 경우 suspend(일시정지)</li>
+<li>매니페스트 수정 후 kubectl apply 실행</li>
+<li>kubectl patch
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ kubectl patch cronjob sample-cronjob -p <span style="color:#e6db74">&#39;{&#34;spec&#34;: {&#34;suspend&#34;:true}}&#39;</span>
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="동시-실행-제어">동시 실행 제어</h3>
+<ul>
+<li>잡이 의도한 시간 간격에서 정상 종료시 동시 실행되지 않고 알아서 새로운 잡 실행</li>
+<li>기존 잡이 실행되고 있을 때를 제어하고 싶은 경우</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>정책</th>
+<th>개요</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Allow(기본값)</td>
+<td>동시 실행에 대한 제한 X</td>
+</tr>
+<tr>
+<td>Forbid</td>
+<td>이전 잡이 종료되지 않은 경우 다음 잡 실행 X (동시 실행 X)</td>
+</tr>
+<tr>
+<td>Replace</td>
+<td>이전 잡 취소 후 잡 시작(이전 잡의 레플리카 수를 0으로 변경)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="실행-시작-기한-제어">실행 시작 기한 제어</h3>
+<ul>
+<li>쿠버네티스 마스터가 일시적으로 정지되는 경우와 같이 시작 시간 지연시, 이 지연 시간을 허용하는 시간</li>
+<li>기본값은 아무리 늦어져도 잡을 생성</li>
+<li>예) 매시 00분 시작 잡을 &lsquo;매시 00~05분에만 실행 가능&rsquo; 설정 시 300초로 설정</li>
+</ul>
+<h3 id="크론잡-이력">크론잡 이력</h3>
+<table>
+<thead>
+<tr>
+<th>설정 항목</th>
+<th>개요</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>spec.successfulJobsHistoryLimit</code></td>
+<td>성공한 잡을 저장하는 개수</td>
+</tr>
+<tr>
+<td><code>spec.failedJobsHistoryLimit</code></td>
+<td>실패한 잡을 저장하는 개수</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>실제 운영 환경에서는 컨테이너 로그를 외부 로그 시스템을 통해 운영하는 것이 좋음</li>
+<li>둘 다 0으로 설정시 잡은 종료시 즉시 삭제</li>
+</ul>
+<h3 id="매니페스트-사용하지-않고-크론잡-생성">매니페스트 사용하지 않고 크론잡 생성</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ kubectl create cronjob sample-cronjob-by-cli <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--image amsy810/random-exit:v2.0 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--schedule <span style="color:#e6db74">&#34;*/1 * * * *&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--restart Never
+</span></span></code></pre></div><h2 id="정리">정리</h2>
+<ul>
+<li>파드나 레플리카셋 생성 시 처음부터 디플로이먼트로 생성하는 것이 좋음
+<table>
+<thead>
+<tr>
+<th>리소스 종류</th>
+<th>사용 방법</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>파드</td>
+<td>디버깅이나 확인 용도</td>
+</tr>
+<tr>
+<td>레플리카셋</td>
+<td>파드 스케일링, 관리</td>
+</tr>
+<tr>
+<td>디플로이먼트</td>
+<td>스케일링할 워크로드에 사용</td>
+</tr>
+<tr>
+<td>데몬셋</td>
+<td>각 노드에 파드 하나씩 배포할 때</td>
+</tr>
+<tr>
+<td>스테이트풀셋</td>
+<td>영속성 데이터 등의 상태를 가진 워크로드에 사용</td>
+</tr>
+<tr>
+<td>잡</td>
+<td>작업 큐나 태스크 등 컨테이너 종료가 필요한 워크로드에 사용</td>
+</tr>
+<tr>
+<td>크론잡</td>
+<td>정기적으로 잡을 생성하고 싶은 경우</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+
+    </div><div class="post_comments">
+  
+  
+  
+</div>
+
+
+
+
+  </article>
+<aside class="sidebar">
+  <section class="sidebar_inner">
+    <br>
+    
+
+
+    
+    
+    <h2 class="mt-4">Featured Posts</h2>
+    <ul>
+      <li>
+        <a href="https://Haebuk.github.io/k8s/%EC%9B%8C%ED%81%AC%EB%A1%9C%EB%93%9C-api/" class="nav-link" title="워크로드 API">워크로드 API</a>
+      </li>
+      <li>
+        <a href="https://Haebuk.github.io/k8s/%EB%B3%B4%EC%95%88/" class="nav-link" title="보안">보안</a>
+      </li>
+      <li>
+        <a href="https://Haebuk.github.io/k8s/%EC%9C%A0%EC%97%B0%ED%95%9C-%EA%B3%A0%EA%B8%89-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/" class="nav-link" title="유연한 고급 스케줄링">유연한 고급 스케줄링</a>
+      </li>
+      <li>
+        <a href="https://Haebuk.github.io/k8s/%EB%A9%94%EC%9D%B8%ED%84%B0%EB%84%8C%EC%8A%A4%EC%99%80-%EB%85%B8%EB%93%9C-%EC%A0%95%EC%A7%80/" class="nav-link" title="메인터넌스와 노드 정지">메인터넌스와 노드 정지</a>
+      </li>
+      <li>
+        <a href="https://Haebuk.github.io/k8s/%ED%97%AC%EC%8A%A4%EC%B2%B4%ED%81%AC%EC%99%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4/" class="nav-link" title="헬스체크와 컨테이너 라이프사이클">헬스체크와 컨테이너 라이프사이클</a>
+      </li>
+      <li>
+        <a href="https://Haebuk.github.io/k8s/%EB%A6%AC%EC%86%8C%EC%8A%A4%EA%B4%80%EB%A6%AC%EC%99%80-%EC%98%A4%ED%86%A0%EC%8A%A4%EC%BC%80%EC%9D%BC%EB%A7%81/" class="nav-link" title="리소스관리와 오토스케일링">리소스관리와 오토스케일링</a>
+      </li>
+      <li>
+        <a href="https://Haebuk.github.io/k8s/%EC%BB%A8%ED%94%BC%EA%B7%B8%EC%99%80%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-api/" class="nav-link" title="컨피그와스토리지 API">컨피그와스토리지 API</a>
+      </li>
+      <li>
+        <a href="https://Haebuk.github.io/k8s/%EC%84%9C%EB%B9%84%EC%8A%A4-api/" class="nav-link" title="서비스 API">서비스 API</a>
+      </li>
+    </ul>
+    <h2 class="mt-4">Recent Posts</h2>
+    <ul class="flex-column">
+    </ul>
+    <div>
+      <h2 class="mt-4 taxonomy" id="categories-section">Categories</h2>
+      <nav class="tags_nav">
+        <a href='https://Haebuk.github.io/categories/kubernetes/' class="post_tag button button_translucent" title="kubernetes">
+          KUBERNETES
+          <span class="button_tally">8</span>
+        </a>
+        
+        <a href='https://Haebuk.github.io/categories/aws/' class="post_tag button button_translucent" title="aws">
+          AWS
+          <span class="button_tally">2</span>
+        </a>
+        
+        <a href='https://Haebuk.github.io/categories/python/' class="post_tag button button_translucent" title="python">
+          PYTHON
+          <span class="button_tally">2</span>
+        </a>
+        
+        <a href='https://Haebuk.github.io/categories/docker/' class="post_tag button button_translucent" title="docker">
+          DOCKER
+          <span class="button_tally">1</span>
+        </a>
+        
+        <a href='https://Haebuk.github.io/categories/elastic-search/' class="post_tag button button_translucent" title="elastic-search">
+          ELASTIC-SEARCH
+          <span class="button_tally">1</span>
+        </a>
+        
+        
+      </nav>
+    </div>
+    <div>
+      <h2 class="mt-4 taxonomy" id="tags-section">Tags</h2>
+      <nav class="tags_nav">
+        <a href='https://Haebuk.github.io/tags/kubernetes/' class="post_tag button button_translucent" title="kubernetes">
+          KUBERNETES
+          <span class="button_tally">7</span>
+        </a>
+        
+        <a href='https://Haebuk.github.io/tags/study/' class="post_tag button button_translucent" title="study">
+          STUDY
+          <span class="button_tally">1</span>
+        </a>
+        
+        
+      </nav>
+    </div>
+  </section>
+</aside>
+
+  
+</div>
+    </main><svg width="0" height="0" class="hidden">
+  <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
+    <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h151V331h-60v-90h60v-61c0-49.629 40.371-90 90-90h91v90h-91v61h91l-15 90h-76v181h121c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zm0 0"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.001 18.001" id="twitter">
+    <path d="M15.891 4.013c.808-.496 1.343-1.173 1.605-2.034a8.68 8.68 0 0 1-2.351.861c-.703-.756-1.593-1.14-2.66-1.14-1.043 0-1.924.366-2.643 1.078a3.56 3.56 0 0 0-1.076 2.605c0 .309.039.585.117.819-3.076-.105-5.622-1.381-7.628-3.837-.34.601-.51 1.213-.51 1.846 0 1.301.549 2.332 1.645 3.089-.625-.053-1.176-.211-1.645-.47 0 .929.273 1.705.82 2.388a3.623 3.623 0 0 0 2.115 1.291c-.312.08-.641.118-.979.118-.312 0-.533-.026-.664-.083.23.757.664 1.371 1.291 1.841a3.652 3.652 0 0 0 2.152.743C4.148 14.173 2.625 14.69.902 14.69c-.422 0-.721-.006-.902-.038 1.697 1.102 3.586 1.649 5.676 1.649 2.139 0 4.029-.542 5.674-1.626 1.645-1.078 2.859-2.408 3.639-3.974a10.77 10.77 0 0 0 1.172-4.892v-.468a7.788 7.788 0 0 0 1.84-1.921 8.142 8.142 0 0 1-2.11.593z"
+      ></path>
+  </symbol>
+  <symbol aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="mail">
+    <path  d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="calendar">
+    <path d="M452 40h-24V0h-40v40H124V0H84v40H60C26.916 40 0 66.916 0 100v352c0 33.084 26.916 60 60 60h392c33.084 0 60-26.916 60-60V100c0-33.084-26.916-60-60-60zm20 412c0 11.028-8.972 20-20 20H60c-11.028 0-20-8.972-20-20V188h432v264zm0-304H40v-48c0-11.028 8.972-20 20-20h24v40h40V80h264v40h40V80h24c11.028 0 20 8.972 20 20v48z"></path>
+    <path d="M76 230h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zM76 310h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zM76 390h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zm80-80h40v40h-40z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="github">
+    <path d="M255.968 5.329C114.624 5.329 0 120.401 0 262.353c0 113.536 73.344 209.856 175.104 243.872 12.8 2.368 17.472-5.568 17.472-12.384 0-6.112-.224-22.272-.352-43.712-71.2 15.52-86.24-34.464-86.24-34.464-11.616-29.696-28.416-37.6-28.416-37.6-23.264-15.936 1.728-15.616 1.728-15.616 25.696 1.824 39.2 26.496 39.2 26.496 22.848 39.264 59.936 27.936 74.528 21.344 2.304-16.608 8.928-27.936 16.256-34.368-56.832-6.496-116.608-28.544-116.608-127.008 0-28.064 9.984-51.008 26.368-68.992-2.656-6.496-11.424-32.64 2.496-68 0 0 21.504-6.912 70.4 26.336 20.416-5.696 42.304-8.544 64.096-8.64 21.728.128 43.648 2.944 64.096 8.672 48.864-33.248 70.336-26.336 70.336-26.336 13.952 35.392 5.184 61.504 2.56 68 16.416 17.984 26.304 40.928 26.304 68.992 0 98.72-59.84 120.448-116.864 126.816 9.184 7.936 17.376 23.616 17.376 47.584 0 34.368-.32 62.08-.32 70.496 0 6.88 4.608 14.88 17.6 12.352C438.72 472.145 512 375.857 512 262.353 512 120.401 397.376 5.329 255.968 5.329z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 212 212" id="gitlab">
+    <path d="M12.3 74.7h54L43.3 3c-1-3.6-6.4-3.6-7.6 0L12.3 74.8z" />
+    <path d="M12.3 74.7L.5 111c-1 3.2 0 6.8 3 8.8l101.6 74-92.5-119z"/>
+    <path d="M105 193.7l-38.6-119h-54l92.7 119z"/>
+    <path d="M105 193.7l38.7-119H66.4l38.7 119z"/>
+    <path d="M105 193.7l38.7-119H198l-93 119z"/>
+    <path d="M198 74.7l11.6 36.2c1 3 0 6.6-3 8.6l-101.5 74 93-119z"/>
+    <path d="M198 74.7h-54.3L167 3c1.2-3.6 6.4-3.6 7.6 0L198 74.8z"/> 
+  </symbol>
+  <symbol viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="rss">
+    <circle cx="3.429" cy="20.571" r="3.429"></circle>
+    <path d="M11.429 24h4.57C15.999 15.179 8.821 8.001 0 8v4.572c6.302.001 11.429 5.126 11.429 11.428z"></path>
+    <path d="M24 24C24 10.766 13.234 0 0 0v4.571c10.714 0 19.43 8.714 19.43 19.429z"></path>
+  </symbol>
+  <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="linkedin">
+    <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h362c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zM181 406h-60V196h60zm0-240h-60v-60h60zm210 240h-60V286c0-16.54-13.46-30-30-30s-30 13.46-30 30v120h-60V196h60v11.309C286.719 202.422 296.93 196 316 196c40.691.043 75 36.547 75 79.688zm0 0"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" id="to-top">
+    <path d="M604.501 440.509L325.398 134.956c-5.331-5.357-12.423-7.627-19.386-7.27-6.989-.357-14.056 1.913-19.387 7.27L7.499 440.509c-9.999 10.024-9.999 26.298 0 36.323s26.223 10.024 36.222 0l262.293-287.164L568.28 476.832c9.999 10.024 26.222 10.024 36.221 0 9.999-10.023 9.999-26.298 0-36.323z"></path>
+  </symbol>
+  <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="carly">
+    <path d="M504.971 239.029L448 182.059V84c0-46.317-37.682-84-84-84h-44c-13.255 0-24 10.745-24 24s10.745 24 24 24h44c19.851 0 36 16.149 36 36v108c0 6.365 2.529 12.47 7.029 16.971L454.059 256l-47.029 47.029A24.002 24.002 0 0 0 400 320v108c0 19.851-16.149 36-36 36h-44c-13.255 0-24 10.745-24 24s10.745 24 24 24h44c46.318 0 84-37.683 84-84v-98.059l56.971-56.971c9.372-9.372 9.372-24.568 0-33.941zM112 192V84c0-19.851 16.149-36 36-36h44c13.255 0 24-10.745 24-24S205.255 0 192 0h-44c-46.318 0-84 37.683-84 84v98.059l-56.971 56.97c-9.373 9.373-9.373 24.568 0 33.941L64 329.941V428c0 46.317 37.682 84 84 84h44c13.255 0 24-10.745 24-24s-10.745-24-24-24h-44c-19.851 0-36-16.149-36-36V320c0-6.365-2.529-12.47-7.029-16.971L57.941 256l47.029-47.029A24.002 24.002 0 0 0 112 192z"></path>
+  </symbol>
+  <symbol viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="copy">
+    <path d="M23 2.75A2.75 2.75 0 0 0 20.25 0H8.75A2.75 2.75 0 0 0 6 2.75v13.5A2.75 2.75 0 0 0 8.75 19h11.5A2.75 2.75 0 0 0 23 16.25zM18.25 14.5h-7.5a.75.75 0 0 1 0-1.5h7.5a.75.75 0 0 1 0 1.5zm0-3h-7.5a.75.75 0 0 1 0-1.5h7.5a.75.75 0 0 1 0 1.5zm0-3h-7.5a.75.75 0 0 1 0-1.5h7.5a.75.75 0 0 1 0 1.5z"></path>
+    <path d="M8.75 20.5a4.255 4.255 0 0 1-4.25-4.25V2.75c0-.086.02-.166.025-.25H3.75A2.752 2.752 0 0 0 1 5.25v16A2.752 2.752 0 0 0 3.75 24h12a2.752 2.752 0 0 0 2.75-2.75v-.75z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.001 512.001" id="closeme">
+    <path d="M284.286 256.002L506.143 34.144c7.811-7.811 7.811-20.475 0-28.285-7.811-7.81-20.475-7.811-28.285 0L256 227.717 34.143 5.859c-7.811-7.811-20.475-7.811-28.285 0-7.81 7.811-7.811 20.475 0 28.285l221.857 221.857L5.858 477.859c-7.811 7.811-7.811 20.475 0 28.285a19.938 19.938 0 0 0 14.143 5.857 19.94 19.94 0 0 0 14.143-5.857L256 284.287l221.857 221.857c3.905 3.905 9.024 5.857 14.143 5.857s10.237-1.952 14.143-5.857c7.811-7.811 7.811-20.475 0-28.285L284.286 256.002z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="open-menu">
+    <path d="M492 236H20c-11.046 0-20 8.954-20 20s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20zm0-160H20C8.954 76 0 84.954 0 96s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20zm0 320H20c-11.046 0-20 8.954-20 20s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="instagram">
+    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id=youtube>
+    <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="stackoverflow">
+    <path d="M21 27v-8h3v11H0V19h3v8h18z"></path><path d="M17.1.2L15 1.8l7.9 10.6 2.1-1.6L17.1.2zm3.7 14.7L10.6 6.4l1.7-2 10.2 8.5-1.7 2zM7.2 12.3l12 5.6 1.1-2.4-12-5.6-1.1 2.4zm-1.8 6.8l13.56 1.96.17-2.38-13.26-2.55-.47 2.97zM19 25H5v-3h14v3z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="xing">
+    <path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894 0 21.686 0h-3.498zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.461c.518 0 .766-.348.945-.667l3.734-6.609-2.378-4.155c-.172-.315-.434-.659-.962-.659H3.648v.016z"/>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71 55" id="discord">
+    <path d="M60.1045 4.8978C55.5792 2.8214 50.7265 1.2916 45.6527 0.41542C45.5603 0.39851 45.468 0.440769 45.4204 0.525289C44.7963 1.6353 44.105 3.0834 43.6209 4.2216C38.1637 3.4046 32.7345 3.4046 27.3892 4.2216C26.905 3.0581 26.1886 1.6353 25.5617 0.525289C25.5141 0.443589 25.4218 0.40133 25.3294 0.41542C20.2584 1.2888 15.4057 2.8186 10.8776 4.8978C10.8384 4.9147 10.8048 4.9429 10.7825 4.9795C1.57795 18.7309 -0.943561 32.1443 0.293408 45.3914C0.299005 45.4562 0.335386 45.5182 0.385761 45.5576C6.45866 50.0174 12.3413 52.7249 18.1147 54.5195C18.2071 54.5477 18.305 54.5139 18.3638 54.4378C19.7295 52.5728 20.9469 50.6063 21.9907 48.5383C22.0523 48.4172 21.9935 48.2735 21.8676 48.2256C19.9366 47.4931 18.0979 46.6 16.3292 45.5858C16.1893 45.5041 16.1781 45.304 16.3068 45.2082C16.679 44.9293 17.0513 44.6391 17.4067 44.3461C17.471 44.2926 17.5606 44.2813 17.6362 44.3151C29.2558 49.6202 41.8354 49.6202 53.3179 44.3151C53.3935 44.2785 53.4831 44.2898 53.5502 44.3433C53.9057 44.6363 54.2779 44.9293 54.6529 45.2082C54.7816 45.304 54.7732 45.5041 54.6333 45.5858C52.8646 46.6197 51.0259 47.4931 49.0921 48.2228C48.9662 48.2707 48.9102 48.4172 48.9718 48.5383C50.038 50.6034 51.2554 52.5699 52.5959 54.435C52.6519 54.5139 52.7526 54.5477 52.845 54.5195C58.6464 52.7249 64.529 50.0174 70.6019 45.5576C70.6551 45.5182 70.6887 45.459 70.6943 45.3942C72.1747 30.0791 68.2147 16.7757 60.1968 4.9823C60.1772 4.9429 60.1437 4.9147 60.1045 4.8978ZM23.7259 37.3253C20.2276 37.3253 17.3451 34.1136 17.3451 30.1693C17.3451 26.225 20.1717 23.0133 23.7259 23.0133C27.308 23.0133 30.1626 26.2532 30.1066 30.1693C30.1066 34.1136 27.28 37.3253 23.7259 37.3253ZM47.3178 37.3253C43.8196 37.3253 40.9371 34.1136 40.9371 30.1693C40.9371 26.225 43.7636 23.0133 47.3178 23.0133C50.9 23.0133 53.7545 26.2532 53.6986 30.1693C53.6986 34.1136 50.9 37.3253 47.3178 37.3253Z"/>
+  </symbol>
+</svg>
+
+
+<footer class="footer">
+  <div class="footer_inner wrap pale">
+    <img src='https://Haebuk.github.io/icons/apple-touch-icon.png' class="icon icon_2 transparent" alt="지식 공유, 협업 ✈️ 성장">
+    <p>Copyright&nbsp;<span class="year"></span>&nbsp;지식 공유, 협업 ✈️ 성장. All Rights Reserved</p><a class="to_top" href="#documentTop">
+  <svg class="icon">
+  <title>to-top</title>
+  <use xlink:href="#to-top"></use>
+</svg>
+
+</a>
+
+  </div>
+</footer>
+
+<script type="text/javascript" src="https://Haebuk.github.io/en/js/bundle.196e32081a62224415d8434dcf1e9156eb583ccd88f292c0ca5acb62995626357433971f4bc87a29fca931c7875eb6c77e04d363cca5699f49713ba73f68f567.js" integrity="sha512-GW4yCBpiIkQV2ENNzx6RVutYPM2I8pLAylrLYplWJjV0M5cfS8h6KfypMceHXrbHfgTTY8ylaZ9JcTunP2j1Zw==" crossorigin="anonymous"></script>
+  </body>
+</html>

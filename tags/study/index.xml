@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>study on 지식 공유, 협업 ✈️ 성장</title>
+    <link>https://Haebuk.github.io/tags/study/</link>
+    <description>Recent content in study on 지식 공유, 협업 ✈️ 성장</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-KR</language>
+    <lastBuildDate>Sat, 27 Aug 2022 16:51:33 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/tags/study/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>워크로드 API</title>
+      <link>https://Haebuk.github.io/k8s/%EC%9B%8C%ED%81%AC%EB%A1%9C%EB%93%9C-api/</link>
+      <pubDate>Sat, 27 Aug 2022 16:51:33 +0900</pubDate>
+      
+      <guid>https://Haebuk.github.io/k8s/%EC%9B%8C%ED%81%AC%EB%A1%9C%EB%93%9C-api/</guid>
+      <description>
+        
+          
+            워크로드 API 카테고리 클러스터에 컨테이너를 기동시키기 위해 사용되는 리소스 Pod Replication Controller(Deprecated) ReplicaSet Deployment DaemonSet StatefulSet Job CronJob 파드 워크로드 리소스의 최소 단위 파드 디자인 패턴 종류 개요 사이드카 패턴 메인 컨테이너에 기능 추가 앰배서더 패턴 외부 시스템과의 통신 중계 어댑터 패턴 외부 접속을 위한 인터페이스 제공 파드 명령어 # 파드 생성 $ kubectl apply -f sample-pod.yaml # 파드 목록 표시 $ kubectl get pods # 파드 상세 정보 표시 $ kubectl get pods --output wide # 컨테이너에서 /bin/bash 실행 $ kubectl exec -it sample-pod -- /bin/bash root@sample-pod:/# (이후 컨테이너 내부에서 명령어 실행 가능) # 컨테이너에서 ls 명령어 실행 $ kubectl exec -it sample-pod -- /bin/ls # 다수의 컨테이너 포함한 파드의 경우 특정 컨테이너 지정 가능 $ kubectl exec -it sample-2pod -c nginx-container -- /bin/ls 파드 주의 사항 파드 내 컨테이너가 같은 포트로 바인드되면 안됨 쿠버네티스는 ENTRYPOINT를 command, CMD를 args라고 부름 파드명 제한 영어 소문자 또는 숫자 기호는 &amp;lsquo;-&amp;rsquo; 또는 &amp;lsquo;.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>
