@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>kubernetes on 지식 공유, 협업 ✈️ 성장</title>
-        <link>https://Haebuk.github.io/tags/kubernetes/</link>
-        <description>Recent content in kubernetes on 지식 공유, 협업 ✈️ 성장</description>
+        <title>Kubernetes on 지식 공유, 협업 ✈️ 성장</title>
+        <link>https://Haebuk.github.io/kubernetes/</link>
+        <description>Recent content in Kubernetes on 지식 공유, 협업 ✈️ 성장</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ko-kr</language>
-        <lastBuildDate>Sun, 10 Jul 2022 17:12:39 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 10 Jul 2022 17:12:39 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/kubernetes/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>보안</title>
         <link>https://Haebuk.github.io/kubernetes/%EB%B3%B4%EC%95%88/</link>
         <pubDate>Sun, 10 Jul 2022 17:12:39 +0900</pubDate>
