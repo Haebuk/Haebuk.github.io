@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>skill builder on 지식 공유, 협업 ✈️ 성장</title>
+        <link>https://Haebuk.github.io/tags/skill-builder/</link>
+        <description>Recent content in skill builder on 지식 공유, 협업 ✈️ 성장</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>ko-kr</language>
+        <lastBuildDate>Fri, 01 Jan 2021 17:12:39 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/tags/skill-builder/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>AWS Data Analysis Learning Plan</title>
+        <link>https://Haebuk.github.io/p/aws-data-analysis-learning-plan/</link>
+        <pubDate>Fri, 01 Jan 2021 17:12:39 +0900</pubDate>
+        
+        <guid>https://Haebuk.github.io/p/aws-data-analysis-learning-plan/</guid>
+        <description>&lt;p&gt;신년을 맞아 여러가지 공부를 할 것에 대해 찾아보던 도중에, AWS의 자격증 준비를 위해 AWS에서 자체적으로 제공하는 AWS Skill Builder에 대해 알게되었습니다. (&lt;a class=&#34;link&#34; href=&#34;https://explore.skillbuilder.aws/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;aws skill builder 사이트&lt;/a&gt;)
+&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;요즘 회사에서 ML/DL보다는 거의 AWS 관련 업무만 하고 있기에, 등록하면 업무적으로나 커리어적으로나 매우 도움이 될 것 같았습니다.&lt;/p&gt;
+&lt;p&gt;Korean으로 검색하면 한국어로 된 강의도 매우 많음을 알 수 있습니다.
+&lt;!-- raw HTML omitted --&gt;
+하나의 아이템(강의)별로 올라와있습니다. 길이는 긴 경우에 3시간 짜리도 있습니다.&lt;/p&gt;
+&lt;p&gt;이러한 강의들을 묶어서 사용자의 니즈에 맞춘 커리큘럼처럼 제공하는 플랜도 있습니다.
+&lt;!-- raw HTML omitted --&gt;
+아쉽게도 이러한 플랜의 경우 모두 영어로 되어있습니다. 저는 그중에서도 data analytics learning plan을 선택하였습니다. 해당 강의에서는 kinesis부터 시작하여 EMR, Redshift등 현재 사내에서 사용/사용을 고려한 서비스에 대해 다루고 있었기 때문이었습니다.
+&lt;!-- raw HTML omitted --&gt;
+총 강의는 17시간입니다.&lt;/p&gt;
+&lt;p&gt;먼저 overview강의를 들었는데, 듣고나니 certificate를 발급해주었습니다.
+&lt;img src=&#34;https://user-images.githubusercontent.com/68543150/147853734-71b296d0-9f37-4c4e-acc0-f4d099f554c8.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image&#34;
+	
+	
+&gt;
+aws는 별도의 자격증이 있기 때문에 수강 자격증이 의미가 있을진 모르겠습니다만, 앞으로 수강한 내용을 정리하여 업로드할 예정입니다.&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

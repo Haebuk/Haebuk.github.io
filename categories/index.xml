@@ -15,11 +15,35 @@
         <description>&lt;img src="https://Haebuk.github.io/categories/kubernetes/Kubernetes-Logo.wine.png" alt="Featured image of post Kubernetes" /&gt;</description>
         </item>
         <item>
+        <title>Docker</title>
+        <link>https://Haebuk.github.io/categories/docker/</link>
+        <pubDate>Fri, 03 Jun 2022 17:12:39 +0900</pubDate>
+        
+        <guid>https://Haebuk.github.io/categories/docker/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Dask</title>
         <link>https://Haebuk.github.io/categories/dask/</link>
         <pubDate>Mon, 10 Jan 2022 17:12:39 +0900</pubDate>
         
         <guid>https://Haebuk.github.io/categories/dask/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Elasticsearch</title>
+        <link>https://Haebuk.github.io/categories/elasticsearch/</link>
+        <pubDate>Sun, 19 Dec 2021 17:12:39 +0900</pubDate>
+        
+        <guid>https://Haebuk.github.io/categories/elasticsearch/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>AWS</title>
+        <link>https://Haebuk.github.io/categories/aws/</link>
+        <pubDate>Sat, 09 Jan 2021 17:12:39 +0900</pubDate>
+        
+        <guid>https://Haebuk.github.io/categories/aws/</guid>
         <description></description>
         </item>
         

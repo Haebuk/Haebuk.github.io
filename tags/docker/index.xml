@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Docker on 지식 공유, 협업 ✈️ 성장</title>
+        <link>https://Haebuk.github.io/tags/docker/</link>
+        <description>Recent content in Docker on 지식 공유, 협업 ✈️ 성장</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>ko-kr</language>
+        <lastBuildDate>Fri, 03 Jun 2022 17:12:39 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Docker 내용 정리</title>
+        <link>https://Haebuk.github.io/p/docker-%EB%82%B4%EC%9A%A9-%EC%A0%95%EB%A6%AC/</link>
+        <pubDate>Fri, 03 Jun 2022 17:12:39 +0900</pubDate>
+        
+        <guid>https://Haebuk.github.io/p/docker-%EB%82%B4%EC%9A%A9-%EC%A0%95%EB%A6%AC/</guid>
+        <description>&lt;h1 id=&#34;docker-내용-정리&#34;&gt;Docker 내용 정리&lt;/h1&gt;
+&lt;h2 id=&#34;도커-컨테이너-설계&#34;&gt;도커 컨테이너 설계&lt;/h2&gt;
+&lt;p&gt;도커 컨테이너 생성 시 주의해야 할 점 네 가지&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;1 컨테이너당 1 프로세스&lt;/li&gt;
+&lt;li&gt;변경 불가능한 인프라(Immutable Infrastructure) 이미지로 생성&lt;/li&gt;
+&lt;li&gt;경량의 도커 이미지로 생성&lt;/li&gt;
+&lt;li&gt;실행 계정은 root 이외의 사용자로 설정&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;1-1-컨테이너당-1-프로세스&#34;&gt;1. 1 컨테이너당 1 프로세스&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;기존 VM처럼 하나의 이미지 안에 여러 프로세스는 비추&lt;/li&gt;
+&lt;li&gt;여러 프로세스 기동 시 주변 에코 시스템과 맞지 않거나 관리가 힘들어짐&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-변경-불가능한-인프라를-구현하는-이미지로-생성&#34;&gt;2. 변경 불가능한 인프라를 구현하는 이미지로 생성&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;변경 불가능한 인프라: &amp;ldquo;환경 변경 시 오래된 환경은 없애고 새로운 환경 생성&amp;rdquo; 또는 &amp;ldquo;한번 만든 환경은 절대 불변하게&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;전자의 경우 쿠버네티스는 자동으로 만들어주지만 후자는 컨테이너 이미지 관리자가 고려해야 함&lt;/li&gt;
+&lt;li&gt;도커 컨테이너는 버전 관리 가능하므로, 컨테이너 이미지 내에 애플리케이션 실행 바이너리 또는 관련 리소스를 가능한 포함시켜야 함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-도커-이미지-경량화&#34;&gt;3. 도커 이미지 경량화&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;컨테이너 실행 시 최초 1회는 이미지를 외부에서 pull해야 함&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dnf&lt;/code&gt;, &lt;code&gt;yum&lt;/code&gt;, &lt;code&gt;apt&lt;/code&gt;로 패키지 설치 후 저장소 패키지 목록 등의 캐시파일 삭제&lt;/li&gt;
+&lt;li&gt;멀티 스테이지 빌드 활용하여 이미지에 필요한 파일만 추가&lt;/li&gt;
+&lt;li&gt;기본 이미지가 경량인 배포판 이미지 사용 (ex. alpine linux, distorless 등)&lt;/li&gt;
+&lt;li&gt;도커 파일 최적화에 따라 레이어 줄이기&lt;/li&gt;
+&lt;li&gt;도커 이미지 생성시 squash 사용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;4-실행-계정-권한-최소화&#34;&gt;4. 실행 계정 권한 최소화&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;root 사용자는 최대한 사용하지 않도록 한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;entrypoint와-cmd&#34;&gt;&lt;code&gt;ENTRYPOINT&lt;/code&gt;와 &lt;code&gt;CMD&lt;/code&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;컨테이너가 기동할 때 실행하는 명령어를 지정할 때 사용&lt;/li&gt;
+&lt;li&gt;아주 간단히 설명하면 &lt;code&gt;$ENTRYOINT $CMD&lt;/code&gt;가 실행된다고 볼 수 있음&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ENTRYPOINT&lt;/code&gt;에 바꿀 필요가 없는 부분을 정의하고 &lt;code&gt;CMD&lt;/code&gt;에 기본값 인수 등을 정의하는 것이 일반적
+&lt;ul&gt;
+&lt;li&gt;예) &lt;code&gt;ENTRYPOINT&lt;/code&gt;에 /bin/sleep 지정, &lt;code&gt;CMD&lt;/code&gt;에 sleep 시간 지정&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

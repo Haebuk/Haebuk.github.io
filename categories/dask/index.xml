@@ -7,11 +7,11 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>ko-kr</language>
         <lastBuildDate>Mon, 10 Jan 2022 17:12:39 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/categories/dask/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Dask Tutorial</title>
-        <link>https://Haebuk.github.io/p/dask-tutorial/</link>
+        <title>Dask 튜토리얼</title>
+        <link>https://Haebuk.github.io/p/dask-%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/</link>
         <pubDate>Mon, 10 Jan 2022 17:12:39 +0900</pubDate>
         
-        <guid>https://Haebuk.github.io/p/dask-tutorial/</guid>
+        <guid>https://Haebuk.github.io/p/dask-%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/</guid>
         <description>&lt;h1 id=&#34;들어가며&#34;&gt;들어가며&lt;/h1&gt;
 &lt;p&gt;현업에서 간단하게 로컬에서 데이터를 뽑아보려해도 수 GB는 훌쩍 넘어가는 경우가 다반사기 때문에, Pandas로는 한계가 있음을 느꼈습니다.&lt;/p&gt;
 &lt;p&gt;Dask를 사용하여 기초적인 병렬 계산, 데이터프레임 다루기, 간단한 신경망을 통해 학습하는 과정을 살펴보겠습니다.&lt;/p&gt;
