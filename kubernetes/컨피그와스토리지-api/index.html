@@ -1,0 +1,1743 @@
+<!DOCTYPE html>
+<html lang="ko-kr" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='컨피그 &amp; 스토리지 API'><title>컨피그와스토리지 API</title>
+
+<link rel='canonical' href='https://Haebuk.github.io/kubernetes/%EC%BB%A8%ED%94%BC%EA%B7%B8%EC%99%80%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-api/'>
+
+<link rel="stylesheet" href="/scss/style.min.ac77dcf8b111b51da39a92990f431923f210f3876d85798a2125667f96dc33a4.css"><meta property='og:title' content='컨피그와스토리지 API'>
+<meta property='og:description' content='컨피그 &amp; 스토리지 API'>
+<meta property='og:url' content='https://Haebuk.github.io/kubernetes/%EC%BB%A8%ED%94%BC%EA%B7%B8%EC%99%80%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-api/'>
+<meta property='og:site_name' content='지식 공유, 협업 ✈️ 성장'>
+<meta property='og:type' content='article'><meta property='article:section' content='Kubernetes' /><meta property='article:tag' content='Kubernetes' /><meta property='article:published_time' content='2022-06-16T17:11:40&#43;09:00'/><meta property='article:modified_time' content='2022-06-16T17:11:40&#43;09:00'/><meta property='og:image' content='https://Haebuk.github.io/kubernetes/%EC%BB%A8%ED%94%BC%EA%B7%B8%EC%99%80%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-api/Kubernetes-Logo.wine.png' />
+<meta name="twitter:title" content="컨피그와스토리지 API">
+<meta name="twitter:description" content="컨피그 &amp; 스토리지 API"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://Haebuk.github.io/kubernetes/%EC%BB%A8%ED%94%BC%EA%B7%B8%EC%99%80%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-api/Kubernetes-Logo.wine.png' />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7CM424CQYT"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-7CM424CQYT', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="메뉴 여닫기">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/me_huf51a70a7adb149ae5d10a476e9d3ddf5_156361_300x0_resize_q75_box.jpg" width="300"
+                            height="400" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🧑🏻‍💻</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">지식 공유, 협업 ✈️ 성장</a></h1>
+            <h2 class="site-description">카데 블로그</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/Haebuk'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://instagram.com/kade.data'
+                        target="_blank"
+                        title="Instagram"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <rect x="4" y="4" width="16" height="16" rx="4" />
+  <circle cx="12" cy="12" r="3" />
+  <line x1="16.5" y1="7.5" x2="16.5" y2="7.501" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.linkedin.com/in/jaesungryu/'
+                        target="_blank"
+                        title="LinkedIn"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-linkedin" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <rect x="4" y="4" width="16" height="16" rx="2" />
+  <line x1="8" y1="11" x2="8" y2="16" />
+  <line x1="8" y1="8" x2="8" y2="8.01" />
+  <line x1="12" y1="16" x2="12" y2="11" />
+  <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>다크 모드</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/kubernetes/%EC%BB%A8%ED%94%BC%EA%B7%B8%EC%99%80%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-api/">
+                <img src="/kubernetes/%EC%BB%A8%ED%94%BC%EA%B7%B8%EC%99%80%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-api/Kubernetes-Logo.wine_hu7d34b56543d7b812e012200a129db38d_42706_800x0_resize_box_3.png"
+                        srcset="/kubernetes/%EC%BB%A8%ED%94%BC%EA%B7%B8%EC%99%80%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-api/Kubernetes-Logo.wine_hu7d34b56543d7b812e012200a129db38d_42706_800x0_resize_box_3.png 800w, /kubernetes/%EC%BB%A8%ED%94%BC%EA%B7%B8%EC%99%80%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-api/Kubernetes-Logo.wine_hu7d34b56543d7b812e012200a129db38d_42706_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="533" 
+                        loading="lazy"
+                        alt="Featured image of post 컨피그와스토리지 API" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/kubernetes/" >
+                Kubernetes
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/kubernetes/%EC%BB%A8%ED%94%BC%EA%B7%B8%EC%99%80%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-api/">컨피그와스토리지 API</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            컨피그 &amp; 스토리지 API
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jun 16, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    12 분 정도
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="컨피그--스토리지-api-카테고리">컨피그 &amp; 스토리지 API 카테고리</h1>
+<ul>
+<li>컨테이너 설정 파일, 패스워드 같은 기밀 정보 추가</li>
+<li>영구 볼륨 제공
+<ul>
+<li>시크릿</li>
+<li>컨피그맵</li>
+<li>영구 볼륨 클레임</li>
+</ul>
+</li>
+</ul>
+<h2 id="환경-변수-사용">환경 변수 사용</h2>
+<ul>
+<li>개별 컨테이너 설정 내용은 환경 변수나 파일이 저장되어 있는 영역을 마운트하여 전달하는 것이 일반적</li>
+<li>파드 템플릿에 env 또는 envFrom 지정</li>
+<li>다음과 같은 정보를 환경 변수에 포함 가능
+<ul>
+<li>정적 설정</li>
+<li>파드 정보</li>
+<li>컨테이너 정보</li>
+<li>시크릿 리소스 기밀 정보</li>
+<li>컨피그맵 리소스 설정값</li>
+</ul>
+</li>
+</ul>
+<h3 id="정적-설정">정적 설정</h3>
+<ul>
+<li>spec.containers[].env에 정적인 값 설정</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># sample-env 파드의 환경변수 확인</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-env -- env <span class="p">|</span> grep MAX_CONNECTION
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>컨테이너 기본 타임존: UTC -&gt; 환경 변수 지정하여 변경 가능</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># 타임존 설정</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">env</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">TZ</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">Asia/Seoul</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="파드-정보">파드 정보</h3>
+<ul>
+<li>fieldRef를 통해 참조 가능</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 파드가 기동 중인 노드 확인</span>
+</span></span><span class="line"><span class="cl">$ kubectl get pods -o wide sample-env-pod
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># sample-env-pod 파드 환경 변수 &#39;K8S_NODE&#39; 확인</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-env-pod -- env <span class="p">|</span> grep K8S_NODE
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="컨테이너-정보">컨테이너 정보</h3>
+<ul>
+<li>resourceFieldRef를 통해 참조 가능</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-env-container -- env <span class="p">|</span> grep CPU
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="환경-변수-사용시-주의-사항">환경 변수 사용시 주의 사항</h3>
+<ul>
+<li>command나 args로 실행할 명령어를 지정할 때는 <code>${}</code>가 아닌 <code>$()</code>로 지정
+<ul>
+<li>매니페스트 내부에 정의된 환경 변수만 참조 가능</li>
+</ul>
+</li>
+</ul>
+<h2 id="시크릿">시크릿</h2>
+<h3 id="범용-시크릿opaque">범용 시크릿(Opaque)</h3>
+<ul>
+<li>스키마리스 시크릿
+<ul>
+<li>kubectl로 파일에서 값을 참조하여 생성(&ndash;from-file)</li>
+<li>kubectl로 envfile에서 값을 참조하여 생성(&ndash;from-env-file)</li>
+<li>kubectl로 직접 값을 전달하여 생성(&ndash;from-literal)</li>
+<li>매니페스트에서 생성(-f)</li>
+</ul>
+</li>
+<li>하나의 시크릿당 저장 가능한 데이터 사이즈는 총 1MB</li>
+</ul>
+<h4 id="kubectl로-파일에서-값을-참조하여-생성--from-file">kubectl로 파일에서 값을 참조하여 생성(&ndash;from-file)</h4>
+<ul>
+<li>일반적으로 파일명이 그대로 키가 되므로 확장자는 붙이지 않는 것이 좋음</li>
+<li>파일 생성시 개행 코드 없도록 주의</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 시크릿에 포함된 값을 파일로 내보내기</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> -n <span class="s2">&#34;root&#34;</span> &gt; ./username
+</span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> -n <span class="s2">&#34;rootpassword&#34;</span> &gt; ./password
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 파일에서 값 참조하여 시크릿 생성</span>
+</span></span><span class="line"><span class="cl">$ kubectl create secret generic --save-config sample-db-auth <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--from-file<span class="o">=</span>./username --from-file<span class="o">=</span>./password
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 시크릿 확인</span>
+</span></span><span class="line"><span class="cl">$ kubectl get secrets sample-db-auth -o json <span class="p">|</span> jq .data
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># base64 인코딩되어 있음</span>
+</span></span><span class="line"><span class="cl">$ kubectl get secrets sample-db-auth -o json <span class="p">|</span> jq -r .data.username
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># base64 디코드</span>
+</span></span><span class="line"><span class="cl">$ kubectl get secrets sample-db-auth -o json <span class="p">|</span> jq -r .data.username <span class="p">|</span> base64 --decode
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="kubectl로-envfile에서-값을-참조하여-생성--from-env-file">kubectl로 envfile에서 값을 참조하여 생성(&ndash;from-env-file)</h4>
+<ul>
+<li>하나의 파일에서 일괄적으로 생성하는 경우</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ kubectl create secret generic --save-config sample-db-auth <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--from-env-file ./env-secret.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="kubectl로-값을-직접-전달하여-생성--from-literal">kubectl로 값을 직접 전달하여 생성(&ndash;from-literal)</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ kubectl create secret generic --save-config sample-db-auth <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--from-literal<span class="o">=</span><span class="nv">username</span><span class="o">=</span>root --from-literal<span class="o">=</span><span class="nv">password</span><span class="o">=</span>rootpassword
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="매니페스트에서-생성-f">매니페스트에서 생성(-f)</h4>
+<ul>
+<li>base64로 제대로 인코드되었는지 확인</li>
+<li>data가 아닌 stringData 필드를 사용하면 일반 텍스트로 작성 가능</li>
+</ul>
+<h3 id="tls-타입-시크릿">TLS 타입 시크릿</h3>
+<ul>
+<li>인증서로 사용할 시크릿을 사용하는 경우</li>
+<li>인그레스 리소스 등에서 사용하는 것이 일반적</li>
+<li>매니페스트로 생성할 수 있지만 기본적으로 비밀키와 인증서 파일로 생성하는 것이 좋음</li>
+</ul>
+<h3 id="도커-레지스트리-타입-시크릿">도커 레지스트리 타입 시크릿</h3>
+<ul>
+<li>컨테이너 레지스트리가 프라이빗 저장소인 경우에 인증 정보를 시크릿으로 정의하여 사용 가능</li>
+<li>kubectl로 직접 생성하는 것이 편리</li>
+<li>~/.docker/config.json 파일 대체용으로 사용</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 도커 레지스트리 인증 정보의 시크릿 생성</span>
+</span></span><span class="line"><span class="cl">$ kubectl create secret docker-registry --save-config sample-registry-auth <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--docker-server<span class="o">=</span>REGISTRY_SERVER <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--docker-username<span class="o">=</span>REGISTRY_USER <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--docker-password<span class="o">=</span>REGISTRY_USER_PASSWORD <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--docker-email<span class="o">=</span>REGISTRY_USER_EMAIL
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># base64로 인코드된 dockercfg 형식의 JSON 데이터</span>
+</span></span><span class="line"><span class="cl">$ kubectl get secrets -o json sample-registry-auth <span class="p">|</span> jq .data
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># base64로 디코드한 dockercfg 형식의 JSON 데이터</span>
+</span></span><span class="line"><span class="cl">$ kubectl get secrets sample-registry-auth -o yaml <span class="p">|</span> grep <span class="s2">&#34;\.dockerconfigjson&#34;</span> <span class="p">|</span> awk -F <span class="s1">&#39; &#39;</span> <span class="s1">&#39;{print $2}&#39;</span> <span class="p">|</span> base64 --decode
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="이미지-다운로드-시-시크릿-사용">이미지 다운로드 시 시크릿 사용</h4>
+<ul>
+<li>인증이 필요한 도커 레지스트리의 프라이빗 저장소에 저장된 이미지를 다운로드할 때, 시크릿을 사전에 생성한 후 파드 정의 spec.imagePullSecrets에 docker-registry 타입의 시크릿 지정</li>
+<li>imagePullSecrets는 복수 설정 가능</li>
+</ul>
+<h3 id="기본-인증-타입의-시크릿">기본 인증 타입의 시크릿</h3>
+<ul>
+<li>사용자명과 패스워드로 인증하는 시스템을 사용하는 경우</li>
+</ul>
+<h4 id="kubectl로-직접-값을-전달하여-생성--from-literal">kubectl로 직접 값을 전달하여 생성(&ndash;from-literal)</h4>
+<ul>
+<li>리소스를 생성하지 않고 매니페스트를 출력하는 경우 &ndash;dry-run, -o yaml 옵션 사용</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 직접 옵션에서 type과 값을 지정하여 시크릿 생성</span>
+</span></span><span class="line"><span class="cl">$ kubectl create secret generic --save-config sample-basic-auth <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--type kubernetes.io/basic-auth <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--from-literal<span class="o">=</span><span class="nv">username</span><span class="o">=</span>root --from-literal<span class="o">=</span><span class="nv">password</span><span class="o">=</span>rootpassword
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="매니페스트에서-생성-f-1">매니페스트에서 생성(-f)</h4>
+<ul>
+<li>type에 kubernetes.io/basic-auth 지정</li>
+<li>데이터 스키마로 username과 password 지정</li>
+</ul>
+<h3 id="ssh-인증-타입의-시크릿">SSH 인증 타입의 시크릿</h3>
+<ul>
+<li>비밀키로 인증하는 시스템을 사용하는 경우</li>
+</ul>
+<h4 id="kubectl로-파일에서-값을-참조하여-생성--from-file-1">kubectl로 파일에서 값을 참조하여 생성(&ndash;from-file)</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># SSH 비밀키 생성</span>
+</span></span><span class="line"><span class="cl">$ ssh-keygen -t rsa -b <span class="m">2048</span> -f sample-key -C <span class="s2">&#34;sample&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 파일에서 type과 값을 참조하여 시크릿 생성</span>
+</span></span><span class="line"><span class="cl">$ kubectl create secret generic --save-config sample-ssh-auth <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--type kubernetes.io/ssh-auth <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--from-file<span class="o">=</span>ssh-privatekey<span class="o">=</span>./sample-key
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="매니페스트에서-생성-f-2">매니페스트에서 생성(-f)</h4>
+<ul>
+<li>type에 kubernetes.io/ssh-auth 지정</li>
+<li>데이터 스키마로 ssh-privatekey 지정</li>
+</ul>
+<h3 id="시크릿-사용">시크릿 사용</h3>
+<ul>
+<li>컨테이너에서 사용할 경우 두 가지 패턴이 존재
+<ol>
+<li>환경 변수로 전달</li>
+</ol>
+<ul>
+<li>시크릿의 특정 키만</li>
+<li>시크릿의 전체 키</li>
+</ul>
+<ol start="2">
+<li>볼륨으로 마운트</li>
+</ol>
+<ul>
+<li>시크릿의 특정 키만</li>
+<li>시크릿의 전체 키</li>
+</ul>
+</li>
+</ul>
+<h4 id="환경-변수로-전달">환경 변수로 전달</h4>
+<ul>
+<li>특정 키를 전달할 경우 spec.containers[].env의 valueFrom.secretKeyRef 사용</li>
+<li>env로 하나씩 정의하기 때문에 환경 변수명 지정 가능</li>
+<li>전체를 전달할 경우 매니페스트가 길어지지는 않지만 시크릿에 어떤 값이 있는지 매니페스트 정의에서 알기 힘듦</li>
+<li>여러 시크릿을 가져오면 키가 충돌할 수 있으므로 접두사를 붙여 충돌 방지</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># sample-secret-single-env 파드의 DB_USERNAME 확인</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-secret-single-env -- env <span class="p">|</span> grep DB_USERNAME
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># sample-secret-multi-env 파드의 환경 변수 확인</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-secret-multi-env -- env
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># sample-secret-prefix-env 파드의 접두사가 DB인 환경 변수 확안</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-secret-prefix-env -- env <span class="p">|</span> egrep ^DB
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="볼륨으로-마운트">볼륨으로 마운트</h3>
+<ul>
+<li>특정 키를 마운트하는 경우 spec.volumes[]의 secret.items[]를 사용</li>
+<li>마찬가지로 시크릿 전체를 마운트 가능, 매니페스트가 길어지지 않지만 어떤 값이 있는지 알기 힘듦</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># sample-secret-single-volume 파드의 /config/username.txt 확인</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-secret-single-volume -- cat /config/username.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 파드 내부의 /config 디렉터리 내용 확인</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-secret-multi-volume -- ls /config
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="동적-시크릿-업데이트">동적 시크릿 업데이트</h3>
+<ul>
+<li>일정 기간마다(kubelet의 Sync Loop 타이밍) kube-apiserver로 변경 확인
+<ul>
+<li>변경이 있을경우 파일 교체(기본 60초)</li>
+</ul>
+</li>
+<li>주기를 조정하려면 kubelet의 &ndash;sync-frequency 옵션 지정</li>
+<li>환경 변수를 사용한 시크릿의 경우 파드를 기동할 때 환경 변수가 정해지므로 동적 변경 불가</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 시크릿에 마운트된 디렉터리 확인</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-secret-multi-volume -- ls -la /config
+</span></span><span class="line"><span class="cl">drwxrwxrwt <span class="m">3</span> root root <span class="m">120</span> Jun <span class="m">11</span> 08:47 .
+</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">1</span> root root  <span class="m">42</span> Jun <span class="m">11</span> 08:47 ..
+</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">2</span> root root  <span class="m">80</span> Jun <span class="m">11</span> 08:47 ..2022_06_11_08_47_42.732252402
+</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root  <span class="m">31</span> Jun <span class="m">11</span> 08:47 ..data -&gt; ..2022_06_11_08_47_42.732252402
+</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root  <span class="m">15</span> Jun <span class="m">11</span> 08:47 password -&gt; ..data/password
+</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root  <span class="m">15</span> Jun <span class="m">11</span> 08:47 username -&gt; ..data/username
+</span></span><span class="line"><span class="cl"><span class="c1"># 파드의 /config/username 파일 내용 확인</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-secret-multi-volume -- cat /config/username
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 시크릿 변경 전 경과 시간 확인</span>
+</span></span><span class="line"><span class="cl">$ kubectl get pods sample-secret-multi-volume
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 시크릿 내용 업데이트</span>
+</span></span><span class="line"><span class="cl">$ cat <span class="s">&lt;&lt; EOF | kubectl apply -f -
+</span></span></span><span class="line"><span class="cl"><span class="s">apiVersion: v1
+</span></span></span><span class="line"><span class="cl"><span class="s">kind: Secret
+</span></span></span><span class="line"><span class="cl"><span class="s">metadata:
+</span></span></span><span class="line"><span class="cl"><span class="s">  name: sample-db-auth
+</span></span></span><span class="line"><span class="cl"><span class="s">type: Opaque
+</span></span></span><span class="line"><span class="cl"><span class="s">data:
+</span></span></span><span class="line"><span class="cl"><span class="s">  # root &gt; admin으로 변경
+</span></span></span><span class="line"><span class="cl"><span class="s">  username: YWRtaW4=
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 시크릿에 마운트된 디렉터리 확인</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-secret-multi-volume -- ls -la /config
+</span></span><span class="line"><span class="cl">total <span class="m">0</span>
+</span></span><span class="line"><span class="cl">drwxrwxrwt <span class="m">3</span> root root <span class="m">100</span> Jun <span class="m">11</span> 08:54 .
+</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">1</span> root root  <span class="m">42</span> Jun <span class="m">11</span> 08:47 ..
+</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">2</span> root root  <span class="m">60</span> Jun <span class="m">11</span> 08:54 ..2022_06_11_08_54_21.841196102
+</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root  <span class="m">31</span> Jun <span class="m">11</span> 08:54 ..data -&gt; ..2022_06_11_08_54_21.841196102
+</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root  <span class="m">15</span> Jun <span class="m">11</span> 08:47 username -&gt; ..data/username
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># root에서 admin으로 변경됨</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-secret-multi-volume -- cat /config/username
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 동적으로 파일이 변경된 후의 경과시간 확인 -&gt; 파드가 재생성되지 않음</span>
+</span></span><span class="line"><span class="cl">$ kubectl get pods sample-secret-multi-volume
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>시크릿 내용을 username으로만 하고 kubectl apply를 실행하여 그 외의 파일(password) 삭제됨</li>
+<li>처음 시크릿 생성시 kubectl apply나 kubectl create &ndash;save-config를 사용하지 않은 경우 매니페스트 병합 처리가 불완전하여 결과가 달라짐</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># password 파일은 삭제됨</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-secret-multi-volume -- ls /config
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="컨피그맵">컨피그맵</h2>
+<ul>
+<li>설정 정보 등을 key-value로 저장할 수 있는 데이터 저장 리소스</li>
+<li>하나의 컨피그맵마다 저장할 수 있는 사이즈 총 1MB</li>
+<li>Generic 타입의 시크릿과 거의 동일한 방법으로 생성
+<ul>
+<li>kubectl로 파일에서 값을 직접 참조</li>
+<li>kubectl로 직접 값을 전달</li>
+<li>매니페스트로 생성
+<ul>
+<li>매니페스트로 생성시 시크릿과 다르게 base64로 인코드되지 않고 추가됨</li>
+<li>value를 여러 행으로 전달할 경우 YAML 문법에 맞게 <code>Key: |</code>등과 같이 다음 행부터 정의</li>
+<li>숫자는 큰 따옴표로 둘러싸기</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 파일로 컨피그맵 생성</span>
+</span></span><span class="line"><span class="cl">$ kubectl create configmap --save-config sample-configmap --from-file<span class="o">=</span>./nginx.conf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 컨피그맵에 등록된 데이터 확인 1</span>
+</span></span><span class="line"><span class="cl">$ kubectl get configmaps sample-configmap -o json <span class="p">|</span> jq .data
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 컨피그맵에 등록된 데이터 확인 2</span>
+</span></span><span class="line"><span class="cl">$ kubectl describe configmap sample-configmap
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>binaryData 필드를 사용하여 UTF-8이외의 데이터를 포함하는 바이너리 데이터도 저장 가능(시크릿도 동일)</li>
+<li>매니페스트 파일로 저장하려면 &ndash;dry-run=client -o yaml 옵션 사용</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ kubectl create configmap sample-configmap-binary <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--from-file image.jpg <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--from-literal<span class="o">=</span>index.html<span class="o">=</span><span class="s2">&#34;Hello, Kubernetes&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--dry-run<span class="o">=</span>client -o yaml <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>&gt; sample-configmap-binary.yaml
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 로컬 8080 포트에서 파드의 80 포트로 포트 포워딩</span>
+</span></span><span class="line"><span class="cl">$ kubectl port-forward sample-configmap-binary-webserver 8080:80
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 브라우저로 표시</span>
+</span></span><span class="line"><span class="cl">$ open http://localhost:8080/image.jpg
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 인수에 각 직접 전달</span>
+</span></span><span class="line"><span class="cl">$ kubectl create configmap --save-config web-config <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--from-literal<span class="o">=</span>connection.max<span class="o">=</span><span class="m">100</span> --from-literal<span class="o">=</span>connection.min<span class="o">=</span><span class="m">10</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="컨피그맵-사용">컨피그맵 사용</h3>
+<ul>
+<li>두 가지 방법
+<ul>
+<li>환경 변수로 전달
+<ul>
+<li>특정 키만
+<ul>
+<li>spec.containers[].env의 valueFrom.configMapKeyRef 사용</li>
+</ul>
+</li>
+<li>전체 키
+<ul>
+<li>변수 명에 &lsquo;.&rsquo;, &lsquo;-&rsquo; 사용하지 않는 것이 좋음</li>
+<li>여러 행의 경우 볼륨으로 마운트하는 것을 권장</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>볼륨으로 마운트
+<ul>
+<li>특정 키만
+<ul>
+<li>spec.volumes[]의 configMap.items[] 사용</li>
+</ul>
+</li>
+<li>전체 키</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 파드의 CONNECTION_MAX 환경 변수 내용 확인</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-configmap-single-env -- env <span class="p">|</span> grep CONNECTION_MAX
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 파드의 여러 환경 변수 확인</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-configmap-multi-env -- env
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 파일로 저장된 컨피그맵 확인</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-configmap-single-volume -- cat /config/nginx-sample.conf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 파드에 마운트된 /config 아래 파일 확인</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-configmap-multi-volume -- ls /config
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="시크릿과-컨피그맵의-공통-주제">시크릿과 컨피그맵의 공통 주제</h3>
+<h4 id="사용-구분">사용 구분</h4>
+<ul>
+<li>시크릿 데이터는 etcd에 저장됨</li>
+<li>쿠버네티스 노드상에 영구적으로 데이터가 남지 않게 tmpfs 영역에 저장</li>
+<li>base64로 인코드되어 있어 화면에서 판단하기 어려우나 단순 base64 인코드 이므로 깃 저장소 업로드는 금지
+<ul>
+<li>시크릿을 암호화하는 OSS나 Vault와 같은 서드 파티 솔류션 사용</li>
+</ul>
+</li>
+</ul>
+<h4 id="마운트-시-퍼미션-변경">마운트 시 퍼미션 변경</h4>
+<ul>
+<li>파드에서 실행하는 경우 볼륨을 생성할 때 실행 권한 부여 가능</li>
+<li>기본값 0644(rw-r&ndash;r&ndash;)로 마운트</li>
+<li>퍼미션은 8진수 표기에서 10진수 표기로 변환한 형태를 사용</li>
+</ul>
+<h4 id="동적-컨피그맵-업데이트">동적 컨피그맵 업데이트</h4>
+<ul>
+<li>볼륨 마운트 사용시 일정 기간 마다 파일 교체 (기본값 60초)</li>
+<li>환경 변수를 사용한 컨피그맵은 동적 업데이트 불가</li>
+</ul>
+<h4 id="데이터-변경-거부">데이터 변경 거부</h4>
+<ul>
+<li>immutable 설정 변경하면 데이터 변경 방지 가능</li>
+<li>변경하려면 리소스를 삭제하고 다시 생성</li>
+<li>볼륨 마운트의 경우 파드 재생성 필요</li>
+</ul>
+<h2 id="볼륨-영구-볼륨-영구-볼륨-클레임의-차이">볼륨, 영구 볼륨, 영구 볼륨 클레임의 차이</h2>
+<ul>
+<li>볼륨
+<ul>
+<li>미리 준비된 사용 가능한 볼륨을 매니페스트에 직접 지정하여 사용</li>
+<li>사용자가 설정된 볼륨을 사용할 수 있지만 신규 볼륨 생성 또는 기존 볼륨 삭제 불가</li>
+<li>매니페스트에서 볼륨 리소스 생성 불가</li>
+</ul>
+</li>
+<li>영구 볼륨
+<ul>
+<li>외부 영구 볼륨을 제공하는 시스템과 연계하여 신규 볼륨 생성 또는 기존 볼륨 삭제 가능</li>
+<li>매니페스트에서 영구 볼륨 리소스를 별도로 생성하는 형태</li>
+</ul>
+</li>
+<li>영구 볼륨 클레임
+<ul>
+<li>영구 볼륨 리소스를 할당하는 리소스</li>
+<li>영구 볼륨은 클러스터에 볼륨을 등록만 함 -&gt; 실제 사용하려면 영구 볼륨 클레임 정의</li>
+<li>동적 프로비저닝 기능 사용시 영구 볼륨 클레임이 사용된 시점에 영구 볼륨 동적으로 생성 가능</li>
+</ul>
+</li>
+</ul>
+<h2 id="볼륨">볼륨</h2>
+<ul>
+<li>추상화하여 파드와 느슨하게 결합된 리소스
+<ul>
+<li>emptyDir</li>
+<li>hostPath</li>
+<li>downwardAPI</li>
+<li>projected</li>
+<li>nfs</li>
+<li>iscsi</li>
+<li>cephfs</li>
+</ul>
+</li>
+<li>파드에 정적으로 볼륨을 지정 -&gt; 플러그인에 따라 충돌 가능성</li>
+</ul>
+<h3 id="emptydir">emptyDir</h3>
+<ul>
+<li>파드용 임시 디스크 영역으로 사용 가능</li>
+<li>파드 종료시 삭제</li>
+<li>호스트의 임의 영역 마운트 불가</li>
+<li>호스트의 파일 참조 불가</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 기동 중인 쿠버네티스 노드의 디스크 영역 할당 확인</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-emptydir -- df -h <span class="p">|</span> grep /cache
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>emptyDir.sizeLimit으로 리소스 제한 가능
+<ul>
+<li>용량 초과시 Evict(축출)</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 150MB 파일을 /cache/dummy에 생성</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-emptydir-limit -- dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>/cache/dummy <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">count</span><span class="o">=</span><span class="m">150</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 파드 상태 모니터링</span>
+</span></span><span class="line"><span class="cl">$ kubectl describe pods sample-emptydir-limit
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>고속 tmpfs 메모리 영역 사용 가능</li>
+<li>emptyDir.medium에 Memory 지정</li>
+<li>컨테이너에 대한 메모리 사용 상한 설정에도 영향을 줌</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># tmpfs 영역 할당 확인</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-emptydir-memory -- df -h <span class="p">|</span> grep /cache
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="hostpath">hostPath</h3>
+<ul>
+<li>쿠버네티스 노드상의 영역을 컨테이너에 매핑하는 플러그인</li>
+<li>호스트의 임의 영역 마운트 가능
+<ul>
+<li>어떤 영역 사용할지 지정</li>
+</ul>
+</li>
+<li>type: Directory/DirectoryOrCreate/File/Socket/BlockDevice 등
+<ul>
+<li>Directory/DirectoryOrCreate 차이: 디렉터리가 존재하지 않을 때 생성 후 기동 유무</li>
+</ul>
+</li>
+<li>보안상의 이유로 안전하지 않은 컨테이너가 업로드될 수 있으므로 사용하지 않는 것이 좋음</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 호스트 OS 이미지 확인</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-hostpath -- cat /srv/os-release <span class="p">|</span> grep PRETTY_NAME
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 컨테이너 OS 이미지 확인</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-hostpath -- cat /etc/os-release <span class="p">|</span> grep PRETTY_NAME
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="downwardapi">downwardAPI</h3>
+<ul>
+<li>파드 정보 등을 파일로 배치하기 위한 플러그인</li>
+<li>환경 변수 fieldRef와 ResourceFieldRef 사용 방법과 동일</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 파드 정보등이 파일로 배치</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-downward-api -- ls /srv
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="projectd">projectd</h3>
+<ul>
+<li>시크릿/컨피그맵/downwardAPI/serviceAccountToken의 볼륨 마운트롤 하나의 디렉터리에 통합하는 플러그인</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># /srv 디렉터리 확인</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-projectd -- ls /srv
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># /srv/configmap 디렉터리 확인</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-projectd -- ls /srv/configmap
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># /srv/secret 디렉터리 확인</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-projectd -- ls /srv/secret
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="영구볼륨pv">영구볼륨(PV)</h2>
+<ul>
+<li>기본적으로 네트워크를 통해 디스크를 attach하는 디스크 타입</li>
+<li>개별 리소스로 생성 후 사용</li>
+<li>pluggable한 구조로 되어 있음</li>
+</ul>
+<h3 id="생성">생성</h3>
+<h4 id="레이블">레이블</h4>
+<ul>
+<li>동적 프로비저닝을 사용하지 않고 영구 볼륨을 생성하는 경우 영구 볼륨 종류를 알 수 없으므로, 레이블을 사용하는 것이 좋음</li>
+</ul>
+<h4 id="용량">용량</h4>
+<ul>
+<li>동적 브로비저닝을 사용할 수 없는 상황에서는 작은 용량의 영구 볼륨도 준비해야함 (가장 비슷한 용량이 할당되므로)</li>
+</ul>
+<h4 id="접근-모드">접근 모드</h4>
+<ul>
+<li>ReadWriteOnce: 단일 노드에서 Read/Write 가능</li>
+<li>ReadOnlyMany: 여러 노드에서 Read 가능
+<ul>
+<li>하나라도 쓰기 요청이 있는 파드가 있으면 다른 노드에서 마운트 불가능</li>
+<li>파드에서 영구 볼륨 지정할 때 ReadOnly 지정</li>
+</ul>
+</li>
+<li>ReadWriteMany: 여러 노드에서 Read/Write 가능</li>
+</ul>
+<h4 id="reclaim-policy">Reclaim Policy</h4>
+<ul>
+<li>영구 볼륨 사용 후 처리 방법을 제어하는 정책</li>
+<li>영구 볼륨 클레임에서 사용된 후 영구 볼륨 클레임이 삭제되었을 때 영구 볼륨 자체의 동작 설정</li>
+<li>세가지 방법 존재
+<ul>
+<li>Delete: 영구 볼륨 자체가 삭제
+<ul>
+<li>GCP/AWS 등에서 확보되는 외부 볼륨의 동적 프로비저닝 때 사용되는 경우가 많음</li>
+</ul>
+</li>
+<li>Retain: 영구 볼륨 삭제하지 않고 유지
+<ul>
+<li>또다른 PVC에 의해 다시 마운트 되지는 않음</li>
+</ul>
+</li>
+<li>Recycle: 영구 볼륨 데이터 삭제 후 재사용 가능 상태로 만듦
+<ul>
+<li>다른 영구 볼륨 클레임에서 마운트 가능</li>
+<li>동적 프로비저닝을 사용하는 것이 좋음</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="스토리지클래스">스토리지클래스</h4>
+<ul>
+<li>동적으로 영구 볼륨을 프로비저닝하는 구조</li>
+</ul>
+<h2 id="영구-볼륨-클레임pvc">영구 볼륨 클레임(PVC)</h2>
+<ul>
+<li>영구 볼륨을 요청하는 리소스</li>
+<li>PVC에서 지정된 조건(용량, 레이블)을 기반으로 PV에 대한 요청이 들어오면 스케줄러는 현재 가지고 있는 PV에서 적당한 볼륨을 할당</li>
+</ul>
+<h3 id="설정">설정</h3>
+<ul>
+<li>다음과 같은 항목 설정 가능
+<ul>
+<li>레이블 셀렉터</li>
+<li>용량</li>
+<li>접근 모드</li>
+<li>스토리지클래스</li>
+</ul>
+</li>
+<li>PVC 용량이 PV 보다 작아야 할당(PV보다 큰 용량이 할당됨)</li>
+<li>파드에서 사용하려면 spec.volumes에 persistentVolumeClaim.claimName 지정</li>
+</ul>
+<h3 id="동적-프로비저닝">동적 프로비저닝</h3>
+<ul>
+<li>PVC가 생성되는 타이밍에 동적으로 영구 볼륨 생성</li>
+<li>사전에 영구 볼륨을 생성할 필요 없으며, 용량 낭비 발생하지 않음</li>
+<li>사전에 어떤 PV를 생성할지 정의한 스토리지클래스 생성</li>
+</ul>
+<h4 id="영구-볼륨-할당-타이밍-제어">영구 볼륨 할당 타이밍 제어</h4>
+<ul>
+<li>동적 프로닝 사용 -&gt; PVC 생성시 파드에 PVC가 붙어있지 않아도 PV가 생성됨</li>
+<li>실제 파드에 붙기전에 PV가 생성되고 연결할 수 있음</li>
+<li>volumeBindingMode 설정값</li>
+</ul>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>설정값</th>
+<th>개요</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Immediate(기본값)</td>
+<td>즉시 PV가 생성되고 연결할 수 있게 됨</td>
+</tr>
+<tr>
+<td>WaitForFirstConsumer</td>
+<td>처음으로 파드에 사용될 때 PV가 생성되고 연결할 수 있게 됨</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="pvc-조정을-사용한-볼륨-확장">PVC 조정을 사용한 볼륨 확장</h3>
+<ul>
+<li>동적 프로비저닝을 사용하고 크기 조정을 지원하는 볼륨 플러그인을 사용할 땐 PVC 확장 가능</li>
+<li>사전에 스토리지클래스에 allowVolumeExpantion:true 설정</li>
+<li>축소는 불가</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 마운트된 PV 크기 확인</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-pvc-resize-pod --df -h <span class="p">|</span> grep /usr/share/nginx/html
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># PVC에서 요청하는 용량 변경</span>
+</span></span><span class="line"><span class="cl">$ kubectl patch pvc sample-pvc-resize --patch <span class="s1">&#39;{&#34;spec&#34;: {&#34;resources&#34;: {&#34;requests&#34;: {&#34;storage&#34;: &#34;16Gi&#34;}}}}&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="스테이트풀셋에서-pvc">스테이트풀셋에서 PVC</h3>
+<ul>
+<li>spec.volumeClaimTemplate 항목을 사용하면 PVC를 별도 정의하지 않아도 자동으로 생성 가능</li>
+</ul>
+<h2 id="volumemounts에서-사용-가능한-옵션">volumeMounts에서 사용 가능한 옵션</h2>
+<h3 id="읽기-전용readonly-마운트">읽기 전용(ReadOnly) 마운트</h3>
+<ul>
+<li>여러 볼륨을 컨테이너에 마운트할 때 readonly 옵션 지정 가능</li>
+<li>hostPath는 컨테이너에 호스트 영역을 보여주므로 보안상 좋지 않음
+<ul>
+<li>최소한 ReadOnly로 마운트하자</li>
+</ul>
+</li>
+</ul>
+<h3 id="subpath">subPath</h3>
+<ul>
+<li>볼륨 마운트시 특정 디렉터리를 루트로 마운트하는 기능</li>
+<li>각 컨테이너가 하나의 볼륨을 사용하면서도 서로 영향이 없도록 디렉터리 나눌 수 있음</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># subPath /path1을 지정한 컨테이너</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-subpath -c container-b -- find /data
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># subPath를 지정하지 않은 컨테이너</span>
+</span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-subpath -c container-a -- find /data
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/kubernetes/">Kubernetes</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">관련 글</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/kubernetes/%EB%B3%B4%EC%95%88/">
+        
+        
+            <div class="article-image">
+                <img src="/kubernetes/%EB%B3%B4%EC%95%88/Kubernetes-Logo.wine.c5a5571875cf726bbace7aeb026a7af6_hu7d34b56543d7b812e012200a129db38d_42706_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 보안"
+                        
+                        data-hash="md5-xaVXGHXPcmu6znrrAmp69g==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">보안</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/kubernetes/%EC%9C%A0%EC%97%B0%ED%95%9C-%EA%B3%A0%EA%B8%89-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/">
+        
+        
+            <div class="article-image">
+                <img src="/kubernetes/%EC%9C%A0%EC%97%B0%ED%95%9C-%EA%B3%A0%EA%B8%89-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/Kubernetes-Logo.wine.c5a5571875cf726bbace7aeb026a7af6_hu7d34b56543d7b812e012200a129db38d_42706_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 유연한 고급 스케줄링"
+                        
+                        data-hash="md5-xaVXGHXPcmu6znrrAmp69g==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">유연한 고급 스케줄링</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/kubernetes/%EB%A9%94%EC%9D%B8%ED%84%B0%EB%84%8C%EC%8A%A4%EC%99%80-%EB%85%B8%EB%93%9C-%EC%A0%95%EC%A7%80/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/Kubernetes-Logo.wine.png" loading="lazy" data-key="" data-hash="/images/Kubernetes-Logo.wine.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">메인터넌스와 노드 정지</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/kubernetes/%ED%97%AC%EC%8A%A4%EC%B2%B4%ED%81%AC%EC%99%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4/">
+        
+        
+            <div class="article-image">
+                <img src="/kubernetes/%ED%97%AC%EC%8A%A4%EC%B2%B4%ED%81%AC%EC%99%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4/Kubernetes-Logo.wine.c5a5571875cf726bbace7aeb026a7af6_hu7d34b56543d7b812e012200a129db38d_42706_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 헬스체크와 컨테이너 라이프사이클"
+                        
+                        data-hash="md5-xaVXGHXPcmu6znrrAmp69g==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">헬스체크와 컨테이너 라이프사이클</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/kubernetes/%EB%A6%AC%EC%86%8C%EC%8A%A4%EA%B4%80%EB%A6%AC%EC%99%80-%EC%98%A4%ED%86%A0%EC%8A%A4%EC%BC%80%EC%9D%BC%EB%A7%81/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/images/Kubernetes-Logo.wine.png" loading="lazy" data-key="" data-hash="/images/Kubernetes-Logo.wine.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">리소스관리와 오토스케일링</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="haebuk/blog-comments"
+        issue-term="title"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 지식 공유, 협업 ✈️ 성장
+    </section>
+    
+    <section class="powerby">
+        <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>로 만듦 <br />
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>의 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.13.0">Stack</a></b> 테마 사용 중
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">목차</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#환경-변수-사용">환경 변수 사용</a>
+      <ol>
+        <li><a href="#정적-설정">정적 설정</a></li>
+        <li><a href="#파드-정보">파드 정보</a></li>
+        <li><a href="#컨테이너-정보">컨테이너 정보</a></li>
+        <li><a href="#환경-변수-사용시-주의-사항">환경 변수 사용시 주의 사항</a></li>
+      </ol>
+    </li>
+    <li><a href="#시크릿">시크릿</a>
+      <ol>
+        <li><a href="#범용-시크릿opaque">범용 시크릿(Opaque)</a>
+          <ol>
+            <li><a href="#kubectl로-파일에서-값을-참조하여-생성--from-file">kubectl로 파일에서 값을 참조하여 생성(&ndash;from-file)</a></li>
+            <li><a href="#kubectl로-envfile에서-값을-참조하여-생성--from-env-file">kubectl로 envfile에서 값을 참조하여 생성(&ndash;from-env-file)</a></li>
+            <li><a href="#kubectl로-값을-직접-전달하여-생성--from-literal">kubectl로 값을 직접 전달하여 생성(&ndash;from-literal)</a></li>
+            <li><a href="#매니페스트에서-생성-f">매니페스트에서 생성(-f)</a></li>
+          </ol>
+        </li>
+        <li><a href="#tls-타입-시크릿">TLS 타입 시크릿</a></li>
+        <li><a href="#도커-레지스트리-타입-시크릿">도커 레지스트리 타입 시크릿</a>
+          <ol>
+            <li><a href="#이미지-다운로드-시-시크릿-사용">이미지 다운로드 시 시크릿 사용</a></li>
+          </ol>
+        </li>
+        <li><a href="#기본-인증-타입의-시크릿">기본 인증 타입의 시크릿</a>
+          <ol>
+            <li><a href="#kubectl로-직접-값을-전달하여-생성--from-literal">kubectl로 직접 값을 전달하여 생성(&ndash;from-literal)</a></li>
+            <li><a href="#매니페스트에서-생성-f-1">매니페스트에서 생성(-f)</a></li>
+          </ol>
+        </li>
+        <li><a href="#ssh-인증-타입의-시크릿">SSH 인증 타입의 시크릿</a>
+          <ol>
+            <li><a href="#kubectl로-파일에서-값을-참조하여-생성--from-file-1">kubectl로 파일에서 값을 참조하여 생성(&ndash;from-file)</a></li>
+            <li><a href="#매니페스트에서-생성-f-2">매니페스트에서 생성(-f)</a></li>
+          </ol>
+        </li>
+        <li><a href="#시크릿-사용">시크릿 사용</a>
+          <ol>
+            <li><a href="#환경-변수로-전달">환경 변수로 전달</a></li>
+          </ol>
+        </li>
+        <li><a href="#볼륨으로-마운트">볼륨으로 마운트</a></li>
+        <li><a href="#동적-시크릿-업데이트">동적 시크릿 업데이트</a></li>
+      </ol>
+    </li>
+    <li><a href="#컨피그맵">컨피그맵</a>
+      <ol>
+        <li><a href="#컨피그맵-사용">컨피그맵 사용</a></li>
+        <li><a href="#시크릿과-컨피그맵의-공통-주제">시크릿과 컨피그맵의 공통 주제</a>
+          <ol>
+            <li><a href="#사용-구분">사용 구분</a></li>
+            <li><a href="#마운트-시-퍼미션-변경">마운트 시 퍼미션 변경</a></li>
+            <li><a href="#동적-컨피그맵-업데이트">동적 컨피그맵 업데이트</a></li>
+            <li><a href="#데이터-변경-거부">데이터 변경 거부</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#볼륨-영구-볼륨-영구-볼륨-클레임의-차이">볼륨, 영구 볼륨, 영구 볼륨 클레임의 차이</a></li>
+    <li><a href="#볼륨">볼륨</a>
+      <ol>
+        <li><a href="#emptydir">emptyDir</a></li>
+        <li><a href="#hostpath">hostPath</a></li>
+        <li><a href="#downwardapi">downwardAPI</a></li>
+        <li><a href="#projectd">projectd</a></li>
+      </ol>
+    </li>
+    <li><a href="#영구볼륨pv">영구볼륨(PV)</a>
+      <ol>
+        <li><a href="#생성">생성</a>
+          <ol>
+            <li><a href="#레이블">레이블</a></li>
+            <li><a href="#용량">용량</a></li>
+            <li><a href="#접근-모드">접근 모드</a></li>
+            <li><a href="#reclaim-policy">Reclaim Policy</a></li>
+            <li><a href="#스토리지클래스">스토리지클래스</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#영구-볼륨-클레임pvc">영구 볼륨 클레임(PVC)</a>
+      <ol>
+        <li><a href="#설정">설정</a></li>
+        <li><a href="#동적-프로비저닝">동적 프로비저닝</a>
+          <ol>
+            <li><a href="#영구-볼륨-할당-타이밍-제어">영구 볼륨 할당 타이밍 제어</a></li>
+          </ol>
+        </li>
+        <li><a href="#pvc-조정을-사용한-볼륨-확장">PVC 조정을 사용한 볼륨 확장</a></li>
+        <li><a href="#스테이트풀셋에서-pvc">스테이트풀셋에서 PVC</a></li>
+      </ol>
+    </li>
+    <li><a href="#volumemounts에서-사용-가능한-옵션">volumeMounts에서 사용 가능한 옵션</a>
+      <ol>
+        <li><a href="#읽기-전용readonly-마운트">읽기 전용(ReadOnly) 마운트</a></li>
+        <li><a href="#subpath">subPath</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

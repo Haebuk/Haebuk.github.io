@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>카테고리 on 지식 공유, 협업 ✈️ 성장</title>
+        <link>https://Haebuk.github.io/categories/</link>
+        <description>Recent content in 카테고리 on 지식 공유, 협업 ✈️ 성장</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>ko-kr</language>
+        <lastBuildDate>Sun, 10 Jul 2022 17:12:39 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Kubernetes</title>
+        <link>https://Haebuk.github.io/categories/kubernetes/</link>
+        <pubDate>Sun, 10 Jul 2022 17:12:39 +0900</pubDate>
+        
+        <guid>https://Haebuk.github.io/categories/kubernetes/</guid>
+        <description>&lt;img src="https://Haebuk.github.io/categories/kubernetes/Kubernetes-Logo.wine.png" alt="Featured image of post Kubernetes" /&gt;</description>
+        </item>
+        <item>
+        <title>Dask</title>
+        <link>https://Haebuk.github.io/categories/dask/</link>
+        <pubDate>Mon, 10 Jan 2022 17:12:39 +0900</pubDate>
+        
+        <guid>https://Haebuk.github.io/categories/dask/</guid>
+        <description></description>
+        </item>
+        
+    </channel>
+</rss>
