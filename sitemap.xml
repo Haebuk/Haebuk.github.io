@@ -8,40 +8,40 @@
     <loc>https://Haebuk.github.io/tags/kubernetes/</loc>
     <lastmod>2022-07-10T17:12:39+09:00</lastmod>
   </url><url>
-    <loc>https://Haebuk.github.io/kubernetes/</loc>
+    <loc>https://Haebuk.github.io/categories/kubernetes/</loc>
     <lastmod>2022-07-10T17:12:39+09:00</lastmod>
   </url><url>
-    <loc>https://Haebuk.github.io/categories/kubernetes/</loc>
+    <loc>https://Haebuk.github.io/post/</loc>
     <lastmod>2022-07-10T17:12:39+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/tags/</loc>
     <lastmod>2022-07-10T17:12:39+09:00</lastmod>
   </url><url>
-    <loc>https://Haebuk.github.io/kubernetes/%EB%B3%B4%EC%95%88/</loc>
+    <loc>https://Haebuk.github.io/p/%EB%B3%B4%EC%95%88/</loc>
     <lastmod>2022-07-10T17:12:39+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/categories/</loc>
     <lastmod>2022-07-10T17:12:39+09:00</lastmod>
   </url><url>
-    <loc>https://Haebuk.github.io/kubernetes/%EC%9C%A0%EC%97%B0%ED%95%9C-%EA%B3%A0%EA%B8%89-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/</loc>
+    <loc>https://Haebuk.github.io/p/%EC%9C%A0%EC%97%B0%ED%95%9C-%EA%B3%A0%EA%B8%89-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/</loc>
     <lastmod>2022-06-25T17:12:36+09:00</lastmod>
   </url><url>
-    <loc>https://Haebuk.github.io/kubernetes/%EB%A9%94%EC%9D%B8%ED%84%B0%EB%84%8C%EC%8A%A4%EC%99%80-%EB%85%B8%EB%93%9C-%EC%A0%95%EC%A7%80/</loc>
+    <loc>https://Haebuk.github.io/p/%EB%A9%94%EC%9D%B8%ED%84%B0%EB%84%8C%EC%8A%A4%EC%99%80-%EB%85%B8%EB%93%9C-%EC%A0%95%EC%A7%80/</loc>
     <lastmod>2022-06-22T17:12:29+09:00</lastmod>
   </url><url>
-    <loc>https://Haebuk.github.io/kubernetes/%ED%97%AC%EC%8A%A4%EC%B2%B4%ED%81%AC%EC%99%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4/</loc>
+    <loc>https://Haebuk.github.io/p/%ED%97%AC%EC%8A%A4%EC%B2%B4%ED%81%AC%EC%99%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4/</loc>
     <lastmod>2022-06-19T17:12:20+09:00</lastmod>
   </url><url>
-    <loc>https://Haebuk.github.io/kubernetes/%EB%A6%AC%EC%86%8C%EC%8A%A4%EA%B4%80%EB%A6%AC%EC%99%80-%EC%98%A4%ED%86%A0%EC%8A%A4%EC%BC%80%EC%9D%BC%EB%A7%81/</loc>
+    <loc>https://Haebuk.github.io/p/%EB%A6%AC%EC%86%8C%EC%8A%A4%EA%B4%80%EB%A6%AC%EC%99%80-%EC%98%A4%ED%86%A0%EC%8A%A4%EC%BC%80%EC%9D%BC%EB%A7%81/</loc>
     <lastmod>2022-06-18T17:12:04+09:00</lastmod>
   </url><url>
-    <loc>https://Haebuk.github.io/kubernetes/%EC%BB%A8%ED%94%BC%EA%B7%B8%EC%99%80%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-api/</loc>
+    <loc>https://Haebuk.github.io/p/%EC%BB%A8%ED%94%BC%EA%B7%B8%EC%99%80%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-api/</loc>
     <lastmod>2022-06-16T17:11:40+09:00</lastmod>
   </url><url>
-    <loc>https://Haebuk.github.io/kubernetes/%EC%84%9C%EB%B9%84%EC%8A%A4-api/</loc>
+    <loc>https://Haebuk.github.io/p/%EC%84%9C%EB%B9%84%EC%8A%A4-api/</loc>
     <lastmod>2022-06-11T23:00:00+09:00</lastmod>
   </url><url>
-    <loc>https://Haebuk.github.io/kubernetes/%EC%9B%8C%ED%81%AC%EB%A1%9C%EB%93%9C-api/</loc>
+    <loc>https://Haebuk.github.io/p/%EC%9B%8C%ED%81%AC%EB%A1%9C%EB%93%9C-api/</loc>
     <lastmod>2022-06-10T16:51:33+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/tags/docker/</loc>
@@ -51,9 +51,6 @@
     <lastmod>2022-06-03T17:12:39+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/p/docker-%EB%82%B4%EC%9A%A9-%EC%A0%95%EB%A6%AC/</loc>
-    <lastmod>2022-06-03T17:12:39+09:00</lastmod>
-  </url><url>
-    <loc>https://Haebuk.github.io/post/</loc>
     <lastmod>2022-06-03T17:12:39+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/categories/dask/</loc>

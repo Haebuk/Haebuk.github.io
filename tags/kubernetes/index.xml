@@ -8,11 +8,11 @@
         <language>ko-kr</language>
         <lastBuildDate>Sun, 10 Jul 2022 17:12:39 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>보안</title>
-        <link>https://Haebuk.github.io/kubernetes/%EB%B3%B4%EC%95%88/</link>
+        <link>https://Haebuk.github.io/p/%EB%B3%B4%EC%95%88/</link>
         <pubDate>Sun, 10 Jul 2022 17:12:39 +0900</pubDate>
         
-        <guid>https://Haebuk.github.io/kubernetes/%EB%B3%B4%EC%95%88/</guid>
-        <description>&lt;img src="https://Haebuk.github.io/kubernetes/%EB%B3%B4%EC%95%88/Kubernetes-Logo.wine.png" alt="Featured image of post 보안" /&gt;&lt;h1 id=&#34;보안&#34;&gt;보안&lt;/h1&gt;
+        <guid>https://Haebuk.github.io/p/%EB%B3%B4%EC%95%88/</guid>
+        <description>&lt;img src="https://Haebuk.github.io/p/%EB%B3%B4%EC%95%88/Kubernetes-Logo.wine.png" alt="Featured image of post 보안" /&gt;&lt;h1 id=&#34;보안&#34;&gt;보안&lt;/h1&gt;
 &lt;h2 id=&#34;서비스-어카운트&#34;&gt;서비스 어카운트&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;사용자 어카운트(UserAccount): EKS에서는 IAM과 연결되어 있어 쿠버네티스 관리 대상이 아니고, 네임스페이스의 영향을 받지 않음&lt;/li&gt;
@@ -481,11 +481,11 @@
         </item>
         <item>
         <title>유연한 고급 스케줄링</title>
-        <link>https://Haebuk.github.io/kubernetes/%EC%9C%A0%EC%97%B0%ED%95%9C-%EA%B3%A0%EA%B8%89-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/</link>
+        <link>https://Haebuk.github.io/p/%EC%9C%A0%EC%97%B0%ED%95%9C-%EA%B3%A0%EA%B8%89-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/</link>
         <pubDate>Sat, 25 Jun 2022 17:12:36 +0900</pubDate>
         
-        <guid>https://Haebuk.github.io/kubernetes/%EC%9C%A0%EC%97%B0%ED%95%9C-%EA%B3%A0%EA%B8%89-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/</guid>
-        <description>&lt;img src="https://Haebuk.github.io/kubernetes/%EC%9C%A0%EC%97%B0%ED%95%9C-%EA%B3%A0%EA%B8%89-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/Kubernetes-Logo.wine.png" alt="Featured image of post 유연한 고급 스케줄링" /&gt;&lt;h1 id=&#34;유연한-고급-스케줄링&#34;&gt;유연한 고급 스케줄링&lt;/h1&gt;
+        <guid>https://Haebuk.github.io/p/%EC%9C%A0%EC%97%B0%ED%95%9C-%EA%B3%A0%EA%B8%89-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/</guid>
+        <description>&lt;img src="https://Haebuk.github.io/p/%EC%9C%A0%EC%97%B0%ED%95%9C-%EA%B3%A0%EA%B8%89-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/Kubernetes-Logo.wine.png" alt="Featured image of post 유연한 고급 스케줄링" /&gt;&lt;h1 id=&#34;유연한-고급-스케줄링&#34;&gt;유연한 고급 스케줄링&lt;/h1&gt;
 &lt;h2 id=&#34;필터링과-스코어링&#34;&gt;필터링과 스코어링&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;필터링: 파드 스케줄시 충분한 리소스가 있는지, 필수 조건으로 지정한 레이블을 가진 노드인지 등을 체크&lt;/li&gt;
@@ -1107,10 +1107,10 @@
         </item>
         <item>
         <title>메인터넌스와 노드 정지</title>
-        <link>https://Haebuk.github.io/kubernetes/%EB%A9%94%EC%9D%B8%ED%84%B0%EB%84%8C%EC%8A%A4%EC%99%80-%EB%85%B8%EB%93%9C-%EC%A0%95%EC%A7%80/</link>
+        <link>https://Haebuk.github.io/p/%EB%A9%94%EC%9D%B8%ED%84%B0%EB%84%8C%EC%8A%A4%EC%99%80-%EB%85%B8%EB%93%9C-%EC%A0%95%EC%A7%80/</link>
         <pubDate>Wed, 22 Jun 2022 17:12:29 +0900</pubDate>
         
-        <guid>https://Haebuk.github.io/kubernetes/%EB%A9%94%EC%9D%B8%ED%84%B0%EB%84%8C%EC%8A%A4%EC%99%80-%EB%85%B8%EB%93%9C-%EC%A0%95%EC%A7%80/</guid>
+        <guid>https://Haebuk.github.io/p/%EB%A9%94%EC%9D%B8%ED%84%B0%EB%84%8C%EC%8A%A4%EC%99%80-%EB%85%B8%EB%93%9C-%EC%A0%95%EC%A7%80/</guid>
         <description>&lt;img src="https://Haebuk.github.io/images/Kubernetes-Logo.wine.png" alt="Featured image of post 메인터넌스와 노드 정지" /&gt;&lt;h1 id=&#34;메인터넌스와-노드-정지&#34;&gt;메인터넌스와 노드 정지&lt;/h1&gt;
 &lt;h2 id=&#34;스케줄링-대상에서-제외와-북귀cordonuncordon&#34;&gt;스케줄링 대상에서 제외와 북귀(cordon/uncordon)&lt;/h2&gt;
 &lt;ul&gt;
@@ -1194,11 +1194,11 @@
         </item>
         <item>
         <title>헬스체크와 컨테이너 라이프사이클</title>
-        <link>https://Haebuk.github.io/kubernetes/%ED%97%AC%EC%8A%A4%EC%B2%B4%ED%81%AC%EC%99%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4/</link>
+        <link>https://Haebuk.github.io/p/%ED%97%AC%EC%8A%A4%EC%B2%B4%ED%81%AC%EC%99%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4/</link>
         <pubDate>Sun, 19 Jun 2022 17:12:20 +0900</pubDate>
         
-        <guid>https://Haebuk.github.io/kubernetes/%ED%97%AC%EC%8A%A4%EC%B2%B4%ED%81%AC%EC%99%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4/</guid>
-        <description>&lt;img src="https://Haebuk.github.io/kubernetes/%ED%97%AC%EC%8A%A4%EC%B2%B4%ED%81%AC%EC%99%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4/Kubernetes-Logo.wine.png" alt="Featured image of post 헬스체크와 컨테이너 라이프사이클" /&gt;&lt;h1 id=&#34;헬스-체크와-컨테이너-라이프-사이클&#34;&gt;헬스 체크와 컨테이너 라이프 사이클&lt;/h1&gt;
+        <guid>https://Haebuk.github.io/p/%ED%97%AC%EC%8A%A4%EC%B2%B4%ED%81%AC%EC%99%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4/</guid>
+        <description>&lt;img src="https://Haebuk.github.io/p/%ED%97%AC%EC%8A%A4%EC%B2%B4%ED%81%AC%EC%99%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4/Kubernetes-Logo.wine.png" alt="Featured image of post 헬스체크와 컨테이너 라이프사이클" /&gt;&lt;h1 id=&#34;헬스-체크와-컨테이너-라이프-사이클&#34;&gt;헬스 체크와 컨테이너 라이프 사이클&lt;/h1&gt;
 &lt;h2 id=&#34;헬스-체크&#34;&gt;헬스 체크&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;파드가 정상인지 판단하는 기능&lt;/li&gt;
@@ -1596,10 +1596,10 @@
         </item>
         <item>
         <title>리소스관리와 오토스케일링</title>
-        <link>https://Haebuk.github.io/kubernetes/%EB%A6%AC%EC%86%8C%EC%8A%A4%EA%B4%80%EB%A6%AC%EC%99%80-%EC%98%A4%ED%86%A0%EC%8A%A4%EC%BC%80%EC%9D%BC%EB%A7%81/</link>
+        <link>https://Haebuk.github.io/p/%EB%A6%AC%EC%86%8C%EC%8A%A4%EA%B4%80%EB%A6%AC%EC%99%80-%EC%98%A4%ED%86%A0%EC%8A%A4%EC%BC%80%EC%9D%BC%EB%A7%81/</link>
         <pubDate>Sat, 18 Jun 2022 17:12:04 +0900</pubDate>
         
-        <guid>https://Haebuk.github.io/kubernetes/%EB%A6%AC%EC%86%8C%EC%8A%A4%EA%B4%80%EB%A6%AC%EC%99%80-%EC%98%A4%ED%86%A0%EC%8A%A4%EC%BC%80%EC%9D%BC%EB%A7%81/</guid>
+        <guid>https://Haebuk.github.io/p/%EB%A6%AC%EC%86%8C%EC%8A%A4%EA%B4%80%EB%A6%AC%EC%99%80-%EC%98%A4%ED%86%A0%EC%8A%A4%EC%BC%80%EC%9D%BC%EB%A7%81/</guid>
         <description>&lt;img src="https://Haebuk.github.io/images/Kubernetes-Logo.wine.png" alt="Featured image of post 리소스관리와 오토스케일링" /&gt;&lt;h1 id=&#34;리소스-관리와-오토-스케일링&#34;&gt;리소스 관리와 오토 스케일링&lt;/h1&gt;
 &lt;h2 id=&#34;리소스-제한&#34;&gt;리소스 제한&lt;/h2&gt;
 &lt;h3 id=&#34;cpu메모리-리소스-제한&#34;&gt;CPU/메모리 리소스 제한&lt;/h3&gt;
@@ -2003,11 +2003,11 @@
         </item>
         <item>
         <title>컨피그와스토리지 API</title>
-        <link>https://Haebuk.github.io/kubernetes/%EC%BB%A8%ED%94%BC%EA%B7%B8%EC%99%80%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-api/</link>
+        <link>https://Haebuk.github.io/p/%EC%BB%A8%ED%94%BC%EA%B7%B8%EC%99%80%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-api/</link>
         <pubDate>Thu, 16 Jun 2022 17:11:40 +0900</pubDate>
         
-        <guid>https://Haebuk.github.io/kubernetes/%EC%BB%A8%ED%94%BC%EA%B7%B8%EC%99%80%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-api/</guid>
-        <description>&lt;img src="https://Haebuk.github.io/kubernetes/%EC%BB%A8%ED%94%BC%EA%B7%B8%EC%99%80%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-api/Kubernetes-Logo.wine.png" alt="Featured image of post 컨피그와스토리지 API" /&gt;&lt;h1 id=&#34;컨피그--스토리지-api-카테고리&#34;&gt;컨피그 &amp;amp; 스토리지 API 카테고리&lt;/h1&gt;
+        <guid>https://Haebuk.github.io/p/%EC%BB%A8%ED%94%BC%EA%B7%B8%EC%99%80%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-api/</guid>
+        <description>&lt;img src="https://Haebuk.github.io/p/%EC%BB%A8%ED%94%BC%EA%B7%B8%EC%99%80%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-api/Kubernetes-Logo.wine.png" alt="Featured image of post 컨피그와스토리지 API" /&gt;&lt;h1 id=&#34;컨피그--스토리지-api-카테고리&#34;&gt;컨피그 &amp;amp; 스토리지 API 카테고리&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;컨테이너 설정 파일, 패스워드 같은 기밀 정보 추가&lt;/li&gt;
 &lt;li&gt;영구 볼륨 제공
@@ -2973,11 +2973,11 @@
         </item>
         <item>
         <title>서비스 API</title>
-        <link>https://Haebuk.github.io/kubernetes/%EC%84%9C%EB%B9%84%EC%8A%A4-api/</link>
+        <link>https://Haebuk.github.io/p/%EC%84%9C%EB%B9%84%EC%8A%A4-api/</link>
         <pubDate>Sat, 11 Jun 2022 23:00:00 +0900</pubDate>
         
-        <guid>https://Haebuk.github.io/kubernetes/%EC%84%9C%EB%B9%84%EC%8A%A4-api/</guid>
-        <description>&lt;img src="https://Haebuk.github.io/kubernetes/%EC%84%9C%EB%B9%84%EC%8A%A4-api/Kubernetes-Logo.wine.png" alt="Featured image of post 서비스 API" /&gt;&lt;h1 id=&#34;서비스-api-카테고리&#34;&gt;서비스 API 카테고리&lt;/h1&gt;
+        <guid>https://Haebuk.github.io/p/%EC%84%9C%EB%B9%84%EC%8A%A4-api/</guid>
+        <description>&lt;img src="https://Haebuk.github.io/p/%EC%84%9C%EB%B9%84%EC%8A%A4-api/Kubernetes-Logo.wine.png" alt="Featured image of post 서비스 API" /&gt;&lt;h1 id=&#34;서비스-api-카테고리&#34;&gt;서비스 API 카테고리&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;클러스터 컨테이너에 대한 엔드포인트를 제공하거나 레이블과 일치하는 컨테이너의 디스커버리에 사용되는 리소스&lt;/p&gt;
@@ -3448,11 +3448,11 @@
         </item>
         <item>
         <title>워크로드 API</title>
-        <link>https://Haebuk.github.io/kubernetes/%EC%9B%8C%ED%81%AC%EB%A1%9C%EB%93%9C-api/</link>
+        <link>https://Haebuk.github.io/p/%EC%9B%8C%ED%81%AC%EB%A1%9C%EB%93%9C-api/</link>
         <pubDate>Fri, 10 Jun 2022 16:51:33 +0900</pubDate>
         
-        <guid>https://Haebuk.github.io/kubernetes/%EC%9B%8C%ED%81%AC%EB%A1%9C%EB%93%9C-api/</guid>
-        <description>&lt;img src="https://Haebuk.github.io/kubernetes/%EC%9B%8C%ED%81%AC%EB%A1%9C%EB%93%9C-api/Kubernetes-Logo.wine.png" alt="Featured image of post 워크로드 API" /&gt;&lt;h1 id=&#34;워크로드-api-카테고리&#34;&gt;워크로드 API 카테고리&lt;/h1&gt;
+        <guid>https://Haebuk.github.io/p/%EC%9B%8C%ED%81%AC%EB%A1%9C%EB%93%9C-api/</guid>
+        <description>&lt;img src="https://Haebuk.github.io/p/%EC%9B%8C%ED%81%AC%EB%A1%9C%EB%93%9C-api/Kubernetes-Logo.wine.png" alt="Featured image of post 워크로드 API" /&gt;&lt;h1 id=&#34;워크로드-api-카테고리&#34;&gt;워크로드 API 카테고리&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;클러스터에 컨테이너를 기동시키기 위해 사용되는 리소스
 &lt;ul&gt;
