@@ -6,7 +6,106 @@
         <description>Recent content in Posts on 지식 공유, 협업 ✈️ 성장</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ko-kr</language>
-        <lastBuildDate>Sun, 10 Jul 2022 17:12:39 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 09 Sep 2022 23:13:41 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Cloudfront - OAI를 통한 S3 URL 공개</title>
+        <link>https://Haebuk.github.io/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/</link>
+        <pubDate>Fri, 09 Sep 2022 23:13:41 +0900</pubDate>
+        
+        <guid>https://Haebuk.github.io/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/</guid>
+        <description>&lt;h1 id=&#34;들어가며&#34;&gt;들어가며&lt;/h1&gt;
+&lt;p&gt;S3에 저장된 객체를 퍼블릭으로 공개를 할 경우, 자신의 S3 버킷 구조가 그대로 노출되는 문제와 함께, 보안이 우려되는 경우가 있다.&lt;/p&gt;
+&lt;p&gt;이 경우 Cloudfront와 원본 액세스 ID, 즉 OAI를 사용해 S3 버킷 구조를 숨기고, 객체를 외부에 공개할 수 있다.&lt;/p&gt;
+&lt;h1 id=&#34;1-객체를-공개할-s3-버킷-생성&#34;&gt;1. 객체를 공개할 S3 버킷 생성&lt;/h1&gt;
+&lt;p&gt;외부 사용자들에게 공개할 객체를 담는 버킷을 생성한다. 나같은 경우에는 링크드인에 수료증 링크를 걸기 위해 &lt;code&gt;kade-certificate&lt;/code&gt;라는 버킷을 생성하고 그 안에 수료증 파일들을 저장했다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/bucket.png&#34;
+	width=&#34;2160&#34;
+	height=&#34;1048&#34;
+	srcset=&#34;https://Haebuk.github.io/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/bucket_hud8a9dc34686e478e4610d4d84f6bd6ae_210690_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/bucket_hud8a9dc34686e478e4610d4d84f6bd6ae_210690_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;버킷 내부 구조&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;206&#34;
+		data-flex-basis=&#34;494px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;2-콘솔을-사용하여-oai-생성-및-cloudfront-배포에-추가&#34;&gt;2. 콘솔을 사용하여 OAI 생성 및 Cloudfront 배포에 추가&lt;/h1&gt;
+&lt;p&gt;Cloudfront 페이지에서 배포 생성을 클릭하고, 생성한 S3 버킷을 원본 도메인으로 선택한다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/2.png&#34;
+	width=&#34;1650&#34;
+	height=&#34;842&#34;
+	srcset=&#34;https://Haebuk.github.io/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/2_hu64f06fcdab63cbbf870274c729bdbdd5_111135_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/2_hu64f06fcdab63cbbf870274c729bdbdd5_111135_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;원본 도메인 선택&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;195&#34;
+		data-flex-basis=&#34;470px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;이후 하단의 S3 버킷 액세스에서 Legacy access identities 항목을 선택하고, 새 OAI를 생성한다.&lt;/p&gt;
+&lt;p&gt;생성한 OAI를 선택한다.&lt;/p&gt;
+&lt;p&gt;그리고 버킷 정책 항목에서 예, 버킷 정책 업데이트를 선택하면 자동으로 S3 정책을 수정해준다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/3.png&#34;
+	width=&#34;1646&#34;
+	height=&#34;790&#34;
+	srcset=&#34;https://Haebuk.github.io/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/3_hu7715cdf6496eac4e552801401ceaaaf4_154848_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/3_hu7715cdf6496eac4e552801401ceaaaf4_154848_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;OAI 생성 후 선택 화면&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;208&#34;
+		data-flex-basis=&#34;500px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;GET 요청만 수락하므로 하단의 모든 항목들의 수정 없이 배포 생성 버튼을 클릭한다.&lt;/p&gt;
+&lt;h1 id=&#34;3-생성된-cloudfront-url로-접근&#34;&gt;3. 생성된 Cloudfront url로 접근&lt;/h1&gt;
+&lt;p&gt;배포가 생성되고 나면 다음 화면과 같다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/4.png&#34;
+	width=&#34;2690&#34;
+	height=&#34;498&#34;
+	srcset=&#34;https://Haebuk.github.io/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/4_hu37aa91a9049c7ef8250039faf64da06b_103025_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/4_hu37aa91a9049c7ef8250039faf64da06b_103025_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Cloudfront 배포 생성 후 화면&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;540&#34;
+		data-flex-basis=&#34;1296px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;도메인 이름에 접근 가능한 URL이 생성된다. (d3sdxwnh25t6pc.cloudfront.net 처럼)&lt;/p&gt;
+&lt;p&gt;이 URL 뒤에 버킷내에 저장된 객체명을 붙여 접근하면 다음과 같이 외부에서 접근이 가능함을 알 수 있다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/5.png&#34;
+	width=&#34;2880&#34;
+	height=&#34;1790&#34;
+	srcset=&#34;https://Haebuk.github.io/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/5_hu30ee37daabfeec947a4d20a951b04d08_586527_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/5_hu30ee37daabfeec947a4d20a951b04d08_586527_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;https://d3sdxwnh25t6pc.cloudfront.net/2022_udacity_aws_ml.pdf 로 접근했을 때 정상적으로 수료증이 출력된다.&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;160&#34;
+		data-flex-basis=&#34;386px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;이처럼 Cloudfront와 OAI를 사용하여 사용자의 버킷 URL은 숨긴채, 외부에서 접근을 허용할 수 있다.&lt;/p&gt;
+&lt;h1 id=&#34;reference&#34;&gt;Reference&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;원본 액세스 ID(OAI)를 사용하여 Amazon S3 콘텐츠에 대한 액세스 제한: &lt;a class=&#34;link&#34; href=&#34;https://docs.aws.amazon.com/ko_kr/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://docs.aws.amazon.com/ko_kr/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>보안</title>
         <link>https://Haebuk.github.io/p/%EB%B3%B4%EC%95%88/</link>
         <pubDate>Sun, 10 Jul 2022 17:12:39 +0900</pubDate>

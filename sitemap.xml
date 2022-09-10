@@ -3,7 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://Haebuk.github.io/</loc>
-    <lastmod>2022-07-10T17:12:39+09:00</lastmod>
+    <lastmod>2022-09-09T23:13:41+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/categories/aws/</loc>
+    <lastmod>2022-09-09T23:13:41+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/tags/cloudfront/</loc>
+    <lastmod>2022-09-09T23:13:41+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/</loc>
+    <lastmod>2022-09-09T23:13:41+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/post/</loc>
+    <lastmod>2022-09-09T23:13:41+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/tags/s3/</loc>
+    <lastmod>2022-09-09T23:13:41+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/tags/</loc>
+    <lastmod>2022-09-09T23:13:41+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/categories/</loc>
+    <lastmod>2022-09-09T23:13:41+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/tags/kubernetes/</loc>
     <lastmod>2022-07-10T17:12:39+09:00</lastmod>
@@ -11,16 +32,7 @@
     <loc>https://Haebuk.github.io/categories/kubernetes/</loc>
     <lastmod>2022-07-10T17:12:39+09:00</lastmod>
   </url><url>
-    <loc>https://Haebuk.github.io/post/</loc>
-    <lastmod>2022-07-10T17:12:39+09:00</lastmod>
-  </url><url>
-    <loc>https://Haebuk.github.io/tags/</loc>
-    <lastmod>2022-07-10T17:12:39+09:00</lastmod>
-  </url><url>
     <loc>https://Haebuk.github.io/p/%EB%B3%B4%EC%95%88/</loc>
-    <lastmod>2022-07-10T17:12:39+09:00</lastmod>
-  </url><url>
-    <loc>https://Haebuk.github.io/categories/</loc>
     <lastmod>2022-07-10T17:12:39+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/p/%EC%9C%A0%EC%97%B0%ED%95%9C-%EA%B3%A0%EA%B8%89-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/</loc>
@@ -67,9 +79,6 @@
   </url><url>
     <loc>https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9C%BC%EB%A1%9C-%EC%97%98%EB%9D%BC%EC%8A%A4%ED%8B%B1-%EC%84%9C%EC%B9%98-%EC%BF%BC%EB%A6%AC%ED%95%98%EA%B8%B0/</loc>
     <lastmod>2021-12-19T17:12:39+09:00</lastmod>
-  </url><url>
-    <loc>https://Haebuk.github.io/categories/aws/</loc>
-    <lastmod>2021-01-09T17:12:39+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/p/aws-data-analysis-fundamentals-%ED%9B%84%EA%B8%B0/</loc>
     <lastmod>2021-01-09T17:12:39+09:00</lastmod>
