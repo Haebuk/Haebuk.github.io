@@ -15,6 +15,14 @@
         <description></description>
         </item>
         <item>
+        <title>Study</title>
+        <link>https://Haebuk.github.io/categories/study/</link>
+        <pubDate>Tue, 06 Sep 2022 13:47:25 +0900</pubDate>
+        
+        <guid>https://Haebuk.github.io/categories/study/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Kubernetes</title>
         <link>https://Haebuk.github.io/categories/kubernetes/</link>
         <pubDate>Sun, 10 Jul 2022 17:12:39 +0900</pubDate>
@@ -31,19 +39,11 @@
         <description></description>
         </item>
         <item>
-        <title>Dask</title>
-        <link>https://Haebuk.github.io/categories/dask/</link>
+        <title>Data Engineering</title>
+        <link>https://Haebuk.github.io/categories/data-engineering/</link>
         <pubDate>Mon, 10 Jan 2022 17:12:39 +0900</pubDate>
         
-        <guid>https://Haebuk.github.io/categories/dask/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>Elasticsearch</title>
-        <link>https://Haebuk.github.io/categories/elasticsearch/</link>
-        <pubDate>Sun, 19 Dec 2021 17:12:39 +0900</pubDate>
-        
-        <guid>https://Haebuk.github.io/categories/elasticsearch/</guid>
+        <guid>https://Haebuk.github.io/categories/data-engineering/</guid>
         <description></description>
         </item>
         
