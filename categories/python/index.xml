@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Python on 지식 공유, 협업 ✈️ 성장</title>
+        <link>https://Haebuk.github.io/categories/python/</link>
+        <description>Recent content in Python on 지식 공유, 협업 ✈️ 성장</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>ko-kr</language>
+        <lastBuildDate>Fri, 07 Oct 2022 06:42:15 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/categories/python/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>파이콘2022 후기</title>
+        <link>https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/</link>
+        <pubDate>Fri, 07 Oct 2022 06:42:15 +0900</pubDate>
+        
+        <guid>https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/</guid>
+        <description>&lt;img src="https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/pycon.png" alt="Featured image of post 파이콘2022 후기" /&gt;&lt;p&gt;주말에 열린 파이콘2022에 다녀왔다. 장소는 명동에 있는 마실 스튜디오.&lt;/p&gt;
+&lt;p&gt;컨퍼런스에 참여하는 것은 처음이었는데, 파이썬을 사용하는 유저로서 꼭 참여해보고 싶었기 때문에 큰 마음을 먹고 결제를 했다. 가격은 상당히 비싸다고 생각했는데, 오프라인 참가비 4만원에 굿즈비 2만원이었다. 참가비야 그만한 가치가 있다고 생각했는데, 굿즈는 좀 마음에 들지 않았다. 티셔츠가 있으니 그러려니 하고 넘어갔다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/goods.png&#34;
+	width=&#34;668&#34;
+	height=&#34;542&#34;
+	srcset=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/goods_hud2bc484bb6b941c9d4cfd7138157e15b_212776_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/goods_hud2bc484bb6b941c9d4cfd7138157e15b_212776_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;굿즈 목록.. 스티커가 너무 마음에 안들었다. 그리고 마스크랑 소독제 멈춰!&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;123&#34;
+		data-flex-basis=&#34;295px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;토요일과 일요일 이틀동안 진행이 됐고, 각 요일에 열리는 세션 목록이 달랐다. (&lt;a class=&#34;link&#34; href=&#34;https://2022.pycon.kr/program/talk-schedule&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;발표 시간표 링크 바로가기&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;데이터 엔지니어링 항목이 있고, 좀 더 끌리는 주제들이 많은 토요일로 신청하고 싶었으나 일정이 있어 일요일로 했다. 결론부터 말하면 오프라인에서도 발표 세션은 온라인으로 진행됐기 때문에 모든 세션이 녹화되어 상관없었다. (발표 세션 링크는 위 &lt;code&gt;발표 시간표 링크 바로가기&lt;/code&gt; 링크 안에 있다.)&lt;/p&gt;
+&lt;p&gt;9시 50분쯤 도착했는데, 10시부터 입장이 가능해서 앞에 사람들이 서있었다. 입장 수속을 하고나니 웬걸? 내 양손에 무언가를 바리바리 챙겨주셨다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/001.jpeg&#34;
+	width=&#34;3024&#34;
+	height=&#34;3024&#34;
+	srcset=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/001_hua4ea9b356395fbbe25dafa19f336781a_2699392_480x0_resize_q75_box.jpeg 480w, https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/001_hua4ea9b356395fbbe25dafa19f336781a_2699392_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;쇼핑백과 에코백 안에 한 가득이다. 갑자기 기분이 좋아졌음.&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;100&#34;
+		data-flex-basis=&#34;240px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;내부는 총 2층으로 이루어져 있었다. 1층에는 데스크와 2개의 세션 룸, 파이썬 도서관, 몇 개의 스탬프 부스가 있었다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/002.jpeg&#34;
+	width=&#34;3024&#34;
+	height=&#34;3024&#34;
+	srcset=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/002_hu2bf5e85be94a5def470e9d8e76c1bf52_2882754_480x0_resize_q75_box.jpeg 480w, https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/002_hu2bf5e85be94a5def470e9d8e76c1bf52_2882754_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;파이썬 도서관 책 목록. 대부분 인공지능 책이었다.&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;100&#34;
+		data-flex-basis=&#34;240px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/003.jpeg&#34;
+	width=&#34;3024&#34;
+	height=&#34;3024&#34;
+	srcset=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/003_hu0de4ec95b5fe85cb0e1317ec34e477e3_2529723_480x0_resize_q75_box.jpeg 480w, https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/003_hu0de4ec95b5fe85cb0e1317ec34e477e3_2529723_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;스탬프 부스. 후원사 판넬과 스탬프를 찍을 수 있는 책상. 스탬프 모양은 후원사 마크로 나온다.&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;100&#34;
+		data-flex-basis=&#34;240px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;스탬프를 팜플렛에 찍고 나서 1층에 계신 요기요 직원들과 이벤트 이야기를 하고 (요기요에서 주최하는 이벤트) 2층으로 올라갔다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/004.jpeg&#34;
+	width=&#34;3456&#34;
+	height=&#34;3456&#34;
+	srcset=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/004_hu20a1c41fcc6e4eeb9096bdb18aeb16ef_2488058_480x0_resize_q75_box.jpeg 480w, https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/004_hu20a1c41fcc6e4eeb9096bdb18aeb16ef_2488058_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2층 이벤트 홀 전경. 앞에는 채용담당자분들의 부스 준비로 분주했다.&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;100&#34;
+		data-flex-basis=&#34;240px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;아직 채용부스가 준비되지 않아 분주했다. 부스는 10시 30분부터 운영됐다.&lt;/p&gt;
+&lt;p&gt;그전까지 나는 분주히 15개의 스탬프 부스를 돌아 모두 채웠다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/stamp.jpeg&#34;
+	width=&#34;3024&#34;
+	height=&#34;3024&#34;
+	srcset=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/stamp_hu3faf00aa4ba1141221cad513e2be24a6_2557400_480x0_resize_q75_box.jpeg 480w, https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/stamp_hu3faf00aa4ba1141221cad513e2be24a6_2557400_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;스탬프 투어 완료. 완료하면 작은 기념품을 준다.&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;100&#34;
+		data-flex-basis=&#34;240px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;스탬프를 모두 채우고, 이직 생각이 없는 나는 &amp;lsquo;이제 뭐하지..&amp;rsquo; 생각을 하다 세션 시간표를 보니 &lt;code&gt;파이썬으로 실시간 데이터 처리를 시도해보자.&lt;/code&gt; 라는 세션이 있길래 들으러 1층에 내려갔다. (&lt;a class=&#34;link&#34; href=&#34;https://www.youtube.com/watch?v=81krehGVJhI&amp;amp;list=PLZPhyNeJvHRn5DjhDAZFTKjJCJSMqeirO&amp;amp;index=17&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;유튜브 링크&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;세션룸은 앞에 빔프로젝터 2개와 의자가 놓여져 있는 다소 열악한 환경이었다. 내가 들은 처음이자 마지막 파이콘2022의 세션이었다.&lt;/p&gt;
+&lt;p&gt;어느덧 점심시간이 되고, 12시부터 운영하는 스낵부스를 찾아갔다.&lt;/p&gt;
+&lt;p&gt;모든 사람을 포용하는 파이콘의 행동강령때문인지, 비건 메뉴와 글루텐 프리 메뉴가 있었다. 나는 글루텐 프리를 골랐다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/005.jpeg&#34;
+	width=&#34;3024&#34;
+	height=&#34;3024&#34;
+	srcset=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/005_huae1ac2a18e1bbb3b820dba9ef4f16522_3465155_480x0_resize_q75_box.jpeg 480w, https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/005_huae1ac2a18e1bbb3b820dba9ef4f16522_3465155_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;귀여운 상자.&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;100&#34;
+		data-flex-basis=&#34;240px&#34;
+	
+&gt;
+&lt;img src=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/006.jpeg&#34;
+	width=&#34;3024&#34;
+	height=&#34;3024&#34;
+	srcset=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/006_hu10bac327646881748e823f1447ebfd9d_2734963_480x0_resize_q75_box.jpeg 480w, https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/006_hu10bac327646881748e823f1447ebfd9d_2734963_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;안에는 빵이 있다. 빵이 맛있었다.&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;100&#34;
+		data-flex-basis=&#34;240px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;오후에 시간이 비었다. 자유롭게 이야기 할 수 있는 장소가 있고, 어떤 주제로 이야기할지 적어놓는 화이트보드가 있었다. AI에 대해 얘기하는 시간이 있길래 참가해서 네트워킹을 했다. 다른 분들은 어떻게 일하고 어떤 일을 하는지 알 수 있었던 좋은 시간이었던 것 같다. (파이콘이 끝나고 이분들과 저녁까지 먹었다.)&lt;/p&gt;
+&lt;p&gt;3시부터는 토크 콘서트가 열렸다. 채용 담당자분들을 필두로 이야기하는 취업 이야기를 시작으로, &amp;lsquo;알면 쓸모있는 파이썬 잡학 지식(알쓸파잡)&amp;lsquo;에 나도 참가했다.&lt;/p&gt;
+&lt;p&gt;파이썬 의존성 관리 툴로 Poetry를 소개했다. 자기소개시 데이터 사이언티스트로 소개한 덕인지, 끝나고 학생분들이 찾아와서 커리어에 대한 질문을 하셨다. 취업전 내가 떠올라 아는 지식 내에서 열심히 상담해드렸다.&lt;/p&gt;
+&lt;p&gt;그 후로 o/x 퀴즈랑, 경품 추첨등을 했는데 아쉽게 다 떨어졌다.&lt;/p&gt;
+&lt;p&gt;집에 돌아와서 언박싱을 했다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/goods-home.jpeg&#34;
+	width=&#34;3024&#34;
+	height=&#34;3024&#34;
+	srcset=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/goods-home_hueb217cc14d88db536e47275185880102_2737109_480x0_resize_q75_box.jpeg 480w, https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/goods-home_hueb217cc14d88db536e47275185880102_2737109_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;가습기, 레고, 무선 충전기, 텀블러, 스티커, 옷 등등..&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;100&#34;
+		data-flex-basis=&#34;240px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;티셔츠들도 귀여워서 찍어봤다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/pycon-f.jpeg&#34;
+	width=&#34;3024&#34;
+	height=&#34;3024&#34;
+	srcset=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/pycon-f_hua056c1b4954f1feb94c6732bbd5335d7_2126819_480x0_resize_q75_box.jpeg 480w, https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/pycon-f_hua056c1b4954f1feb94c6732bbd5335d7_2126819_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;파이콘 티셔츠 앞&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;100&#34;
+		data-flex-basis=&#34;240px&#34;
+	
+&gt;
+&lt;img src=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/pycon-b.jpeg&#34;
+	width=&#34;3024&#34;
+	height=&#34;3024&#34;
+	srcset=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/pycon-b_hu372c6a132a8a5771deebecf8cd8bb3ac_2156861_480x0_resize_q75_box.jpeg 480w, https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/pycon-b_hu372c6a132a8a5771deebecf8cd8bb3ac_2156861_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;파이콘 티셔츠 뒤&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;100&#34;
+		data-flex-basis=&#34;240px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/wanted-f.jpeg&#34;
+	width=&#34;3024&#34;
+	height=&#34;3024&#34;
+	srcset=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/wanted-f_hu2c2a61b36b27f156f13310a50b473b04_1973812_480x0_resize_q75_box.jpeg 480w, https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/wanted-f_hu2c2a61b36b27f156f13310a50b473b04_1973812_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;원티드 굿즈 앞면&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;100&#34;
+		data-flex-basis=&#34;240px&#34;
+	
+&gt;
+&lt;img src=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/wanted-b.jpeg&#34;
+	width=&#34;3024&#34;
+	height=&#34;3024&#34;
+	srcset=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/wanted-b_hud38244e71109a162aa30adbbb4472553_1610887_480x0_resize_q75_box.jpeg 480w, https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/wanted-b_hud38244e71109a162aa30adbbb4472553_1610887_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;원티드 티셔츠 뒤&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;100&#34;
+		data-flex-basis=&#34;240px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;사실 굿즈만으로도 마음이 훈훈해졌지만 (집에 들고오는게 힘들었다.) 관심사가 일치하는 다양한 사람들과 네트워킹하는 재미도 쏠쏠해서 6만원이 전혀 아깝지 않았다. 내년에도 또 갈 것 같다.&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

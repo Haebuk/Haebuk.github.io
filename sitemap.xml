@@ -3,7 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://Haebuk.github.io/</loc>
-    <lastmod>2022-09-09T23:13:41+09:00</lastmod>
+    <lastmod>2022-10-07T06:42:15+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/post/</loc>
+    <lastmod>2022-10-07T06:42:15+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/tags/pycon/</loc>
+    <lastmod>2022-10-07T06:42:15+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/categories/python/</loc>
+    <lastmod>2022-10-07T06:42:15+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/tags/</loc>
+    <lastmod>2022-10-07T06:42:15+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/categories/</loc>
+    <lastmod>2022-10-07T06:42:15+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/</loc>
+    <lastmod>2022-10-07T06:42:15+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/tags/%ED%9B%84%EA%B8%B0/</loc>
+    <lastmod>2022-10-07T06:42:15+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/categories/aws/</loc>
     <lastmod>2022-09-09T23:13:41+09:00</lastmod>
@@ -14,16 +35,7 @@
     <loc>https://Haebuk.github.io/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/</loc>
     <lastmod>2022-09-09T23:13:41+09:00</lastmod>
   </url><url>
-    <loc>https://Haebuk.github.io/post/</loc>
-    <lastmod>2022-09-09T23:13:41+09:00</lastmod>
-  </url><url>
     <loc>https://Haebuk.github.io/tags/s3/</loc>
-    <lastmod>2022-09-09T23:13:41+09:00</lastmod>
-  </url><url>
-    <loc>https://Haebuk.github.io/tags/</loc>
-    <lastmod>2022-09-09T23:13:41+09:00</lastmod>
-  </url><url>
-    <loc>https://Haebuk.github.io/categories/</loc>
     <lastmod>2022-09-09T23:13:41+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/p/udacity-aws-machine-learning-engineer-foundations-2022-%ED%9B%84%EA%B8%B0/</loc>
@@ -36,9 +48,6 @@
     <lastmod>2022-09-06T13:47:25+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/tags/%EC%88%98%EB%A3%8C%EC%A6%9D/</loc>
-    <lastmod>2022-09-06T13:47:25+09:00</lastmod>
-  </url><url>
-    <loc>https://Haebuk.github.io/tags/%ED%9B%84%EA%B8%B0/</loc>
     <lastmod>2022-09-06T13:47:25+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/tags/kubernetes/</loc>
