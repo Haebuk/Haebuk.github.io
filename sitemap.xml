@@ -3,21 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://Haebuk.github.io/</loc>
-    <lastmod>2022-10-07T06:42:15+09:00</lastmod>
+    <lastmod>2022-10-08T11:05:39+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/categories/book/</loc>
+    <lastmod>2022-10-08T11:05:39+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/tags/clean-code/</loc>
+    <lastmod>2022-10-08T11:05:39+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/post/</loc>
-    <lastmod>2022-10-07T06:42:15+09:00</lastmod>
+    <lastmod>2022-10-08T11:05:39+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/tags/python/</loc>
+    <lastmod>2022-10-08T11:05:39+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/tags/</loc>
+    <lastmod>2022-10-08T11:05:39+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/categories/</loc>
+    <lastmod>2022-10-08T11:05:39+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%8D%AC-%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C-%ED%9B%84%EA%B8%B0/</loc>
+    <lastmod>2022-10-08T11:05:39+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/tags/pycon/</loc>
     <lastmod>2022-10-07T06:42:15+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/categories/python/</loc>
-    <lastmod>2022-10-07T06:42:15+09:00</lastmod>
-  </url><url>
-    <loc>https://Haebuk.github.io/tags/</loc>
-    <lastmod>2022-10-07T06:42:15+09:00</lastmod>
-  </url><url>
-    <loc>https://Haebuk.github.io/categories/</loc>
     <lastmod>2022-10-07T06:42:15+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/</loc>
@@ -96,9 +108,6 @@
     <lastmod>2022-01-10T17:12:39+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/categories/data-engineering/</loc>
-    <lastmod>2022-01-10T17:12:39+09:00</lastmod>
-  </url><url>
-    <loc>https://Haebuk.github.io/tags/python/</loc>
     <lastmod>2022-01-10T17:12:39+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/tags/elasticsearch/</loc>

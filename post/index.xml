@@ -6,7 +6,34 @@
         <description>Recent content in Posts on 지식 공유, 협업 ✈️ 성장</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ko-kr</language>
-        <lastBuildDate>Fri, 07 Oct 2022 06:42:15 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 08 Oct 2022 11:05:39 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>파이썬 클린코드 후기</title>
+        <link>https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%8D%AC-%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C-%ED%9B%84%EA%B8%B0/</link>
+        <pubDate>Sat, 08 Oct 2022 11:05:39 +0900</pubDate>
+        
+        <guid>https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%8D%AC-%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C-%ED%9B%84%EA%B8%B0/</guid>
+        <description>&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%8D%AC-%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C-%ED%9B%84%EA%B8%B0/book.jpeg&#34;
+	width=&#34;939&#34;
+	height=&#34;1200&#34;
+	srcset=&#34;https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%8D%AC-%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C-%ED%9B%84%EA%B8%B0/book_hu910ad935d87f015fbbdeed736141c7fc_163751_480x0_resize_q75_box.jpeg 480w, https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%8D%AC-%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C-%ED%9B%84%EA%B8%B0/book_hu910ad935d87f015fbbdeed736141c7fc_163751_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;책 표지. 출처: yes24&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;78&#34;
+		data-flex-basis=&#34;187px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;여러 파이썬 코딩 스타일과 관련된 책을 봤었는데, 가장 잘 정리가 된 책이라고 생각했다.&lt;/p&gt;
+&lt;p&gt;최근에 나온 책이라 코드 버전도 최신이다. 데코레이터를 이용한 우아한 재시도 로직은 꽤 멋지다고 생각해 실무에도 적용했다.&lt;/p&gt;
+&lt;p&gt;책은 꽤 넓은 범위를 커버한다. 그렇지만 내용이 얕지는 않다고 생각한다. 책을 한 번 읽어서는 모든 내용을 숙지할 수 없을 것 같다.&lt;/p&gt;
+&lt;p&gt;읽을 책이 밀려 바로 다시 읽을 순 없지만, 로테이션이 다 돈다면 다시 읽고 싶은 책. 아직 책 속에서 배워야 할 것이 무궁무진하다.&lt;/p&gt;
+&lt;p&gt;모든 클린 코드 책이 그렇겠지만, 초보자가 읽으면 별로 도움이 되지 않을 책. 실무에 파이썬을 충분히 사용하고 있으며 평소 클린 코드에 대해 고민을 많이 하는 실무자가 읽으면 좋을 책이다.&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>파이콘2022 후기</title>
         <link>https://Haebuk.github.io/p/%ED%8C%8C%EC%9D%B4%EC%BD%982022-%ED%9B%84%EA%B8%B0/</link>
         <pubDate>Fri, 07 Oct 2022 06:42:15 +0900</pubDate>
