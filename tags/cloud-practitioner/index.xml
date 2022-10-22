@@ -6,111 +6,10 @@
         <description>Recent content in Cloud Practitioner on 지식 공유, 협업 ✈️ 성장</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ko-kr</language>
-        <lastBuildDate>Sat, 22 Oct 2022 16:05:39 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/tags/cloud-practitioner/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>[AWS Cloud Practitioner] 글로벌 인프라 및 안정성 정리</title>
-        <link>https://Haebuk.github.io/p/aws-cloud-practitioner-%EA%B8%80%EB%A1%9C%EB%B2%8C-%EC%9D%B8%ED%94%84%EB%9D%BC-%EB%B0%8F-%EC%95%88%EC%A0%95%EC%84%B1-%EC%A0%95%EB%A6%AC/</link>
-        <pubDate>Sat, 22 Oct 2022 16:05:39 +0900</pubDate>
-        
-        <guid>https://Haebuk.github.io/p/aws-cloud-practitioner-%EA%B8%80%EB%A1%9C%EB%B2%8C-%EC%9D%B8%ED%94%84%EB%9D%BC-%EB%B0%8F-%EC%95%88%EC%A0%95%EC%84%B1-%EC%A0%95%EB%A6%AC/</guid>
-        <description>&lt;h1 id=&#34;aws-글로벌-인프라&#34;&gt;AWS 글로벌 인프라&lt;/h1&gt;
-&lt;h2 id=&#34;aws-리전&#34;&gt;AWS 리전&lt;/h2&gt;
-&lt;p&gt;적합한 리전을 결정할 때 다음 네 가지 요소를 고려해야 함&lt;/p&gt;
-&lt;h3 id=&#34;1-데이터-거버넌스-및-법적-요구-사항-준수&#34;&gt;1. 데이터 거버넌스 및 법적 요구 사항 준수&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;회사와 위치에 따라 특정 영역에서 데이터를 실행해야 하는 경우&lt;/li&gt;
-&lt;li&gt;모든 회사에 위치 기반 데이터 규정이 있는 것은 아니므로 다음 세 가지 요소에 더 집중해야 할 수도 있음&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;2-고객과의-근접성&#34;&gt;2. 고객과의 근접성&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;고객과 가까운 리전을 선택하면 콘텐츠를 더 빠르게 제공할 수 있음&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;3-리전-내에서-사용-가능한-서비스&#34;&gt;3. 리전 내에서 사용 가능한 서비스&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;고객에게 제공하려는 기능이 가장 가까운 리전에 없을수도 있음&lt;/li&gt;
-&lt;li&gt;제공하려면 이 서비스를 제공하는 리전 중 하나에서 실행해야 함&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;4-요금&#34;&gt;4. 요금&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;리전마다 비용이 다를 수 있음&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;가용-영역&#34;&gt;가용 영역&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/aws-cloud-practitioner-%EA%B8%80%EB%A1%9C%EB%B2%8C-%EC%9D%B8%ED%94%84%EB%9D%BC-%EB%B0%8F-%EC%95%88%EC%A0%95%EC%84%B1-%EC%A0%95%EB%A6%AC/Untitled.png&#34;
-	width=&#34;1294&#34;
-	height=&#34;672&#34;
-	srcset=&#34;https://Haebuk.github.io/p/aws-cloud-practitioner-%EA%B8%80%EB%A1%9C%EB%B2%8C-%EC%9D%B8%ED%94%84%EB%9D%BC-%EB%B0%8F-%EC%95%88%EC%A0%95%EC%84%B1-%EC%A0%95%EB%A6%AC/Untitled_hu2f1a092e069d292293e0a342c5b302f4_435117_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/aws-cloud-practitioner-%EA%B8%80%EB%A1%9C%EB%B2%8C-%EC%9D%B8%ED%94%84%EB%9D%BC-%EB%B0%8F-%EC%95%88%EC%A0%95%EC%84%B1-%EC%A0%95%EB%A6%AC/Untitled_hu2f1a092e069d292293e0a342c5b302f4_435117_1024x0_resize_box_3.png 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;가용 영역&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;192&#34;
-		data-flex-basis=&#34;462px&#34;
-	
-&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;리전 내의 단일 데이터 센터 또는 데이터 센터 그룹&lt;/li&gt;
-&lt;li&gt;가용 영역은 서로 수십 마일 떨어져 있음
-&lt;ul&gt;
-&lt;li&gt;가용 영역 간 지연 시간은 짧을 정도로 충분히 가까우면서&lt;/li&gt;
-&lt;li&gt;한 곳에서 재해가 발생할 경우 다른 가용 영역이 영향을 받을 가능성을 줄일 만큼 멀리 떨어져 있음&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;엣지-로케이션&#34;&gt;엣지 로케이션&lt;/h2&gt;
-&lt;h3 id=&#34;cloudfront&#34;&gt;CloudFront&lt;/h3&gt;
-&lt;p&gt;글로벌 콘텐츠 전송 서비스&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;더 빠른 콘텐츠 전송을 위해 고객과 가까운 위치에 콘텐츠 사본을 캐시하는 데 사용하는 사이트&lt;/li&gt;
-&lt;li&gt;본사는 브라질, 고객은 중국에 있는 경우 브라질에 있는 모든 콘텐츠를 중국 리전중 하나로 이동할 필요 없음
-&lt;ul&gt;
-&lt;li&gt;중국 내 고객과 가까운 엣지 로케이션에 사본을 로컬로 캐시&lt;/li&gt;
-&lt;li&gt;중국 내 고객이 파일을 요청하면 엣지 로케이션의 캐시에서 해당 파일을 검색하여 고객에게 전송 → 원본이 아닌 중국 근처에서 가져온 것이므로 더 빠르게 전달&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;aws-리소스를-프로비저닝하는-방법&#34;&gt;AWS 리소스를 프로비저닝하는 방법&lt;/h2&gt;
-&lt;h3 id=&#34;aws-서비스와-상호-작용하는-방법&#34;&gt;AWS 서비스와 상호 작용하는 방법&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;AWS Management Console
-&lt;ul&gt;
-&lt;li&gt;웹 기반 인터페이스&lt;/li&gt;
-&lt;li&gt;콘솔 모바일 애플리케이션을 사용해 리소스 모니터링, 경보 보기, 결제 정보 확인 등의 작업 수행 가능&lt;/li&gt;
-&lt;li&gt;여러 ID가 동시에 AWS 콘솔 모바일 앱에 로그인 가능&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;AWS 명령줄 인터페이스
-&lt;ul&gt;
-&lt;li&gt;명령줄에서 여러 AWS 서비스 제어 가능&lt;/li&gt;
-&lt;li&gt;스크립트를 통해 서비스 및 애플리케이션이 수행하는 작업을 자동화할 수 있음&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;소프트웨어 개발 키트
-&lt;ul&gt;
-&lt;li&gt;프로그래밍 언어 또는 플랫폼용으로 설계된 API를 통해 보다 서비스를 간편하게 사용 가능&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;elastic-beanstalk&#34;&gt;Elastic Beanstalk&lt;/h3&gt;
-&lt;p&gt;사용자가 코드 및 구성 설정을 제공하면 다음 작업을 수행하는 데 필요한 리소스 배포&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;용량 조정&lt;/li&gt;
-&lt;li&gt;로드 밸런싱&lt;/li&gt;
-&lt;li&gt;자동 조정&lt;/li&gt;
-&lt;li&gt;애플리케이션 상태 모니터링&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;cloudformation&#34;&gt;CloudFormation&lt;/h3&gt;
-&lt;p&gt;인프라를 코드로 취급할 수 있음&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;리소스를 안전하고 반복 가능한 방식으로 프로비저닝하므로 수작업을 수행하거나 사용자 지정 스크립트를 작성할 필요 없이 인프라 및 애플리케이션을 빈번히 구축할 수 있음&lt;/li&gt;
-&lt;li&gt;스택을 관리할 때 수행해야 할 적절한 작업을 결정하고 오류를 감지하면 변경 사항을 자동으로 롤백함&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        </item>
-        <item>
+        <lastBuildDate>Sat, 22 Oct 2022 21:12:39 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/tags/cloud-practitioner/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>[AWS Cloud Practitioner] 네트워킹 정리</title>
         <link>https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9-%EC%A0%95%EB%A6%AC/</link>
-        <pubDate>Sat, 22 Oct 2022 16:05:39 +0900</pubDate>
+        <pubDate>Sat, 22 Oct 2022 21:12:39 +0900</pubDate>
         
         <guid>https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9-%EC%A0%95%EB%A6%AC/</guid>
         <description>&lt;h1 id=&#34;aws와의-연결&#34;&gt;AWS와의 연결&lt;/h1&gt;
@@ -315,6 +214,107 @@
 &lt;li&gt;고객의 요청은 CloudFront를 통해 가장 가까운 엣지 로케이션으로 전송&lt;/li&gt;
 &lt;li&gt;CloudFront는 수신 패킷을 EC2 인스턴스로 전송하는 Application Load Balancer(ALB)에 연결&lt;/li&gt;
 &lt;/ol&gt;
+</description>
+        </item>
+        <item>
+        <title>[AWS Cloud Practitioner] 글로벌 인프라 및 안정성 정리</title>
+        <link>https://Haebuk.github.io/p/aws-cloud-practitioner-%EA%B8%80%EB%A1%9C%EB%B2%8C-%EC%9D%B8%ED%94%84%EB%9D%BC-%EB%B0%8F-%EC%95%88%EC%A0%95%EC%84%B1-%EC%A0%95%EB%A6%AC/</link>
+        <pubDate>Sat, 22 Oct 2022 17:21:39 +0900</pubDate>
+        
+        <guid>https://Haebuk.github.io/p/aws-cloud-practitioner-%EA%B8%80%EB%A1%9C%EB%B2%8C-%EC%9D%B8%ED%94%84%EB%9D%BC-%EB%B0%8F-%EC%95%88%EC%A0%95%EC%84%B1-%EC%A0%95%EB%A6%AC/</guid>
+        <description>&lt;h1 id=&#34;aws-글로벌-인프라&#34;&gt;AWS 글로벌 인프라&lt;/h1&gt;
+&lt;h2 id=&#34;aws-리전&#34;&gt;AWS 리전&lt;/h2&gt;
+&lt;p&gt;적합한 리전을 결정할 때 다음 네 가지 요소를 고려해야 함&lt;/p&gt;
+&lt;h3 id=&#34;1-데이터-거버넌스-및-법적-요구-사항-준수&#34;&gt;1. 데이터 거버넌스 및 법적 요구 사항 준수&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;회사와 위치에 따라 특정 영역에서 데이터를 실행해야 하는 경우&lt;/li&gt;
+&lt;li&gt;모든 회사에 위치 기반 데이터 규정이 있는 것은 아니므로 다음 세 가지 요소에 더 집중해야 할 수도 있음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-고객과의-근접성&#34;&gt;2. 고객과의 근접성&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;고객과 가까운 리전을 선택하면 콘텐츠를 더 빠르게 제공할 수 있음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-리전-내에서-사용-가능한-서비스&#34;&gt;3. 리전 내에서 사용 가능한 서비스&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;고객에게 제공하려는 기능이 가장 가까운 리전에 없을수도 있음&lt;/li&gt;
+&lt;li&gt;제공하려면 이 서비스를 제공하는 리전 중 하나에서 실행해야 함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;4-요금&#34;&gt;4. 요금&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;리전마다 비용이 다를 수 있음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;가용-영역&#34;&gt;가용 영역&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/aws-cloud-practitioner-%EA%B8%80%EB%A1%9C%EB%B2%8C-%EC%9D%B8%ED%94%84%EB%9D%BC-%EB%B0%8F-%EC%95%88%EC%A0%95%EC%84%B1-%EC%A0%95%EB%A6%AC/Untitled.png&#34;
+	width=&#34;1294&#34;
+	height=&#34;672&#34;
+	srcset=&#34;https://Haebuk.github.io/p/aws-cloud-practitioner-%EA%B8%80%EB%A1%9C%EB%B2%8C-%EC%9D%B8%ED%94%84%EB%9D%BC-%EB%B0%8F-%EC%95%88%EC%A0%95%EC%84%B1-%EC%A0%95%EB%A6%AC/Untitled_hu2f1a092e069d292293e0a342c5b302f4_435117_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/aws-cloud-practitioner-%EA%B8%80%EB%A1%9C%EB%B2%8C-%EC%9D%B8%ED%94%84%EB%9D%BC-%EB%B0%8F-%EC%95%88%EC%A0%95%EC%84%B1-%EC%A0%95%EB%A6%AC/Untitled_hu2f1a092e069d292293e0a342c5b302f4_435117_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;가용 영역&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;192&#34;
+		data-flex-basis=&#34;462px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;리전 내의 단일 데이터 센터 또는 데이터 센터 그룹&lt;/li&gt;
+&lt;li&gt;가용 영역은 서로 수십 마일 떨어져 있음
+&lt;ul&gt;
+&lt;li&gt;가용 영역 간 지연 시간은 짧을 정도로 충분히 가까우면서&lt;/li&gt;
+&lt;li&gt;한 곳에서 재해가 발생할 경우 다른 가용 영역이 영향을 받을 가능성을 줄일 만큼 멀리 떨어져 있음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;엣지-로케이션&#34;&gt;엣지 로케이션&lt;/h2&gt;
+&lt;h3 id=&#34;cloudfront&#34;&gt;CloudFront&lt;/h3&gt;
+&lt;p&gt;글로벌 콘텐츠 전송 서비스&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;더 빠른 콘텐츠 전송을 위해 고객과 가까운 위치에 콘텐츠 사본을 캐시하는 데 사용하는 사이트&lt;/li&gt;
+&lt;li&gt;본사는 브라질, 고객은 중국에 있는 경우 브라질에 있는 모든 콘텐츠를 중국 리전중 하나로 이동할 필요 없음
+&lt;ul&gt;
+&lt;li&gt;중국 내 고객과 가까운 엣지 로케이션에 사본을 로컬로 캐시&lt;/li&gt;
+&lt;li&gt;중국 내 고객이 파일을 요청하면 엣지 로케이션의 캐시에서 해당 파일을 검색하여 고객에게 전송 → 원본이 아닌 중국 근처에서 가져온 것이므로 더 빠르게 전달&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;aws-리소스를-프로비저닝하는-방법&#34;&gt;AWS 리소스를 프로비저닝하는 방법&lt;/h2&gt;
+&lt;h3 id=&#34;aws-서비스와-상호-작용하는-방법&#34;&gt;AWS 서비스와 상호 작용하는 방법&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;AWS Management Console
+&lt;ul&gt;
+&lt;li&gt;웹 기반 인터페이스&lt;/li&gt;
+&lt;li&gt;콘솔 모바일 애플리케이션을 사용해 리소스 모니터링, 경보 보기, 결제 정보 확인 등의 작업 수행 가능&lt;/li&gt;
+&lt;li&gt;여러 ID가 동시에 AWS 콘솔 모바일 앱에 로그인 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;AWS 명령줄 인터페이스
+&lt;ul&gt;
+&lt;li&gt;명령줄에서 여러 AWS 서비스 제어 가능&lt;/li&gt;
+&lt;li&gt;스크립트를 통해 서비스 및 애플리케이션이 수행하는 작업을 자동화할 수 있음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;소프트웨어 개발 키트
+&lt;ul&gt;
+&lt;li&gt;프로그래밍 언어 또는 플랫폼용으로 설계된 API를 통해 보다 서비스를 간편하게 사용 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;elastic-beanstalk&#34;&gt;Elastic Beanstalk&lt;/h3&gt;
+&lt;p&gt;사용자가 코드 및 구성 설정을 제공하면 다음 작업을 수행하는 데 필요한 리소스 배포&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;용량 조정&lt;/li&gt;
+&lt;li&gt;로드 밸런싱&lt;/li&gt;
+&lt;li&gt;자동 조정&lt;/li&gt;
+&lt;li&gt;애플리케이션 상태 모니터링&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;cloudformation&#34;&gt;CloudFormation&lt;/h3&gt;
+&lt;p&gt;인프라를 코드로 취급할 수 있음&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;리소스를 안전하고 반복 가능한 방식으로 프로비저닝하므로 수작업을 수행하거나 사용자 지정 스크립트를 작성할 필요 없이 인프라 및 애플리케이션을 빈번히 구축할 수 있음&lt;/li&gt;
+&lt;li&gt;스택을 관리할 때 수행해야 할 적절한 작업을 결정하고 오류를 감지하면 변경 사항을 자동으로 롤백함&lt;/li&gt;
+&lt;/ul&gt;
 </description>
         </item>
         <item>
