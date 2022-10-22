@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="ko-kr" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='AWS Cloud Practitioner Essential 클라우드 컴퓨팅 내용 정리'><title>[AWS Cloud Practitioner] 클라우드 컴퓨팅 정리</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='AWS Cloud Practitioner Essential 네트워킹 정리'><title>[AWS Cloud Practitioner] 네트워킹 정리</title>
 
-<link rel='canonical' href='https://Haebuk.github.io/p/aws-cloud-practitioner-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%BB%B4%ED%93%A8%ED%8C%85-%EC%A0%95%EB%A6%AC/'>
+<link rel='canonical' href='https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9-%EC%A0%95%EB%A6%AC/'>
 
-<link rel="stylesheet" href="/scss/style.min.7b85a154539eab990d669fa1899e2e8294729f772bda4a7978ceb32a14b2bdb7.css"><meta property='og:title' content='[AWS Cloud Practitioner] 클라우드 컴퓨팅 정리'>
-<meta property='og:description' content='AWS Cloud Practitioner Essential 클라우드 컴퓨팅 내용 정리'>
-<meta property='og:url' content='https://Haebuk.github.io/p/aws-cloud-practitioner-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%BB%B4%ED%93%A8%ED%8C%85-%EC%A0%95%EB%A6%AC/'>
+<link rel="stylesheet" href="/scss/style.min.7b85a154539eab990d669fa1899e2e8294729f772bda4a7978ceb32a14b2bdb7.css"><meta property='og:title' content='[AWS Cloud Practitioner] 네트워킹 정리'>
+<meta property='og:description' content='AWS Cloud Practitioner Essential 네트워킹 정리'>
+<meta property='og:url' content='https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9-%EC%A0%95%EB%A6%AC/'>
 <meta property='og:site_name' content='지식 공유, 협업 ✈️ 성장'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Cloud Practitioner' /><meta property='article:tag' content='Skill Builder' /><meta property='article:published_time' content='2022-10-22T16:05:39&#43;09:00'/><meta property='article:modified_time' content='2022-10-22T16:05:39&#43;09:00'/>
-<meta name="twitter:title" content="[AWS Cloud Practitioner] 클라우드 컴퓨팅 정리">
-<meta name="twitter:description" content="AWS Cloud Practitioner Essential 클라우드 컴퓨팅 내용 정리">
+<meta name="twitter:title" content="[AWS Cloud Practitioner] 네트워킹 정리">
+<meta name="twitter:description" content="AWS Cloud Practitioner Essential 네트워킹 정리">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7CM424CQYT"></script>
 <script>
 var doNotTrack = false;
@@ -270,12 +270,12 @@ if (!doNotTrack) {
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/aws-cloud-practitioner-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%BB%B4%ED%93%A8%ED%8C%85-%EC%A0%95%EB%A6%AC/">[AWS Cloud Practitioner] 클라우드 컴퓨팅 정리</a>
+            <a href="/p/aws-cloud-practitioner-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9-%EC%A0%95%EB%A6%AC/">[AWS Cloud Practitioner] 네트워킹 정리</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            AWS Cloud Practitioner Essential 클라우드 컴퓨팅 내용 정리
+            AWS Cloud Practitioner Essential 네트워킹 정리
         </h3>
         
     </div>
@@ -308,7 +308,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    4 분 정도
+                    3 분 정도
                 </time>
             </div>
         
@@ -322,218 +322,208 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="클라우드-컴퓨팅">클라우드 컴퓨팅</h1>
-<p>💡 인터넷을 통해 IT 리소스와 애플리케이션을 온디맨드로 제공하는 것</p>
-<h2 id="클라우드-컴퓨팅-배포-모델">클라우드 컴퓨팅 배포 모델</h2>
+    <h1 id="aws와의-연결">AWS와의 연결</h1>
+<h2 id="virtual-private-cloudvpc">Virtual Private Cloud(VPC)</h2>
+<p>AWS 리소스에 경계를 설정하는 데 사용할 수 있는 네트워킹 서비스</p>
 <ul>
-<li>클라우드 기반 배포
+<li>VPC를 사용해 AWS 클라우드의 격리된 섹션을 프로비저닝할 수 있음</li>
+<li>한 VPC 내에서 여러 서브넷으로 리소스를 구성할 수 있음</li>
+<li>서브넷: 리소스를 포함할 수 있는 VPC 섹션</li>
+</ul>
+<h2 id="인터넷-게이트웨이">인터넷 게이트웨이</h2>
 <ul>
-<li>모든 애플리케이션을 클라우드에서 실행</li>
-<li>기존 애플리케이션을 클라우드로 마이그레이션</li>
-<li>클라우드에서 새 애플리케이션 설계 및 빌드</li>
+<li>인터넷의 퍼블릭 트래픽이 VPC에 액세스하도록 허용하려면 인터넷 게이트웨이를 VPC에 연결해야 함</li>
 </ul>
-</li>
-<li>온프레미스 배포(프라이빗 클라우드 배포)
-<ul>
-<li>가상화 및 리소스 관리 도구를 사용하여 리소스 배포</li>
-<li>애플리케이션 관리 및 가상화 기술을 사용하여 <strong>리소스 활용도 높임</strong></li>
-</ul>
-</li>
-<li>하이브리드 배포
-<ul>
-<li>클라우드 기반 리소스를 온프레미스 인프라에 연결</li>
-<li>클라우드 기반 리소스를 레거시 IT 애플리케이션과 통합</li>
-</ul>
-</li>
-</ul>
-<h2 id="이점">이점</h2>
-<ul>
-<li>선행 비용을 가변 비용으로 대체</li>
-<li>데이터 센터 운영 및 유지 관리에 비용 투자 불필요</li>
-<li>용량 추정 불필요</li>
-<li>규모의 경제로 얻게 되는 이점</li>
-<li>속도 및 민첩성 향상</li>
-<li>몇 분 만에 전 세계 배포</li>
-</ul>
-<h2 id="elastic-compute-cloudec2">Elastic Compute Cloud(EC2)</h2>
-<ul>
-<li>안전하고 크기 조정이 가능한 컴퓨팅 용량을 클라우드에서 제공</li>
-</ul>
-<h3 id="ec2-작동-방식">EC2 작동 방식</h3>
-<ul>
-<li>시작
-<ul>
-<li>인스턴스 시작</li>
-<li>기본 구성(운영 체제, 애플리케이션 서버 또는 애플리케이션) 인스턴스가 포함되어 있는 템플릿을 선택하여 시작</li>
-<li>인스턴스 유형 선택</li>
-<li>보안 설정 지정</li>
-</ul>
-</li>
-<li>연결
-<ul>
-<li>여러가지 방법으로 연결 가능</li>
-</ul>
-</li>
-<li>사용
-<ul>
-<li>명령을 실행하여 소프트웨어 설치, 스토리지 추가, 파일 복사 및 정리 등의 작업 수행</li>
-</ul>
-</li>
-</ul>
-<h3 id="ec2-인스턴스-유형">EC2 인스턴스 유형</h3>
-<ul>
-<li>유형 선택시 워크로드 및 애플리케이션의 구체적 요구 사항을 고려해야 함</li>
-<li>범용 인스턴스
-<ul>
-<li>컴퓨팅, 메모리, 네트워킹 균형 제공</li>
-<li>애플리케이션, 게임, 엔터프라이즈 애플리케이션용 백엔드 서버, 중소 규모 데이터베이스</li>
-</ul>
-</li>
-<li>컴퓨팅 최적화 인스턴스
-<ul>
-<li>고성능 프로세서를 활용하는 컴퓨팅 집약적인 애플리케이션에 적합</li>
-<li>고성능 웹서버, 컴퓨팅 집약적 애플리케이션 서버, 게임 전용 서버에 적합</li>
-<li>단일 그룹에서 많은 트랜잭션을 처리해야 하는 일괄 처리 워크로드에 사용</li>
-</ul>
-</li>
-<li>메모리 최적화 인스턴스
-<ul>
-<li>메모리에서 대규모 데이터 셋을 처리하는 워크로드를 위한 빠른 성능을 제공</li>
-<li>많은 데이터를 미리 로드해야 하는 워크로드에 적합</li>
-<li>고성능 데이터베이스</li>
-</ul>
-</li>
-<li>엑셀러레이티드 컴퓨팅 인스턴스
-<ul>
-<li>하드웨어 엑셀러레이터 또는 코프로세서를 사용하여 일부 기능을 CPU보다 더 효율적으로 수행</li>
-<li>부동 소수점 수 계산, 그래픽 처리, 데이터 패턴 일치 등</li>
-<li>데이터 처리를 가속화 할 수 있는 구성 요소</li>
-<li>그래픽 애플리케이션, 게임 스트리밍, 애플리케이션 스트리밍에 적합</li>
-</ul>
-</li>
-<li>스토리지 최적화 인스턴스
-<ul>
-<li>로컬 스토리지의 대규모 데이터 셋에 대한 순차적 읽기 및 쓰기 액세스가 많이 필요한 워크로드에 적합</li>
-<li>분산 파일 시스템, 데이터 웨어하우징 애플리케이션, OLTP 시스템</li>
-<li>짧은 임의 IOPS(초당 입출력 작업 수) 제공</li>
-</ul>
-</li>
-</ul>
-<h3 id="ec2-요금">EC2 요금</h3>
-<ul>
-<li>온디맨드
-<ul>
-<li>중단할 수 없는 불규칙한 단기 워크로드가 있는 애플리케이션에 적합</li>
-<li>선결제 비용, 최소 약정은 적용되지 않음</li>
-<li>개발 및 테스트와 예측할 수 없는 사용 패턴이 있는 애플리케이션 실행 사례에 적합</li>
-<li>1년 이상 지속되는 워크로드에는 권장되지 않음</li>
-</ul>
-</li>
-<li>Savings Plans
-<ul>
-<li>1년또는 3년 기간 동안 일정한 컴퓨팅 사용량을 약정하여 컴퓨팅 비용 절감 (최대 72%)</li>
-<li>약정 사용량까지는 할인된 Savings Plan 요금 청구. 초과 시 일반 온디맨드 요금 부과</li>
-<li>AWS Cost Explorer를 통해 EC2 사용량 분석 가능, Savings Plans를 위한 맞춤형 권장 사항 제공</li>
-</ul>
-</li>
-<li>예약 인스턴스
-<ul>
-<li>온디맨드 인스턴스를 사용할 때 적용되는 결제 할인 옵션</li>
-<li>표준 예약 및 컨버터블 예약 인스턴스는 1년 또는 3년 약정</li>
-<li>정기 예약 인스턴스는 1년 약정</li>
-<li>3년 약정 옵션을 통해 더 큰 비용 절감 실현 가능</li>
-<li>약정 기간이 끝나면 중단없이 사용가능하나, 종료 또는 인스턴스 속성(유형, 리전, 테넌시, 플랫폼)과 일ㅊ하는 새 예약 인스턴스 구입 전 까지는 온디맨드 요금 부과</li>
-</ul>
-</li>
-<li>스팟 인스턴스
-<ul>
-<li>시작 및 종료 시간이 자유롭거나 중단을 견딜 수 있는 워크로드에 적합</li>
-<li>미사용 EC2 컴퓨팅 용량을 사용하며 온디맨드 요금의 최대 90%까지 비용 절감 가능</li>
-<li>스팟 요청을 하고 EC2 용량을 사용할 수 없는 경우 용량을 사용할 수 있을 때 까지 요청 성공 하지 않음</li>
-<li>스팟 인스턴스 시작 후 용량을 더 이상 사용할 수 없거나 수요가 늘면 중단될 수 있음</li>
-</ul>
-</li>
-<li>전용 호스트
-<ul>
-<li>사용자 전용의 EC2 인스턴스 용량을 갖춘 물리적 서버</li>
-<li>가장 비용이 많이 듦</li>
-</ul>
-</li>
-</ul>
-<h3 id="ec2-확장auto-scaling">EC2 확장(Auto Scaling)</h3>
-<ul>
-<li>변화하는 애플리케이션 수요에 따라 EC2 인스턴스를 자동으로 추가하거나 제거 → 가용성을 효과적으로 유지</li>
-<li>동적 조정: 수요 변화에 대응</li>
-<li>예측 조정: 예측된 수요에 따라 적절한 수의 EC2 인스턴스를 자동으로 예약</li>
-<li>두 조정은 함께 사용하면 더 빠르게 조정할 수 있음</li>
-</ul>
-<p><img src="/p/aws-cloud-practitioner-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%BB%B4%ED%93%A8%ED%8C%85-%EC%A0%95%EB%A6%AC/auto-scaling-group.png"
-	width="1166"
-	height="1090"
-	srcset="/p/aws-cloud-practitioner-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%BB%B4%ED%93%A8%ED%8C%85-%EC%A0%95%EB%A6%AC/auto-scaling-group_hu84b315bc0745296b525a08abe6ab77f5_175689_480x0_resize_box_3.png 480w, /p/aws-cloud-practitioner-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%BB%B4%ED%93%A8%ED%8C%85-%EC%A0%95%EB%A6%AC/auto-scaling-group_hu84b315bc0745296b525a08abe6ab77f5_175689_1024x0_resize_box_3.png 1024w"
+<p><img src="/p/aws-cloud-practitioner-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9-%EC%A0%95%EB%A6%AC/Untitled.png"
+	width="873"
+	height="437"
+	srcset="/p/aws-cloud-practitioner-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9-%EC%A0%95%EB%A6%AC/Untitled_hu337136f0b1d54151d697a9c2ba8cd248_74051_480x0_resize_box_3.png 480w, /p/aws-cloud-practitioner-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9-%EC%A0%95%EB%A6%AC/Untitled_hu337136f0b1d54151d697a9c2ba8cd248_74051_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
-		alt="Auto Scaling 그룹"
+		alt="인터넷 게이트웨이"
 	
 	
 		class="gallery-image" 
-		data-flex-grow="106"
-		data-flex-basis="256px"
+		data-flex-grow="199"
+		data-flex-basis="479px"
 	
 ></p>
 <ul>
-<li>최소 용량: Auto Scaling 그룹을 생성한 직후 시작되는 EC2 인스턴스의 수</li>
-<li>희망 용량: 유지되었으면 하는 EC2 인스턴스의 수. 지정하지 않으면 최소 용량이 기본값</li>
-<li>최대 용량: Auto Scaling 그룹을 구성하되 EC2 인스턴스의 최대 수 제한</li>
+<li>인터넷 게이트웨이가 없으면 아무도 VPC내의 리소스에 접근 불가</li>
 </ul>
-<h2 id="elastic-load-balancing">Elastic Load Balancing</h2>
+<h2 id="가상-프라이빗-게이트웨이">가상 프라이빗 게이트웨이</h2>
 <ul>
-<li>들어오는 애플리케이션 트래픽을 Amazon EC2 인스턴스와 같은 여러 리소스에 자동으로 분산하는 서비스</li>
-<li>Auto Scaling 그룹으로 들어오는 모든 웹 트래픽의 단일 접점 역할.</li>
-<li>들어오는 트래픽 양에 맞춰 EC2 인스턴스를 추가하거나 제거하므로 요청이 로드 밸런서로 먼저 라우팅된 후 요청을 처리할 여러 리소스로 분산</li>
+<li>VPC내의 비공개 리소스에 액세스하려면 가상 프라이빗 게이트웨이를 사용</li>
 </ul>
-<h2 id="메시징-및-대기열">메시징 및 대기열</h2>
-<h3 id="simple-notification-servicesns">Simple Notification Service(SNS)</h3>
+<p><img src="/Untitled%201.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="가상 프라이빗 게이트웨이"
+	
+	
+></p>
 <ul>
-<li>게시/구독 서비스</li>
-<li>게시자는 SNS 주제를 사용하며 구독자에게 메시지 게시</li>
-<li>구독자는 웹 서버, 이메일 주소, Lambda 함수 등등의 옵션 가능</li>
-</ul>
-<h3 id="simple-queue-servicesqs">Simple Queue Service(SQS)</h3>
+<li>보호된 인터넷 트래픽이 VPC로 들어오도록 허용하는 구성 요소
 <ul>
-<li>메시지 손실이나 다른 서비스 사용 없이 소프트웨어 구성 요소 간에 메시지를 전송, 저장, 수신할 수 있음</li>
-<li>애플리케이션이 메시지를 대기열로 전송</li>
-<li>사용자 또는 서비스는 대기열에서 메시지를 검색, 처리 후 대기열에서 삭제</li>
-</ul>
-<h2 id="추가-컴퓨팅-서비스">추가 컴퓨팅 서비스</h2>
-<h3 id="서버리스-컴퓨팅">서버리스 컴퓨팅</h3>
-<ul>
-<li>서버를 프로비저닝하거나 관리할 필요가 없음</li>
-<li>처리량 및 메모리와 같은 소비 단위를 수정하여 애플리케이션의 용량 조정</li>
-<li>Lambda</li>
-</ul>
-<h3 id="컨테이너">컨테이너</h3>
-<ul>
-<li>애플리케이션의 코드와 종속성을 하나의 객체로 패키징하는 표준 방식 제공</li>
-<li>보안성, 안정성, 확장성이 매우 중요한 프로세스 및 워크플로에도 사용</li>
-<li>Elastic Container Service(ECS)
-<ul>
-<li>컨테이너식 애플리케이션을 실행하고 확장할 수 있는 고성능 컨테이너 관리 시스템</li>
+<li>다른 트래픽과 동일한 네트워크를 사용하기 때문에 체증 발생 가능</li>
 </ul>
 </li>
-<li>Elastic Kubernetes Service(EKS)
+<li>VPC와 프라이빗 네트워크간에 가상 프라이빗 네트워크(VPN) 연결 설정 가능</li>
+<li>승인된 네트워크에서 나오는 트래픽만 VPC로 들어가도록 허용</li>
+</ul>
+<h2 id="aws-direct-connect">AWS Direct Connect</h2>
 <ul>
-<li>AWS에서 쿠버네티스를 실행하는 데 사용할 수 있는 완전 관리형 서비스</li>
+<li>데이터 센터와 VPC간에 비공개 전용 연결을 설정하는 서비스</li>
+<li>다른 트래픽과 네트워크를 공유하지 않고 바로(Direct) 연결</li>
+</ul>
+<p><img src="/Untitled%202.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Direct Connect"
+	
+	
+></p>
+<ul>
+<li>네트워크 비용을 절감하고 대역폭을 놀리는데 도움이 됨</li>
+</ul>
+<h1 id="서브넷-및-네트워크-액세스-제어-목록">서브넷 및 네트워크 액세스 제어 목록</h1>
+<h2 id="서브넷">서브넷</h2>
+<p>보안 또는 운영 요구 사항에 따라 리소스를 그룹화할 수 있는 VPC 내의 한 섹션</p>
+<ul>
+<li>서브넷은 퍼블릭 또는 프라이빗일 수 있음</li>
+</ul>
+<p><img src="/Untitled%203.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="서브넷"
+	
+	
+></p>
+<ul>
+<li>퍼블릭 서브넷: 누구나 액세스할 수 있어야 하는 리소스가 포함</li>
+<li>프라이빗 서브넷: 데이터베이스와 같이 프라이빗 네트워크를 통해서만 액세스할 수 있는 리소스가 포함</li>
+<li>VPC내에서 서브넷은 서로 통신할 수 있음.
+<ul>
+<li>예: 퍼블릭 서브넷에 있는 EC2 인스턴스가 프라이빗 서브넷에 있는 데이터베이스와 통신 가능</li>
 </ul>
 </li>
-<li>Fargate
+</ul>
+<h2 id="vpc의-네트워크-트래픽">VPC의 네트워크 트래픽</h2>
 <ul>
-<li>컨테이너용 서버리스 컴퓨팅 엔진</li>
-<li>ECS와 EKS에서 작동</li>
-<li>서버를 프로비저닝하거나 관리할 필요 없음</li>
+<li>AWS 클라우드에서 호스팅되는 애플리케이션에 데이터를 요청하면 이 요청은 패킷으로 전송됨
+<ul>
+<li>패킷: 인터넷이나 네트워크를 통해 전송되는 데이터의 단위</li>
+</ul>
+</li>
+<li>패킷은 인터넷 게이트웨이를 통해 VPC로 들어간다.
+<ul>
+<li>패킷이 서브넷으로 들어가거나 나오려면 먼저 권한을 확인해야 함</li>
+<li>이를 확인하는 VPC 구성 요소는 네트워크 ACL(액세스 제어 목록)임</li>
 </ul>
 </li>
 </ul>
+<h2 id="네트워크-acl액세스-제어-목록">네트워크 ACL(액세스 제어 목록)</h2>
+<p>서브넷 수준에서 인바운드 및 아웃바운드 트래픽을 제어하는 가상 방화벽</p>
+<ul>
+<li>각 AWS 계정에는 기본 네트워크 ACL이 포함
+<ul>
+<li>VPC를 구성할 때 계정의 기본 기본 네트워크 ACL을 사용하거나 사용자 지정 네트워크 ACL을 생성 가능</li>
+</ul>
+</li>
+<li>계정의 기본 기본 네트워크 ACL: 기본적으로 <strong>모든</strong> 인바운드 및 아웃바운드 트래픽 <strong>허용</strong>
+<ul>
+<li>사용자 자체 규칙 추가 수정 가능</li>
+</ul>
+</li>
+<li>사용자 지정 네트워크 ACL: 사용자가 허용할 트래픽을 지정하는 규칙을 추가할 때까지 <strong>모든</strong> 인바운드 및 아웃바운드 트래픽 <strong>거부</strong></li>
+<li>모든 네트워크 ACL에는 명시적 거부 규칙 존재
+<ul>
+<li>패킷이 목록의 다른 모든 규칙과 일치하지 않으면 해당 패킷 거부</li>
+</ul>
+</li>
+</ul>
+<h3 id="상태-비저장-패킷-필터링">상태 비저장 패킷 필터링</h3>
+<ul>
+<li>네트워크 ACL은 상태 비저장 패킷 필터링을 수행
+<ul>
+<li>아무것도 기억하지 않음. 각 방향(인바운드, 아웃바운드)으로 서브넷 경계를 통과하는 패킷만 확인</li>
+</ul>
+</li>
+<li>해당 요청에 대한 패킷이 서브넷으로 반환될 때 네트워크 ACL은 이전 요청 기억하지 못함
+<ul>
+<li>네트워크 ACL은 규칙 목록에 따라 패킷 응답 확인 → 허용 또는 거부 결정</li>
+</ul>
+</li>
+<li>패킷이 서브넷에 들어간 후에는 서브넷 내 리소스(예:EC2 인스턴스)에 대한 권한이 평가되어야 함</li>
+</ul>
+<h2 id="보안-그룹">보안 그룹</h2>
+<p>Amazon EC2 인스턴스에 대한 인바운드 및 아웃바운드 트래픽을 제어하는 가상 방화벽</p>
+<ul>
+<li>기본적으로 보안 그룹은 모든 인바운드 트래픽 거부, 아웃바운드 트래픽 허용</li>
+</ul>
+<h3 id="상태-저장-패킷-필터링">상태 저장 패킷 필터링</h3>
+<ul>
+<li>보안 그룹은 상태 저장 패킷 필터링을 수행
+<ul>
+<li>들어오는 패킷에 대한 이전 결정을 기억</li>
+</ul>
+</li>
+<li>해당 요청에 대한 패킷 응답이 인스턴스로 반환될 때 보안 그룹이 이전 요청을 기억
+<ul>
+<li>보안 그룹은 인바운드 보안 그룹 규칙에 관계 없이 응답이 진행하도록 허용</li>
+</ul>
+</li>
+</ul>
+<p><img src="/Untitled%204.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="VPC 구성도"
+	
+	
+></p>
+<h1 id="글로벌-네트워킹">글로벌 네트워킹</h1>
+<h2 id="route-53">Route 53</h2>
+<p>DNS 웹 서비스</p>
+<ul>
+<li>개발자와 비즈니스가 최종 사용자를 AWS에서 호스팅되는 인터넷 어플리케이션으로 라우팅할 수 있는 안정적인 방법 제공</li>
+<li>사용자 요청을 AWS에서 실행되는 인프라(예: EC2 or ELB)에 연결</li>
+<li>사용자를 AWS 외부 인프라로 라우팅 가능</li>
+<li>도메인 이름의 DNS 레코드 관리하는 기능도 존재
+<ul>
+<li>새 도메인 이름을 직접 등록 가능</li>
+<li>다른 도메인 등록 대행자가 관리하는 기존 도메인 이름의 DNS 레코드 전송 가능</li>
+</ul>
+</li>
+</ul>
+<h3 id="route-53-및-cloudfront가-콘텐츠를-전송하는-방식">Route 53 및 CloudFront가 콘텐츠를 전송하는 방식</h3>
+<p><img src="/Untitled%205.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Route 53과 CloudFront가 콘텐츠를 전송하는 방식 예시"
+	
+	
+></p>
+<ol>
+<li>고객이 웹 사이트로 이동하여 애플리케이션에서 데이터 요청</li>
+<li>Route53은 DNS 확인을 사용해 IP를 식별, 이 정보는 고객에게 다시 전송</li>
+<li>고객의 요청은 CloudFront를 통해 가장 가까운 엣지 로케이션으로 전송</li>
+<li>CloudFront는 수신 패킷을 EC2 인스턴스로 전송하는 Application Load Balancer(ALB)에 연결</li>
+</ol>
 
 </section>
 
@@ -591,12 +581,12 @@ if (!doNotTrack) {
             
                 
 <article class="">
-    <a href="/p/aws-cloud-practitioner-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9-%EC%A0%95%EB%A6%AC/">
+    <a href="/p/aws-cloud-practitioner-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%BB%B4%ED%93%A8%ED%8C%85-%EC%A0%95%EB%A6%AC/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">[AWS Cloud Practitioner] 네트워킹 정리</h2>
+            <h2 class="article-title">[AWS Cloud Practitioner] 클라우드 컴퓨팅 정리</h2>
         </div>
     </a>
 </article>

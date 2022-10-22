@@ -108,6 +108,216 @@
 </description>
         </item>
         <item>
+        <title>[AWS Cloud Practitioner] 네트워킹 정리</title>
+        <link>https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9-%EC%A0%95%EB%A6%AC/</link>
+        <pubDate>Sat, 22 Oct 2022 16:05:39 +0900</pubDate>
+        
+        <guid>https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9-%EC%A0%95%EB%A6%AC/</guid>
+        <description>&lt;h1 id=&#34;aws와의-연결&#34;&gt;AWS와의 연결&lt;/h1&gt;
+&lt;h2 id=&#34;virtual-private-cloudvpc&#34;&gt;Virtual Private Cloud(VPC)&lt;/h2&gt;
+&lt;p&gt;AWS 리소스에 경계를 설정하는 데 사용할 수 있는 네트워킹 서비스&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;VPC를 사용해 AWS 클라우드의 격리된 섹션을 프로비저닝할 수 있음&lt;/li&gt;
+&lt;li&gt;한 VPC 내에서 여러 서브넷으로 리소스를 구성할 수 있음&lt;/li&gt;
+&lt;li&gt;서브넷: 리소스를 포함할 수 있는 VPC 섹션&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;인터넷-게이트웨이&#34;&gt;인터넷 게이트웨이&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;인터넷의 퍼블릭 트래픽이 VPC에 액세스하도록 허용하려면 인터넷 게이트웨이를 VPC에 연결해야 함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9-%EC%A0%95%EB%A6%AC/Untitled.png&#34;
+	width=&#34;873&#34;
+	height=&#34;437&#34;
+	srcset=&#34;https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9-%EC%A0%95%EB%A6%AC/Untitled_hu337136f0b1d54151d697a9c2ba8cd248_74051_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9-%EC%A0%95%EB%A6%AC/Untitled_hu337136f0b1d54151d697a9c2ba8cd248_74051_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;인터넷 게이트웨이&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;199&#34;
+		data-flex-basis=&#34;479px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;인터넷 게이트웨이가 없으면 아무도 VPC내의 리소스에 접근 불가&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;가상-프라이빗-게이트웨이&#34;&gt;가상 프라이빗 게이트웨이&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;VPC내의 비공개 리소스에 액세스하려면 가상 프라이빗 게이트웨이를 사용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/Untitled%201.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;가상 프라이빗 게이트웨이&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;보호된 인터넷 트래픽이 VPC로 들어오도록 허용하는 구성 요소
+&lt;ul&gt;
+&lt;li&gt;다른 트래픽과 동일한 네트워크를 사용하기 때문에 체증 발생 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;VPC와 프라이빗 네트워크간에 가상 프라이빗 네트워크(VPN) 연결 설정 가능&lt;/li&gt;
+&lt;li&gt;승인된 네트워크에서 나오는 트래픽만 VPC로 들어가도록 허용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;aws-direct-connect&#34;&gt;AWS Direct Connect&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;데이터 센터와 VPC간에 비공개 전용 연결을 설정하는 서비스&lt;/li&gt;
+&lt;li&gt;다른 트래픽과 네트워크를 공유하지 않고 바로(Direct) 연결&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/Untitled%202.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Direct Connect&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;네트워크 비용을 절감하고 대역폭을 놀리는데 도움이 됨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;서브넷-및-네트워크-액세스-제어-목록&#34;&gt;서브넷 및 네트워크 액세스 제어 목록&lt;/h1&gt;
+&lt;h2 id=&#34;서브넷&#34;&gt;서브넷&lt;/h2&gt;
+&lt;p&gt;보안 또는 운영 요구 사항에 따라 리소스를 그룹화할 수 있는 VPC 내의 한 섹션&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;서브넷은 퍼블릭 또는 프라이빗일 수 있음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/Untitled%203.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;서브넷&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;퍼블릭 서브넷: 누구나 액세스할 수 있어야 하는 리소스가 포함&lt;/li&gt;
+&lt;li&gt;프라이빗 서브넷: 데이터베이스와 같이 프라이빗 네트워크를 통해서만 액세스할 수 있는 리소스가 포함&lt;/li&gt;
+&lt;li&gt;VPC내에서 서브넷은 서로 통신할 수 있음.
+&lt;ul&gt;
+&lt;li&gt;예: 퍼블릭 서브넷에 있는 EC2 인스턴스가 프라이빗 서브넷에 있는 데이터베이스와 통신 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;vpc의-네트워크-트래픽&#34;&gt;VPC의 네트워크 트래픽&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;AWS 클라우드에서 호스팅되는 애플리케이션에 데이터를 요청하면 이 요청은 패킷으로 전송됨
+&lt;ul&gt;
+&lt;li&gt;패킷: 인터넷이나 네트워크를 통해 전송되는 데이터의 단위&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;패킷은 인터넷 게이트웨이를 통해 VPC로 들어간다.
+&lt;ul&gt;
+&lt;li&gt;패킷이 서브넷으로 들어가거나 나오려면 먼저 권한을 확인해야 함&lt;/li&gt;
+&lt;li&gt;이를 확인하는 VPC 구성 요소는 네트워크 ACL(액세스 제어 목록)임&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;네트워크-acl액세스-제어-목록&#34;&gt;네트워크 ACL(액세스 제어 목록)&lt;/h2&gt;
+&lt;p&gt;서브넷 수준에서 인바운드 및 아웃바운드 트래픽을 제어하는 가상 방화벽&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;각 AWS 계정에는 기본 네트워크 ACL이 포함
+&lt;ul&gt;
+&lt;li&gt;VPC를 구성할 때 계정의 기본 기본 네트워크 ACL을 사용하거나 사용자 지정 네트워크 ACL을 생성 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;계정의 기본 기본 네트워크 ACL: 기본적으로 &lt;strong&gt;모든&lt;/strong&gt; 인바운드 및 아웃바운드 트래픽 &lt;strong&gt;허용&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;사용자 자체 규칙 추가 수정 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;사용자 지정 네트워크 ACL: 사용자가 허용할 트래픽을 지정하는 규칙을 추가할 때까지 &lt;strong&gt;모든&lt;/strong&gt; 인바운드 및 아웃바운드 트래픽 &lt;strong&gt;거부&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;모든 네트워크 ACL에는 명시적 거부 규칙 존재
+&lt;ul&gt;
+&lt;li&gt;패킷이 목록의 다른 모든 규칙과 일치하지 않으면 해당 패킷 거부&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;상태-비저장-패킷-필터링&#34;&gt;상태 비저장 패킷 필터링&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;네트워크 ACL은 상태 비저장 패킷 필터링을 수행
+&lt;ul&gt;
+&lt;li&gt;아무것도 기억하지 않음. 각 방향(인바운드, 아웃바운드)으로 서브넷 경계를 통과하는 패킷만 확인&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;해당 요청에 대한 패킷이 서브넷으로 반환될 때 네트워크 ACL은 이전 요청 기억하지 못함
+&lt;ul&gt;
+&lt;li&gt;네트워크 ACL은 규칙 목록에 따라 패킷 응답 확인 → 허용 또는 거부 결정&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;패킷이 서브넷에 들어간 후에는 서브넷 내 리소스(예:EC2 인스턴스)에 대한 권한이 평가되어야 함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;보안-그룹&#34;&gt;보안 그룹&lt;/h2&gt;
+&lt;p&gt;Amazon EC2 인스턴스에 대한 인바운드 및 아웃바운드 트래픽을 제어하는 가상 방화벽&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;기본적으로 보안 그룹은 모든 인바운드 트래픽 거부, 아웃바운드 트래픽 허용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;상태-저장-패킷-필터링&#34;&gt;상태 저장 패킷 필터링&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;보안 그룹은 상태 저장 패킷 필터링을 수행
+&lt;ul&gt;
+&lt;li&gt;들어오는 패킷에 대한 이전 결정을 기억&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;해당 요청에 대한 패킷 응답이 인스턴스로 반환될 때 보안 그룹이 이전 요청을 기억
+&lt;ul&gt;
+&lt;li&gt;보안 그룹은 인바운드 보안 그룹 규칙에 관계 없이 응답이 진행하도록 허용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/Untitled%204.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;VPC 구성도&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;글로벌-네트워킹&#34;&gt;글로벌 네트워킹&lt;/h1&gt;
+&lt;h2 id=&#34;route-53&#34;&gt;Route 53&lt;/h2&gt;
+&lt;p&gt;DNS 웹 서비스&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;개발자와 비즈니스가 최종 사용자를 AWS에서 호스팅되는 인터넷 어플리케이션으로 라우팅할 수 있는 안정적인 방법 제공&lt;/li&gt;
+&lt;li&gt;사용자 요청을 AWS에서 실행되는 인프라(예: EC2 or ELB)에 연결&lt;/li&gt;
+&lt;li&gt;사용자를 AWS 외부 인프라로 라우팅 가능&lt;/li&gt;
+&lt;li&gt;도메인 이름의 DNS 레코드 관리하는 기능도 존재
+&lt;ul&gt;
+&lt;li&gt;새 도메인 이름을 직접 등록 가능&lt;/li&gt;
+&lt;li&gt;다른 도메인 등록 대행자가 관리하는 기존 도메인 이름의 DNS 레코드 전송 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;route-53-및-cloudfront가-콘텐츠를-전송하는-방식&#34;&gt;Route 53 및 CloudFront가 콘텐츠를 전송하는 방식&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/Untitled%205.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Route 53과 CloudFront가 콘텐츠를 전송하는 방식 예시&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;고객이 웹 사이트로 이동하여 애플리케이션에서 데이터 요청&lt;/li&gt;
+&lt;li&gt;Route53은 DNS 확인을 사용해 IP를 식별, 이 정보는 고객에게 다시 전송&lt;/li&gt;
+&lt;li&gt;고객의 요청은 CloudFront를 통해 가장 가까운 엣지 로케이션으로 전송&lt;/li&gt;
+&lt;li&gt;CloudFront는 수신 패킷을 EC2 인스턴스로 전송하는 Application Load Balancer(ALB)에 연결&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
         <title>[AWS Cloud Practitioner] 클라우드 컴퓨팅 정리</title>
         <link>https://Haebuk.github.io/p/aws-cloud-practitioner-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%BB%B4%ED%93%A8%ED%8C%85-%EC%A0%95%EB%A6%AC/</link>
         <pubDate>Sat, 22 Oct 2022 16:05:39 +0900</pubDate>
