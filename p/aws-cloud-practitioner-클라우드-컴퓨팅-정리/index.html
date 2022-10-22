@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="ko-kr" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='AWS Cloud Practitioner Essential 클라우드 컴퓨팅 내용 정리'><title>[AWS Cloud Practitioner] 클라우드 컴퓨팅 정리</title>
+
+<link rel='canonical' href='https://Haebuk.github.io/p/aws-cloud-practitioner-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%BB%B4%ED%93%A8%ED%8C%85-%EC%A0%95%EB%A6%AC/'>
+
+<link rel="stylesheet" href="/scss/style.min.7b85a154539eab990d669fa1899e2e8294729f772bda4a7978ceb32a14b2bdb7.css"><meta property='og:title' content='[AWS Cloud Practitioner] 클라우드 컴퓨팅 정리'>
+<meta property='og:description' content='AWS Cloud Practitioner Essential 클라우드 컴퓨팅 내용 정리'>
+<meta property='og:url' content='https://Haebuk.github.io/p/aws-cloud-practitioner-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%BB%B4%ED%93%A8%ED%8C%85-%EC%A0%95%EB%A6%AC/'>
+<meta property='og:site_name' content='지식 공유, 협업 ✈️ 성장'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Cloud Practitioner' /><meta property='article:tag' content='Skill Builder' /><meta property='article:published_time' content='2022-10-22T16:05:39&#43;09:00'/><meta property='article:modified_time' content='2022-10-22T16:05:39&#43;09:00'/>
+<meta name="twitter:title" content="[AWS Cloud Practitioner] 클라우드 컴퓨팅 정리">
+<meta name="twitter:description" content="AWS Cloud Practitioner Essential 클라우드 컴퓨팅 내용 정리">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7CM424CQYT"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-7CM424CQYT', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="메뉴 여닫기">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/me_huf51a70a7adb149ae5d10a476e9d3ddf5_156361_300x0_resize_q75_box.jpg" width="300"
+                            height="400" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🧑🏻‍💻</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">지식 공유, 협업 ✈️ 성장</a></h1>
+            <h2 class="site-description">머신러닝 엔지니어 여정기. 카데의 블로그</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/Haebuk'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://instagram.com/kade.data'
+                        target="_blank"
+                        title="Instagram"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <rect x="4" y="4" width="16" height="16" rx="4" />
+  <circle cx="12" cy="12" r="3" />
+  <line x1="16.5" y1="7.5" x2="16.5" y2="7.501" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.linkedin.com/in/jaesungryu/'
+                        target="_blank"
+                        title="LinkedIn"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-linkedin" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <rect x="4" y="4" width="16" height="16" rx="2" />
+  <line x1="8" y1="11" x2="8" y2="16" />
+  <line x1="8" y1="8" x2="8" y2="8.01" />
+  <line x1="12" y1="16" x2="12" y2="11" />
+  <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>다크 모드</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/aws/" >
+                AWS
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/aws-cloud-practitioner-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%BB%B4%ED%93%A8%ED%8C%85-%EC%A0%95%EB%A6%AC/">[AWS Cloud Practitioner] 클라우드 컴퓨팅 정리</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            AWS Cloud Practitioner Essential 클라우드 컴퓨팅 내용 정리
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Oct 22, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 분 정도
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="클라우드-컴퓨팅">클라우드 컴퓨팅</h1>
+<p>💡 인터넷을 통해 IT 리소스와 애플리케이션을 온디맨드로 제공하는 것</p>
+<h2 id="클라우드-컴퓨팅-배포-모델">클라우드 컴퓨팅 배포 모델</h2>
+<ul>
+<li>클라우드 기반 배포
+<ul>
+<li>모든 애플리케이션을 클라우드에서 실행</li>
+<li>기존 애플리케이션을 클라우드로 마이그레이션</li>
+<li>클라우드에서 새 애플리케이션 설계 및 빌드</li>
+</ul>
+</li>
+<li>온프레미스 배포(프라이빗 클라우드 배포)
+<ul>
+<li>가상화 및 리소스 관리 도구를 사용하여 리소스 배포</li>
+<li>애플리케이션 관리 및 가상화 기술을 사용하여 <strong>리소스 활용도 높임</strong></li>
+</ul>
+</li>
+<li>하이브리드 배포
+<ul>
+<li>클라우드 기반 리소스를 온프레미스 인프라에 연결</li>
+<li>클라우드 기반 리소스를 레거시 IT 애플리케이션과 통합</li>
+</ul>
+</li>
+</ul>
+<h2 id="이점">이점</h2>
+<ul>
+<li>선행 비용을 가변 비용으로 대체</li>
+<li>데이터 센터 운영 및 유지 관리에 비용 투자 불필요</li>
+<li>용량 추정 불필요</li>
+<li>규모의 경제로 얻게 되는 이점</li>
+<li>속도 및 민첩성 향상</li>
+<li>몇 분 만에 전 세계 배포</li>
+</ul>
+<h2 id="elastic-compute-cloudec2">Elastic Compute Cloud(EC2)</h2>
+<ul>
+<li>안전하고 크기 조정이 가능한 컴퓨팅 용량을 클라우드에서 제공</li>
+</ul>
+<h3 id="ec2-작동-방식">EC2 작동 방식</h3>
+<ul>
+<li>시작
+<ul>
+<li>인스턴스 시작</li>
+<li>기본 구성(운영 체제, 애플리케이션 서버 또는 애플리케이션) 인스턴스가 포함되어 있는 템플릿을 선택하여 시작</li>
+<li>인스턴스 유형 선택</li>
+<li>보안 설정 지정</li>
+</ul>
+</li>
+<li>연결
+<ul>
+<li>여러가지 방법으로 연결 가능</li>
+</ul>
+</li>
+<li>사용
+<ul>
+<li>명령을 실행하여 소프트웨어 설치, 스토리지 추가, 파일 복사 및 정리 등의 작업 수행</li>
+</ul>
+</li>
+</ul>
+<h3 id="ec2-인스턴스-유형">EC2 인스턴스 유형</h3>
+<ul>
+<li>유형 선택시 워크로드 및 애플리케이션의 구체적 요구 사항을 고려해야 함</li>
+<li>범용 인스턴스
+<ul>
+<li>컴퓨팅, 메모리, 네트워킹 균형 제공</li>
+<li>애플리케이션, 게임, 엔터프라이즈 애플리케이션용 백엔드 서버, 중소 규모 데이터베이스</li>
+</ul>
+</li>
+<li>컴퓨팅 최적화 인스턴스
+<ul>
+<li>고성능 프로세서를 활용하는 컴퓨팅 집약적인 애플리케이션에 적합</li>
+<li>고성능 웹서버, 컴퓨팅 집약적 애플리케이션 서버, 게임 전용 서버에 적합</li>
+<li>단일 그룹에서 많은 트랜잭션을 처리해야 하는 일괄 처리 워크로드에 사용</li>
+</ul>
+</li>
+<li>메모리 최적화 인스턴스
+<ul>
+<li>메모리에서 대규모 데이터 셋을 처리하는 워크로드를 위한 빠른 성능을 제공</li>
+<li>많은 데이터를 미리 로드해야 하는 워크로드에 적합</li>
+<li>고성능 데이터베이스</li>
+</ul>
+</li>
+<li>엑셀러레이티드 컴퓨팅 인스턴스
+<ul>
+<li>하드웨어 엑셀러레이터 또는 코프로세서를 사용하여 일부 기능을 CPU보다 더 효율적으로 수행</li>
+<li>부동 소수점 수 계산, 그래픽 처리, 데이터 패턴 일치 등</li>
+<li>데이터 처리를 가속화 할 수 있는 구성 요소</li>
+<li>그래픽 애플리케이션, 게임 스트리밍, 애플리케이션 스트리밍에 적합</li>
+</ul>
+</li>
+<li>스토리지 최적화 인스턴스
+<ul>
+<li>로컬 스토리지의 대규모 데이터 셋에 대한 순차적 읽기 및 쓰기 액세스가 많이 필요한 워크로드에 적합</li>
+<li>분산 파일 시스템, 데이터 웨어하우징 애플리케이션, OLTP 시스템</li>
+<li>짧은 임의 IOPS(초당 입출력 작업 수) 제공</li>
+</ul>
+</li>
+</ul>
+<h3 id="ec2-요금">EC2 요금</h3>
+<ul>
+<li>온디맨드
+<ul>
+<li>중단할 수 없는 불규칙한 단기 워크로드가 있는 애플리케이션에 적합</li>
+<li>선결제 비용, 최소 약정은 적용되지 않음</li>
+<li>개발 및 테스트와 예측할 수 없는 사용 패턴이 있는 애플리케이션 실행 사례에 적합</li>
+<li>1년 이상 지속되는 워크로드에는 권장되지 않음</li>
+</ul>
+</li>
+<li>Savings Plans
+<ul>
+<li>1년또는 3년 기간 동안 일정한 컴퓨팅 사용량을 약정하여 컴퓨팅 비용 절감 (최대 72%)</li>
+<li>약정 사용량까지는 할인된 Savings Plan 요금 청구. 초과 시 일반 온디맨드 요금 부과</li>
+<li>AWS Cost Explorer를 통해 EC2 사용량 분석 가능, Savings Plans를 위한 맞춤형 권장 사항 제공</li>
+</ul>
+</li>
+<li>예약 인스턴스
+<ul>
+<li>온디맨드 인스턴스를 사용할 때 적용되는 결제 할인 옵션</li>
+<li>표준 예약 및 컨버터블 예약 인스턴스는 1년 또는 3년 약정</li>
+<li>정기 예약 인스턴스는 1년 약정</li>
+<li>3년 약정 옵션을 통해 더 큰 비용 절감 실현 가능</li>
+<li>약정 기간이 끝나면 중단없이 사용가능하나, 종료 또는 인스턴스 속성(유형, 리전, 테넌시, 플랫폼)과 일ㅊ하는 새 예약 인스턴스 구입 전 까지는 온디맨드 요금 부과</li>
+</ul>
+</li>
+<li>스팟 인스턴스
+<ul>
+<li>시작 및 종료 시간이 자유롭거나 중단을 견딜 수 있는 워크로드에 적합</li>
+<li>미사용 EC2 컴퓨팅 용량을 사용하며 온디맨드 요금의 최대 90%까지 비용 절감 가능</li>
+<li>스팟 요청을 하고 EC2 용량을 사용할 수 없는 경우 용량을 사용할 수 있을 때 까지 요청 성공 하지 않음</li>
+<li>스팟 인스턴스 시작 후 용량을 더 이상 사용할 수 없거나 수요가 늘면 중단될 수 있음</li>
+</ul>
+</li>
+<li>전용 호스트
+<ul>
+<li>사용자 전용의 EC2 인스턴스 용량을 갖춘 물리적 서버</li>
+<li>가장 비용이 많이 듦</li>
+</ul>
+</li>
+</ul>
+<h3 id="ec2-확장auto-scaling">EC2 확장(Auto Scaling)</h3>
+<ul>
+<li>변화하는 애플리케이션 수요에 따라 EC2 인스턴스를 자동으로 추가하거나 제거 → 가용성을 효과적으로 유지</li>
+<li>동적 조정: 수요 변화에 대응</li>
+<li>예측 조정: 예측된 수요에 따라 적절한 수의 EC2 인스턴스를 자동으로 예약</li>
+<li>두 조정은 함께 사용하면 더 빠르게 조정할 수 있음</li>
+</ul>
+<p><img src="/p/aws-cloud-practitioner-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%BB%B4%ED%93%A8%ED%8C%85-%EC%A0%95%EB%A6%AC/auto-scaling-group.png"
+	width="1166"
+	height="1090"
+	srcset="/p/aws-cloud-practitioner-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%BB%B4%ED%93%A8%ED%8C%85-%EC%A0%95%EB%A6%AC/auto-scaling-group_hu84b315bc0745296b525a08abe6ab77f5_175689_480x0_resize_box_3.png 480w, /p/aws-cloud-practitioner-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%BB%B4%ED%93%A8%ED%8C%85-%EC%A0%95%EB%A6%AC/auto-scaling-group_hu84b315bc0745296b525a08abe6ab77f5_175689_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Auto Scaling 그룹"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="106"
+		data-flex-basis="256px"
+	
+></p>
+<ul>
+<li>최소 용량: Auto Scaling 그룹을 생성한 직후 시작되는 EC2 인스턴스의 수</li>
+<li>희망 용량: 유지되었으면 하는 EC2 인스턴스의 수. 지정하지 않으면 최소 용량이 기본값</li>
+<li>최대 용량: Auto Scaling 그룹을 구성하되 EC2 인스턴스의 최대 수 제한</li>
+</ul>
+<h2 id="elastic-load-balancing">Elastic Load Balancing</h2>
+<ul>
+<li>들어오는 애플리케이션 트래픽을 Amazon EC2 인스턴스와 같은 여러 리소스에 자동으로 분산하는 서비스</li>
+<li>Auto Scaling 그룹으로 들어오는 모든 웹 트래픽의 단일 접점 역할.</li>
+<li>들어오는 트래픽 양에 맞춰 EC2 인스턴스를 추가하거나 제거하므로 요청이 로드 밸런서로 먼저 라우팅된 후 요청을 처리할 여러 리소스로 분산</li>
+</ul>
+<h2 id="메시징-및-대기열">메시징 및 대기열</h2>
+<h3 id="simple-notification-servicesns">Simple Notification Service(SNS)</h3>
+<ul>
+<li>게시/구독 서비스</li>
+<li>게시자는 SNS 주제를 사용하며 구독자에게 메시지 게시</li>
+<li>구독자는 웹 서버, 이메일 주소, Lambda 함수 등등의 옵션 가능</li>
+</ul>
+<h3 id="simple-queue-servicesqs">Simple Queue Service(SQS)</h3>
+<ul>
+<li>메시지 손실이나 다른 서비스 사용 없이 소프트웨어 구성 요소 간에 메시지를 전송, 저장, 수신할 수 있음</li>
+<li>애플리케이션이 메시지를 대기열로 전송</li>
+<li>사용자 또는 서비스는 대기열에서 메시지를 검색, 처리 후 대기열에서 삭제</li>
+</ul>
+<h2 id="추가-컴퓨팅-서비스">추가 컴퓨팅 서비스</h2>
+<h3 id="서버리스-컴퓨팅">서버리스 컴퓨팅</h3>
+<ul>
+<li>서버를 프로비저닝하거나 관리할 필요가 없음</li>
+<li>처리량 및 메모리와 같은 소비 단위를 수정하여 애플리케이션의 용량 조정</li>
+<li>Lambda</li>
+</ul>
+<h3 id="컨테이너">컨테이너</h3>
+<ul>
+<li>애플리케이션의 코드와 종속성을 하나의 객체로 패키징하는 표준 방식 제공</li>
+<li>보안성, 안정성, 확장성이 매우 중요한 프로세스 및 워크플로에도 사용</li>
+<li>Elastic Container Service(ECS)
+<ul>
+<li>컨테이너식 애플리케이션을 실행하고 확장할 수 있는 고성능 컨테이너 관리 시스템</li>
+</ul>
+</li>
+<li>Elastic Kubernetes Service(EKS)
+<ul>
+<li>AWS에서 쿠버네티스를 실행하는 데 사용할 수 있는 완전 관리형 서비스</li>
+</ul>
+</li>
+<li>Fargate
+<ul>
+<li>컨테이너용 서버리스 컴퓨팅 엔진</li>
+<li>ECS와 EKS에서 작동</li>
+<li>서버를 프로비저닝하거나 관리할 필요 없음</li>
+</ul>
+</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/cloud-practitioner/">Cloud Practitioner</a>
+        
+            <a href="/tags/skill-builder/">Skill Builder</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">관련 글</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/aws-cloud-practitioner-%EA%B8%80%EB%A1%9C%EB%B2%8C-%EC%9D%B8%ED%94%84%EB%9D%BC-%EB%B0%8F-%EC%95%88%EC%A0%95%EC%84%B1-%EC%A0%95%EB%A6%AC/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[AWS Cloud Practitioner] 글로벌 인프라 및 안정성 정리</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/udacity-aws-machine-learning-engineer-foundations-2022-%ED%9B%84%EA%B8%B0/">
+        
+        
+            <div class="article-image">
+                <img src="/p/udacity-aws-machine-learning-engineer-foundations-2022-%ED%9B%84%EA%B8%B0/udacity-logo-vector.aff1c3bd7f33c8dbb9f1d34e224f36d8_hu025f0b4574d82671ba11d73228d867b5_4100_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post [Udacity] AWS Machine Learning Engineer Foundations 2022 후기"
+                        
+                        data-hash="md5-r/HDvX8zyNu58dNOIk822A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[Udacity] AWS Machine Learning Engineer Foundations 2022 후기</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/aws-data-analysis-fundamentals-%ED%9B%84%EA%B8%B0/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">AWS Data Analysis Fundamentals 후기</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="haebuk/blog-comments"
+        issue-term="title"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 지식 공유, 협업 ✈️ 성장
+    </section>
+    
+    <section class="powerby">
+        <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>로 만듦 <br />
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>의 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.13.0">Stack</a></b> 테마 사용 중
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
