@@ -6,7 +6,250 @@
         <description>Recent content in Cloud Practitioner on 지식 공유, 협업 ✈️ 성장</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ko-kr</language>
-        <lastBuildDate>Sat, 22 Oct 2022 21:12:39 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/tags/cloud-practitioner/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 22 Oct 2022 22:53:39 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/tags/cloud-practitioner/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[AWS Cloud Practitioner] 스토리지 및 데이터베이스 정리</title>
+        <link>https://Haebuk.github.io/p/aws-cloud-practitioner-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EB%B0%8F-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EC%A0%95%EB%A6%AC/</link>
+        <pubDate>Sat, 22 Oct 2022 22:53:39 +0900</pubDate>
+        
+        <guid>https://Haebuk.github.io/p/aws-cloud-practitioner-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EB%B0%8F-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EC%A0%95%EB%A6%AC/</guid>
+        <description>&lt;h1 id=&#34;인스턴스-스토어-및-elastic-block-storeebs&#34;&gt;인스턴스 스토어 및 Elastic Block Store(EBS)&lt;/h1&gt;
+&lt;h2 id=&#34;인스턴스-스토어&#34;&gt;인스턴스 스토어&lt;/h2&gt;
+&lt;p&gt;EC2 인스턴스에 임시 블록 수준 스토리지 제공&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;물리적으로 EC2 인스턴스의 호스트 컴퓨터와 연결&lt;/li&gt;
+&lt;li&gt;인스턴스와 수명이 동일&lt;/li&gt;
+&lt;li&gt;인스턴스가 종료되면 인스턴스 스토어의 데이터 손실
+&lt;ul&gt;
+&lt;li&gt;장기적으로 필요하지 않은 임시 데이터가 포함된 사용 사례에 적합&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;elastic-block-storeebs&#34;&gt;Elastic Block Store(EBS)&lt;/h2&gt;
+&lt;p&gt;EC2 인스턴스에서 사용할 수 있는 블록 수준 스토리지 볼륨을 제공하는 서비스&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;EC2 인스턴스를 중지 또는 종료해도 연결된 EBS 볼륨의 모든 데이터 사용 가능&lt;/li&gt;
+&lt;li&gt;EBS 볼륨을 생성하려면 구성을 정의하고 프로비저닝
+&lt;ul&gt;
+&lt;li&gt;EBS 볼륨 생성 후 볼륨을 EC2 인스턴스에 연결할 수 있음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;EBS 스냅샷을 통해 EBS 볼륨을 증분 백업할 수 있음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ebs-스냅샷&#34;&gt;EBS 스냅샷&lt;/h3&gt;
+&lt;p&gt;증분 백업&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/aws-cloud-practitioner-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EB%B0%8F-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EC%A0%95%EB%A6%AC/Untitled.png&#34;
+	width=&#34;845&#34;
+	height=&#34;363&#34;
+	srcset=&#34;https://Haebuk.github.io/p/aws-cloud-practitioner-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EB%B0%8F-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EC%A0%95%EB%A6%AC/Untitled_hubb10b2717ffaa75cf8ce00484845afdb_60519_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/aws-cloud-practitioner-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EB%B0%8F-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EC%A0%95%EB%A6%AC/Untitled_hubb10b2717ffaa75cf8ce00484845afdb_60519_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;EBS 스냅샷 예시&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;232&#34;
+		data-flex-basis=&#34;558px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;처음 볼륨을 백업하면 모든 데이터가 복사&lt;/li&gt;
+&lt;li&gt;이후의 백업은 가장 최근 스냅샷 이후의 변경된 데이터 블록만 저장&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;simple-storage-services3&#34;&gt;Simple Storage Service(S3)&lt;/h1&gt;
+&lt;h2 id=&#34;객체-스토리지&#34;&gt;객체 스토리지&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;각 객체는 데이터, 메타데이터, 키로 구성
+&lt;ul&gt;
+&lt;li&gt;데이터: 이미지, 동영상 또는 기타 유형의 파일&lt;/li&gt;
+&lt;li&gt;메타데이터: 데이터의 내용, 사용 방법, 객체 크기 등에 대한 정보&lt;/li&gt;
+&lt;li&gt;키: 고유 식별자&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;블록 스토리지와 달리 파일 수정 시 전체 개체가 업데이트&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;simple-storage-services3-1&#34;&gt;Simple Storage Service(S3)&lt;/h2&gt;
+&lt;p&gt;객체 수준 스토리지를 제공하는 서비스&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;데이터를 버킷에 객체로 저장&lt;/li&gt;
+&lt;li&gt;저장 공간 무제한&lt;/li&gt;
+&lt;li&gt;저장할 수 있는 객체의 최대 파일 크기는 5TB&lt;/li&gt;
+&lt;li&gt;파일 업로드 시 권한 설정하여 파일에 대한 표시 여부 및 액세스 제어 가능&lt;/li&gt;
+&lt;li&gt;버전 관리 기능을 사용해 시간 경과에 따른 객체 변경 사항 추적 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;s3-스토리지-클래스&#34;&gt;S3 스토리지 클래스&lt;/h3&gt;
+&lt;p&gt;비즈니스 및 비용 요구 사항에 맞춰 다양한 스토리지 클래스 중 선택 가능&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;데이터 검색 빈도와 필요한 데이터 가용성을 고려&lt;/li&gt;
+&lt;li&gt;클래스 종류
+&lt;ol&gt;
+&lt;li&gt;S3 Standard
+&lt;ol&gt;
+&lt;li&gt;자주 액세스하는 데이터&lt;/li&gt;
+&lt;li&gt;최소 3개의 가용 영역에 데이터 저장&lt;/li&gt;
+&lt;li&gt;다른 스토리지 클래스보다 비용 높음&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;S3 Standard-Infrequent Access(S3 Standard-IA)
+&lt;ol&gt;
+&lt;li&gt;자주 액세스하지 않는 데이터&lt;/li&gt;
+&lt;li&gt;최소 3개의 가용 영역에 데이터 저장&lt;/li&gt;
+&lt;li&gt;S3 Standard에 비해 스토리지 가격 저렴, 검색 가격 높음&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;S3 One Zone-Infrequent Access(S3 One Zone-IA)
+&lt;ol&gt;
+&lt;li&gt;단일 가용 영역에 데이터 저장&lt;/li&gt;
+&lt;li&gt;S3 Standard-IA보다 낮은 스토리지 가격&lt;/li&gt;
+&lt;li&gt;스토리지 비용 절감, 가용 영역 장애 발생 시 데이터를 손쉽게 재현할 수 있는 경우 적합&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;S3 Intelligent-Tiering
+&lt;ol&gt;
+&lt;li&gt;액세스 패턴을 알 수 없거나 자주 변화하는 데이터에 적합&lt;/li&gt;
+&lt;li&gt;객체당 소량의 월별 모니터링 및 자동화 요금 부과&lt;/li&gt;
+&lt;li&gt;사용자가 30일 연속 객체에 액세스하지 않으면 자동으로 해당 객체를 S3 Standard-IA로 이동&lt;/li&gt;
+&lt;li&gt;이 객체에 다시 액세스하면 자동으로 S3 Standard로 이동&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;S3 Glacier
+&lt;ol&gt;
+&lt;li&gt;데이터 보관용으로 설계된 저비용 스토리지&lt;/li&gt;
+&lt;li&gt;객체를 몇 분에서 몇 시간 이내에 검색&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;S3 Glacier Deep Archive
+&lt;ol&gt;
+&lt;li&gt;보관에 이상적인 가장 저렴한 객체 스토리지 클래스&lt;/li&gt;
+&lt;li&gt;객체를 12시간 내에 검색&lt;/li&gt;
+&lt;li&gt;얼마나 빨리 검색해야 하는지 고려하여 두 Glacier 서비스 간에 어떤 서비스 사용할 지 결정&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;elastic-file-systemefs&#34;&gt;Elastic File System(EFS)&lt;/h1&gt;
+&lt;h2 id=&#34;파일-스토리지&#34;&gt;파일 스토리지&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;여러 클라이언트가 공유 파일 폴더에 저장된 데이터에 액세스 가능&lt;/li&gt;
+&lt;li&gt;스토리지 서버가 블록 스토리지를 로컬 파일 시스템과 함께 사용하여 파일 구성&lt;/li&gt;
+&lt;li&gt;클라이언트는 파일 경로를 통해 데이터에 액세스&lt;/li&gt;
+&lt;li&gt;많은 수의 서비스 및 리소스가 동시에 동일한 데이터에 액세스해야 하는 사례에 적합&lt;/li&gt;
+&lt;li&gt;파일을 추가 또는 제거하면 EFS는 자동으로 확장되거나 축소됨
+&lt;ul&gt;
+&lt;li&gt;애플리케이션을 중단하지 않고 온디맨드로 페타바이트 규모로 확장 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;ebs와-efs-비교&#34;&gt;EBS와 EFS 비교&lt;/h2&gt;
+&lt;h3 id=&#34;ebs&#34;&gt;EBS&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;단일 가용 영역에 데이터 저장&lt;/li&gt;
+&lt;li&gt;EC2 인스턴스를 EBS 볼륨에 연결하려면 둘 다 동일한 가용 영역에 상주해야 함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;efs&#34;&gt;EFS&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;리전별 서비스. 여러 가용 영역에 걸쳐 데이터 저장&lt;/li&gt;
+&lt;li&gt;온프레미스 서버는 AWS Direct Connect를 사용해 EFS에 액세스 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;relational-database-servicerds&#34;&gt;Relational Database Service(RDS)&lt;/h1&gt;
+&lt;p&gt;AWS 클라우드에서 관계형 데이터베이스를 실행할 수 있는 서비스&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;하드웨어 프로비저닝, 데이터베이스 설정, 패치 적용 백업과 같은 작업을 자동화&lt;/li&gt;
+&lt;li&gt;Lambda를 사용하여 서버리스 애플리케이션에서 데이터베이스를 쿼리하는 등 다른 서비스와 통합하여 비즈니스 및 운영 요구 사항 충족 가능&lt;/li&gt;
+&lt;li&gt;다양한 보안 옵션 제공
+&lt;ul&gt;
+&lt;li&gt;저장 시 암호화(데이터가 저장되는 동안 데이터 보호)&lt;/li&gt;
+&lt;li&gt;전송 중 암호화(데이터를 전송 및 수신하는 동안 데이터 보호)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;rds-데이터베이스-엔진&#34;&gt;RDS 데이터베이스 엔진&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;메모리, 성능 또는 입출력에 최적화된 6개의 데이터베이스 엔진에서 사용 가능
+&lt;ul&gt;
+&lt;li&gt;Amazon Aurora&lt;/li&gt;
+&lt;li&gt;PostgreSQL&lt;/li&gt;
+&lt;li&gt;MySQL&lt;/li&gt;
+&lt;li&gt;MariaDB&lt;/li&gt;
+&lt;li&gt;Oracle Database&lt;/li&gt;
+&lt;li&gt;Microsoft SQL Server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;amazon-aurora&#34;&gt;Amazon Aurora&lt;/h3&gt;
+&lt;p&gt;엔터프라이즈급 관계형 데이터 베이스&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MySQL, PostgreSQL 관계형 데이터베이스와 호환&lt;/li&gt;
+&lt;li&gt;표준 MySQL 데이터베이스보다 최대 5배 빠르며 표준 PostgreSQL 데이터베이스보다 최대 3배 빠름&lt;/li&gt;
+&lt;li&gt;데이터베이스 리소스의 안정성 및 가용성을 유지하면서 불필요한 입출력 작업을 줄여 데이터베이스 비용 절감&lt;/li&gt;
+&lt;li&gt;워크로드에 고가용성이 필요한 경우 적합
+&lt;ul&gt;
+&lt;li&gt;6개의 데이터 복사본을 3개의 가용 영역에 복제하고 지속적으로 S3에 백업함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;dynamodb&#34;&gt;DynamoDB&lt;/h1&gt;
+&lt;p&gt;키-값 데이터베이스 서비스&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;모든 규모에서 한 자릿수 밀리초 성능 제공&lt;/li&gt;
+&lt;li&gt;서버리스 데이터베이스&lt;/li&gt;
+&lt;li&gt;데이터베이스 크기가 축소 또는 확장되면 용량 변화에 맞춰 자동으로 크기를 조정하면서 일관된 성능 유지
+&lt;ul&gt;
+&lt;li&gt;크기를 조정하는 동안 고성능이 필요한 경우에 적합&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;redshift&#34;&gt;Redshift&lt;/h1&gt;
+&lt;p&gt;빅 데이터 분석에 사용할 수 있는 데이터 웨어하우징 서비스&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;여러 원본에서 데이터를 수집해 데이터 간 관계 및 추세를 파악하는데 도움이 되는 기능 제공&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;aws-database-migration-servicedms&#34;&gt;AWS Database Migration Service(DMS)&lt;/h1&gt;
+&lt;p&gt;관계형 데이터베이스, 비관계형 데이터베이스 및 기타 유형의 데이터 저장소를 마이그레이션 하는 서비스&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;DMS 를 사용하면 원본 데이터베이스와 대상 데이터베이스 간에 데이터 이동 가능&lt;/li&gt;
+&lt;li&gt;원본 데이터베이스와 대상 데이터베이스는 유형이 같을 필요 없음&lt;/li&gt;
+&lt;li&gt;마이그레이션동안 원본 데이터베이스가 계속 작동하므로 다운타임 최소화&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;dms-사용-사례&#34;&gt;DMS 사용 사례&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;개발 및 테스트 데이터베이스 마이그레이션: 프로덕션 사용자에게 영향을 주지 않고 개발자가 프로덕션 데이터에서 테스트할 수 있도록 지원&lt;/li&gt;
+&lt;li&gt;데이터베이스 통합: 여러 데이터베이스를 단일 데이터베이스로 통합&lt;/li&gt;
+&lt;li&gt;연속 복제: 일회성 마이그레이션이 아닌 데이터의 진행 중 복제본을 다른 대상 원본으로 전송&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;추가-데이터베이스-서비스&#34;&gt;추가 데이터베이스 서비스&lt;/h1&gt;
+&lt;h3 id=&#34;documentdb&#34;&gt;DocumentDB&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;MongoDB 워크로드를 지원하는 문서 데이터베이스 서비스&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;neptune&#34;&gt;Neptune&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;그래프 데이터베이스 서비스&lt;/li&gt;
+&lt;li&gt;추천 엔진, 사기 탐지, 지식 그래프와 같이 고도로 연결된 데이터 세트로 작동하는 애플리케이션 빌드 및 실행&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;quantum-ledger-databaseqldb&#34;&gt;Quantum Ledger Database(QLDB)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;원장 데이터베이스 서비스&lt;/li&gt;
+&lt;li&gt;애플리케이션 데이터에 발생한 모든 변경 사항의 전체 기록 검토 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;managed-blockchain&#34;&gt;Managed Blockchain&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;오픈소스 프레임워크를 사용해 블록체인 네트워크를 생성하고 관리하는 데 사용할 수 있는 서비스&lt;/li&gt;
+&lt;li&gt;블록체인은 여러 당사자가 중앙 기관없이 거래를 실행하고 데이터를 공유할 수 있는 분산형 원장 시스템&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;elasticache&#34;&gt;ElastiCache&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;자주 사용되는 요청의 읽기 시간을 향상시키기 위해 데이터베이스 위에 캐싱 계층을 추가하는 서비스&lt;/li&gt;
+&lt;li&gt;Redis, Memcached 지원&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;dynamodb-acceleratordax&#34;&gt;DynamoDB Accelerator(DAX)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;DynamoDB용 인 메모리 캐시&lt;/li&gt;
+&lt;li&gt;응답 시간을 한 자릿수 밀리초에서 마이크로초까지 향상 가능&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>[AWS Cloud Practitioner] 네트워킹 정리</title>
         <link>https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9-%EC%A0%95%EB%A6%AC/</link>
         <pubDate>Sat, 22 Oct 2022 21:12:39 +0900</pubDate>

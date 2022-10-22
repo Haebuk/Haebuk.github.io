@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="ko-kr" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='AWS Cloud Practitioner Essential 클라우드 컴퓨팅 내용 정리'><title>[AWS Cloud Practitioner] 클라우드 컴퓨팅 정리</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='AWS Cloud Practitioner Essential 스토리지 및 데이터베이스 정리'><title>[AWS Cloud Practitioner] 스토리지 및 데이터베이스 정리</title>
 
-<link rel='canonical' href='https://Haebuk.github.io/p/aws-cloud-practitioner-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%BB%B4%ED%93%A8%ED%8C%85-%EC%A0%95%EB%A6%AC/'>
+<link rel='canonical' href='https://Haebuk.github.io/p/aws-cloud-practitioner-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EB%B0%8F-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EC%A0%95%EB%A6%AC/'>
 
-<link rel="stylesheet" href="/scss/style.min.7b85a154539eab990d669fa1899e2e8294729f772bda4a7978ceb32a14b2bdb7.css"><meta property='og:title' content='[AWS Cloud Practitioner] 클라우드 컴퓨팅 정리'>
-<meta property='og:description' content='AWS Cloud Practitioner Essential 클라우드 컴퓨팅 내용 정리'>
-<meta property='og:url' content='https://Haebuk.github.io/p/aws-cloud-practitioner-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%BB%B4%ED%93%A8%ED%8C%85-%EC%A0%95%EB%A6%AC/'>
+<link rel="stylesheet" href="/scss/style.min.7b85a154539eab990d669fa1899e2e8294729f772bda4a7978ceb32a14b2bdb7.css"><meta property='og:title' content='[AWS Cloud Practitioner] 스토리지 및 데이터베이스 정리'>
+<meta property='og:description' content='AWS Cloud Practitioner Essential 스토리지 및 데이터베이스 정리'>
+<meta property='og:url' content='https://Haebuk.github.io/p/aws-cloud-practitioner-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EB%B0%8F-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EC%A0%95%EB%A6%AC/'>
 <meta property='og:site_name' content='지식 공유, 협업 ✈️ 성장'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Cloud Practitioner' /><meta property='article:tag' content='Skill Builder' /><meta property='article:published_time' content='2022-10-22T16:05:39&#43;09:00'/><meta property='article:modified_time' content='2022-10-22T16:05:39&#43;09:00'/>
-<meta name="twitter:title" content="[AWS Cloud Practitioner] 클라우드 컴퓨팅 정리">
-<meta name="twitter:description" content="AWS Cloud Practitioner Essential 클라우드 컴퓨팅 내용 정리">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Cloud Practitioner' /><meta property='article:tag' content='Skill Builder' /><meta property='article:published_time' content='2022-10-22T22:53:39&#43;09:00'/><meta property='article:modified_time' content='2022-10-22T22:53:39&#43;09:00'/>
+<meta name="twitter:title" content="[AWS Cloud Practitioner] 스토리지 및 데이터베이스 정리">
+<meta name="twitter:description" content="AWS Cloud Practitioner Essential 스토리지 및 데이터베이스 정리">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7CM424CQYT"></script>
 <script>
 var doNotTrack = false;
@@ -270,12 +270,12 @@ if (!doNotTrack) {
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/aws-cloud-practitioner-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%BB%B4%ED%93%A8%ED%8C%85-%EC%A0%95%EB%A6%AC/">[AWS Cloud Practitioner] 클라우드 컴퓨팅 정리</a>
+            <a href="/p/aws-cloud-practitioner-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EB%B0%8F-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EC%A0%95%EB%A6%AC/">[AWS Cloud Practitioner] 스토리지 및 데이터베이스 정리</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            AWS Cloud Practitioner Essential 클라우드 컴퓨팅 내용 정리
+            AWS Cloud Practitioner Essential 스토리지 및 데이터베이스 정리
         </h3>
         
     </div>
@@ -322,217 +322,240 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="클라우드-컴퓨팅">클라우드 컴퓨팅</h1>
-<p>💡 인터넷을 통해 IT 리소스와 애플리케이션을 온디맨드로 제공하는 것</p>
-<h2 id="클라우드-컴퓨팅-배포-모델">클라우드 컴퓨팅 배포 모델</h2>
+    <h1 id="인스턴스-스토어-및-elastic-block-storeebs">인스턴스 스토어 및 Elastic Block Store(EBS)</h1>
+<h2 id="인스턴스-스토어">인스턴스 스토어</h2>
+<p>EC2 인스턴스에 임시 블록 수준 스토리지 제공</p>
 <ul>
-<li>클라우드 기반 배포
+<li>물리적으로 EC2 인스턴스의 호스트 컴퓨터와 연결</li>
+<li>인스턴스와 수명이 동일</li>
+<li>인스턴스가 종료되면 인스턴스 스토어의 데이터 손실
 <ul>
-<li>모든 애플리케이션을 클라우드에서 실행</li>
-<li>기존 애플리케이션을 클라우드로 마이그레이션</li>
-<li>클라우드에서 새 애플리케이션 설계 및 빌드</li>
-</ul>
-</li>
-<li>온프레미스 배포(프라이빗 클라우드 배포)
-<ul>
-<li>가상화 및 리소스 관리 도구를 사용하여 리소스 배포</li>
-<li>애플리케이션 관리 및 가상화 기술을 사용하여 <strong>리소스 활용도 높임</strong></li>
-</ul>
-</li>
-<li>하이브리드 배포
-<ul>
-<li>클라우드 기반 리소스를 온프레미스 인프라에 연결</li>
-<li>클라우드 기반 리소스를 레거시 IT 애플리케이션과 통합</li>
+<li>장기적으로 필요하지 않은 임시 데이터가 포함된 사용 사례에 적합</li>
 </ul>
 </li>
 </ul>
-<h2 id="이점">이점</h2>
+<h2 id="elastic-block-storeebs">Elastic Block Store(EBS)</h2>
+<p>EC2 인스턴스에서 사용할 수 있는 블록 수준 스토리지 볼륨을 제공하는 서비스</p>
 <ul>
-<li>선행 비용을 가변 비용으로 대체</li>
-<li>데이터 센터 운영 및 유지 관리에 비용 투자 불필요</li>
-<li>용량 추정 불필요</li>
-<li>규모의 경제로 얻게 되는 이점</li>
-<li>속도 및 민첩성 향상</li>
-<li>몇 분 만에 전 세계 배포</li>
-</ul>
-<h2 id="elastic-compute-cloudec2">Elastic Compute Cloud(EC2)</h2>
+<li>EC2 인스턴스를 중지 또는 종료해도 연결된 EBS 볼륨의 모든 데이터 사용 가능</li>
+<li>EBS 볼륨을 생성하려면 구성을 정의하고 프로비저닝
 <ul>
-<li>안전하고 크기 조정이 가능한 컴퓨팅 용량을 클라우드에서 제공</li>
-</ul>
-<h3 id="ec2-작동-방식">EC2 작동 방식</h3>
-<ul>
-<li>시작
-<ul>
-<li>인스턴스 시작</li>
-<li>기본 구성(운영 체제, 애플리케이션 서버 또는 애플리케이션) 인스턴스가 포함되어 있는 템플릿을 선택하여 시작</li>
-<li>인스턴스 유형 선택</li>
-<li>보안 설정 지정</li>
+<li>EBS 볼륨 생성 후 볼륨을 EC2 인스턴스에 연결할 수 있음</li>
 </ul>
 </li>
-<li>연결
-<ul>
-<li>여러가지 방법으로 연결 가능</li>
+<li>EBS 스냅샷을 통해 EBS 볼륨을 증분 백업할 수 있음</li>
 </ul>
-</li>
-<li>사용
-<ul>
-<li>명령을 실행하여 소프트웨어 설치, 스토리지 추가, 파일 복사 및 정리 등의 작업 수행</li>
-</ul>
-</li>
-</ul>
-<h3 id="ec2-인스턴스-유형">EC2 인스턴스 유형</h3>
-<ul>
-<li>유형 선택시 워크로드 및 애플리케이션의 구체적 요구 사항을 고려해야 함</li>
-<li>범용 인스턴스
-<ul>
-<li>컴퓨팅, 메모리, 네트워킹 균형 제공</li>
-<li>애플리케이션, 게임, 엔터프라이즈 애플리케이션용 백엔드 서버, 중소 규모 데이터베이스</li>
-</ul>
-</li>
-<li>컴퓨팅 최적화 인스턴스
-<ul>
-<li>고성능 프로세서를 활용하는 컴퓨팅 집약적인 애플리케이션에 적합</li>
-<li>고성능 웹서버, 컴퓨팅 집약적 애플리케이션 서버, 게임 전용 서버에 적합</li>
-<li>단일 그룹에서 많은 트랜잭션을 처리해야 하는 일괄 처리 워크로드에 사용</li>
-</ul>
-</li>
-<li>메모리 최적화 인스턴스
-<ul>
-<li>메모리에서 대규모 데이터 셋을 처리하는 워크로드를 위한 빠른 성능을 제공</li>
-<li>많은 데이터를 미리 로드해야 하는 워크로드에 적합</li>
-<li>고성능 데이터베이스</li>
-</ul>
-</li>
-<li>엑셀러레이티드 컴퓨팅 인스턴스
-<ul>
-<li>하드웨어 엑셀러레이터 또는 코프로세서를 사용하여 일부 기능을 CPU보다 더 효율적으로 수행</li>
-<li>부동 소수점 수 계산, 그래픽 처리, 데이터 패턴 일치 등</li>
-<li>데이터 처리를 가속화 할 수 있는 구성 요소</li>
-<li>그래픽 애플리케이션, 게임 스트리밍, 애플리케이션 스트리밍에 적합</li>
-</ul>
-</li>
-<li>스토리지 최적화 인스턴스
-<ul>
-<li>로컬 스토리지의 대규모 데이터 셋에 대한 순차적 읽기 및 쓰기 액세스가 많이 필요한 워크로드에 적합</li>
-<li>분산 파일 시스템, 데이터 웨어하우징 애플리케이션, OLTP 시스템</li>
-<li>짧은 임의 IOPS(초당 입출력 작업 수) 제공</li>
-</ul>
-</li>
-</ul>
-<h3 id="ec2-요금">EC2 요금</h3>
-<ul>
-<li>온디맨드
-<ul>
-<li>중단할 수 없는 불규칙한 단기 워크로드가 있는 애플리케이션에 적합</li>
-<li>선결제 비용, 최소 약정은 적용되지 않음</li>
-<li>개발 및 테스트와 예측할 수 없는 사용 패턴이 있는 애플리케이션 실행 사례에 적합</li>
-<li>1년 이상 지속되는 워크로드에는 권장되지 않음</li>
-</ul>
-</li>
-<li>Savings Plans
-<ul>
-<li>1년또는 3년 기간 동안 일정한 컴퓨팅 사용량을 약정하여 컴퓨팅 비용 절감 (최대 72%)</li>
-<li>약정 사용량까지는 할인된 Savings Plan 요금 청구. 초과 시 일반 온디맨드 요금 부과</li>
-<li>AWS Cost Explorer를 통해 EC2 사용량 분석 가능, Savings Plans를 위한 맞춤형 권장 사항 제공</li>
-</ul>
-</li>
-<li>예약 인스턴스
-<ul>
-<li>온디맨드 인스턴스를 사용할 때 적용되는 결제 할인 옵션</li>
-<li>표준 예약 및 컨버터블 예약 인스턴스는 1년 또는 3년 약정</li>
-<li>정기 예약 인스턴스는 1년 약정</li>
-<li>3년 약정 옵션을 통해 더 큰 비용 절감 실현 가능</li>
-<li>약정 기간이 끝나면 중단없이 사용가능하나, 종료 또는 인스턴스 속성(유형, 리전, 테넌시, 플랫폼)과 일ㅊ하는 새 예약 인스턴스 구입 전 까지는 온디맨드 요금 부과</li>
-</ul>
-</li>
-<li>스팟 인스턴스
-<ul>
-<li>시작 및 종료 시간이 자유롭거나 중단을 견딜 수 있는 워크로드에 적합</li>
-<li>미사용 EC2 컴퓨팅 용량을 사용하며 온디맨드 요금의 최대 90%까지 비용 절감 가능</li>
-<li>스팟 요청을 하고 EC2 용량을 사용할 수 없는 경우 용량을 사용할 수 있을 때 까지 요청 성공 하지 않음</li>
-<li>스팟 인스턴스 시작 후 용량을 더 이상 사용할 수 없거나 수요가 늘면 중단될 수 있음</li>
-</ul>
-</li>
-<li>전용 호스트
-<ul>
-<li>사용자 전용의 EC2 인스턴스 용량을 갖춘 물리적 서버</li>
-<li>가장 비용이 많이 듦</li>
-</ul>
-</li>
-</ul>
-<h3 id="ec2-확장auto-scaling">EC2 확장(Auto Scaling)</h3>
-<ul>
-<li>변화하는 애플리케이션 수요에 따라 EC2 인스턴스를 자동으로 추가하거나 제거 → 가용성을 효과적으로 유지</li>
-<li>동적 조정: 수요 변화에 대응</li>
-<li>예측 조정: 예측된 수요에 따라 적절한 수의 EC2 인스턴스를 자동으로 예약</li>
-<li>두 조정은 함께 사용하면 더 빠르게 조정할 수 있음</li>
-</ul>
-<p><img src="/p/aws-cloud-practitioner-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%BB%B4%ED%93%A8%ED%8C%85-%EC%A0%95%EB%A6%AC/auto-scaling-group.png"
-	width="1166"
-	height="1090"
-	srcset="/p/aws-cloud-practitioner-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%BB%B4%ED%93%A8%ED%8C%85-%EC%A0%95%EB%A6%AC/auto-scaling-group_hu84b315bc0745296b525a08abe6ab77f5_175689_480x0_resize_box_3.png 480w, /p/aws-cloud-practitioner-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%BB%B4%ED%93%A8%ED%8C%85-%EC%A0%95%EB%A6%AC/auto-scaling-group_hu84b315bc0745296b525a08abe6ab77f5_175689_1024x0_resize_box_3.png 1024w"
+<h3 id="ebs-스냅샷">EBS 스냅샷</h3>
+<p>증분 백업</p>
+<p><img src="/p/aws-cloud-practitioner-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EB%B0%8F-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EC%A0%95%EB%A6%AC/Untitled.png"
+	width="845"
+	height="363"
+	srcset="/p/aws-cloud-practitioner-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EB%B0%8F-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EC%A0%95%EB%A6%AC/Untitled_hubb10b2717ffaa75cf8ce00484845afdb_60519_480x0_resize_box_3.png 480w, /p/aws-cloud-practitioner-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EB%B0%8F-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EC%A0%95%EB%A6%AC/Untitled_hubb10b2717ffaa75cf8ce00484845afdb_60519_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
-		alt="Auto Scaling 그룹"
+		alt="EBS 스냅샷 예시"
 	
 	
 		class="gallery-image" 
-		data-flex-grow="106"
-		data-flex-basis="256px"
+		data-flex-grow="232"
+		data-flex-basis="558px"
 	
 ></p>
 <ul>
-<li>최소 용량: Auto Scaling 그룹을 생성한 직후 시작되는 EC2 인스턴스의 수</li>
-<li>희망 용량: 유지되었으면 하는 EC2 인스턴스의 수. 지정하지 않으면 최소 용량이 기본값</li>
-<li>최대 용량: Auto Scaling 그룹을 구성하되 EC2 인스턴스의 최대 수 제한</li>
+<li>처음 볼륨을 백업하면 모든 데이터가 복사</li>
+<li>이후의 백업은 가장 최근 스냅샷 이후의 변경된 데이터 블록만 저장</li>
 </ul>
-<h2 id="elastic-load-balancing">Elastic Load Balancing</h2>
+<h1 id="simple-storage-services3">Simple Storage Service(S3)</h1>
+<h2 id="객체-스토리지">객체 스토리지</h2>
 <ul>
-<li>들어오는 애플리케이션 트래픽을 Amazon EC2 인스턴스와 같은 여러 리소스에 자동으로 분산하는 서비스</li>
-<li>Auto Scaling 그룹으로 들어오는 모든 웹 트래픽의 단일 접점 역할.</li>
-<li>들어오는 트래픽 양에 맞춰 EC2 인스턴스를 추가하거나 제거하므로 요청이 로드 밸런서로 먼저 라우팅된 후 요청을 처리할 여러 리소스로 분산</li>
-</ul>
-<h2 id="메시징-및-대기열">메시징 및 대기열</h2>
-<h3 id="simple-notification-servicesns">Simple Notification Service(SNS)</h3>
+<li>각 객체는 데이터, 메타데이터, 키로 구성
 <ul>
-<li>게시/구독 서비스</li>
-<li>게시자는 SNS 주제를 사용하며 구독자에게 메시지 게시</li>
-<li>구독자는 웹 서버, 이메일 주소, Lambda 함수 등등의 옵션 가능</li>
-</ul>
-<h3 id="simple-queue-servicesqs">Simple Queue Service(SQS)</h3>
-<ul>
-<li>메시지 손실이나 다른 서비스 사용 없이 소프트웨어 구성 요소 간에 메시지를 전송, 저장, 수신할 수 있음</li>
-<li>애플리케이션이 메시지를 대기열로 전송</li>
-<li>사용자 또는 서비스는 대기열에서 메시지를 검색, 처리 후 대기열에서 삭제</li>
-</ul>
-<h2 id="추가-컴퓨팅-서비스">추가 컴퓨팅 서비스</h2>
-<h3 id="서버리스-컴퓨팅">서버리스 컴퓨팅</h3>
-<ul>
-<li>서버를 프로비저닝하거나 관리할 필요가 없음</li>
-<li>처리량 및 메모리와 같은 소비 단위를 수정하여 애플리케이션의 용량 조정</li>
-<li>Lambda</li>
-</ul>
-<h3 id="컨테이너">컨테이너</h3>
-<ul>
-<li>애플리케이션의 코드와 종속성을 하나의 객체로 패키징하는 표준 방식 제공</li>
-<li>보안성, 안정성, 확장성이 매우 중요한 프로세스 및 워크플로에도 사용</li>
-<li>Elastic Container Service(ECS)
-<ul>
-<li>컨테이너식 애플리케이션을 실행하고 확장할 수 있는 고성능 컨테이너 관리 시스템</li>
+<li>데이터: 이미지, 동영상 또는 기타 유형의 파일</li>
+<li>메타데이터: 데이터의 내용, 사용 방법, 객체 크기 등에 대한 정보</li>
+<li>키: 고유 식별자</li>
 </ul>
 </li>
-<li>Elastic Kubernetes Service(EKS)
+<li>블록 스토리지와 달리 파일 수정 시 전체 개체가 업데이트</li>
+</ul>
+<h2 id="simple-storage-services3-1">Simple Storage Service(S3)</h2>
+<p>객체 수준 스토리지를 제공하는 서비스</p>
 <ul>
-<li>AWS에서 쿠버네티스를 실행하는 데 사용할 수 있는 완전 관리형 서비스</li>
+<li>데이터를 버킷에 객체로 저장</li>
+<li>저장 공간 무제한</li>
+<li>저장할 수 있는 객체의 최대 파일 크기는 5TB</li>
+<li>파일 업로드 시 권한 설정하여 파일에 대한 표시 여부 및 액세스 제어 가능</li>
+<li>버전 관리 기능을 사용해 시간 경과에 따른 객체 변경 사항 추적 가능</li>
+</ul>
+<h3 id="s3-스토리지-클래스">S3 스토리지 클래스</h3>
+<p>비즈니스 및 비용 요구 사항에 맞춰 다양한 스토리지 클래스 중 선택 가능</p>
+<ul>
+<li>데이터 검색 빈도와 필요한 데이터 가용성을 고려</li>
+<li>클래스 종류
+<ol>
+<li>S3 Standard
+<ol>
+<li>자주 액세스하는 데이터</li>
+<li>최소 3개의 가용 영역에 데이터 저장</li>
+<li>다른 스토리지 클래스보다 비용 높음</li>
+</ol>
+</li>
+<li>S3 Standard-Infrequent Access(S3 Standard-IA)
+<ol>
+<li>자주 액세스하지 않는 데이터</li>
+<li>최소 3개의 가용 영역에 데이터 저장</li>
+<li>S3 Standard에 비해 스토리지 가격 저렴, 검색 가격 높음</li>
+</ol>
+</li>
+<li>S3 One Zone-Infrequent Access(S3 One Zone-IA)
+<ol>
+<li>단일 가용 영역에 데이터 저장</li>
+<li>S3 Standard-IA보다 낮은 스토리지 가격</li>
+<li>스토리지 비용 절감, 가용 영역 장애 발생 시 데이터를 손쉽게 재현할 수 있는 경우 적합</li>
+</ol>
+</li>
+<li>S3 Intelligent-Tiering
+<ol>
+<li>액세스 패턴을 알 수 없거나 자주 변화하는 데이터에 적합</li>
+<li>객체당 소량의 월별 모니터링 및 자동화 요금 부과</li>
+<li>사용자가 30일 연속 객체에 액세스하지 않으면 자동으로 해당 객체를 S3 Standard-IA로 이동</li>
+<li>이 객체에 다시 액세스하면 자동으로 S3 Standard로 이동</li>
+</ol>
+</li>
+<li>S3 Glacier
+<ol>
+<li>데이터 보관용으로 설계된 저비용 스토리지</li>
+<li>객체를 몇 분에서 몇 시간 이내에 검색</li>
+</ol>
+</li>
+<li>S3 Glacier Deep Archive
+<ol>
+<li>보관에 이상적인 가장 저렴한 객체 스토리지 클래스</li>
+<li>객체를 12시간 내에 검색</li>
+<li>얼마나 빨리 검색해야 하는지 고려하여 두 Glacier 서비스 간에 어떤 서비스 사용할 지 결정</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+<h1 id="elastic-file-systemefs">Elastic File System(EFS)</h1>
+<h2 id="파일-스토리지">파일 스토리지</h2>
+<ul>
+<li>여러 클라이언트가 공유 파일 폴더에 저장된 데이터에 액세스 가능</li>
+<li>스토리지 서버가 블록 스토리지를 로컬 파일 시스템과 함께 사용하여 파일 구성</li>
+<li>클라이언트는 파일 경로를 통해 데이터에 액세스</li>
+<li>많은 수의 서비스 및 리소스가 동시에 동일한 데이터에 액세스해야 하는 사례에 적합</li>
+<li>파일을 추가 또는 제거하면 EFS는 자동으로 확장되거나 축소됨
+<ul>
+<li>애플리케이션을 중단하지 않고 온디맨드로 페타바이트 규모로 확장 가능</li>
 </ul>
 </li>
-<li>Fargate
+</ul>
+<h2 id="ebs와-efs-비교">EBS와 EFS 비교</h2>
+<h3 id="ebs">EBS</h3>
 <ul>
-<li>컨테이너용 서버리스 컴퓨팅 엔진</li>
-<li>ECS와 EKS에서 작동</li>
-<li>서버를 프로비저닝하거나 관리할 필요 없음</li>
+<li>단일 가용 영역에 데이터 저장</li>
+<li>EC2 인스턴스를 EBS 볼륨에 연결하려면 둘 다 동일한 가용 영역에 상주해야 함</li>
+</ul>
+<h3 id="efs">EFS</h3>
+<ul>
+<li>리전별 서비스. 여러 가용 영역에 걸쳐 데이터 저장</li>
+<li>온프레미스 서버는 AWS Direct Connect를 사용해 EFS에 액세스 가능</li>
+</ul>
+<h1 id="relational-database-servicerds">Relational Database Service(RDS)</h1>
+<p>AWS 클라우드에서 관계형 데이터베이스를 실행할 수 있는 서비스</p>
+<ul>
+<li>하드웨어 프로비저닝, 데이터베이스 설정, 패치 적용 백업과 같은 작업을 자동화</li>
+<li>Lambda를 사용하여 서버리스 애플리케이션에서 데이터베이스를 쿼리하는 등 다른 서비스와 통합하여 비즈니스 및 운영 요구 사항 충족 가능</li>
+<li>다양한 보안 옵션 제공
+<ul>
+<li>저장 시 암호화(데이터가 저장되는 동안 데이터 보호)</li>
+<li>전송 중 암호화(데이터를 전송 및 수신하는 동안 데이터 보호)</li>
 </ul>
 </li>
+</ul>
+<h3 id="rds-데이터베이스-엔진">RDS 데이터베이스 엔진</h3>
+<ul>
+<li>메모리, 성능 또는 입출력에 최적화된 6개의 데이터베이스 엔진에서 사용 가능
+<ul>
+<li>Amazon Aurora</li>
+<li>PostgreSQL</li>
+<li>MySQL</li>
+<li>MariaDB</li>
+<li>Oracle Database</li>
+<li>Microsoft SQL Server</li>
+</ul>
+</li>
+</ul>
+<h3 id="amazon-aurora">Amazon Aurora</h3>
+<p>엔터프라이즈급 관계형 데이터 베이스</p>
+<ul>
+<li>MySQL, PostgreSQL 관계형 데이터베이스와 호환</li>
+<li>표준 MySQL 데이터베이스보다 최대 5배 빠르며 표준 PostgreSQL 데이터베이스보다 최대 3배 빠름</li>
+<li>데이터베이스 리소스의 안정성 및 가용성을 유지하면서 불필요한 입출력 작업을 줄여 데이터베이스 비용 절감</li>
+<li>워크로드에 고가용성이 필요한 경우 적합
+<ul>
+<li>6개의 데이터 복사본을 3개의 가용 영역에 복제하고 지속적으로 S3에 백업함</li>
+</ul>
+</li>
+</ul>
+<h1 id="dynamodb">DynamoDB</h1>
+<p>키-값 데이터베이스 서비스</p>
+<ul>
+<li>모든 규모에서 한 자릿수 밀리초 성능 제공</li>
+<li>서버리스 데이터베이스</li>
+<li>데이터베이스 크기가 축소 또는 확장되면 용량 변화에 맞춰 자동으로 크기를 조정하면서 일관된 성능 유지
+<ul>
+<li>크기를 조정하는 동안 고성능이 필요한 경우에 적합</li>
+</ul>
+</li>
+</ul>
+<h1 id="redshift">Redshift</h1>
+<p>빅 데이터 분석에 사용할 수 있는 데이터 웨어하우징 서비스</p>
+<ul>
+<li>여러 원본에서 데이터를 수집해 데이터 간 관계 및 추세를 파악하는데 도움이 되는 기능 제공</li>
+</ul>
+<h1 id="aws-database-migration-servicedms">AWS Database Migration Service(DMS)</h1>
+<p>관계형 데이터베이스, 비관계형 데이터베이스 및 기타 유형의 데이터 저장소를 마이그레이션 하는 서비스</p>
+<ul>
+<li>DMS 를 사용하면 원본 데이터베이스와 대상 데이터베이스 간에 데이터 이동 가능</li>
+<li>원본 데이터베이스와 대상 데이터베이스는 유형이 같을 필요 없음</li>
+<li>마이그레이션동안 원본 데이터베이스가 계속 작동하므로 다운타임 최소화</li>
+</ul>
+<h2 id="dms-사용-사례">DMS 사용 사례</h2>
+<ul>
+<li>개발 및 테스트 데이터베이스 마이그레이션: 프로덕션 사용자에게 영향을 주지 않고 개발자가 프로덕션 데이터에서 테스트할 수 있도록 지원</li>
+<li>데이터베이스 통합: 여러 데이터베이스를 단일 데이터베이스로 통합</li>
+<li>연속 복제: 일회성 마이그레이션이 아닌 데이터의 진행 중 복제본을 다른 대상 원본으로 전송</li>
+</ul>
+<h1 id="추가-데이터베이스-서비스">추가 데이터베이스 서비스</h1>
+<h3 id="documentdb">DocumentDB</h3>
+<ul>
+<li>MongoDB 워크로드를 지원하는 문서 데이터베이스 서비스</li>
+</ul>
+<h3 id="neptune">Neptune</h3>
+<ul>
+<li>그래프 데이터베이스 서비스</li>
+<li>추천 엔진, 사기 탐지, 지식 그래프와 같이 고도로 연결된 데이터 세트로 작동하는 애플리케이션 빌드 및 실행</li>
+</ul>
+<h3 id="quantum-ledger-databaseqldb">Quantum Ledger Database(QLDB)</h3>
+<ul>
+<li>원장 데이터베이스 서비스</li>
+<li>애플리케이션 데이터에 발생한 모든 변경 사항의 전체 기록 검토 가능</li>
+</ul>
+<h3 id="managed-blockchain">Managed Blockchain</h3>
+<ul>
+<li>오픈소스 프레임워크를 사용해 블록체인 네트워크를 생성하고 관리하는 데 사용할 수 있는 서비스</li>
+<li>블록체인은 여러 당사자가 중앙 기관없이 거래를 실행하고 데이터를 공유할 수 있는 분산형 원장 시스템</li>
+</ul>
+<h3 id="elasticache">ElastiCache</h3>
+<ul>
+<li>자주 사용되는 요청의 읽기 시간을 향상시키기 위해 데이터베이스 위에 캐싱 계층을 추가하는 서비스</li>
+<li>Redis, Memcached 지원</li>
+</ul>
+<h3 id="dynamodb-acceleratordax">DynamoDB Accelerator(DAX)</h3>
+<ul>
+<li>DynamoDB용 인 메모리 캐시</li>
+<li>응답 시간을 한 자릿수 밀리초에서 마이크로초까지 향상 가능</li>
 </ul>
 
 </section>
@@ -578,19 +601,6 @@ if (!doNotTrack) {
             
                 
 <article class="">
-    <a href="/p/aws-cloud-practitioner-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EB%B0%8F-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EC%A0%95%EB%A6%AC/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[AWS Cloud Practitioner] 스토리지 및 데이터베이스 정리</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
     <a href="/p/aws-cloud-practitioner-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9-%EC%A0%95%EB%A6%AC/">
         
         
@@ -610,6 +620,19 @@ if (!doNotTrack) {
 
         <div class="article-details">
             <h2 class="article-title">[AWS Cloud Practitioner] 글로벌 인프라 및 안정성 정리</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/aws-cloud-practitioner-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%BB%B4%ED%93%A8%ED%8C%85-%EC%A0%95%EB%A6%AC/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[AWS Cloud Practitioner] 클라우드 컴퓨팅 정리</h2>
         </div>
     </a>
 </article>
