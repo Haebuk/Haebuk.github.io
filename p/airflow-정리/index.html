@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="ko-kr" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Airflow 기본 요소 및 내용 정리'><title>Airflow 정리</title>
+
+<link rel='canonical' href='https://Haebuk.github.io/p/airflow-%EC%A0%95%EB%A6%AC/'>
+
+<link rel="stylesheet" href="/scss/style.min.ac77dcf8b111b51da39a92990f431923f210f3876d85798a2125667f96dc33a4.css"><meta property='og:title' content='Airflow 정리'>
+<meta property='og:description' content='Airflow 기본 요소 및 내용 정리'>
+<meta property='og:url' content='https://Haebuk.github.io/p/airflow-%EC%A0%95%EB%A6%AC/'>
+<meta property='og:site_name' content='지식 공유, 협업 ✈️ 성장'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='airflow' /><meta property='article:published_time' content='2022-10-14T20:15:22&#43;09:00'/><meta property='article:modified_time' content='2022-10-14T20:15:22&#43;09:00'/><meta property='og:image' content='https://Haebuk.github.io/p/airflow-%EC%A0%95%EB%A6%AC/AirflowLogo.png' />
+<meta name="twitter:title" content="Airflow 정리">
+<meta name="twitter:description" content="Airflow 기본 요소 및 내용 정리"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://Haebuk.github.io/p/airflow-%EC%A0%95%EB%A6%AC/AirflowLogo.png' />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7CM424CQYT"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-7CM424CQYT', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="메뉴 여닫기">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/me_huf51a70a7adb149ae5d10a476e9d3ddf5_156361_300x0_resize_q75_box.jpg" width="300"
+                            height="400" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🧑🏻‍💻</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">지식 공유, 협업 ✈️ 성장</a></h1>
+            <h2 class="site-description">머신러닝 엔지니어 여정기. 카데의 블로그</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/Haebuk'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://instagram.com/kade.data'
+                        target="_blank"
+                        title="Instagram"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <rect x="4" y="4" width="16" height="16" rx="4" />
+  <circle cx="12" cy="12" r="3" />
+  <line x1="16.5" y1="7.5" x2="16.5" y2="7.501" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.linkedin.com/in/jaesungryu/'
+                        target="_blank"
+                        title="LinkedIn"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-linkedin" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <rect x="4" y="4" width="16" height="16" rx="2" />
+  <line x1="8" y1="11" x2="8" y2="16" />
+  <line x1="8" y1="8" x2="8" y2="8.01" />
+  <line x1="12" y1="16" x2="12" y2="11" />
+  <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>다크 모드</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/airflow-%EC%A0%95%EB%A6%AC/">
+                <img src="/p/airflow-%EC%A0%95%EB%A6%AC/AirflowLogo_hubc3c506518d9161c24efab84ad5b3982_59053_800x0_resize_box_3.png"
+                        srcset="/p/airflow-%EC%A0%95%EB%A6%AC/AirflowLogo_hubc3c506518d9161c24efab84ad5b3982_59053_800x0_resize_box_3.png 800w, /p/airflow-%EC%A0%95%EB%A6%AC/AirflowLogo_hubc3c506518d9161c24efab84ad5b3982_59053_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="309" 
+                        loading="lazy"
+                        alt="Featured image of post Airflow 정리" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/data-engineering/" >
+                Data Engineering
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/airflow-%EC%A0%95%EB%A6%AC/">Airflow 정리</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Airflow 기본 요소 및 내용 정리
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Oct 14, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    6 분 정도
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="what-is-airflow">What is Airflow?</h1>
+<h2 id="core-components">Core Components</h2>
+<ul>
+<li>Web server: UI 담당 웹 서버</li>
+<li>Scheduler: 워크플로우 스케줄링</li>
+<li>Metastore: 메타데이터가 저장되는 데이터 베이스</li>
+<li>Executor: 작업이 어디서 실행될지 정의</li>
+<li>Worker: 작업이 실행되는 프로세스</li>
+</ul>
+<h2 id="dag">DAG</h2>
+<ul>
+<li><code>dag_id</code>: 유니크한 dag 이름</li>
+<li><code>start_date</code>: dag가 처음 스케줄되는 시간. <code>datetime</code> 모듈로 정의</li>
+<li><code>schedule_interval</code>: 스케줄되는 간격. cron으로 정의하거나 <code>&quot;@daily&quot;</code>와 같이 정의</li>
+<li><code>default_args</code>
+<ul>
+<li><code>owner</code>: <code>str</code>, <code>&quot;airflow&quot;</code></li>
+<li><code>email_on_failure</code>: <code>bool</code></li>
+<li><code>email_on_retry</code>: <code>bool</code></li>
+<li><code>email</code>: <code>str</code></li>
+<li><code>retries</code>: <code>int</code></li>
+<li><code>retry_delay</code>: <code>datetime.timedelta</code></li>
+</ul>
+</li>
+<li><code>catchup</code>: airflow가 트리거하지 않았던 날짜에 대해 실행 여부, <code>False</code>로 하는 것이 좋음</li>
+</ul>
+<h2 id="dagrun">DAGrun</h2>
+<ul>
+<li>스케줄러가 DAGrun object 생성</li>
+<li>주어진 시간의 dag 정보를 담고 있는 인스턴스</li>
+<li>실행될 task들을 가지고 있음</li>
+<li>원자성, 멱등성</li>
+</ul>
+<h2 id="operator">Operator</h2>
+<ul>
+<li>Operator = Task</li>
+<li>실행하고자 하는 작업을 캡슐화했다고 생각하면 된다.</li>
+<li><code>task_id</code>: 하나의 dag내에서 유니크한 이름을 가져야 한다.</li>
+<li>종류
+<ul>
+<li>Action Operator: 실행 (bash)</li>
+<li>Transfer Operator: 전송 (mysql, postgres)</li>
+<li>Sensor Operator: 감지</li>
+</ul>
+</li>
+</ul>
+<h1 id="how-airflow-works">How Airflow works?</h1>
+<h2 id="one-node-architecture">One Node Architecture</h2>
+<ol>
+<li>Web server가 metastore에서 메타데이터 정보를 가져온다.</li>
+<li>Schduler가 Metastore와 Executor에서 DAG, 작업을 트리거한다.</li>
+<li>Executor가 작업 업데이트를 metastore에 완료되었다고 업데이트한다.</li>
+<li>Executor에는 큐가 있는데, 실행이 정해진 순서대로 되게 한다.</li>
+</ol>
+<h2 id="multi-nodes-architecture-celery">Multi Nodes Architecture (Celery)</h2>
+<ol>
+<li>Node1에는 웹서버, 스케줄러, 익스큐터가 있음</li>
+<li>Node2에는 메타스토어와 큐가 있음. 큐는 rabbit MQ나 redis 같은 서비스를 사용함</li>
+<li>워커 노드들에는 Airflow 워커들이 있음</li>
+<li>실행 방식은 1 노드 구조와 유사하나, 익스큐터는 외부 큐에 작업을 푸시한다.</li>
+<li>큐 내부에 있는 작업은 워커에 의해 풀 된다.</li>
+</ol>
+<h2 id="folder-dags">folder dags</h2>
+<ol>
+<li>dags 폴더에 파일이 저장</li>
+<li>웹 서버와 스케쥴러가 이를 파싱함</li>
+<li>스케쥴러가 메타스토어에 dagrun object를 생성</li>
+<li>dag가 실행이 되어야 할 경우 스케줄러가 TaskInstance object를 메타스토어에 스케줄함</li>
+<li>TaskInstance를 익스큐터에 보냄</li>
+<li>실행 중에 메타스토어의 정보를 실행중으로 업데이트</li>
+<li>완료되면 메타스토어의 정보를 완료로 업데이트</li>
+<li>dagrun이 종료되었는지 검증</li>
+<li>웹서버가 metastore의 정보를 ui에 업데이트</li>
+</ol>
+<h3 id="caution">caution</h3>
+<ul>
+<li>dag에 파일이 업데이트 되면 <code>dag_dir_list_interval</code> 주기 후 (기본 5분) UI상에서 확인 가능하다.</li>
+<li><code>min_file_process_interval</code> (기본 30초) dag를 파싱하는 시간. dag 코드가 업데이트 되도 해당 시간 후 반영된다.</li>
+</ul>
+<h1 id="commands">Commands</h1>
+<h2 id="useful-commands">useful commands</h2>
+<ul>
+<li><code>airflow run</code>: 하나의 task 인스턴스 실행</li>
+<li><code>airflow list_dags</code>: dag 목록</li>
+<li><code>airflow dag_state</code>: dag 상태</li>
+<li><code>airflow task_state</code>: task 상태</li>
+<li><code>airflow test</code>: 테스트</li>
+</ul>
+<h2 id="test">test</h2>
+<ul>
+<li><code>$ airflow tasks test DAG_ID TASK_ID DATE</code></li>
+</ul>
+<h2 id="dependencies">dependencies</h2>
+<ul>
+<li>task 디펜던시 줄 때 줄바꾸기</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">task1</span> <span class="o">&gt;&gt;</span> <span class="n">task2</span> <span class="o">&gt;&gt;</span> <span class="n">task3</span>
+</span></span><span class="line"><span class="cl"><span class="n">task3</span> <span class="o">&gt;&gt;</span> <span class="n">task4</span> <span class="o">&gt;&gt;</span> <span class="n">task5</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="dag-details">DAG Details</h1>
+<h2 id="date-options">date options</h2>
+<h3 id="start_date"><code>start_date</code></h3>
+<ul>
+<li>DAG의 task들이 언제부터 트리거되고 스케줄되는지 시간을 정의.
+<ul>
+<li>ex) 2019-03-01로 정의했다면, 2019년 3월 1일 자정에 스케줄됨</li>
+</ul>
+</li>
+<li>python의 <code>datetime</code> 모듈로 정의 가능</li>
+<li>과거나 미래로 설정 가능함
+<ul>
+<li>미래로 설정 시, 해당 시간이 될 때까지 기다림</li>
+<li>과거로 설정 시, 기다리지 않고 실행 가능. 그러나 <code>catchup=False</code>로 주지 않으면 과거로 설정한 날짜로 부터 <code>schedule_interval</code>마다 task instance가 실행되므로 주의</li>
+</ul>
+</li>
+<li><code>datetime.now()</code>와 같이 동적으로 할당하지 말 것</li>
+</ul>
+<h3 id="schedule_interval"><code>schedule_interval</code></h3>
+<ul>
+<li><code>start_date</code>의 최소값으로 부터 트리거되는 시간 간격
+<ul>
+<li>같은 dag에서도 task 별로 <code>start_date</code>를 따로 줄 수 있기 때문에 최소값으로 정의됨</li>
+<li>그러나 같은 dag내 task들은 같은 <code>start_date</code>를 쓰는 것이 좋음</li>
+</ul>
+</li>
+<li>cron expression이나 <code>datetime.timedelta</code> 모듈로 정의 가능
+<ul>
+<li>cron을 쓰는 것이 더 정확한 표현을 할 수 있으므로 cron을 사용하는 것이 좋음</li>
+</ul>
+</li>
+</ul>
+<h3 id="execution_date"><code>execution_date</code></h3>
+<ul>
+<li>dag가 실행된 시각이 <strong>아님</strong></li>
+<li><code>start_date</code> - <code>schedule_interval</code></li>
+</ul>
+<h3 id="end_date"><code>end_date</code></h3>
+<ul>
+<li>dag/task가 더이상 스케줄되지 않는 시간</li>
+<li>기본값은 None</li>
+</ul>
+<h2 id="backfill">Backfill</h2>
+<ul>
+<li>실행되지 않았던 dag/task를 실행하는 기능</li>
+<li><code>catchup=True</code>로 설정 시 수행</li>
+<li><code>catchup=False</code>로 설정 시 실행되지 않은 가장 마지막 dag/task만 실행하도록 되어 있음</li>
+<li>CLI를 통해 실행 가능. <a class="link" href="https://airflow.apache.org/docs/apache-airflow/stable/dag-run.html#backfill"  target="_blank" rel="noopener"
+    >airflow 공식문서</a></li>
+</ul>
+<h2 id="depends_on_past"><code>depends_on_past</code></h2>
+<ul>
+<li>task 레벨에서 정의</li>
+<li><code>default_args</code>에 정의 해서 모든 task에도 적용 가능</li>
+<li>이전 dagrun의 특정 task가 실패했다면, 이번 dagrun에서 그 task가 실행되는 것을 막을 수 있음</li>
+</ul>
+<h2 id="wait_for_downstream"><code>wait_for_downstream</code></h2>
+<ul>
+<li>task 레벨에서 정의</li>
+<li><code>default_args</code>에 정의 해서 모든 task에도 적용 가능</li>
+<li><code>wait_for_downtstream</code>이 정의된 task의 downstream task들이 이전 dagrun에서 완료될 때 까지 이번 dagrun 대기</li>
+</ul>
+<h2 id="dags-folder-structure">DAGs folder structure</h2>
+<h3 id="1-zip">1. Zip</h3>
+<ul>
+<li>dag 파일은 zip 파일 root에 위치해야함</li>
+<li>모듈 디펜던시가 필요하면 virtualenv와 pip 사용</li>
+</ul>
+<h3 id="2-dagbag">2. DAGBag</h3>
+<ul>
+<li>DAG 모음. 폴더 구조로 dag를 다룬다.</li>
+<li>dev/staging/prod와 같이 환경 분리에 이점이 있다</li>
+<li>dagbag이 깨지면 airflow UI상에서 에러가 뜨지 않고 웹서버 로그로만 확인 가능하므로 주의</li>
+</ul>
+<h3 id="3-airflowignore">3. .airflowignore</h3>
+<ul>
+<li>.gitignore와 유사</li>
+<li>모든 dags 폴더에 넣는 것이 좋음</li>
+</ul>
+<h2 id="failure-detection">Failure Detection</h2>
+<h3 id="dags">DAGs</h3>
+<ul>
+<li><code>dagrun_timeout</code>: dagrun이 타임아웃되는 시간. 스케줄된 dag만 해당하며(수동 실행은 해당되지 않음) 실행중인 dag의 수가 <code>max_active_runs</code>와 일치하는 경우에만 해당</li>
+<li><code>sla_miss_callback</code></li>
+<li><code>on_failure_callback</code></li>
+<li><code>on_success_callback</code></li>
+</ul>
+<h3 id="tasks">Tasks</h3>
+<ul>
+<li><code>email</code></li>
+<li><code>email_on_failure</code></li>
+<li><code>email_on_retry</code></li>
+<li><code>retries</code></li>
+<li><code>retry_delay</code></li>
+<li><code>retry_exponential_backoff</code></li>
+<li><code>max_retry_delay</code></li>
+<li><code>execution_timeout</code></li>
+<li><code>on_failure_callback</code></li>
+<li><code>on_success_callback</code></li>
+<li><code>on_retry_callback</code></li>
+</ul>
+<h1 id="test-1">Test</h1>
+<h2 id="dag-validation-tests">DAG validation tests</h2>
+<ul>
+<li>유효한지</li>
+<li>cycle이 없는지</li>
+<li>default arguments가 잘 설정됐는지</li>
+</ul>
+<h2 id="dagpipeline-definition-tests">DAG/Pipeline Definition Tests</h2>
+<ul>
+<li>task의 숫자가 맞는지</li>
+<li>(로직이 아닌) task가 잘 정의 됐는지</li>
+<li>task의 upstream, downstream 디펜던시가 잘 정의됐는지</li>
+</ul>
+<h2 id="unit-tests">Unit tests</h2>
+<ul>
+<li>로직 체크</li>
+<li>operator가 잘 동작되는지만 체크</li>
+<li>복잡한 로직을 airflow가 하게 두지 마라 (airflow는 오케스트레이션 툴이다)</li>
+</ul>
+<h2 id="integration-tests">Integration tests</h2>
+<ul>
+<li>task가 데이터를 잘 교환하는지</li>
+<li>task의 input 체크</li>
+<li>여러 task간 의존성 체크</li>
+</ul>
+<h2 id="end-to-end-pipeline-tests">End to End Pipeline tests</h2>
+<ul>
+<li>결과가 올바른지</li>
+<li>전체 로직 체크</li>
+<li>성능 체크</li>
+</ul>
+<h1 id="local-executor">Local Executor</h1>
+<ul>
+<li>병렬 실행 가능 (개발시 local executor 사용 권장)</li>
+<li><code>parallelism = 0</code>: unlimit</li>
+<li><code>parallelism &gt; 0</code>: limit
+<ul>
+<li>코어수 - 1로 설정하는 것을 권장</li>
+</ul>
+</li>
+<li><code>dag_cuncurrency</code>와 <code>max_active_runs_per_dag</code> 옵션에 따라 dag간 task 실행 순서를 조정할 수 있다.
+<ul>
+<li><code>dag_cuncurrency</code>: dag내에서 동시에 실행 가능한 task의 수</li>
+<li><code>max_active_runs_per_dag</code>: 동시에 실행 시킬 수 있는 dag 수(backfill 일 때 주로 신경쓸 듯)</li>
+</ul>
+</li>
+</ul>
+<h1 id="subdags">SubDAGs</h1>
+<ul>
+<li>유사한 DAG를 하나의 그룹으로 묶어 UI상에서 마치 하나의 DAG인 것 처럼 표시할 수 있음</li>
+<li><code>SubDagOperator</code> 사용
+<ul>
+<li>기본 Executor는 <code>SequentialExecutor</code></li>
+</ul>
+</li>
+<li>main DAG가 모든 subDAG 들을 task로 관리</li>
+<li>Airflow UI는 오직 main DAG만 표시</li>
+<li>subDAG는 부모 DAG와 동일한 시각에 스케줄되어야 함. 그렇지 않으면 예상치 못한 결과를 낳을 수 있음</li>
+<li>데드락이 발생할 수 있음</li>
+</ul>
+<h1 id="branching">Branching</h1>
+<ul>
+<li>DAG가 특정 task의 결과에 따라 경로를 선택할 수 있게끔 하는 것</li>
+<li><code>BranchPythonOperator</code></li>
+<li><code>BranchPythonOperator</code>의 결과가 task_c를 반환하고 <code>BranchPythonOperator</code>의 downstream으로 task_a, task_b, task_c가 있다면 task_c를 실행하고, a와 b는 스킵</li>
+<li><code>depends_on_past=True</code>로 지정시, a와 b는 실패 상태로 뜨기 때문에 다음 DAGrun은 실행되지 않음</li>
+<li><code>BranchPythonOperator</code>에 empty path를 주면 의도하지 않은 결과를 줄 수 있기 때문에 반드시 주는 것이 좋다.
+<ul>
+<li>path를 스킵하고 싶다면 (task를 끝내고 싶다면) dummy task를 줘서 끝내자</li>
+</ul>
+</li>
+<li>마지막 task도 skipped로 뜨는 것을 막고 싶다면 마지막 task operator에 <code>trigger_rule='one_success'</code>추가</li>
+</ul>
+<h1 id="trigger-rule">Trigger Rule</h1>
+<ul>
+<li><code>depends_on_past</code>와 사용 가능</li>
+<li>upstream task중 skipped task가 있으면 <code>all_success</code>와 <code>all_failed</code>는 skipped 상태로 표시됨</li>
+</ul>
+<h2 id="kinds">Kinds</h2>
+<ul>
+<li><code>all_success</code>: upstream task가 모두 성공하면 run</li>
+<li><code>all_failed</code>: upstream task가 모두 실패하면 run</li>
+<li><code>all_done</code>: upstream task가 성공 유무와 관련없이 끝나면 run</li>
+<li><code>one_failed</code>: upstream task가 하나라도 실패해야 run</li>
+<li><code>one_success</code>: upstream task가 하나라도 성공해야 run</li>
+<li><code>none_failed</code>: upstream task가 failed가 없어야 run</li>
+<li><code>none_skipped</code>: upstream task가 skipped가 없어야 run</li>
+<li><code>dummy</code></li>
+</ul>
+<h1 id="variables">Variables</h1>
+<ul>
+<li>metadata DB에 저장되는 값</li>
+<li>Key, value, Is encrypted로 구성</li>
+<li>JSON 형식 가능</li>
+</ul>
+<h1 id="templating">Templating</h1>
+<ul>
+<li>placeholder <code>{{}}</code> 를 사용하여 값을 대체</li>
+<li>Jinja template</li>
+</ul>
+<h1 id="macros">Macros</h1>
+<ul>
+<li><a class="link" href="https://airflow.apache.org/docs/apache-airflow/stable/templates-ref.html#macros"  target="_blank" rel="noopener"
+    >https://airflow.apache.org/docs/apache-airflow/stable/templates-ref.html#macros</a></li>
+</ul>
+<h1 id="xcoms">XCOMs</h1>
+<ul>
+<li>task 간 메세지 공유</li>
+<li>key, value, timestamp로 구성</li>
+<li>value는 가벼워야 한다. (성능 문제)</li>
+<li><code>xcom_push(key, value)</code>로 metadata DB에 푸시
+<ul>
+<li>key: <code>returned_value</code>, value: 리턴값</li>
+</ul>
+</li>
+<li><code>xcom_pull(key)</code>로 받기
+<ul>
+<li>key를 명시하지 않으면 <code>returned_value</code>가 기본값</li>
+</ul>
+</li>
+</ul>
+<h1 id="triggerdagrunoperator">TriggerDagRunOperator</h1>
+<ul>
+<li>다른 DAG(컨트롤러)의 조건에 따라 특정 DAG(타겟)를 시작하게 함</li>
+<li>branch나 subdag로는 너무 복잡해질때 사용</li>
+<li>컨트롤러는 타겟이 종료될 때 까지 기다리지 않음</li>
+<li>컨트롤러와 타겟은 독립적임</li>
+<li>컨트롤러의 히스토리에 관한 시각화는 제공되지 않음</li>
+<li>두 dag모두 스케줄되어야 함</li>
+<li>타겟 interval은 None이어야 함</li>
+<li>두 dag간에 메세지를 주고받을 수 있음(xcoms 대체)</li>
+</ul>
+<h1 id="externaltasksensor">ExternalTaskSensor</h1>
+<ul>
+<li>DAG간 종속성 줄 때 사용</li>
+<li>예를 들어 DAG1(<code>t1 &gt;&gt; t2 &gt;&gt; t3</code>), DAG2(<code>t3 &gt;&gt; t4 &gt;&gt; t5</code>)가 있을 때 t3가 완료되면 (DAG1이 완료되면) DAG2가 실행되도록 한다. (t4부터)</li>
+<li>두 DAG는같은 스케줄이어야 함 (또는 <code>execution_delta</code> 나 <code>execution_date_fn</code> 파라미터 사용)</li>
+<li><code>TriggerDagRunOperator</code>와 쓰면 고장남
+<ul>
+<li>스케줄 인터벌 None이기 때문</li>
+</ul>
+</li>
+</ul>
+<h1 id="logging">Logging</h1>
+<ul>
+<li><code>airflow.cfg</code>의 <code>base_log_folder</code>: log 저장 경로</li>
+<li><code>fab_logging_level</code>: flask app builder의 로깅 수준. (flask 기반 웹서버)</li>
+</ul>
+<h1 id="metrics">Metrics</h1>
+<ul>
+<li>Counters: 실패한 task 수</li>
+<li>Gauges: queued task 수</li>
+<li>Timers: task 완료까지의 밀리초</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/airflow/">airflow</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">관련 글</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/dask-%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Dask 튜토리얼</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9C%BC%EB%A1%9C-%EC%97%98%EB%9D%BC%EC%8A%A4%ED%8B%B1-%EC%84%9C%EC%B9%98-%EC%BF%BC%EB%A6%AC%ED%95%98%EA%B8%B0/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">파이썬으로 엘라스틱 서치 쿼리하기</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="haebuk/blog-comments"
+        issue-term="title"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 지식 공유, 협업 ✈️ 성장
+    </section>
+    
+    <section class="powerby">
+        <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>로 만듦 <br />
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>의 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.13.0">Stack</a></b> 테마 사용 중
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
