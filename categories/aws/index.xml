@@ -6,7 +6,206 @@
         <description>Recent content in AWS on 지식 공유, 협업 ✈️ 성장</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ko-kr</language>
-        <lastBuildDate>Sun, 23 Oct 2022 16:05:30 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/categories/aws/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 23 Oct 2022 20:21:30 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/categories/aws/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[AWS Cloud Practitioner] 마이그레이션 및 혁신 정리</title>
+        <link>https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98-%EB%B0%8F-%ED%98%81%EC%8B%A0-%EC%A0%95%EB%A6%AC/</link>
+        <pubDate>Sun, 23 Oct 2022 20:21:30 +0900</pubDate>
+        
+        <guid>https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98-%EB%B0%8F-%ED%98%81%EC%8B%A0-%EC%A0%95%EB%A6%AC/</guid>
+        <description>&lt;h2 id=&#34;aws-cloud-adoption-frameworkaws-caf&#34;&gt;AWS Cloud Adoption Framework(AWS CAF)&lt;/h2&gt;
+&lt;h3 id=&#34;6가지-주요-관점&#34;&gt;6가지 주요 관점&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;비즈니스 관점: IT가 비즈니스 요구 사항을 반영하고 IT 투자가 주요 비즈니스 결과와 연계되도록 보장&lt;/li&gt;
+&lt;li&gt;인력 관점: 클라우드 채택을 성공하기 위한 조직 전반의 변화 관리 전략 개발 지원&lt;/li&gt;
+&lt;li&gt;거버넌스 관점: IT 전략이 비즈니스 전략에 부합하도록 조정하는 기술 및 프로세스에 중점
+&lt;ul&gt;
+&lt;li&gt;비즈니스 가치를 극대화하고 위험 최소화&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;플랫폼 관점: 클라우드 기반으로 새로운 솔루션 구축, 온프레미스 워크로드를 클라우드로 마이그레이션하기 위한 원칙과 패턴 포함&lt;/li&gt;
+&lt;li&gt;보안 관점: 조직이 가시성, 감사 가능성, 제어 및 민첩성에 대한 보안 목표를 충족하도록 보장&lt;/li&gt;
+&lt;li&gt;운영 관점: 비즈니스 이해당사자와 합의된 수준까지 IT 워크로드를 구현, 실행, 사용, 운영 및 복구하는 데 도움&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;마이그레이션-전략&#34;&gt;마이그레이션 전략&lt;/h2&gt;
+&lt;h3 id=&#34;6가지-마이그레이션-전략&#34;&gt;6가지 마이그레이션 전략&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;리호스팅(Rehosting): 애플리케이션을 변경 없이 이전&lt;/li&gt;
+&lt;li&gt;리플랫포밍(Replatforming): 몇 가지 클라우드 최적화 수행.
+&lt;ul&gt;
+&lt;li&gt;최적화는 애플리케이션의 핵심 아키텍처를 변경하지 않고 달성&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;리팩터링(Refactoring)/아키텍처 재설계(Re-architecting): 클라우드 네이티브 기능을 사용해 애플리케이션을 설계하고 개발하는 방식을 재구성
+&lt;ul&gt;
+&lt;li&gt;다른 방법으로는 기존 환경의 애플리케이션에서 실현하기 까다로운 기능 추가, 확장 또는 성능 개선의 필요성이 클 때 활용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;재구매(Repurchasing): 기존 라이선스를 SaaS 모델로 전환&lt;/li&gt;
+&lt;li&gt;유지(Retaining): 비즈니스에 중요한 애플리케이션을 소스 환경에 유지
+&lt;ul&gt;
+&lt;li&gt;마이그레이션하려면 대규모 리팩토링이 필요한 애플리케이션 또는 이후로 연기할 수 있는 워크로드&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;폐기(Retiring): 더 이상 필요하지 않은 애플리케이션을 제거&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;aws-snow-패밀리&#34;&gt;AWS Snow 패밀리&lt;/h2&gt;
+&lt;p&gt;AWS와 고객 간 최대 엑사바이트 규모의 데이터를 물리적으로 이동할 수 있는 물리적 디바이스 모음&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;각 디바이스는 각각 다른 용량 포인트를 제공, 대부분 내장 컴퓨팅 기능 포함&lt;/li&gt;
+&lt;li&gt;AWS는 Snow 패밀리 디바이스를 소유 및 관리하고 보안, 모니터링, 스토리지 관리 및 컴퓨팅 기능과 통합&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;aws-snowcone&#34;&gt;AWS Snowcone&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;작고 견고하며 안전한 엣지 컴퓨팅 및 데이터 전송 디바이스&lt;/li&gt;
+&lt;li&gt;CPU 2개, 4GB 메모리 및 8TB 가용 스토리지&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;aws-snowball&#34;&gt;AWS Snowball&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Snowball Edge Storage Optimized: 대규모 데이터 마이그레이션 및 반복 전송 워크플로뿐 아니라 큰 용량이 필요한 로컬 컴퓨팅에 적합
+&lt;ul&gt;
+&lt;li&gt;스토리지: 블록 볼륨 및 S3 호환을 위한 80TB HDD, 블록 볼륨을 위한 1TB의 SSD&lt;/li&gt;
+&lt;li&gt;컴퓨팅: EC2 sbe1 인스턴스(C5와 동등)를 지원하기 위한 40개의 vCPU와 80GiB의 메모리&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Snowball Edge Compute Optimized: 기계 학습, 풀 모션 비디오 분석, 분석 및 로컬 컴퓨팅 스택과 같은 사용 사례에 적합
+&lt;ul&gt;
+&lt;li&gt;스토리지: 블록 볼륨 및 S3 호환을 위한 42TB HDD, EBS 호환 블록 볼륨을 위한 7.68TB의 가용 SSD&lt;/li&gt;
+&lt;li&gt;컴퓨팅: 52개의 vCPU, 208GiB 메모리 및 NVIDIA Tesla V100 GPU 옵션, 디바이스는 C5, M5a, G3 및 P3 인스턴스와 동등한 EC2 sbe-c 및 sbe-g 인스턴스 실행&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;aws-snowmobile&#34;&gt;AWS Snowmobile&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;대용량 데이터를 AWS에 이동하는 데 사용하는 엑사바이트 규모의 데이터 전송 서비스&lt;/li&gt;
+&lt;li&gt;세미 트레일러 트럭으로 견인되며, 1대당 최대 100페타바이트의 데이터 전송 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;aws를-통한-혁신&#34;&gt;AWS를 통한 혁신&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;현재 상태, 원하는 상태, 해결하려는 문제를 명확히 설명할 수 있다면 클라우드에서 혁신을 추진할 수 있음&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>[AWS Cloud Practitioner] 요금 및 지원 정리</title>
+        <link>https://Haebuk.github.io/p/aws-cloud-practitioner-%EC%9A%94%EA%B8%88-%EB%B0%8F-%EC%A7%80%EC%9B%90-%EC%A0%95%EB%A6%AC/</link>
+        <pubDate>Sun, 23 Oct 2022 17:27:30 +0900</pubDate>
+        
+        <guid>https://Haebuk.github.io/p/aws-cloud-practitioner-%EC%9A%94%EA%B8%88-%EB%B0%8F-%EC%A7%80%EC%9B%90-%EC%A0%95%EB%A6%AC/</guid>
+        <description>&lt;h2 id=&#34;aws-프리-티어&#34;&gt;AWS 프리 티어&lt;/h2&gt;
+&lt;p&gt;지정된 기간 동안 비용을 신경 쓸 필요 없이 특정 서비스 사용 가능&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;제공되는 상품은 다음과 같은 세 가지 유형이 존재
+&lt;ul&gt;
+&lt;li&gt;상시 무료: 만료되지 않으며 모든 AWS고객에게 제공&lt;/li&gt;
+&lt;li&gt;12개월 무료: 처음 AWS에 가입한 날로부터 12개월간 무료 제공&lt;/li&gt;
+&lt;li&gt;평가판: 특정 서비스를 활성화한 날짜부터 시작&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;aws-요금-개념&#34;&gt;AWS 요금 개념&lt;/h2&gt;
+&lt;h3 id=&#34;aws-요금-적용-방식&#34;&gt;AWS 요금 적용 방식&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;실제 사용한 만큼만 지불&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;장기 계약 또는 복잡한 라이선스 없이 각 서비스에서 실제로 사용한 리소스의 양에 대해 정확히 지불&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;예약하는 경우 비용 감소&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;온디맨드 인스턴스 요금에 비해 상당한 할인을 제공&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;많이 사용할수록 볼륨 기반 할인으로 비용 감소&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;일부 서비스는 계층화된 요금을 제공&lt;/li&gt;
+&lt;li&gt;사용량이 증가함에 따라 점차 단위 비용 감소&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;aws-요금-계산기&#34;&gt;AWS 요금 계산기&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://calculator.aws/#/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;AWS 요금 계산기&lt;/a&gt;를 사용하면 AWS 서비스를 탐색하고 AWS 기반 사용 사례에 대한 비용 추정 가능&lt;/li&gt;
+&lt;li&gt;AWS 비용 추정을 정의된 그룹별 구성 가능&lt;/li&gt;
+&lt;li&gt;생성된 비용 추정을 저장하고 링크를 생성해 다른 사용자와 공유 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;결제-대시보드&#34;&gt;결제 대시보드&lt;/h2&gt;
+&lt;p&gt;AWS 청구서를 결제하고, 사용량을 모니터링하고, 비용을 분석 및 제어할 수 있음&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;이번 달 누계 금액을 지난 달과 비교, 현재 사용량을 기준으로 내달 사용량 예측&lt;/li&gt;
+&lt;li&gt;서비스별 월 누계 지출 확인&lt;/li&gt;
+&lt;li&gt;서비스별 프리 티어 사용량 확인&lt;/li&gt;
+&lt;li&gt;Cost Explorer에 액세스해 예산 생성&lt;/li&gt;
+&lt;li&gt;Savings Plans 구매 및 관리&lt;/li&gt;
+&lt;li&gt;AWS 비용 및 사용 보고서 게시&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;통합-결제&#34;&gt;통합 결제&lt;/h2&gt;
+&lt;p&gt;조직의 모든 AWS 계정에 대한 단일 청구서 발행 가능&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;조직에 허용되는 최대 계정 수는 기본적으로 4개지만, 할당량 늘릴 수 있음&lt;/li&gt;
+&lt;li&gt;조직의 계정 전체에서 대량 할인 요금, Savings Plans 및 예약 인스턴스 공유 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;aws-예산&#34;&gt;AWS 예산&lt;/h2&gt;
+&lt;p&gt;서비스 사용, 서비스 비용 및 인스턴스 예약을 계획할 수 있음&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;정보가 하루에 세 번 업데이트됨&lt;/li&gt;
+&lt;li&gt;사용량이 예산 금액을 초과하거나 초과할 것으로 예상되면 알려주는 사용자 지정 알림 설정 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;aws-cost-explorer&#34;&gt;AWS Cost Explorer&lt;/h2&gt;
+&lt;p&gt;시간 경과에 따라 AWS 비용 및 사용량을 시각화, 이해, 관리할 수 있는 도구&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;발생 비용 기준 상위 5개 AWS 서비스의 비용 및 사용량에 대한 기본 보고서 포함&lt;/li&gt;
+&lt;li&gt;사용자 지정 필터 및 그룹을 적용해 데이터 분석 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;aws-support-플랜&#34;&gt;AWS Support 플랜&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Basic Support
+&lt;ol&gt;
+&lt;li&gt;모든 고객에게 무료 제공&lt;/li&gt;
+&lt;li&gt;백서, 설명서 및 지원 커뮤니티에 대한 액세스 포함&lt;/li&gt;
+&lt;li&gt;AWS에 결제 관련 질문 및 서비스 한도 증가에 대해 문의 가능&lt;/li&gt;
+&lt;li&gt;제한된 AWS Trusted Advisor 검사에 액세스 가능&lt;/li&gt;
+&lt;li&gt;사용자에게 영향을 줄 수 있는 이벤트가 발생할 때 알림 및 수정 지침을 제공하는 도구인 AWS Personal Health Dashboard 사용 가능&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;Developer Support
+&lt;ol&gt;
+&lt;li&gt;모범 사례 지침 액세스&lt;/li&gt;
+&lt;li&gt;클라이언트 측 진단 도구 액세스&lt;/li&gt;
+&lt;li&gt;AWS 제품, 기능 및 서비스를 함께 사용하는 방법에 대한 지침으로 구성된 빌딩 블록 아키텍처 지원&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;Business Support
+&lt;ol&gt;
+&lt;li&gt;특정 요구 사항을 가장 잘 지원해줄 수 있는 AWS 제품, 기능 및 서비스를 식별하기 위한 사용 사례 지침 액세스&lt;/li&gt;
+&lt;li&gt;모든 AWS Trusted Advisor 검사&lt;/li&gt;
+&lt;li&gt;일반적인 운영 체제 및 애플리케이션 스택 구성 요소와 같은 타사 소프트웨어에 대한 제한된 지원&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;Enterprise Support
+&lt;ol&gt;
+&lt;li&gt;회사의 특정 사용 사례 및 애플리케이션을 지원하기 위한 컨설팅 관계인 애플리케이션 아키텍처 지침&lt;/li&gt;
+&lt;li&gt;인프라 이벤트 관리 지원&lt;/li&gt;
+&lt;li&gt;기술 계정 관리자 지원&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;기술-지원-관리자-tam&#34;&gt;기술 지원 관리자 (TAM)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;애플리케이션을 계획, 배포, 최적화할 때 TAM이 지속적으로 권장 사항, 아키텍처 검토를 제공&lt;/li&gt;
+&lt;li&gt;모든 AWS 서비스에 대한 전문 지식 제공&lt;/li&gt;
+&lt;li&gt;여러 서비스를 함께 효율적으로 사용하는 솔루션을 설계하는 과정 지원&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;aws-marketplace&#34;&gt;AWS Marketplace&lt;/h2&gt;
+&lt;p&gt;Independent Software Vendor(ISV)의 소프트웨어가 포함된 디지털 카탈로그&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AWS에서 실행되는 소프트웨어를 검색하고 평가, 구매할 수 있음&lt;/li&gt;
+&lt;li&gt;산업 및 사용 사례별로 소프트웨어 솔루션 탐색 가능&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>[AWS Cloud Practitioner] 모니터링 및 분석 정리</title>
         <link>https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-%EB%B0%8F-%EB%B6%84%EC%84%9D-%EC%A0%95%EB%A6%AC/</link>
         <pubDate>Sun, 23 Oct 2022 16:05:30 +0900</pubDate>
