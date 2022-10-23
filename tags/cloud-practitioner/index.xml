@@ -6,7 +6,58 @@
         <description>Recent content in Cloud Practitioner on 지식 공유, 협업 ✈️ 성장</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ko-kr</language>
-        <lastBuildDate>Sun, 23 Oct 2022 14:55:30 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/tags/cloud-practitioner/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 23 Oct 2022 16:05:30 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/tags/cloud-practitioner/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[AWS Cloud Practitioner] 모니터링 및 분석 정리</title>
+        <link>https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-%EB%B0%8F-%EB%B6%84%EC%84%9D-%EC%A0%95%EB%A6%AC/</link>
+        <pubDate>Sun, 23 Oct 2022 16:05:30 +0900</pubDate>
+        
+        <guid>https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-%EB%B0%8F-%EB%B6%84%EC%84%9D-%EC%A0%95%EB%A6%AC/</guid>
+        <description>&lt;h1 id=&#34;amazon-cloudwatch&#34;&gt;Amazon CloudWatch&lt;/h1&gt;
+&lt;p&gt;다양한 지표를 모니터링 및 관리하고 해당 지표의 데이터를 기반으로 경보 작업을 구성할 수 있는 웹 서비스&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;지표를 사용해 리소스의 데이터 포인트를 나타냄&lt;/li&gt;
+&lt;li&gt;AWS 서비스는 지표를 CloudWatch로 전송&lt;/li&gt;
+&lt;li&gt;CloudWatch가 이 지표를 사용해 시간 경과에 따라 어떻게 성능이 변화했는지 보여주는 그래프를 자동 생성&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;cloudwatch-경보&#34;&gt;CloudWatch 경보&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;지표의 값이 미리 정의된 임계값을 상회 또는 하회할 경우 자동으로 작업을 수행&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;cloudwatch-대시보드&#34;&gt;CloudWatch 대시보드&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;단일 위치에서 리소스에 대한 모든 지표에 액세스 가능&lt;/li&gt;
+&lt;li&gt;다양한 비즈니스 용도, 애플리케이션 또는 리소스에 따라 별도의 대시보드를 사용자 지정 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;aws-cloudtrail&#34;&gt;AWS CloudTrail&lt;/h1&gt;
+&lt;p&gt;계정에 대한 API 호출을 기록&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;기록되는 정보에는 API 호출자 ID, API 호출 시간, API 호출자의 소스 IP 주소 등이 포함&lt;/li&gt;
+&lt;li&gt;누군가 남긴 이동 경로(작업 로그)의 ‘추적’으로 생각하면 됨&lt;/li&gt;
+&lt;li&gt;애플리케이션 및 리소스에 대한 사용자 활동 및 API 호출의 전체 내역 열람 가능&lt;/li&gt;
+&lt;li&gt;일반적으로 API 호출 후 15분 이내에 업데이트 됨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;cloudtrail-insights&#34;&gt;CloudTrail Insights&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;AWS 계정에서 비정상적인 API 활동을 자동으로 감지할 수 있음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;aws-trusted-advisor&#34;&gt;AWS Trusted Advisor&lt;/h1&gt;
+&lt;p&gt;AWS 환경을 검사하고 AWS 모범 사례에 따라 실시간 권장 사항을 제시하는 웹 서비스&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;비용 최적화, 성능, 보안, 내결함성, 서비스 한도라는 5개 범주에서 결과를 모범 사례와 비교&lt;/li&gt;
+&lt;li&gt;각 범주의 검사에 대해 권장 작업 목록 제공, AWS 모범 사례를 알아볼 수 있는 추가 자료 제공&lt;/li&gt;
+&lt;li&gt;AWS Trusted Advisor가 제공하는 권장 사항은 배포의 모든 단계에서도 유용&lt;/li&gt;
+&lt;li&gt;기존 애플리케이션 및 리소스를 지속적으로 개선하는데 활용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;aws-trusted-advisor-대시보드&#34;&gt;AWS Trusted Advisor 대시보드&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;위에서 언급한 5개 범주에서 완료된 검사 검토 가능&lt;/li&gt;
+&lt;li&gt;녹색 체크 표시: 문제가 감지되지 않은 항목 수&lt;/li&gt;
+&lt;li&gt;주황색 삼각형: 권장 조사 항목 수&lt;/li&gt;
+&lt;li&gt;빨간색 원: 권장 조치 수&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>[AWS Cloud Practitioner] 보안 정리</title>
         <link>https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%B3%B4%EC%95%88-%EC%A0%95%EB%A6%AC/</link>
         <pubDate>Sun, 23 Oct 2022 14:55:30 +0900</pubDate>
