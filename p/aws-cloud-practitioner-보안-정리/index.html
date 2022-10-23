@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="ko-kr" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='AWS Cloud Practitioner Essential 네트워킹 정리'><title>[AWS Cloud Practitioner] 네트워킹 정리</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='AWS Cloud Practitioner Essential 보안 정리'><title>[AWS Cloud Practitioner] 보안 정리</title>
 
-<link rel='canonical' href='https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9-%EC%A0%95%EB%A6%AC/'>
+<link rel='canonical' href='https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%B3%B4%EC%95%88-%EC%A0%95%EB%A6%AC/'>
 
-<link rel="stylesheet" href="/scss/style.min.7b85a154539eab990d669fa1899e2e8294729f772bda4a7978ceb32a14b2bdb7.css"><meta property='og:title' content='[AWS Cloud Practitioner] 네트워킹 정리'>
-<meta property='og:description' content='AWS Cloud Practitioner Essential 네트워킹 정리'>
-<meta property='og:url' content='https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9-%EC%A0%95%EB%A6%AC/'>
+<link rel="stylesheet" href="/scss/style.min.7b85a154539eab990d669fa1899e2e8294729f772bda4a7978ceb32a14b2bdb7.css"><meta property='og:title' content='[AWS Cloud Practitioner] 보안 정리'>
+<meta property='og:description' content='AWS Cloud Practitioner Essential 보안 정리'>
+<meta property='og:url' content='https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%B3%B4%EC%95%88-%EC%A0%95%EB%A6%AC/'>
 <meta property='og:site_name' content='지식 공유, 협업 ✈️ 성장'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Cloud Practitioner' /><meta property='article:tag' content='Skill Builder' /><meta property='article:published_time' content='2022-10-22T21:12:39&#43;09:00'/><meta property='article:modified_time' content='2022-10-22T21:12:39&#43;09:00'/>
-<meta name="twitter:title" content="[AWS Cloud Practitioner] 네트워킹 정리">
-<meta name="twitter:description" content="AWS Cloud Practitioner Essential 네트워킹 정리">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Cloud Practitioner' /><meta property='article:tag' content='Skill Builder' /><meta property='article:published_time' content='2022-10-23T14:55:30&#43;09:00'/><meta property='article:modified_time' content='2022-10-23T14:55:30&#43;09:00'/>
+<meta name="twitter:title" content="[AWS Cloud Practitioner] 보안 정리">
+<meta name="twitter:description" content="AWS Cloud Practitioner Essential 보안 정리">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7CM424CQYT"></script>
 <script>
 var doNotTrack = false;
@@ -270,12 +270,12 @@ if (!doNotTrack) {
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/aws-cloud-practitioner-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9-%EC%A0%95%EB%A6%AC/">[AWS Cloud Practitioner] 네트워킹 정리</a>
+            <a href="/p/aws-cloud-practitioner-%EB%B3%B4%EC%95%88-%EC%A0%95%EB%A6%AC/">[AWS Cloud Practitioner] 보안 정리</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            AWS Cloud Practitioner Essential 네트워킹 정리
+            AWS Cloud Practitioner Essential 보안 정리
         </h3>
         
     </div>
@@ -293,7 +293,7 @@ if (!doNotTrack) {
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Oct 22, 2022</time>
+                <time class="article-time--published">Oct 23, 2022</time>
             </div>
         
 
@@ -308,7 +308,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    3 분 정도
+                    5 분 정도
                 </time>
             </div>
         
@@ -322,208 +322,220 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="aws와의-연결">AWS와의 연결</h1>
-<h2 id="virtual-private-cloudvpc">Virtual Private Cloud(VPC)</h2>
-<p>AWS 리소스에 경계를 설정하는 데 사용할 수 있는 네트워킹 서비스</p>
+    <h1 id="공동-책임-모델">공동 책임 모델</h1>
+<p>리소를 안전하게 유지할 책임은 AWS와 고객 둘 다 있음</p>
 <ul>
-<li>VPC를 사용해 AWS 클라우드의 격리된 섹션을 프로비저닝할 수 있음</li>
-<li>한 VPC 내에서 여러 서브넷으로 리소스를 구성할 수 있음</li>
-<li>서브넷: 리소스를 포함할 수 있는 VPC 섹션</li>
+<li>AWS 환경을 단일 객체로 취급하지 않기 때문</li>
+<li>공동 책임 모델은 고객 책임(일반적으로 ‘클라우드 내부의 보안’)과 AWS 책임(일반적으로 ‘클라우드 자체의 보안’)으로 분류됨</li>
 </ul>
-<h2 id="인터넷-게이트웨이">인터넷 게이트웨이</h2>
-<ul>
-<li>인터넷의 퍼블릭 트래픽이 VPC에 액세스하도록 허용하려면 인터넷 게이트웨이를 VPC에 연결해야 함</li>
-</ul>
-<p><img src="/p/aws-cloud-practitioner-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9-%EC%A0%95%EB%A6%AC/Untitled.png"
-	width="873"
-	height="437"
-	srcset="/p/aws-cloud-practitioner-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9-%EC%A0%95%EB%A6%AC/Untitled_hu337136f0b1d54151d697a9c2ba8cd248_74051_480x0_resize_box_3.png 480w, /p/aws-cloud-practitioner-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9-%EC%A0%95%EB%A6%AC/Untitled_hu337136f0b1d54151d697a9c2ba8cd248_74051_1024x0_resize_box_3.png 1024w"
+<p><img src="/p/aws-cloud-practitioner-%EB%B3%B4%EC%95%88-%EC%A0%95%EB%A6%AC/Untitled.png"
+	width="856"
+	height="317"
+	srcset="/p/aws-cloud-practitioner-%EB%B3%B4%EC%95%88-%EC%A0%95%EB%A6%AC/Untitled_hu9e49296d6ea090f7a9655be17b01c10d_93084_480x0_resize_box_3.png 480w, /p/aws-cloud-practitioner-%EB%B3%B4%EC%95%88-%EC%A0%95%EB%A6%AC/Untitled_hu9e49296d6ea090f7a9655be17b01c10d_93084_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
-		alt="인터넷 게이트웨이"
+		alt="공동 책임 모델"
 	
 	
 		class="gallery-image" 
-		data-flex-grow="199"
-		data-flex-basis="479px"
+		data-flex-grow="270"
+		data-flex-basis="648px"
 	
 ></p>
 <ul>
-<li>인터넷 게이트웨이가 없으면 아무도 VPC내의 리소스에 접근 불가</li>
-</ul>
-<h2 id="가상-프라이빗-게이트웨이">가상 프라이빗 게이트웨이</h2>
+<li>고객: 클라우드 내부의 보안
 <ul>
-<li>VPC내의 비공개 리소스에 액세스하려면 가상 프라이빗 게이트웨이를 사용</li>
-</ul>
-<p><img src="/Untitled%201.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="가상 프라이빗 게이트웨이"
-	
-	
-></p>
-<ul>
-<li>보호된 인터넷 트래픽이 VPC로 들어오도록 허용하는 구성 요소
-<ul>
-<li>다른 트래픽과 동일한 네트워크를 사용하기 때문에 체증 발생 가능</li>
+<li>클라우드 내에서 생성하고 배치하는 모든 것의 보안 책임</li>
+<li>저장하는 콘텐츠, 사용하는 AWS 서비스, 액세스 사용자 및 콘텐츠 보안 요구 사항 같은 영역 포함</li>
 </ul>
 </li>
-<li>VPC와 프라이빗 네트워크간에 가상 프라이빗 네트워크(VPN) 연결 설정 가능</li>
-<li>승인된 네트워크에서 나오는 트래픽만 VPC로 들어가도록 허용</li>
-</ul>
-<h2 id="aws-direct-connect">AWS Direct Connect</h2>
+<li>AWS: 클라우드 자체의 보안
 <ul>
-<li>데이터 센터와 VPC간에 비공개 전용 연결을 설정하는 서비스</li>
-<li>다른 트래픽과 네트워크를 공유하지 않고 바로(Direct) 연결</li>
-</ul>
-<p><img src="/Untitled%202.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="Direct Connect"
-	
-	
-></p>
-<ul>
-<li>네트워크 비용을 절감하고 대역폭을 놀리는데 도움이 됨</li>
-</ul>
-<h1 id="서브넷-및-네트워크-액세스-제어-목록">서브넷 및 네트워크 액세스 제어 목록</h1>
-<h2 id="서브넷">서브넷</h2>
-<p>보안 또는 운영 요구 사항에 따라 리소스를 그룹화할 수 있는 VPC 내의 한 섹션</p>
-<ul>
-<li>서브넷은 퍼블릭 또는 프라이빗일 수 있음</li>
-</ul>
-<p><img src="/Untitled%203.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="서브넷"
-	
-	
-></p>
-<ul>
-<li>퍼블릭 서브넷: 누구나 액세스할 수 있어야 하는 리소스가 포함</li>
-<li>프라이빗 서브넷: 데이터베이스와 같이 프라이빗 네트워크를 통해서만 액세스할 수 있는 리소스가 포함</li>
-<li>VPC내에서 서브넷은 서로 통신할 수 있음.
-<ul>
-<li>예: 퍼블릭 서브넷에 있는 EC2 인스턴스가 프라이빗 서브넷에 있는 데이터베이스와 통신 가능</li>
+<li>인프라의 모든 계층에서 구성 요소를 운영, 관리 및 제어</li>
+<li>호스트 운영 체제, 가상화 계층, 데이터 센터의 물리적 보안 같은 영역 포함</li>
+<li>리소스를 호스팅하는 물리적 인프라 관리</li>
+<li>고객이 AWS 데이터 센터를 방문해 확인할 수는 없지만 외부 감사 기관이 작성한 여러 보고서를 확인할 수는 있음</li>
 </ul>
 </li>
 </ul>
-<h2 id="vpc의-네트워크-트래픽">VPC의 네트워크 트래픽</h2>
+<h1 id="사용자-권한-및-액세스">사용자 권한 및 액세스</h1>
+<h2 id="identity-and-access-managementiam">Identity and Access Management(IAM)</h2>
+<p>AWS 서비스와 리소스에 대한 액세스를 안전하게 관리</p>
 <ul>
-<li>AWS 클라우드에서 호스팅되는 애플리케이션에 데이터를 요청하면 이 요청은 패킷으로 전송됨
+<li>회사의 고유한 운영 및 보안 요구 사항에 따라 액세스 권한을 구성할 수 있는 유연성 제공</li>
+<li>다음과 같은 IAM 기능을 조합하여 사용
 <ul>
-<li>패킷: 인터넷이나 네트워크를 통해 전송되는 데이터의 단위</li>
-</ul>
-</li>
-<li>패킷은 인터넷 게이트웨이를 통해 VPC로 들어간다.
-<ul>
-<li>패킷이 서브넷으로 들어가거나 나오려면 먼저 권한을 확인해야 함</li>
-<li>이를 확인하는 VPC 구성 요소는 네트워크 ACL(액세스 제어 목록)임</li>
-</ul>
-</li>
-</ul>
-<h2 id="네트워크-acl액세스-제어-목록">네트워크 ACL(액세스 제어 목록)</h2>
-<p>서브넷 수준에서 인바운드 및 아웃바운드 트래픽을 제어하는 가상 방화벽</p>
-<ul>
-<li>각 AWS 계정에는 기본 네트워크 ACL이 포함
-<ul>
-<li>VPC를 구성할 때 계정의 기본 기본 네트워크 ACL을 사용하거나 사용자 지정 네트워크 ACL을 생성 가능</li>
-</ul>
-</li>
-<li>계정의 기본 기본 네트워크 ACL: 기본적으로 <strong>모든</strong> 인바운드 및 아웃바운드 트래픽 <strong>허용</strong>
-<ul>
-<li>사용자 자체 규칙 추가 수정 가능</li>
-</ul>
-</li>
-<li>사용자 지정 네트워크 ACL: 사용자가 허용할 트래픽을 지정하는 규칙을 추가할 때까지 <strong>모든</strong> 인바운드 및 아웃바운드 트래픽 <strong>거부</strong></li>
-<li>모든 네트워크 ACL에는 명시적 거부 규칙 존재
-<ul>
-<li>패킷이 목록의 다른 모든 규칙과 일치하지 않으면 해당 패킷 거부</li>
+<li>IAM 사용자, 그룹 및 역할</li>
+<li>IAM 정책</li>
+<li>Multi-Factor Authentication</li>
 </ul>
 </li>
 </ul>
-<h3 id="상태-비저장-패킷-필터링">상태 비저장 패킷 필터링</h3>
+<h3 id="aws-계정-루트-사용자">AWS 계정 루트 사용자</h3>
 <ul>
-<li>네트워크 ACL은 상태 비저장 패킷 필터링을 수행
+<li>AWS 계정을 처음 만들면 루트 사용자라는 자격 증명으로 시작</li>
+<li>모든 AWS 서비스 및 리소스에 대한 전체 액세스 권한 가짐</li>
+<li>일상 작업에서는 루트 사용자를 사용하지 말 것
 <ul>
-<li>아무것도 기억하지 않음. 각 방향(인바운드, 아웃바운드)으로 서브넷 경계를 통과하는 패킷만 확인</li>
-</ul>
-</li>
-<li>해당 요청에 대한 패킷이 서브넷으로 반환될 때 네트워크 ACL은 이전 요청 기억하지 못함
-<ul>
-<li>네트워크 ACL은 규칙 목록에 따라 패킷 응답 확인 → 허용 또는 거부 결정</li>
-</ul>
-</li>
-<li>패킷이 서브넷에 들어간 후에는 서브넷 내 리소스(예:EC2 인스턴스)에 대한 권한이 평가되어야 함</li>
-</ul>
-<h2 id="보안-그룹">보안 그룹</h2>
-<p>Amazon EC2 인스턴스에 대한 인바운드 및 아웃바운드 트래픽을 제어하는 가상 방화벽</p>
-<ul>
-<li>기본적으로 보안 그룹은 모든 인바운드 트래픽 거부, 아웃바운드 트래픽 허용</li>
-</ul>
-<h3 id="상태-저장-패킷-필터링">상태 저장 패킷 필터링</h3>
-<ul>
-<li>보안 그룹은 상태 저장 패킷 필터링을 수행
-<ul>
-<li>들어오는 패킷에 대한 이전 결정을 기억</li>
-</ul>
-</li>
-<li>해당 요청에 대한 패킷 응답이 인스턴스로 반환될 때 보안 그룹이 이전 요청을 기억
-<ul>
-<li>보안 그룹은 인바운드 보안 그룹 규칙에 관계 없이 응답이 진행하도록 허용</li>
+<li>루트 사용자로 첫 번째 IAM 사용자 생성 후, 이 사용자에게 다른 사용자를 생성할 수 있는 권한 할당</li>
+<li>루트 사용자만 사용할 수 있는 제한된 종류의 작업(루트 사용자 이메일 변경, AWS Support Plan 변경)에만 사용</li>
 </ul>
 </li>
 </ul>
-<p><img src="/Untitled%204.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="VPC 구성도"
-	
-	
-></p>
-<h1 id="글로벌-네트워킹">글로벌 네트워킹</h1>
-<h2 id="route-53">Route 53</h2>
-<p>DNS 웹 서비스</p>
+<h3 id="iam-사용자">IAM 사용자</h3>
 <ul>
-<li>개발자와 비즈니스가 최종 사용자를 AWS에서 호스팅되는 인터넷 어플리케이션으로 라우팅할 수 있는 안정적인 방법 제공</li>
-<li>사용자 요청을 AWS에서 실행되는 인프라(예: EC2 or ELB)에 연결</li>
-<li>사용자를 AWS 외부 인프라로 라우팅 가능</li>
-<li>도메인 이름의 DNS 레코드 관리하는 기능도 존재
+<li>사용자가 AWS에서 생성하는 자격 증명</li>
+<li>AWS 서비스 및 리소스와 상호 작용하는 사람 또는 애플리케이션</li>
+<li>IAM 사용자가 특정 작업을 수행할 수 있도록 허용하려면 IAM 사용자에게 필요한 권한을 부여</li>
+<li>AWS에 액세스하는 사용자별로 개별 IAM 사용자를 생성하는 것이 좋음</li>
+</ul>
+<h3 id="iam-정책">IAM 정책</h3>
 <ul>
-<li>새 도메인 이름을 직접 등록 가능</li>
-<li>다른 도메인 등록 대행자가 관리하는 기존 도메인 이름의 DNS 레코드 전송 가능</li>
+<li>AWS 서비스 및 리소스에 대한 권한을 허용하거나 거부하는 문서</li>
+<li>사용자가 리소스에 액세스할 수 있는 수준을 지정 가능</li>
+<li>권한 부여 시 <strong>최소 권한</strong> 보안 ********************************원칙을 따를 것</li>
+</ul>
+<h3 id="iam-그룹">IAM 그룹</h3>
+<ul>
+<li>IAM 사용자 모음</li>
+<li>그룹에 IAM 정책을 할당하면 해당 그룹의 모든 사용자에게 정책에 지정된 권한이 부여됨</li>
+</ul>
+<h3 id="iam-역할">IAM 역할</h3>
+<ul>
+<li>임시로 권한에 액세스하기 위해 수임할 수 있는 자격 증명</li>
+<li>서비스 또는 리소스에 대해 액세스 권한을 장기적이 아닌 일시적으로 부여하는 상황에 이상적</li>
+</ul>
+<h3 id="multi-factor-authentication">Multi-Factor Authentication</h3>
+<ul>
+<li>AWS 계정에 추가 보안 계층 제공</li>
+<li>루트 사용자 및 계정 내 모든 IAM 사용자에 대해 MFA를 활성화하는 것이 가장 좋음</li>
+</ul>
+<h1 id="aws-organizations">AWS Organizations</h1>
+<p>중앙 위치에서 여러 AWS 계정을 통합하고 관리할 수 있음</p>
+<ul>
+<li>조직 생성 시 AWS Organizations가 조직 모든 계정에 대한 상위 컨테이너 루트 자동 생성</li>
+<li><a class="link" href="https://docs.aws.amazon.com/ko_kr/organizations/latest/userguide/orgs_manage_policies_scps.html"  target="_blank" rel="noopener"
+    >서비스 제어 정책(SCP)</a>을 사용해 조직의 계정에 대한 권한을 중앙에서 제어 가능
+<ul>
+<li>개별 멤버 계정 및 조직 단위(OU)에 적용</li>
+<li>각 계정의 사용자 및 역할이 액세스할 수 있는 AWS 서비스, 리소스 및 개별 API 작업 제한 가능</li>
 </ul>
 </li>
 </ul>
-<h3 id="route-53-및-cloudfront가-콘텐츠를-전송하는-방식">Route 53 및 CloudFront가 콘텐츠를 전송하는 방식</h3>
-<p><img src="/Untitled%205.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="Route 53과 CloudFront가 콘텐츠를 전송하는 방식 예시"
-	
-	
-></p>
-<ol>
-<li>고객이 웹 사이트로 이동하여 애플리케이션에서 데이터 요청</li>
-<li>Route53은 DNS 확인을 사용해 IP를 식별, 이 정보는 고객에게 다시 전송</li>
-<li>고객의 요청은 CloudFront를 통해 가장 가까운 엣지 로케이션으로 전송</li>
-<li>CloudFront는 수신 패킷을 EC2 인스턴스로 전송하는 Application Load Balancer(ALB)에 연결</li>
-</ol>
+<h2 id="조직-단위">조직 단위</h2>
+<ul>
+<li>AWS Organizations에서는 계정을 조직 단위(OU)로 그룹화해 비슷한 비즈니스 또는 보안 요구 사항이 있는 계정을 손쉽게 관리할 수 있음</li>
+<li>OU에 정책을 적용하면 OU에 모든 계정이 정책에 지정된 권한을 자동으로 상속</li>
+<li>개별 계정을 OU로 구성하면 특정 보안 요구 사항이 있는 워크로드 또는 애플리케이션을 보다 간편하게 격리 가능</li>
+</ul>
+<h1 id="규정-준수">규정 준수</h1>
+<h2 id="aws-artifact">AWS Artifact</h2>
+<p>AWS 보안 및 규정 준수 보고서 및 일부 온라인 계약에 대한 온디맨드 액세스를 제공하는 서비스</p>
+<ul>
+<li>AWS Artifact Agreements와 AWS Artifact Reports 두 가지 기본 섹션으로 구성</li>
+</ul>
+<h3 id="aws-artifact-agreements">AWS Artifact Agreements</h3>
+<ul>
+<li>회사에서 AWS 서비스 전체에서 특정 유형의 정보를 사용하기 위해 AWS와 계약 체결 할 경우</li>
+<li>개별 계정 및 AWS Organizations 내 모든 계정에 대한 계약을 검토, 수락 및 관리 가능</li>
+<li>특정 규정의 적용을 받는 고객의 니즈를 해결하기 위한 다양한 유형의 계약 제공</li>
+</ul>
+<h3 id="aws-artifact-reports">AWS Artifact Reports</h3>
+<ul>
+<li>회사의 팀원 중 한 명이 특정 규제 표준을 준수하기 위한 책임에 대한 추가 정보가 필요할 경우</li>
+<li>외부 감사 기관이 작성한 규정 준수 보고서 제공</li>
+<li>감사 또는 규제 기관에 AWS 보안 제어 항목의 증거로서 AWS 감사 아티팩트를 제공하면 됨</li>
+</ul>
+<h2 id="고객-규정-준수-센터">고객 규정 준수 센터</h2>
+<p>AWS 규정 준수에 대해 자세히 알아볼 수 있는 리소스가 포함</p>
+<ul>
+<li>고객 규정 준수 사례를 읽고 규제 대상 업종의 기업들이 다양한 규정 준수, 거버넌스 및 감사 과제를 어떻게 해결했는지 확인 가능</li>
+<li>다음과 같은 주제에 액세스 가능
+<ul>
+<li>주요 규정 준수 질문에 대한 AWS 답변</li>
+<li>AWS 위험 및 규정 준수 개요</li>
+<li>보안 감사 체크리스트</li>
+</ul>
+</li>
+<li>감사자 학습 경로 포함
+<ul>
+<li>내부 운영에서 AWS 클라우드를 사용한 규정 준수를 입증할 수 있는 방법을 자세히 알아보려는 감사, 규정 준수 및 법무 담당자를 위해 고안</li>
+</ul>
+</li>
+</ul>
+<h1 id="서비스-거부-공격">서비스 거부 공격</h1>
+<h2 id="서비스-거부-공격dos">서비스 거부 공격(DoS)</h2>
+<p>사용자들이 웹 사이트 또는 애플리케이션을 이용할 수 없게 만드려는 의도적인 시도</p>
+<ul>
+<li>공격이 단일 소스로부터 발생</li>
+</ul>
+<h2 id="분산-서비스-거부ddos-공격">분산 서비스 거부(DDoS) 공격</h2>
+<p>여러 소스를 사용해 웹 사이트 또는 애플리케이션을 사용할 수 없게 만드는 공격</p>
+<ul>
+<li>감염된 여러 컴퓨터(봇)를 사용해 과도한 트래픽을 웹 사이트 또는 애플리케이션으로 전송할 수 있음</li>
+</ul>
+<h2 id="aws-shield">AWS Shield</h2>
+<p>DDoS 공격으로부터 애플리케이션을 보호하는 서비스</p>
+<h3 id="aws-shield-standard">AWS Shield Standard</h3>
+<ul>
+<li>모든 AWS 고객을 자동으로 보호하는 무료 서비스</li>
+<li>가장 자주 발생하는 일반적인 DDoS 공격으로부터 보호</li>
+<li>네트워크 트래픽이 애플리케이션으로 들어오면 다양한 분석 기법을 사용해 실시간으로 악성 트래픽을 탐지하고 자동으로 완화</li>
+</ul>
+<h3 id="aws-shield-advanced">AWS Shield Advanced</h3>
+<ul>
+<li>상세한 공격 진단 및 정교한 DDoS 공격을 탐지하고 완화할 수 있는 기능을 제공하는 유료 서비스</li>
+<li>CloudFront, Route 53, ELB과 같은 다른 서비스와도 통합 가능</li>
+<li>복잡한 DDoS 공격을 완화하기 위한 사용자 지정 규칙을 작성해 AWS Shield를 AWS WAF와 통합 가능</li>
+</ul>
+<h1 id="추가-보안-서비스">추가 보안 서비스</h1>
+<h2 id="aws-key-management-servicekms">AWS Key Management Service(KMS)</h2>
+<p>암호화 키를 사용해 암호화 작업 수행</p>
+<ul>
+<li>암호화 키는 데이터 잠금(암호화) 및 잠금 해제(암호 해독)에 사용되는 임의의 숫자 문자열</li>
+<li>암호화 키를 생성, 관리 및 사용 가능</li>
+<li>광범위한 서비스 및 애플리케이션에서 키 사용 제어 가능</li>
+<li>키에 필요한 액세스 제어를 특정 수준으로 선택 가능
+<ul>
+<li>키를 관리하는 IAM 사용자 및 역할 지정 가능</li>
+<li>더 이상 사용되지 않도록 비활성화 가능</li>
+</ul>
+</li>
+</ul>
+<h2 id="aws-waf">AWS WAF</h2>
+<p>웹 애플리케이션으로 들어오는 네트워크 요청을 모니터링할 수 있는 웹 애플리케이션 방화벽</p>
+<ul>
+<li>CloudFront 및 ALB와 함께 작동</li>
+<li>NACL과 유사한 방식으로 트래픽을 차단 및 허용하나, AWS 리소스를 보호하기 위해 웹 ACL을 사용
+<ul>
+<li>요청이 차단된 IP 주소 중 하나에서 나온 것이 아니면 애플리케이션에 대한 액세스 허용</li>
+</ul>
+</li>
+</ul>
+<h2 id="amazon-inspector">Amazon Inspector</h2>
+<p>자동화된 보안 평가를 실행해 애플리케이션의 보안 및 규정 준수를 개선할 수 있는 서비스</p>
+<ul>
+<li>EC2 인스턴스에 대한 오픈 액세스, 취약한 소프트웨어 버전 설치와 같은 보안 모범 사례 위반 및 보안 취약성을 애플리케이션에서 검사</li>
+<li>심각도 수준에 따라 우선 순위 결정, 각 문제에 대한 자세한 설명 및 권장 해결 방법 포함
+<ul>
+<li>그러나 제공된 권장 사항으로 모든 잠재적 문제가 해결됨을 AWS는 보장하지 않음</li>
+<li>공동 책임 모델에 따라 고객은 AWS에서 실행되는 애플리케이션, 프로세스 및 도구의 보안에 대한 책임이 있기 때문</li>
+</ul>
+</li>
+</ul>
+<h2 id="amazon-guardduty">Amazon GuardDuty</h2>
+<p>AWS 인프라 및 리소스에 대한 지능형 위협 탐지 기능을 제공하는 서비스</p>
+<ul>
+<li>AWS 환경 내의 네트워크 활동 및 계정 동작을 지속적으로 모니터링하여 위협 식별</li>
+<li>추가 보안 소프트웨어를 배포하거나 관리할 필요 없음</li>
+<li>VPC Flow Logs 및 DNS 로그를 비롯한 여러 AWS 소스의 데이터를 지속적으로 분석</li>
+<li>위협을 탐지한 경우 AWS Management Console에서 위협에 대한 자세한 탐지 결과 검토 가능
+<ul>
+<li>문제 해결을 위한 권장 단계 포함</li>
+<li>탐지 결과에 대한 응답으로 자동으로 문제 해결 단계를 수행하도록 Lambda 함수 구성도 가능</li>
+</ul>
+</li>
+</ul>
 
 </section>
 
@@ -568,12 +580,12 @@ if (!doNotTrack) {
             
                 
 <article class="">
-    <a href="/p/aws-cloud-practitioner-%EB%B3%B4%EC%95%88-%EC%A0%95%EB%A6%AC/">
+    <a href="/p/aws-cloud-practitioner-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EB%B0%8F-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EC%A0%95%EB%A6%AC/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">[AWS Cloud Practitioner] 보안 정리</h2>
+            <h2 class="article-title">[AWS Cloud Practitioner] 스토리지 및 데이터베이스 정리</h2>
         </div>
     </a>
 </article>
@@ -581,12 +593,12 @@ if (!doNotTrack) {
             
                 
 <article class="">
-    <a href="/p/aws-cloud-practitioner-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EB%B0%8F-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EC%A0%95%EB%A6%AC/">
+    <a href="/p/aws-cloud-practitioner-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9-%EC%A0%95%EB%A6%AC/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">[AWS Cloud Practitioner] 스토리지 및 데이터베이스 정리</h2>
+            <h2 class="article-title">[AWS Cloud Practitioner] 네트워킹 정리</h2>
         </div>
     </a>
 </article>
@@ -808,33 +820,48 @@ if (!doNotTrack) {
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#virtual-private-cloudvpc">Virtual Private Cloud(VPC)</a></li>
-    <li><a href="#인터넷-게이트웨이">인터넷 게이트웨이</a></li>
-    <li><a href="#가상-프라이빗-게이트웨이">가상 프라이빗 게이트웨이</a></li>
-    <li><a href="#aws-direct-connect">AWS Direct Connect</a></li>
-  </ol>
-
-  <ol>
-    <li><a href="#서브넷">서브넷</a></li>
-    <li><a href="#vpc의-네트워크-트래픽">VPC의 네트워크 트래픽</a></li>
-    <li><a href="#네트워크-acl액세스-제어-목록">네트워크 ACL(액세스 제어 목록)</a>
+    <li><a href="#identity-and-access-managementiam">Identity and Access Management(IAM)</a>
       <ol>
-        <li><a href="#상태-비저장-패킷-필터링">상태 비저장 패킷 필터링</a></li>
-      </ol>
-    </li>
-    <li><a href="#보안-그룹">보안 그룹</a>
-      <ol>
-        <li><a href="#상태-저장-패킷-필터링">상태 저장 패킷 필터링</a></li>
+        <li><a href="#aws-계정-루트-사용자">AWS 계정 루트 사용자</a></li>
+        <li><a href="#iam-사용자">IAM 사용자</a></li>
+        <li><a href="#iam-정책">IAM 정책</a></li>
+        <li><a href="#iam-그룹">IAM 그룹</a></li>
+        <li><a href="#iam-역할">IAM 역할</a></li>
+        <li><a href="#multi-factor-authentication">Multi-Factor Authentication</a></li>
       </ol>
     </li>
   </ol>
 
   <ol>
-    <li><a href="#route-53">Route 53</a>
+    <li><a href="#조직-단위">조직 단위</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#aws-artifact">AWS Artifact</a>
       <ol>
-        <li><a href="#route-53-및-cloudfront가-콘텐츠를-전송하는-방식">Route 53 및 CloudFront가 콘텐츠를 전송하는 방식</a></li>
+        <li><a href="#aws-artifact-agreements">AWS Artifact Agreements</a></li>
+        <li><a href="#aws-artifact-reports">AWS Artifact Reports</a></li>
       </ol>
     </li>
+    <li><a href="#고객-규정-준수-센터">고객 규정 준수 센터</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#서비스-거부-공격dos">서비스 거부 공격(DoS)</a></li>
+    <li><a href="#분산-서비스-거부ddos-공격">분산 서비스 거부(DDoS) 공격</a></li>
+    <li><a href="#aws-shield">AWS Shield</a>
+      <ol>
+        <li><a href="#aws-shield-standard">AWS Shield Standard</a></li>
+        <li><a href="#aws-shield-advanced">AWS Shield Advanced</a></li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#aws-key-management-servicekms">AWS Key Management Service(KMS)</a></li>
+    <li><a href="#aws-waf">AWS WAF</a></li>
+    <li><a href="#amazon-inspector">Amazon Inspector</a></li>
+    <li><a href="#amazon-guardduty">Amazon GuardDuty</a></li>
   </ol>
 </nav>
         </div>

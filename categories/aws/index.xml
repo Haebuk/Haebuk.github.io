@@ -6,7 +6,229 @@
         <description>Recent content in AWS on 지식 공유, 협업 ✈️ 성장</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ko-kr</language>
-        <lastBuildDate>Sat, 22 Oct 2022 22:53:39 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/categories/aws/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 23 Oct 2022 14:55:30 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/categories/aws/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[AWS Cloud Practitioner] 보안 정리</title>
+        <link>https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%B3%B4%EC%95%88-%EC%A0%95%EB%A6%AC/</link>
+        <pubDate>Sun, 23 Oct 2022 14:55:30 +0900</pubDate>
+        
+        <guid>https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%B3%B4%EC%95%88-%EC%A0%95%EB%A6%AC/</guid>
+        <description>&lt;h1 id=&#34;공동-책임-모델&#34;&gt;공동 책임 모델&lt;/h1&gt;
+&lt;p&gt;리소를 안전하게 유지할 책임은 AWS와 고객 둘 다 있음&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AWS 환경을 단일 객체로 취급하지 않기 때문&lt;/li&gt;
+&lt;li&gt;공동 책임 모델은 고객 책임(일반적으로 ‘클라우드 내부의 보안’)과 AWS 책임(일반적으로 ‘클라우드 자체의 보안’)으로 분류됨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%B3%B4%EC%95%88-%EC%A0%95%EB%A6%AC/Untitled.png&#34;
+	width=&#34;856&#34;
+	height=&#34;317&#34;
+	srcset=&#34;https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%B3%B4%EC%95%88-%EC%A0%95%EB%A6%AC/Untitled_hu9e49296d6ea090f7a9655be17b01c10d_93084_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%B3%B4%EC%95%88-%EC%A0%95%EB%A6%AC/Untitled_hu9e49296d6ea090f7a9655be17b01c10d_93084_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;공동 책임 모델&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;270&#34;
+		data-flex-basis=&#34;648px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;고객: 클라우드 내부의 보안
+&lt;ul&gt;
+&lt;li&gt;클라우드 내에서 생성하고 배치하는 모든 것의 보안 책임&lt;/li&gt;
+&lt;li&gt;저장하는 콘텐츠, 사용하는 AWS 서비스, 액세스 사용자 및 콘텐츠 보안 요구 사항 같은 영역 포함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;AWS: 클라우드 자체의 보안
+&lt;ul&gt;
+&lt;li&gt;인프라의 모든 계층에서 구성 요소를 운영, 관리 및 제어&lt;/li&gt;
+&lt;li&gt;호스트 운영 체제, 가상화 계층, 데이터 센터의 물리적 보안 같은 영역 포함&lt;/li&gt;
+&lt;li&gt;리소스를 호스팅하는 물리적 인프라 관리&lt;/li&gt;
+&lt;li&gt;고객이 AWS 데이터 센터를 방문해 확인할 수는 없지만 외부 감사 기관이 작성한 여러 보고서를 확인할 수는 있음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;사용자-권한-및-액세스&#34;&gt;사용자 권한 및 액세스&lt;/h1&gt;
+&lt;h2 id=&#34;identity-and-access-managementiam&#34;&gt;Identity and Access Management(IAM)&lt;/h2&gt;
+&lt;p&gt;AWS 서비스와 리소스에 대한 액세스를 안전하게 관리&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;회사의 고유한 운영 및 보안 요구 사항에 따라 액세스 권한을 구성할 수 있는 유연성 제공&lt;/li&gt;
+&lt;li&gt;다음과 같은 IAM 기능을 조합하여 사용
+&lt;ul&gt;
+&lt;li&gt;IAM 사용자, 그룹 및 역할&lt;/li&gt;
+&lt;li&gt;IAM 정책&lt;/li&gt;
+&lt;li&gt;Multi-Factor Authentication&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;aws-계정-루트-사용자&#34;&gt;AWS 계정 루트 사용자&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;AWS 계정을 처음 만들면 루트 사용자라는 자격 증명으로 시작&lt;/li&gt;
+&lt;li&gt;모든 AWS 서비스 및 리소스에 대한 전체 액세스 권한 가짐&lt;/li&gt;
+&lt;li&gt;일상 작업에서는 루트 사용자를 사용하지 말 것
+&lt;ul&gt;
+&lt;li&gt;루트 사용자로 첫 번째 IAM 사용자 생성 후, 이 사용자에게 다른 사용자를 생성할 수 있는 권한 할당&lt;/li&gt;
+&lt;li&gt;루트 사용자만 사용할 수 있는 제한된 종류의 작업(루트 사용자 이메일 변경, AWS Support Plan 변경)에만 사용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;iam-사용자&#34;&gt;IAM 사용자&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;사용자가 AWS에서 생성하는 자격 증명&lt;/li&gt;
+&lt;li&gt;AWS 서비스 및 리소스와 상호 작용하는 사람 또는 애플리케이션&lt;/li&gt;
+&lt;li&gt;IAM 사용자가 특정 작업을 수행할 수 있도록 허용하려면 IAM 사용자에게 필요한 권한을 부여&lt;/li&gt;
+&lt;li&gt;AWS에 액세스하는 사용자별로 개별 IAM 사용자를 생성하는 것이 좋음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;iam-정책&#34;&gt;IAM 정책&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;AWS 서비스 및 리소스에 대한 권한을 허용하거나 거부하는 문서&lt;/li&gt;
+&lt;li&gt;사용자가 리소스에 액세스할 수 있는 수준을 지정 가능&lt;/li&gt;
+&lt;li&gt;권한 부여 시 &lt;strong&gt;최소 권한&lt;/strong&gt; 보안 ********************************원칙을 따를 것&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;iam-그룹&#34;&gt;IAM 그룹&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;IAM 사용자 모음&lt;/li&gt;
+&lt;li&gt;그룹에 IAM 정책을 할당하면 해당 그룹의 모든 사용자에게 정책에 지정된 권한이 부여됨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;iam-역할&#34;&gt;IAM 역할&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;임시로 권한에 액세스하기 위해 수임할 수 있는 자격 증명&lt;/li&gt;
+&lt;li&gt;서비스 또는 리소스에 대해 액세스 권한을 장기적이 아닌 일시적으로 부여하는 상황에 이상적&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;multi-factor-authentication&#34;&gt;Multi-Factor Authentication&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;AWS 계정에 추가 보안 계층 제공&lt;/li&gt;
+&lt;li&gt;루트 사용자 및 계정 내 모든 IAM 사용자에 대해 MFA를 활성화하는 것이 가장 좋음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;aws-organizations&#34;&gt;AWS Organizations&lt;/h1&gt;
+&lt;p&gt;중앙 위치에서 여러 AWS 계정을 통합하고 관리할 수 있음&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;조직 생성 시 AWS Organizations가 조직 모든 계정에 대한 상위 컨테이너 루트 자동 생성&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://docs.aws.amazon.com/ko_kr/organizations/latest/userguide/orgs_manage_policies_scps.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;서비스 제어 정책(SCP)&lt;/a&gt;을 사용해 조직의 계정에 대한 권한을 중앙에서 제어 가능
+&lt;ul&gt;
+&lt;li&gt;개별 멤버 계정 및 조직 단위(OU)에 적용&lt;/li&gt;
+&lt;li&gt;각 계정의 사용자 및 역할이 액세스할 수 있는 AWS 서비스, 리소스 및 개별 API 작업 제한 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;조직-단위&#34;&gt;조직 단위&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;AWS Organizations에서는 계정을 조직 단위(OU)로 그룹화해 비슷한 비즈니스 또는 보안 요구 사항이 있는 계정을 손쉽게 관리할 수 있음&lt;/li&gt;
+&lt;li&gt;OU에 정책을 적용하면 OU에 모든 계정이 정책에 지정된 권한을 자동으로 상속&lt;/li&gt;
+&lt;li&gt;개별 계정을 OU로 구성하면 특정 보안 요구 사항이 있는 워크로드 또는 애플리케이션을 보다 간편하게 격리 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;규정-준수&#34;&gt;규정 준수&lt;/h1&gt;
+&lt;h2 id=&#34;aws-artifact&#34;&gt;AWS Artifact&lt;/h2&gt;
+&lt;p&gt;AWS 보안 및 규정 준수 보고서 및 일부 온라인 계약에 대한 온디맨드 액세스를 제공하는 서비스&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AWS Artifact Agreements와 AWS Artifact Reports 두 가지 기본 섹션으로 구성&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;aws-artifact-agreements&#34;&gt;AWS Artifact Agreements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;회사에서 AWS 서비스 전체에서 특정 유형의 정보를 사용하기 위해 AWS와 계약 체결 할 경우&lt;/li&gt;
+&lt;li&gt;개별 계정 및 AWS Organizations 내 모든 계정에 대한 계약을 검토, 수락 및 관리 가능&lt;/li&gt;
+&lt;li&gt;특정 규정의 적용을 받는 고객의 니즈를 해결하기 위한 다양한 유형의 계약 제공&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;aws-artifact-reports&#34;&gt;AWS Artifact Reports&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;회사의 팀원 중 한 명이 특정 규제 표준을 준수하기 위한 책임에 대한 추가 정보가 필요할 경우&lt;/li&gt;
+&lt;li&gt;외부 감사 기관이 작성한 규정 준수 보고서 제공&lt;/li&gt;
+&lt;li&gt;감사 또는 규제 기관에 AWS 보안 제어 항목의 증거로서 AWS 감사 아티팩트를 제공하면 됨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;고객-규정-준수-센터&#34;&gt;고객 규정 준수 센터&lt;/h2&gt;
+&lt;p&gt;AWS 규정 준수에 대해 자세히 알아볼 수 있는 리소스가 포함&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;고객 규정 준수 사례를 읽고 규제 대상 업종의 기업들이 다양한 규정 준수, 거버넌스 및 감사 과제를 어떻게 해결했는지 확인 가능&lt;/li&gt;
+&lt;li&gt;다음과 같은 주제에 액세스 가능
+&lt;ul&gt;
+&lt;li&gt;주요 규정 준수 질문에 대한 AWS 답변&lt;/li&gt;
+&lt;li&gt;AWS 위험 및 규정 준수 개요&lt;/li&gt;
+&lt;li&gt;보안 감사 체크리스트&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;감사자 학습 경로 포함
+&lt;ul&gt;
+&lt;li&gt;내부 운영에서 AWS 클라우드를 사용한 규정 준수를 입증할 수 있는 방법을 자세히 알아보려는 감사, 규정 준수 및 법무 담당자를 위해 고안&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;서비스-거부-공격&#34;&gt;서비스 거부 공격&lt;/h1&gt;
+&lt;h2 id=&#34;서비스-거부-공격dos&#34;&gt;서비스 거부 공격(DoS)&lt;/h2&gt;
+&lt;p&gt;사용자들이 웹 사이트 또는 애플리케이션을 이용할 수 없게 만드려는 의도적인 시도&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;공격이 단일 소스로부터 발생&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;분산-서비스-거부ddos-공격&#34;&gt;분산 서비스 거부(DDoS) 공격&lt;/h2&gt;
+&lt;p&gt;여러 소스를 사용해 웹 사이트 또는 애플리케이션을 사용할 수 없게 만드는 공격&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;감염된 여러 컴퓨터(봇)를 사용해 과도한 트래픽을 웹 사이트 또는 애플리케이션으로 전송할 수 있음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;aws-shield&#34;&gt;AWS Shield&lt;/h2&gt;
+&lt;p&gt;DDoS 공격으로부터 애플리케이션을 보호하는 서비스&lt;/p&gt;
+&lt;h3 id=&#34;aws-shield-standard&#34;&gt;AWS Shield Standard&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;모든 AWS 고객을 자동으로 보호하는 무료 서비스&lt;/li&gt;
+&lt;li&gt;가장 자주 발생하는 일반적인 DDoS 공격으로부터 보호&lt;/li&gt;
+&lt;li&gt;네트워크 트래픽이 애플리케이션으로 들어오면 다양한 분석 기법을 사용해 실시간으로 악성 트래픽을 탐지하고 자동으로 완화&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;aws-shield-advanced&#34;&gt;AWS Shield Advanced&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;상세한 공격 진단 및 정교한 DDoS 공격을 탐지하고 완화할 수 있는 기능을 제공하는 유료 서비스&lt;/li&gt;
+&lt;li&gt;CloudFront, Route 53, ELB과 같은 다른 서비스와도 통합 가능&lt;/li&gt;
+&lt;li&gt;복잡한 DDoS 공격을 완화하기 위한 사용자 지정 규칙을 작성해 AWS Shield를 AWS WAF와 통합 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;추가-보안-서비스&#34;&gt;추가 보안 서비스&lt;/h1&gt;
+&lt;h2 id=&#34;aws-key-management-servicekms&#34;&gt;AWS Key Management Service(KMS)&lt;/h2&gt;
+&lt;p&gt;암호화 키를 사용해 암호화 작업 수행&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;암호화 키는 데이터 잠금(암호화) 및 잠금 해제(암호 해독)에 사용되는 임의의 숫자 문자열&lt;/li&gt;
+&lt;li&gt;암호화 키를 생성, 관리 및 사용 가능&lt;/li&gt;
+&lt;li&gt;광범위한 서비스 및 애플리케이션에서 키 사용 제어 가능&lt;/li&gt;
+&lt;li&gt;키에 필요한 액세스 제어를 특정 수준으로 선택 가능
+&lt;ul&gt;
+&lt;li&gt;키를 관리하는 IAM 사용자 및 역할 지정 가능&lt;/li&gt;
+&lt;li&gt;더 이상 사용되지 않도록 비활성화 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;aws-waf&#34;&gt;AWS WAF&lt;/h2&gt;
+&lt;p&gt;웹 애플리케이션으로 들어오는 네트워크 요청을 모니터링할 수 있는 웹 애플리케이션 방화벽&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CloudFront 및 ALB와 함께 작동&lt;/li&gt;
+&lt;li&gt;NACL과 유사한 방식으로 트래픽을 차단 및 허용하나, AWS 리소스를 보호하기 위해 웹 ACL을 사용
+&lt;ul&gt;
+&lt;li&gt;요청이 차단된 IP 주소 중 하나에서 나온 것이 아니면 애플리케이션에 대한 액세스 허용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;amazon-inspector&#34;&gt;Amazon Inspector&lt;/h2&gt;
+&lt;p&gt;자동화된 보안 평가를 실행해 애플리케이션의 보안 및 규정 준수를 개선할 수 있는 서비스&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;EC2 인스턴스에 대한 오픈 액세스, 취약한 소프트웨어 버전 설치와 같은 보안 모범 사례 위반 및 보안 취약성을 애플리케이션에서 검사&lt;/li&gt;
+&lt;li&gt;심각도 수준에 따라 우선 순위 결정, 각 문제에 대한 자세한 설명 및 권장 해결 방법 포함
+&lt;ul&gt;
+&lt;li&gt;그러나 제공된 권장 사항으로 모든 잠재적 문제가 해결됨을 AWS는 보장하지 않음&lt;/li&gt;
+&lt;li&gt;공동 책임 모델에 따라 고객은 AWS에서 실행되는 애플리케이션, 프로세스 및 도구의 보안에 대한 책임이 있기 때문&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;amazon-guardduty&#34;&gt;Amazon GuardDuty&lt;/h2&gt;
+&lt;p&gt;AWS 인프라 및 리소스에 대한 지능형 위협 탐지 기능을 제공하는 서비스&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AWS 환경 내의 네트워크 활동 및 계정 동작을 지속적으로 모니터링하여 위협 식별&lt;/li&gt;
+&lt;li&gt;추가 보안 소프트웨어를 배포하거나 관리할 필요 없음&lt;/li&gt;
+&lt;li&gt;VPC Flow Logs 및 DNS 로그를 비롯한 여러 AWS 소스의 데이터를 지속적으로 분석&lt;/li&gt;
+&lt;li&gt;위협을 탐지한 경우 AWS Management Console에서 위협에 대한 자세한 탐지 결과 검토 가능
+&lt;ul&gt;
+&lt;li&gt;문제 해결을 위한 권장 단계 포함&lt;/li&gt;
+&lt;li&gt;탐지 결과에 대한 응답으로 자동으로 문제 해결 단계를 수행하도록 Lambda 함수 구성도 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>[AWS Cloud Practitioner] 스토리지 및 데이터베이스 정리</title>
         <link>https://Haebuk.github.io/p/aws-cloud-practitioner-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EB%B0%8F-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EC%A0%95%EB%A6%AC/</link>
         <pubDate>Sat, 22 Oct 2022 22:53:39 +0900</pubDate>
