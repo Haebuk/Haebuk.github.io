@@ -13,6 +13,8 @@
 <meta name="twitter:title" content="메인터넌스와 노드 정지">
 <meta name="twitter:description" content="메인터넌스, 노드 정지"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://Haebuk.github.io/images/Kubernetes-Logo.wine.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7CM424CQYT"></script>
 <script>
 var doNotTrack = false;
@@ -331,8 +333,8 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="메인터넌스와-노드-정지">메인터넌스와 노드 정지</h1>
-<h2 id="스케줄링-대상에서-제외와-북귀cordonuncordon">스케줄링 대상에서 제외와 북귀(cordon/uncordon)</h2>
+    <h2 id="메인터넌스와-노드-정지">메인터넌스와 노드 정지</h2>
+<h3 id="스케줄링-대상에서-제외와-북귀cordonuncordon">스케줄링 대상에서 제외와 북귀(cordon/uncordon)</h3>
 <ul>
 <li>쿠버네티스 노드는 두 상태를 가짐
 <ul>
@@ -350,14 +352,14 @@ if (!doNotTrack) {
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 노드 중 하나를 SchedulingDisabled로 변경</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 노드 중 하나를 SchedulingDisabled로 변경</span>
 </span></span><span class="line"><span class="cl">$ kubectl cordon NODE_NAME
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 노드 중 하나를 SchedulingEnabled로 변경</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 노드 중 하나를 SchedulingEnabled로 변경</span>
 </span></span><span class="line"><span class="cl">$ kubectl uncordon NODE_NAME
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="노드-배출-처리로-인한-파드-축출drain">노드 배출 처리로 인한 파드 축출(drain)</h2>
+</div><h3 id="노드-배출-처리로-인한-파드-축출drain">노드 배출 처리로 인한 파드 축출(drain)</h3>
 <ul>
 <li>실행 중인 파드를 축출해야 할 경우 사용</li>
 <li>SchedulingDisabled 상태로 바꾼 후 각 파드에 SIGTERM 신호를 보내므로 cordon을 실행할 필요 없음</li>
@@ -368,7 +370,7 @@ if (!doNotTrack) {
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 실행 중인 파드를 모두 축출(데몬셋 이외)</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 실행 중인 파드를 모두 축출(데몬셋 이외)</span>
 </span></span><span class="line"><span class="cl">$ kubectl drain NODE_NAME --force --ignore-daemonsets
 </span></span></code></pre></td></tr></table>
 </div>
@@ -393,7 +395,7 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h2 id="poddisruptionbudgetpdb을-사용한-안전한-축출">PodDisruptionBudget(PDB)을 사용한 안전한 축출</h2>
+<h3 id="poddisruptionbudgetpdb을-사용한-안전한-축출">PodDisruptionBudget(PDB)을 사용한 안전한 축출</h3>
 <ul>
 <li>파드 축출 시 특정 디플로이먼트하에 있는 레플리카가 동시에 정지되면 다운타임이 발생</li>
 <li>여러 노드에서 동시 배출 처리를 한 경우 해당 현상이 발생할 확률 증가
@@ -731,9 +733,13 @@ if (!doNotTrack) {
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#스케줄링-대상에서-제외와-북귀cordonuncordon">스케줄링 대상에서 제외와 북귀(cordon/uncordon)</a></li>
-    <li><a href="#노드-배출-처리로-인한-파드-축출drain">노드 배출 처리로 인한 파드 축출(drain)</a></li>
-    <li><a href="#poddisruptionbudgetpdb을-사용한-안전한-축출">PodDisruptionBudget(PDB)을 사용한 안전한 축출</a></li>
+    <li><a href="#메인터넌스와-노드-정지">메인터넌스와 노드 정지</a>
+      <ol>
+        <li><a href="#스케줄링-대상에서-제외와-북귀cordonuncordon">스케줄링 대상에서 제외와 북귀(cordon/uncordon)</a></li>
+        <li><a href="#노드-배출-처리로-인한-파드-축출drain">노드 배출 처리로 인한 파드 축출(drain)</a></li>
+        <li><a href="#poddisruptionbudgetpdb을-사용한-안전한-축출">PodDisruptionBudget(PDB)을 사용한 안전한 축출</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>

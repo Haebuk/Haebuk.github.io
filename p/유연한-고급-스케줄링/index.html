@@ -13,6 +13,8 @@
 <meta name="twitter:title" content="유연한 고급 스케줄링">
 <meta name="twitter:description" content="유연한 고급 스케줄링"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://Haebuk.github.io/p/%EC%9C%A0%EC%97%B0%ED%95%9C-%EA%B3%A0%EA%B8%89-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/Kubernetes-Logo.wine.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7CM424CQYT"></script>
 <script>
 var doNotTrack = false;
@@ -335,14 +337,14 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="유연한-고급-스케줄링">유연한 고급 스케줄링</h1>
-<h2 id="필터링과-스코어링">필터링과 스코어링</h2>
+    <h2 id="유연한-고급-스케줄링">유연한 고급 스케줄링</h2>
+<h3 id="필터링과-스코어링">필터링과 스코어링</h3>
 <ul>
 <li>필터링: 파드 스케줄시 충분한 리소스가 있는지, 필수 조건으로 지정한 레이블을 가진 노드인지 등을 체크</li>
 <li>스코어링: 필터링 후 노드 목록에 순위를 매겨 가장 적합한 노드를 계산</li>
 <li>필터링과 스코어링 이후 우선순위가 같은 스케줄링 대상 노드가 여러개 존재 시 무작위 선택</li>
 </ul>
-<h2 id="매니페스트에서-지정하는-스케줄링">매니페스트에서 지정하는 스케줄링</h2>
+<h3 id="매니페스트에서-지정하는-스케줄링">매니페스트에서 지정하는 스케줄링</h3>
 <ul>
 <li>사용자가 배치하고 싶은 노드를 선택하는 방법과 관리자가 배치하고 싶지 않은 노드를 지정하는 방법이 있음</li>
 <li>쿠버네티스 사용자가 배치하고 싶은 노드를 선택하는 방법</li>
@@ -377,7 +379,7 @@ if (!doNotTrack) {
 </tr>
 </tbody>
 </table></div>
-<h2 id="빌트인-노드-레이블과-레이블-추가">빌트인 노드 레이블과 레이블 추가</h2>
+<h3 id="빌트인-노드-레이블과-레이블-추가">빌트인 노드 레이블과 레이블 추가</h3>
 <ul>
 <li>빌트인 노드 레이블: 노드에 미리 지정되어 있는 레이블</li>
 </ul>
@@ -387,7 +389,7 @@ if (!doNotTrack) {
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 노드에 할당된 레이블 정보</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 노드에 할당된 레이블 정보</span>
 </span></span><span class="line"><span class="cl">$ kubectl get nodes -o json <span class="p">|</span> jq <span class="s2">&#34;.items[] | .metadata.labels&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -401,7 +403,7 @@ if (!doNotTrack) {
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># kubectl get nodes에서 확인한 노드명을 지정하여 레이블 부여</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## kubectl get nodes에서 확인한 노드명을 지정하여 레이블 부여</span>
 </span></span><span class="line"><span class="cl">$ kubectl label node NODE_NAME <span class="nv">disktype</span><span class="o">=</span>hdd <span class="nv">cpuspec</span><span class="o">=</span>low <span class="nv">cpugen</span><span class="o">=</span><span class="m">3</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">$ kubectl label node NODE_NAME <span class="nv">disktype</span><span class="o">=</span>ssd <span class="nv">cpuspec</span><span class="o">=</span>low <span class="nv">cpugen</span><span class="o">=</span><span class="m">2</span>
@@ -415,11 +417,11 @@ if (!doNotTrack) {
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 노드 목록과 disktype 레이블 표시</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 노드 목록과 disktype 레이블 표시</span>
 </span></span><span class="line"><span class="cl">$ kubectl -L<span class="o">=</span>disktype,cpuspec,cpugen get node
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="nodeselector가장-단순한-노드-어피니티">nodeSelector(가장 단순한 노드 어피니티)</h2>
+</div><h3 id="nodeselector가장-단순한-노드-어피니티">nodeSelector(가장 단순한 노드 어피니티)</h3>
 <ul>
 <li>단순한 노드 어피니티만을 실행하는 경우</li>
 <li>equality-based는 단일 조건만 지정할 수 있음</li>
@@ -430,11 +432,11 @@ if (!doNotTrack) {
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 반드시 disktype=ssd인 레이블을 가진 노드에서 기동</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 반드시 disktype=ssd인 레이블을 가진 노드에서 기동</span>
 </span></span><span class="line"><span class="cl">$ kubectl get pods sample-nodeselector -o wide
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="노드-어피니티">노드 어피니티</h2>
+</div><h3 id="노드-어피니티">노드 어피니티</h3>
 <ul>
 <li>파드를 특정 노드에 스케줄링하는 정책</li>
 <li>spec.affinity.nodeAffinity에 작성</li>
@@ -489,7 +491,7 @@ if (!doNotTrack) {
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># (A and B) or (C and D)</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c">## (A and B) or (C and D)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">nodeSelectorTerms</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">matchExpressions</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">A</span><span class="w">
@@ -522,7 +524,7 @@ if (!doNotTrack) {
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># (A and B)가 가중치 X, (C and D)가 가중치 Y의 우선순위로 스케줄링 실시</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c">## (A and B)가 가중치 X, (C and D)가 가중치 Y의 우선순위로 스케줄링 실시</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">preferredDuringSchedulingIgnoredDuringExecution</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">weight</span><span class="p">:</span><span class="w"> </span><span class="l">X</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">preference</span><span class="p">:</span><span class="w">
@@ -536,7 +538,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">D</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="matchexpressions-오퍼레이터와-집합성-기준-조건">matchExpressions 오퍼레이터와 집합성 기준 조건</h2>
+</div><h3 id="matchexpressions-오퍼레이터와-집합성-기준-조건">matchExpressions 오퍼레이터와 집합성 기준 조건</h3>
 <ul>
 <li>matchExpressions는 key 레이블, 오퍼레이터, values 레이블이라는 세 가지 요소로 구성
 <ul>
@@ -566,7 +568,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">ssd</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">hdd</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 한 줄로 정의한 경우</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">## 한 줄로 정의한 경우</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">matchExpressions</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- {<span class="nt">key: disktype, operator: In, values</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">ssd, hdd]}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
@@ -618,12 +620,12 @@ if (!doNotTrack) {
 <li>DoesNotExist는 key가 존재하지 않는 것이 조건</li>
 <li>Gt/Lt는 values에 하나의 정수 값만 지정</li>
 </ul>
-<h2 id="노드-안티어피니티">노드 안티어피니티</h2>
+<h3 id="노드-안티어피니티">노드 안티어피니티</h3>
 <ul>
 <li>파드를 특정 노드 이외의 다른 노드에 스케줄링하는 정책</li>
 <li>spec.affinity.nodeAffinity 조건에 부정형 오퍼레이터를 지정(엄밀히 말하면 노드 안티어피니티는 존재하지 않음)</li>
 </ul>
-<h2 id="인터파드-어피니티">인터파드 어피니티</h2>
+<h3 id="인터파드-어피니티">인터파드 어피니티</h3>
 <ul>
 <li>특정 파드가 실행되는 도메인에 파드를 스케줄링 하는 정책</li>
 <li>spec.affinity.podAffinity에 조건 지정</li>
@@ -648,7 +650,7 @@ if (!doNotTrack) {
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># (A and B)의 파드와 같은 X에 있는 노드 or (C and D)의 파드와 같은 Y에 있는 노드</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c">## (A and B)의 파드와 같은 X에 있는 노드 or (C and D)의 파드와 같은 Y에 있는 노드</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">requiredDuringSchedulingIgnoredDuringExecution</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">labelSelector</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">matchExpressions</span><span class="p">:</span><span class="w">
@@ -662,22 +664,22 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">topologyKey</span><span class="p">:</span><span class="w"> </span><span class="kc">Y</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="인터파드-안티어피니티">인터파드 안티어피니티</h2>
+</div><h3 id="인터파드-안티어피니티">인터파드 안티어피니티</h3>
 <ul>
 <li>특정 파드가 없는 도메인에서 동작시키는 정책</li>
 <li>spec.affinity.PodAntiAffinity 지정 가능</li>
 </ul>
-<h2 id="여러-조건을-조합한-파드-스케줄링">여러 조건을 조합한 파드 스케줄링</h2>
+<h3 id="여러-조건을-조합한-파드-스케줄링">여러 조건을 조합한 파드 스케줄링</h3>
 <ul>
 <li>노드 어피니티/노드 안티어피니티/인터파드 어피니티/인터파드 안티어피니티 조합하여 사용 가능</li>
 </ul>
-<h2 id="테인트와-톨러레이션">테인트와 톨러레이션</h2>
+<h3 id="테인트와-톨러레이션">테인트와 톨러레이션</h3>
 <ul>
 <li>쿠버네티스 관리자가 배치하고 싶지 않은 노드를 지정하는 방법</li>
 <li>노드에 대한 테인트를 설정해 두고 그것을 허용할 수 있는 파드만 스케줄링 허가</li>
 <li>조건에 맞지 않는 파드를 노드에서 축출 가</li>
 </ul>
-<h3 id="테인트-부여">테인트 부여</h3>
+<h4 id="테인트-부여">테인트 부여</h4>
 <ul>
 <li>세 가지 파라미터를 사용한 Key=Value:Effect 형식으로 구성</li>
 </ul>
@@ -699,19 +701,19 @@ if (!doNotTrack) {
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 특정한 한 대의 노드에 env=prd:Noschedule 테인트 부여</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 특정한 한 대의 노드에 env=prd:Noschedule 테인트 부여</span>
 </span></span><span class="line"><span class="cl">$ kubectl taint node NODE_NAME env:prd<span class="o">=</span>NoSchedule
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 특정 레이블을 가진 모든 노드에 env=prd:NoSchedule 테인트 부여</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 특정 레이블을 가진 모든 노드에 env=prd:NoSchedule 테인트 부여</span>
 </span></span><span class="line"><span class="cl">$ kubectl taint node -l kubernetes.io/os<span class="o">=</span>linux <span class="nv">env</span><span class="o">=</span>prd:NoSchedule
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># env를 키로 하는 테인트 삭제</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## env를 키로 하는 테인트 삭제</span>
 </span></span><span class="line"><span class="cl">$ kubectl taint node NODE_NAME env-
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># env를 키로 하는 NoSchedule 테인트 삭제</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## env를 키로 하는 NoSchedule 테인트 삭제</span>
 </span></span><span class="line"><span class="cl">$ kubectl taint node NODE_NAME env:NoSchedule-
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 부여된 테인트 확인</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 부여된 테인트 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl describe node NODE_NAME
 </span></span></code></pre></td></tr></table>
 </div>
@@ -742,19 +744,19 @@ if (!doNotTrack) {
 </tr>
 </tbody>
 </table></div>
-<h4 id="prefernoschedule">PreferNoSchedule</h4>
+<h5 id="prefernoschedule">PreferNoSchedule</h5>
 <ul>
 <li>파드에 톨러레이션 설정이 없는 경우나 테인트에 일치하지 않아도 스케줄링 대상 노드가 됨</li>
 </ul>
-<h4 id="noschedule">NoSchedule</h4>
+<h5 id="noschedule">NoSchedule</h5>
 <ul>
 <li>파드에 톨러레이션 설정이 없는 경우나 테인트에 일치하지 않으면 스케줄링 허가하지 않음</li>
 </ul>
-<h4 id="noexecute">NoExecute</h4>
+<h5 id="noexecute">NoExecute</h5>
 <ul>
 <li>일반적인 파드 정지처럼 terminationGracePeriodSeconds로 유예 기간 설정</li>
 </ul>
-<h3 id="톨러레이션을-지정한-파드-기동">톨러레이션을 지정한 파드 기동</h3>
+<h4 id="톨러레이션을-지정한-파드-기동">톨러레이션을 지정한 파드 기동</h4>
 <ul>
 <li>Key/Value/Effect 지정 후 테인트에서 부여된 Key/Value/Effect가 같은 경우 허용</li>
 <li>완전 일치뿐만 아니라 Key/Value/Effect중 하나를 미지정한 경우 와일드카드로 처리</li>
@@ -794,15 +796,15 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">operator</span><span class="p">:</span><span class="w"> </span><span class="l">Exists</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="noexecute-일정-시간-허용">NoExecute 일정 시간 허용</h3>
+</div><h4 id="noexecute-일정-시간-허용">NoExecute 일정 시간 허용</h4>
 <ul>
 <li>조건이 일치하는 파드는 일정 기간만 가동을 허용하는 스케줄링을 할 때 사용</li>
 </ul>
-<h3 id="여러-개의-테인트와-톨러레이션">여러 개의 테인트와 톨러레이션</h3>
+<h4 id="여러-개의-테인트와-톨러레이션">여러 개의 테인트와 톨러레이션</h4>
 <ul>
 <li>여러 테인트가 부여된 경우 파드의 톨러레이션은 모든 테인트 조건을 만족해야 해당 노드에 스케줄링 가능</li>
 </ul>
-<h3 id="장애-시-부여되는-테인트와-축출">장애 시 부여되는 테인트와 축출</h3>
+<h4 id="장애-시-부여되는-테인트와-축출">장애 시 부여되는 테인트와 축출</h4>
 <ul>
 <li>노드 장애 발생 시 자동으로 NoExecute의 테인트 부여하여 자동으로 파드 축출</li>
 </ul>
@@ -856,7 +858,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tolerationSeconds</span><span class="p">:</span><span class="w"> </span><span class="m">300</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="쿠버네티스가-부여하는-그-외-테인트">쿠버네티스가 부여하는 그 외 테인트</h3>
+</div><h4 id="쿠버네티스가-부여하는-그-외-테인트">쿠버네티스가 부여하는 그 외 테인트</h4>
 <div class="table-wrapper"><table>
 <thead>
 <tr>
@@ -897,12 +899,12 @@ if (!doNotTrack) {
 <li>문제가 발생해도 스케줄링하고 실행해야 하는 중요도가 높은 파드는 톨러레이션 설정</li>
 <li>클라우드 환경에서 노드가 생성되고 삭제될 때 부여되는 테인트도 있음</li>
 </ul>
-<h2 id="priorityclass를-이용한-파드-우선순위와-축출">PriorityClass를 이용한 파드 우선순위와 축출</h2>
+<h3 id="priorityclass를-이용한-파드-우선순위와-축출">PriorityClass를 이용한 파드 우선순위와 축출</h3>
 <ul>
 <li>파드가 이미 리소스의 한계까지 스케줄링된 상태에서 우선순위가 높은 파드를 생성하는 경우 기존 파드 축출 가능</li>
 <li>여러 파드가 스케줄링 대기 상태일 경우 스케줄링 순서는 수시로 정렬되어 우선순위가 높은 파드부터 스케줄링</li>
 </ul>
-<h3 id="priorityclass-생성">PriorityClass 생성</h3>
+<h4 id="priorityclass-생성">PriorityClass 생성</h4>
 <ul>
 <li>system-으로 시작하는 이름은 예약어로 등록되어 있으 붙일 수 없음</li>
 <li>우선순위(value)와 설명(description)으로 구성됨</li>
@@ -922,7 +924,7 @@ if (!doNotTrack) {
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 파드에 지정된 우선순위 확인</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 파드에 지정된 우선순위 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl get pods sample-high-priority -o <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.spec.priority}&#39;</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -934,17 +936,17 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h3 id="우선순위-축출-비활성화">우선순위 축출 비활성화</h3>
+<h4 id="우선순위-축출-비활성화">우선순위 축출 비활성화</h4>
 <ul>
 <li>우선순위를 설정하고 싶지만 다른 파드를 축출하고 싶지 않은 경우 사용</li>
 <li>스케줄링시 우선순위가 높은 파드부터 스케줄링됨</li>
 <li>preemtionPolicy를 Never로 설정</li>
 </ul>
-<h3 id="priorityclass와-poddisruptionbudget의-경합">PriorityClass와 PodDisruptionBudget의 경합</h3>
+<h4 id="priorityclass와-poddisruptionbudget의-경합">PriorityClass와 PodDisruptionBudget의 경합</h4>
 <ul>
 <li>PriorityClass에 의한 축출은 podDisruptionBudget을 고려하여 스케줄링</li>
 </ul>
-<h2 id="기타-스케줄링">기타 스케줄링</h2>
+<h3 id="기타-스케줄링">기타 스케줄링</h3>
 <ul>
 <li>커스텀 스케줄러 생성 가능
 <ul>
@@ -1269,40 +1271,38 @@ if (!doNotTrack) {
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#필터링과-스코어링">필터링과 스코어링</a></li>
-    <li><a href="#매니페스트에서-지정하는-스케줄링">매니페스트에서 지정하는 스케줄링</a></li>
-    <li><a href="#빌트인-노드-레이블과-레이블-추가">빌트인 노드 레이블과 레이블 추가</a></li>
-    <li><a href="#nodeselector가장-단순한-노드-어피니티">nodeSelector(가장 단순한 노드 어피니티)</a></li>
-    <li><a href="#노드-어피니티">노드 어피니티</a></li>
-    <li><a href="#matchexpressions-오퍼레이터와-집합성-기준-조건">matchExpressions 오퍼레이터와 집합성 기준 조건</a></li>
-    <li><a href="#노드-안티어피니티">노드 안티어피니티</a></li>
-    <li><a href="#인터파드-어피니티">인터파드 어피니티</a></li>
-    <li><a href="#인터파드-안티어피니티">인터파드 안티어피니티</a></li>
-    <li><a href="#여러-조건을-조합한-파드-스케줄링">여러 조건을 조합한 파드 스케줄링</a></li>
-    <li><a href="#테인트와-톨러레이션">테인트와 톨러레이션</a>
+    <li><a href="#유연한-고급-스케줄링">유연한 고급 스케줄링</a>
       <ol>
-        <li><a href="#테인트-부여">테인트 부여</a>
+        <li><a href="#필터링과-스코어링">필터링과 스코어링</a></li>
+        <li><a href="#매니페스트에서-지정하는-스케줄링">매니페스트에서 지정하는 스케줄링</a></li>
+        <li><a href="#빌트인-노드-레이블과-레이블-추가">빌트인 노드 레이블과 레이블 추가</a></li>
+        <li><a href="#nodeselector가장-단순한-노드-어피니티">nodeSelector(가장 단순한 노드 어피니티)</a></li>
+        <li><a href="#노드-어피니티">노드 어피니티</a></li>
+        <li><a href="#matchexpressions-오퍼레이터와-집합성-기준-조건">matchExpressions 오퍼레이터와 집합성 기준 조건</a></li>
+        <li><a href="#노드-안티어피니티">노드 안티어피니티</a></li>
+        <li><a href="#인터파드-어피니티">인터파드 어피니티</a></li>
+        <li><a href="#인터파드-안티어피니티">인터파드 안티어피니티</a></li>
+        <li><a href="#여러-조건을-조합한-파드-스케줄링">여러 조건을 조합한 파드 스케줄링</a></li>
+        <li><a href="#테인트와-톨러레이션">테인트와 톨러레이션</a>
           <ol>
-            <li><a href="#prefernoschedule">PreferNoSchedule</a></li>
-            <li><a href="#noschedule">NoSchedule</a></li>
-            <li><a href="#noexecute">NoExecute</a></li>
+            <li><a href="#테인트-부여">테인트 부여</a></li>
+            <li><a href="#톨러레이션을-지정한-파드-기동">톨러레이션을 지정한 파드 기동</a></li>
+            <li><a href="#noexecute-일정-시간-허용">NoExecute 일정 시간 허용</a></li>
+            <li><a href="#여러-개의-테인트와-톨러레이션">여러 개의 테인트와 톨러레이션</a></li>
+            <li><a href="#장애-시-부여되는-테인트와-축출">장애 시 부여되는 테인트와 축출</a></li>
+            <li><a href="#쿠버네티스가-부여하는-그-외-테인트">쿠버네티스가 부여하는 그 외 테인트</a></li>
           </ol>
         </li>
-        <li><a href="#톨러레이션을-지정한-파드-기동">톨러레이션을 지정한 파드 기동</a></li>
-        <li><a href="#noexecute-일정-시간-허용">NoExecute 일정 시간 허용</a></li>
-        <li><a href="#여러-개의-테인트와-톨러레이션">여러 개의 테인트와 톨러레이션</a></li>
-        <li><a href="#장애-시-부여되는-테인트와-축출">장애 시 부여되는 테인트와 축출</a></li>
-        <li><a href="#쿠버네티스가-부여하는-그-외-테인트">쿠버네티스가 부여하는 그 외 테인트</a></li>
+        <li><a href="#priorityclass를-이용한-파드-우선순위와-축출">PriorityClass를 이용한 파드 우선순위와 축출</a>
+          <ol>
+            <li><a href="#priorityclass-생성">PriorityClass 생성</a></li>
+            <li><a href="#우선순위-축출-비활성화">우선순위 축출 비활성화</a></li>
+            <li><a href="#priorityclass와-poddisruptionbudget의-경합">PriorityClass와 PodDisruptionBudget의 경합</a></li>
+          </ol>
+        </li>
+        <li><a href="#기타-스케줄링">기타 스케줄링</a></li>
       </ol>
     </li>
-    <li><a href="#priorityclass를-이용한-파드-우선순위와-축출">PriorityClass를 이용한 파드 우선순위와 축출</a>
-      <ol>
-        <li><a href="#priorityclass-생성">PriorityClass 생성</a></li>
-        <li><a href="#우선순위-축출-비활성화">우선순위 축출 비활성화</a></li>
-        <li><a href="#priorityclass와-poddisruptionbudget의-경합">PriorityClass와 PodDisruptionBudget의 경합</a></li>
-      </ol>
-    </li>
-    <li><a href="#기타-스케줄링">기타 스케줄링</a></li>
   </ol>
 </nav>
         </div>

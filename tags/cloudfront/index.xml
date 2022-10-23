@@ -12,10 +12,10 @@
         <pubDate>Fri, 09 Sep 2022 23:13:41 +0900</pubDate>
         
         <guid>https://Haebuk.github.io/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/</guid>
-        <description>&lt;h1 id=&#34;들어가며&#34;&gt;들어가며&lt;/h1&gt;
+        <description>&lt;h2 id=&#34;들어가며&#34;&gt;들어가며&lt;/h2&gt;
 &lt;p&gt;S3에 저장된 객체를 퍼블릭으로 공개를 할 경우, 자신의 S3 버킷 구조가 그대로 노출되는 문제와 함께, 보안이 우려되는 경우가 있다.&lt;/p&gt;
 &lt;p&gt;이 경우 Cloudfront와 원본 액세스 ID, 즉 OAI를 사용해 S3 버킷 구조를 숨기고, 객체를 외부에 공개할 수 있다.&lt;/p&gt;
-&lt;h1 id=&#34;1-객체를-공개할-s3-버킷-생성&#34;&gt;1. 객체를 공개할 S3 버킷 생성&lt;/h1&gt;
+&lt;h2 id=&#34;객체를-공개할-s3-버킷-생성&#34;&gt;객체를 공개할 S3 버킷 생성&lt;/h2&gt;
 &lt;p&gt;외부 사용자들에게 공개할 객체를 담는 버킷을 생성한다. 나같은 경우에는 링크드인에 수료증 링크를 걸기 위해 &lt;code&gt;kade-certificate&lt;/code&gt;라는 버킷을 생성하고 그 안에 수료증 파일들을 저장했다.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/bucket.png&#34;
 	width=&#34;2160&#34;
@@ -31,7 +31,7 @@
 		data-flex-basis=&#34;494px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h1 id=&#34;2-콘솔을-사용하여-oai-생성-및-cloudfront-배포에-추가&#34;&gt;2. 콘솔을 사용하여 OAI 생성 및 Cloudfront 배포에 추가&lt;/h1&gt;
+&lt;h2 id=&#34;콘솔을-사용하여-oai-생성-및-cloudfront-배포에-추가&#34;&gt;콘솔을 사용하여 OAI 생성 및 Cloudfront 배포에 추가&lt;/h2&gt;
 &lt;p&gt;Cloudfront 페이지에서 배포 생성을 클릭하고, 생성한 S3 버킷을 원본 도메인으로 선택한다.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/2.png&#34;
 	width=&#34;1650&#34;
@@ -65,7 +65,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;GET 요청만 수락하므로 하단의 모든 항목들의 수정 없이 배포 생성 버튼을 클릭한다.&lt;/p&gt;
-&lt;h1 id=&#34;3-생성된-cloudfront-url로-접근&#34;&gt;3. 생성된 Cloudfront url로 접근&lt;/h1&gt;
+&lt;h2 id=&#34;생성된-cloudfront-url로-접근&#34;&gt;생성된 Cloudfront url로 접근&lt;/h2&gt;
 &lt;p&gt;배포가 생성되고 나면 다음 화면과 같다.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/4.png&#34;
 	width=&#34;2690&#34;
@@ -98,7 +98,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;이처럼 Cloudfront와 OAI를 사용하여 사용자의 버킷 URL은 숨긴채, 외부에서 접근을 허용할 수 있다.&lt;/p&gt;
-&lt;h1 id=&#34;reference&#34;&gt;Reference&lt;/h1&gt;
+&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;원본 액세스 ID(OAI)를 사용하여 Amazon S3 콘텐츠에 대한 액세스 제한: &lt;a class=&#34;link&#34; href=&#34;https://docs.aws.amazon.com/ko_kr/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://docs.aws.amazon.com/ko_kr/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html&lt;/a&gt;&lt;/li&gt;

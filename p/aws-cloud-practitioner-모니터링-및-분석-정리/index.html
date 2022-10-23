@@ -12,6 +12,8 @@
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Cloud Practitioner' /><meta property='article:tag' content='Skill Builder' /><meta property='article:published_time' content='2022-10-23T16:05:30&#43;09:00'/><meta property='article:modified_time' content='2022-10-23T16:05:30&#43;09:00'/>
 <meta name="twitter:title" content="[AWS Cloud Practitioner] 모니터링 및 분석 정리">
 <meta name="twitter:description" content="AWS Cloud Practitioner Essential 모니터링 및 분석 정리">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7CM424CQYT"></script>
 <script>
 var doNotTrack = false;
@@ -322,23 +324,23 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="amazon-cloudwatch">Amazon CloudWatch</h1>
+    <h2 id="amazon-cloudwatch">Amazon CloudWatch</h2>
 <p>다양한 지표를 모니터링 및 관리하고 해당 지표의 데이터를 기반으로 경보 작업을 구성할 수 있는 웹 서비스</p>
 <ul>
 <li>지표를 사용해 리소스의 데이터 포인트를 나타냄</li>
 <li>AWS 서비스는 지표를 CloudWatch로 전송</li>
 <li>CloudWatch가 이 지표를 사용해 시간 경과에 따라 어떻게 성능이 변화했는지 보여주는 그래프를 자동 생성</li>
 </ul>
-<h2 id="cloudwatch-경보">CloudWatch 경보</h2>
+<h3 id="cloudwatch-경보">CloudWatch 경보</h3>
 <ul>
 <li>지표의 값이 미리 정의된 임계값을 상회 또는 하회할 경우 자동으로 작업을 수행</li>
 </ul>
-<h2 id="cloudwatch-대시보드">CloudWatch 대시보드</h2>
+<h3 id="cloudwatch-대시보드">CloudWatch 대시보드</h3>
 <ul>
 <li>단일 위치에서 리소스에 대한 모든 지표에 액세스 가능</li>
 <li>다양한 비즈니스 용도, 애플리케이션 또는 리소스에 따라 별도의 대시보드를 사용자 지정 가능</li>
 </ul>
-<h1 id="aws-cloudtrail">AWS CloudTrail</h1>
+<h2 id="aws-cloudtrail">AWS CloudTrail</h2>
 <p>계정에 대한 API 호출을 기록</p>
 <ul>
 <li>기록되는 정보에는 API 호출자 ID, API 호출 시간, API 호출자의 소스 IP 주소 등이 포함</li>
@@ -346,11 +348,11 @@ if (!doNotTrack) {
 <li>애플리케이션 및 리소스에 대한 사용자 활동 및 API 호출의 전체 내역 열람 가능</li>
 <li>일반적으로 API 호출 후 15분 이내에 업데이트 됨</li>
 </ul>
-<h2 id="cloudtrail-insights">CloudTrail Insights</h2>
+<h3 id="cloudtrail-insights">CloudTrail Insights</h3>
 <ul>
 <li>AWS 계정에서 비정상적인 API 활동을 자동으로 감지할 수 있음</li>
 </ul>
-<h1 id="aws-trusted-advisor">AWS Trusted Advisor</h1>
+<h2 id="aws-trusted-advisor">AWS Trusted Advisor</h2>
 <p>AWS 환경을 검사하고 AWS 모범 사례에 따라 실시간 권장 사항을 제시하는 웹 서비스</p>
 <ul>
 <li>비용 최적화, 성능, 보안, 내결함성, 서비스 한도라는 5개 범주에서 결과를 모범 사례와 비교</li>
@@ -358,7 +360,7 @@ if (!doNotTrack) {
 <li>AWS Trusted Advisor가 제공하는 권장 사항은 배포의 모든 단계에서도 유용</li>
 <li>기존 애플리케이션 및 리소스를 지속적으로 개선하는데 활용</li>
 </ul>
-<h2 id="aws-trusted-advisor-대시보드">AWS Trusted Advisor 대시보드</h2>
+<h3 id="aws-trusted-advisor-대시보드">AWS Trusted Advisor 대시보드</h3>
 <ul>
 <li>위에서 언급한 5개 범주에서 완료된 검사 검토 가능</li>
 <li>녹색 체크 표시: 문제가 감지되지 않은 항목 수</li>
@@ -638,16 +640,22 @@ if (!doNotTrack) {
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#cloudwatch-경보">CloudWatch 경보</a></li>
-    <li><a href="#cloudwatch-대시보드">CloudWatch 대시보드</a></li>
-  </ol>
-
-  <ol>
-    <li><a href="#cloudtrail-insights">CloudTrail Insights</a></li>
-  </ol>
-
-  <ol>
-    <li><a href="#aws-trusted-advisor-대시보드">AWS Trusted Advisor 대시보드</a></li>
+    <li><a href="#amazon-cloudwatch">Amazon CloudWatch</a>
+      <ol>
+        <li><a href="#cloudwatch-경보">CloudWatch 경보</a></li>
+        <li><a href="#cloudwatch-대시보드">CloudWatch 대시보드</a></li>
+      </ol>
+    </li>
+    <li><a href="#aws-cloudtrail">AWS CloudTrail</a>
+      <ol>
+        <li><a href="#cloudtrail-insights">CloudTrail Insights</a></li>
+      </ol>
+    </li>
+    <li><a href="#aws-trusted-advisor">AWS Trusted Advisor</a>
+      <ol>
+        <li><a href="#aws-trusted-advisor-대시보드">AWS Trusted Advisor 대시보드</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>

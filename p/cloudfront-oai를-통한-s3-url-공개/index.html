@@ -12,6 +12,8 @@
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='s3' /><meta property='article:tag' content='cloudfront' /><meta property='article:published_time' content='2022-09-09T23:13:41&#43;09:00'/><meta property='article:modified_time' content='2022-09-09T23:13:41&#43;09:00'/>
 <meta name="twitter:title" content="Cloudfront - OAI를 통한 S3 URL 공개">
 <meta name="twitter:description" content="Cloudfront와 OAI를 통해 S3 객체 URL을 버킷명을 공개하지 않고 외부로 공유할 수 있는 방법을 살펴봅니다.">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7CM424CQYT"></script>
 <script>
 var doNotTrack = false;
@@ -322,10 +324,10 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="들어가며">들어가며</h1>
+    <h2 id="들어가며">들어가며</h2>
 <p>S3에 저장된 객체를 퍼블릭으로 공개를 할 경우, 자신의 S3 버킷 구조가 그대로 노출되는 문제와 함께, 보안이 우려되는 경우가 있다.</p>
 <p>이 경우 Cloudfront와 원본 액세스 ID, 즉 OAI를 사용해 S3 버킷 구조를 숨기고, 객체를 외부에 공개할 수 있다.</p>
-<h1 id="1-객체를-공개할-s3-버킷-생성">1. 객체를 공개할 S3 버킷 생성</h1>
+<h2 id="객체를-공개할-s3-버킷-생성">객체를 공개할 S3 버킷 생성</h2>
 <p>외부 사용자들에게 공개할 객체를 담는 버킷을 생성한다. 나같은 경우에는 링크드인에 수료증 링크를 걸기 위해 <code>kade-certificate</code>라는 버킷을 생성하고 그 안에 수료증 파일들을 저장했다.</p>
 <p><img src="/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/bucket.png"
 	width="2160"
@@ -341,7 +343,7 @@ if (!doNotTrack) {
 		data-flex-basis="494px"
 	
 ></p>
-<h1 id="2-콘솔을-사용하여-oai-생성-및-cloudfront-배포에-추가">2. 콘솔을 사용하여 OAI 생성 및 Cloudfront 배포에 추가</h1>
+<h2 id="콘솔을-사용하여-oai-생성-및-cloudfront-배포에-추가">콘솔을 사용하여 OAI 생성 및 Cloudfront 배포에 추가</h2>
 <p>Cloudfront 페이지에서 배포 생성을 클릭하고, 생성한 S3 버킷을 원본 도메인으로 선택한다.</p>
 <p><img src="/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/2.png"
 	width="1650"
@@ -375,7 +377,7 @@ if (!doNotTrack) {
 	
 ></p>
 <p>GET 요청만 수락하므로 하단의 모든 항목들의 수정 없이 배포 생성 버튼을 클릭한다.</p>
-<h1 id="3-생성된-cloudfront-url로-접근">3. 생성된 Cloudfront url로 접근</h1>
+<h2 id="생성된-cloudfront-url로-접근">생성된 Cloudfront url로 접근</h2>
 <p>배포가 생성되고 나면 다음 화면과 같다.</p>
 <p><img src="/p/cloudfront-oai%EB%A5%BC-%ED%86%B5%ED%95%9C-s3-url-%EA%B3%B5%EA%B0%9C/4.png"
 	width="2690"
@@ -408,7 +410,7 @@ if (!doNotTrack) {
 	
 ></p>
 <p>이처럼 Cloudfront와 OAI를 사용하여 사용자의 버킷 URL은 숨긴채, 외부에서 접근을 허용할 수 있다.</p>
-<h1 id="reference">Reference</h1>
+<h2 id="reference">Reference</h2>
 <ul>
 <li>원본 액세스 ID(OAI)를 사용하여 Amazon S3 콘텐츠에 대한 액세스 제한: <a class="link" href="https://docs.aws.amazon.com/ko_kr/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html"  target="_blank" rel="noopener"
     >https://docs.aws.amazon.com/ko_kr/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html</a></li>
@@ -590,7 +592,42 @@ if (!doNotTrack) {
             >
 
             </main>
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">목차</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#들어가며">들어가며</a></li>
+    <li><a href="#객체를-공개할-s3-버킷-생성">객체를 공개할 S3 버킷 생성</a></li>
+    <li><a href="#콘솔을-사용하여-oai-생성-및-cloudfront-배포에-추가">콘솔을 사용하여 OAI 생성 및 Cloudfront 배포에 추가</a></li>
+    <li><a href="#생성된-cloudfront-url로-접근">생성된 Cloudfront url로 접근</a></li>
+    <li><a href="#reference">Reference</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
         </div>
         <script 

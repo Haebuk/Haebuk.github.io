@@ -13,6 +13,8 @@
 <meta name="twitter:title" content="컨피그와스토리지 API">
 <meta name="twitter:description" content="컨피그 &amp; 스토리지 API"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://Haebuk.github.io/p/%EC%BB%A8%ED%94%BC%EA%B7%B8%EC%99%80%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-api/Kubernetes-Logo.wine.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7CM424CQYT"></script>
 <script>
 var doNotTrack = false;
@@ -335,7 +337,7 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="컨피그--스토리지-api-카테고리">컨피그 &amp; 스토리지 API 카테고리</h1>
+    <h2 id="컨피그--스토리지-api-카테고리">컨피그 &amp; 스토리지 API 카테고리</h2>
 <ul>
 <li>컨테이너 설정 파일, 패스워드 같은 기밀 정보 추가</li>
 <li>영구 볼륨 제공
@@ -346,7 +348,7 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h2 id="환경-변수-사용">환경 변수 사용</h2>
+<h3 id="환경-변수-사용">환경 변수 사용</h3>
 <ul>
 <li>개별 컨테이너 설정 내용은 환경 변수나 파일이 저장되어 있는 영역을 마운트하여 전달하는 것이 일반적</li>
 <li>파드 템플릿에 env 또는 envFrom 지정</li>
@@ -360,7 +362,7 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h3 id="정적-설정">정적 설정</h3>
+<h4 id="정적-설정">정적 설정</h4>
 <ul>
 <li>spec.containers[].env에 정적인 값 설정</li>
 </ul>
@@ -370,7 +372,7 @@ if (!doNotTrack) {
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># sample-env 파드의 환경변수 확인</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## sample-env 파드의 환경변수 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-env -- env <span class="p">|</span> grep MAX_CONNECTION
 </span></span></code></pre></td></tr></table>
 </div>
@@ -385,13 +387,13 @@ if (!doNotTrack) {
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># 타임존 설정</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c">## 타임존 설정</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">env</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">TZ</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">Asia/Seoul</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="파드-정보">파드 정보</h3>
+</div><h4 id="파드-정보">파드 정보</h4>
 <ul>
 <li>fieldRef를 통해 참조 가능</li>
 </ul>
@@ -404,14 +406,14 @@ if (!doNotTrack) {
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 파드가 기동 중인 노드 확인</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 파드가 기동 중인 노드 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl get pods -o wide sample-env-pod
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># sample-env-pod 파드 환경 변수 &#39;K8S_NODE&#39; 확인</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## sample-env-pod 파드 환경 변수 &#39;K8S_NODE&#39; 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-env-pod -- env <span class="p">|</span> grep K8S_NODE
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="컨테이너-정보">컨테이너 정보</h3>
+</div><h4 id="컨테이너-정보">컨테이너 정보</h4>
 <ul>
 <li>resourceFieldRef를 통해 참조 가능</li>
 </ul>
@@ -423,7 +425,7 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-env-container -- env <span class="p">|</span> grep CPU
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="환경-변수-사용시-주의-사항">환경 변수 사용시 주의 사항</h3>
+</div><h4 id="환경-변수-사용시-주의-사항">환경 변수 사용시 주의 사항</h4>
 <ul>
 <li>command나 args로 실행할 명령어를 지정할 때는 <code>${}</code>가 아닌 <code>$()</code>로 지정
 <ul>
@@ -431,8 +433,8 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h2 id="시크릿">시크릿</h2>
-<h3 id="범용-시크릿opaque">범용 시크릿(Opaque)</h3>
+<h3 id="시크릿">시크릿</h3>
+<h4 id="범용-시크릿opaque">범용 시크릿(Opaque)</h4>
 <ul>
 <li>스키마리스 시크릿
 <ul>
@@ -444,7 +446,7 @@ if (!doNotTrack) {
 </li>
 <li>하나의 시크릿당 저장 가능한 데이터 사이즈는 총 1MB</li>
 </ul>
-<h4 id="kubectl로-파일에서-값을-참조하여-생성--from-file">kubectl로 파일에서 값을 참조하여 생성(&ndash;from-file)</h4>
+<h5 id="kubectl로-파일에서-값을-참조하여-생성--from-file">kubectl로 파일에서 값을 참조하여 생성(&ndash;from-file)</h5>
 <ul>
 <li>일반적으로 파일명이 그대로 키가 되므로 확장자는 붙이지 않는 것이 좋음</li>
 <li>파일 생성시 개행 코드 없도록 주의</li>
@@ -469,25 +471,25 @@ if (!doNotTrack) {
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 시크릿에 포함된 값을 파일로 내보내기</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 시크릿에 포함된 값을 파일로 내보내기</span>
 </span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> -n <span class="s2">&#34;root&#34;</span> &gt; ./username
 </span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> -n <span class="s2">&#34;rootpassword&#34;</span> &gt; ./password
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 파일에서 값 참조하여 시크릿 생성</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 파일에서 값 참조하여 시크릿 생성</span>
 </span></span><span class="line"><span class="cl">$ kubectl create secret generic --save-config sample-db-auth <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>--from-file<span class="o">=</span>./username --from-file<span class="o">=</span>./password
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 시크릿 확인</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 시크릿 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl get secrets sample-db-auth -o json <span class="p">|</span> jq .data
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># base64 인코딩되어 있음</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## base64 인코딩되어 있음</span>
 </span></span><span class="line"><span class="cl">$ kubectl get secrets sample-db-auth -o json <span class="p">|</span> jq -r .data.username
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># base64 디코드</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## base64 디코드</span>
 </span></span><span class="line"><span class="cl">$ kubectl get secrets sample-db-auth -o json <span class="p">|</span> jq -r .data.username <span class="p">|</span> base64 --decode
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="kubectl로-envfile에서-값을-참조하여-생성--from-env-file">kubectl로 envfile에서 값을 참조하여 생성(&ndash;from-env-file)</h4>
+</div><h5 id="kubectl로-envfile에서-값을-참조하여-생성--from-env-file">kubectl로 envfile에서 값을 참조하여 생성(&ndash;from-env-file)</h5>
 <ul>
 <li>하나의 파일에서 일괄적으로 생성하는 경우</li>
 </ul>
@@ -501,7 +503,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>--from-env-file ./env-secret.txt
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="kubectl로-값을-직접-전달하여-생성--from-literal">kubectl로 값을 직접 전달하여 생성(&ndash;from-literal)</h4>
+</div><h5 id="kubectl로-값을-직접-전달하여-생성--from-literal">kubectl로 값을 직접 전달하여 생성(&ndash;from-literal)</h5>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -512,18 +514,18 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>--from-literal<span class="o">=</span><span class="nv">username</span><span class="o">=</span>root --from-literal<span class="o">=</span><span class="nv">password</span><span class="o">=</span>rootpassword
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="매니페스트에서-생성-f">매니페스트에서 생성(-f)</h4>
+</div><h5 id="매니페스트에서-생성-f">매니페스트에서 생성(-f)</h5>
 <ul>
 <li>base64로 제대로 인코드되었는지 확인</li>
 <li>data가 아닌 stringData 필드를 사용하면 일반 텍스트로 작성 가능</li>
 </ul>
-<h3 id="tls-타입-시크릿">TLS 타입 시크릿</h3>
+<h4 id="tls-타입-시크릿">TLS 타입 시크릿</h4>
 <ul>
 <li>인증서로 사용할 시크릿을 사용하는 경우</li>
 <li>인그레스 리소스 등에서 사용하는 것이 일반적</li>
 <li>매니페스트로 생성할 수 있지만 기본적으로 비밀키와 인증서 파일로 생성하는 것이 좋음</li>
 </ul>
-<h3 id="도커-레지스트리-타입-시크릿">도커 레지스트리 타입 시크릿</h3>
+<h4 id="도커-레지스트리-타입-시크릿">도커 레지스트리 타입 시크릿</h4>
 <ul>
 <li>컨테이너 레지스트리가 프라이빗 저장소인 경우에 인증 정보를 시크릿으로 정의하여 사용 가능</li>
 <li>kubectl로 직접 생성하는 것이 편리</li>
@@ -545,30 +547,30 @@ if (!doNotTrack) {
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 도커 레지스트리 인증 정보의 시크릿 생성</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 도커 레지스트리 인증 정보의 시크릿 생성</span>
 </span></span><span class="line"><span class="cl">$ kubectl create secret docker-registry --save-config sample-registry-auth <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>--docker-server<span class="o">=</span>REGISTRY_SERVER <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>--docker-username<span class="o">=</span>REGISTRY_USER <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>--docker-password<span class="o">=</span>REGISTRY_USER_PASSWORD <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>--docker-email<span class="o">=</span>REGISTRY_USER_EMAIL
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># base64로 인코드된 dockercfg 형식의 JSON 데이터</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## base64로 인코드된 dockercfg 형식의 JSON 데이터</span>
 </span></span><span class="line"><span class="cl">$ kubectl get secrets -o json sample-registry-auth <span class="p">|</span> jq .data
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># base64로 디코드한 dockercfg 형식의 JSON 데이터</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## base64로 디코드한 dockercfg 형식의 JSON 데이터</span>
 </span></span><span class="line"><span class="cl">$ kubectl get secrets sample-registry-auth -o yaml <span class="p">|</span> grep <span class="s2">&#34;\.dockerconfigjson&#34;</span> <span class="p">|</span> awk -F <span class="s1">&#39; &#39;</span> <span class="s1">&#39;{print $2}&#39;</span> <span class="p">|</span> base64 --decode
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="이미지-다운로드-시-시크릿-사용">이미지 다운로드 시 시크릿 사용</h4>
+</div><h5 id="이미지-다운로드-시-시크릿-사용">이미지 다운로드 시 시크릿 사용</h5>
 <ul>
 <li>인증이 필요한 도커 레지스트리의 프라이빗 저장소에 저장된 이미지를 다운로드할 때, 시크릿을 사전에 생성한 후 파드 정의 spec.imagePullSecrets에 docker-registry 타입의 시크릿 지정</li>
 <li>imagePullSecrets는 복수 설정 가능</li>
 </ul>
-<h3 id="기본-인증-타입의-시크릿">기본 인증 타입의 시크릿</h3>
+<h4 id="기본-인증-타입의-시크릿">기본 인증 타입의 시크릿</h4>
 <ul>
 <li>사용자명과 패스워드로 인증하는 시스템을 사용하는 경우</li>
 </ul>
-<h4 id="kubectl로-직접-값을-전달하여-생성--from-literal">kubectl로 직접 값을 전달하여 생성(&ndash;from-literal)</h4>
+<h5 id="kubectl로-직접-값을-전달하여-생성--from-literal">kubectl로 직접 값을 전달하여 생성(&ndash;from-literal)</h5>
 <ul>
 <li>리소스를 생성하지 않고 매니페스트를 출력하는 경우 &ndash;dry-run, -o yaml 옵션 사용</li>
 </ul>
@@ -580,22 +582,22 @@ if (!doNotTrack) {
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 직접 옵션에서 type과 값을 지정하여 시크릿 생성</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 직접 옵션에서 type과 값을 지정하여 시크릿 생성</span>
 </span></span><span class="line"><span class="cl">$ kubectl create secret generic --save-config sample-basic-auth <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>--type kubernetes.io/basic-auth <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>--from-literal<span class="o">=</span><span class="nv">username</span><span class="o">=</span>root --from-literal<span class="o">=</span><span class="nv">password</span><span class="o">=</span>rootpassword
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="매니페스트에서-생성-f-1">매니페스트에서 생성(-f)</h4>
+</div><h5 id="매니페스트에서-생성-f-1">매니페스트에서 생성(-f)</h5>
 <ul>
 <li>type에 kubernetes.io/basic-auth 지정</li>
 <li>데이터 스키마로 username과 password 지정</li>
 </ul>
-<h3 id="ssh-인증-타입의-시크릿">SSH 인증 타입의 시크릿</h3>
+<h4 id="ssh-인증-타입의-시크릿">SSH 인증 타입의 시크릿</h4>
 <ul>
 <li>비밀키로 인증하는 시스템을 사용하는 경우</li>
 </ul>
-<h4 id="kubectl로-파일에서-값을-참조하여-생성--from-file-1">kubectl로 파일에서 값을 참조하여 생성(&ndash;from-file)</h4>
+<h5 id="kubectl로-파일에서-값을-참조하여-생성--from-file-1">kubectl로 파일에서 값을 참조하여 생성(&ndash;from-file)</h5>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -607,21 +609,21 @@ if (!doNotTrack) {
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># SSH 비밀키 생성</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## SSH 비밀키 생성</span>
 </span></span><span class="line"><span class="cl">$ ssh-keygen -t rsa -b <span class="m">2048</span> -f sample-key -C <span class="s2">&#34;sample&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 파일에서 type과 값을 참조하여 시크릿 생성</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 파일에서 type과 값을 참조하여 시크릿 생성</span>
 </span></span><span class="line"><span class="cl">$ kubectl create secret generic --save-config sample-ssh-auth <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>--type kubernetes.io/ssh-auth <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>--from-file<span class="o">=</span>ssh-privatekey<span class="o">=</span>./sample-key
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="매니페스트에서-생성-f-2">매니페스트에서 생성(-f)</h4>
+</div><h5 id="매니페스트에서-생성-f-2">매니페스트에서 생성(-f)</h5>
 <ul>
 <li>type에 kubernetes.io/ssh-auth 지정</li>
 <li>데이터 스키마로 ssh-privatekey 지정</li>
 </ul>
-<h3 id="시크릿-사용">시크릿 사용</h3>
+<h4 id="시크릿-사용">시크릿 사용</h4>
 <ul>
 <li>컨테이너에서 사용할 경우 두 가지 패턴이 존재
 <ol>
@@ -640,7 +642,7 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h4 id="환경-변수로-전달">환경 변수로 전달</h4>
+<h5 id="환경-변수로-전달">환경 변수로 전달</h5>
 <ul>
 <li>특정 키를 전달할 경우 spec.containers[].env의 valueFrom.secretKeyRef 사용</li>
 <li>env로 하나씩 정의하기 때문에 환경 변수명 지정 가능</li>
@@ -659,17 +661,17 @@ if (!doNotTrack) {
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># sample-secret-single-env 파드의 DB_USERNAME 확인</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## sample-secret-single-env 파드의 DB_USERNAME 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-secret-single-env -- env <span class="p">|</span> grep DB_USERNAME
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># sample-secret-multi-env 파드의 환경 변수 확인</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## sample-secret-multi-env 파드의 환경 변수 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-secret-multi-env -- env
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># sample-secret-prefix-env 파드의 접두사가 DB인 환경 변수 확안</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## sample-secret-prefix-env 파드의 접두사가 DB인 환경 변수 확안</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-secret-prefix-env -- env <span class="p">|</span> egrep ^DB
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="볼륨으로-마운트">볼륨으로 마운트</h3>
+</div><h4 id="볼륨으로-마운트">볼륨으로 마운트</h4>
 <ul>
 <li>특정 키를 마운트하는 경우 spec.volumes[]의 secret.items[]를 사용</li>
 <li>마찬가지로 시크릿 전체를 마운트 가능, 매니페스트가 길어지지 않지만 어떤 값이 있는지 알기 힘듦</li>
@@ -683,14 +685,14 @@ if (!doNotTrack) {
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># sample-secret-single-volume 파드의 /config/username.txt 확인</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## sample-secret-single-volume 파드의 /config/username.txt 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-secret-single-volume -- cat /config/username.txt
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 파드 내부의 /config 디렉터리 내용 확인</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 파드 내부의 /config 디렉터리 내용 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-secret-multi-volume -- ls /config
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="동적-시크릿-업데이트">동적 시크릿 업데이트</h3>
+</div><h4 id="동적-시크릿-업데이트">동적 시크릿 업데이트</h4>
 <ul>
 <li>일정 기간마다(kubelet의 Sync Loop 타이밍) kube-apiserver로 변경 확인
 <ul>
@@ -744,7 +746,7 @@ if (!doNotTrack) {
 </span><span class="lnt">40
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 시크릿에 마운트된 디렉터리 확인</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 시크릿에 마운트된 디렉터리 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-secret-multi-volume -- ls -la /config
 </span></span><span class="line"><span class="cl">drwxrwxrwt <span class="m">3</span> root root <span class="m">120</span> Jun <span class="m">11</span> 08:47 .
 </span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">1</span> root root  <span class="m">42</span> Jun <span class="m">11</span> 08:47 ..
@@ -752,13 +754,13 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root  <span class="m">31</span> Jun <span class="m">11</span> 08:47 ..data -&gt; ..2022_06_11_08_47_42.732252402
 </span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root  <span class="m">15</span> Jun <span class="m">11</span> 08:47 password -&gt; ..data/password
 </span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root  <span class="m">15</span> Jun <span class="m">11</span> 08:47 username -&gt; ..data/username
-</span></span><span class="line"><span class="cl"><span class="c1"># 파드의 /config/username 파일 내용 확인</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 파드의 /config/username 파일 내용 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-secret-multi-volume -- cat /config/username
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 시크릿 변경 전 경과 시간 확인</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 시크릿 변경 전 경과 시간 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl get pods sample-secret-multi-volume
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 시크릿 내용 업데이트</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 시크릿 내용 업데이트</span>
 </span></span><span class="line"><span class="cl">$ cat <span class="s">&lt;&lt; EOF | kubectl apply -f -
 </span></span></span><span class="line"><span class="cl"><span class="s">apiVersion: v1
 </span></span></span><span class="line"><span class="cl"><span class="s">kind: Secret
@@ -766,11 +768,11 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="s">  name: sample-db-auth
 </span></span></span><span class="line"><span class="cl"><span class="s">type: Opaque
 </span></span></span><span class="line"><span class="cl"><span class="s">data:
-</span></span></span><span class="line"><span class="cl"><span class="s">  # root &gt; admin으로 변경
+</span></span></span><span class="line"><span class="cl"><span class="s">  ## root &gt; admin으로 변경
 </span></span></span><span class="line"><span class="cl"><span class="s">  username: YWRtaW4=
 </span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 시크릿에 마운트된 디렉터리 확인</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 시크릿에 마운트된 디렉터리 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-secret-multi-volume -- ls -la /config
 </span></span><span class="line"><span class="cl">total <span class="m">0</span>
 </span></span><span class="line"><span class="cl">drwxrwxrwt <span class="m">3</span> root root <span class="m">100</span> Jun <span class="m">11</span> 08:54 .
@@ -779,10 +781,10 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root  <span class="m">31</span> Jun <span class="m">11</span> 08:54 ..data -&gt; ..2022_06_11_08_54_21.841196102
 </span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root  <span class="m">15</span> Jun <span class="m">11</span> 08:47 username -&gt; ..data/username
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># root에서 admin으로 변경됨</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## root에서 admin으로 변경됨</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-secret-multi-volume -- cat /config/username
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 동적으로 파일이 변경된 후의 경과시간 확인 -&gt; 파드가 재생성되지 않음</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 동적으로 파일이 변경된 후의 경과시간 확인 -&gt; 파드가 재생성되지 않음</span>
 </span></span><span class="line"><span class="cl">$ kubectl get pods sample-secret-multi-volume
 </span></span></code></pre></td></tr></table>
 </div>
@@ -796,11 +798,11 @@ if (!doNotTrack) {
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># password 파일은 삭제됨</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## password 파일은 삭제됨</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-secret-multi-volume -- ls /config
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="컨피그맵">컨피그맵</h2>
+</div><h3 id="컨피그맵">컨피그맵</h3>
 <ul>
 <li>설정 정보 등을 key-value로 저장할 수 있는 데이터 저장 리소스</li>
 <li>하나의 컨피그맵마다 저장할 수 있는 사이즈 총 1MB</li>
@@ -830,13 +832,13 @@ if (!doNotTrack) {
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 파일로 컨피그맵 생성</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 파일로 컨피그맵 생성</span>
 </span></span><span class="line"><span class="cl">$ kubectl create configmap --save-config sample-configmap --from-file<span class="o">=</span>./nginx.conf
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 컨피그맵에 등록된 데이터 확인 1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 컨피그맵에 등록된 데이터 확인 1</span>
 </span></span><span class="line"><span class="cl">$ kubectl get configmaps sample-configmap -o json <span class="p">|</span> jq .data
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 컨피그맵에 등록된 데이터 확인 2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 컨피그맵에 등록된 데이터 확인 2</span>
 </span></span><span class="line"><span class="cl">$ kubectl describe configmap sample-configmap
 </span></span></code></pre></td></tr></table>
 </div>
@@ -865,10 +867,10 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>--dry-run<span class="o">=</span>client -o yaml <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>&gt; sample-configmap-binary.yaml
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 로컬 8080 포트에서 파드의 80 포트로 포트 포워딩</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 로컬 8080 포트에서 파드의 80 포트로 포트 포워딩</span>
 </span></span><span class="line"><span class="cl">$ kubectl port-forward sample-configmap-binary-webserver 8080:80
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 브라우저로 표시</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 브라우저로 표시</span>
 </span></span><span class="line"><span class="cl">$ open http://localhost:8080/image.jpg
 </span></span></code></pre></td></tr></table>
 </div>
@@ -879,12 +881,12 @@ if (!doNotTrack) {
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 인수에 각 직접 전달</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 인수에 각 직접 전달</span>
 </span></span><span class="line"><span class="cl">$ kubectl create configmap --save-config web-config <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>--from-literal<span class="o">=</span>connection.max<span class="o">=</span><span class="m">100</span> --from-literal<span class="o">=</span>connection.min<span class="o">=</span><span class="m">10</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="컨피그맵-사용">컨피그맵 사용</h3>
+</div><h4 id="컨피그맵-사용">컨피그맵 사용</h4>
 <ul>
 <li>두 가지 방법
 <ul>
@@ -931,21 +933,21 @@ if (!doNotTrack) {
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 파드의 CONNECTION_MAX 환경 변수 내용 확인</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 파드의 CONNECTION_MAX 환경 변수 내용 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-configmap-single-env -- env <span class="p">|</span> grep CONNECTION_MAX
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 파드의 여러 환경 변수 확인</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 파드의 여러 환경 변수 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-configmap-multi-env -- env
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 파일로 저장된 컨피그맵 확인</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 파일로 저장된 컨피그맵 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-configmap-single-volume -- cat /config/nginx-sample.conf
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 파드에 마운트된 /config 아래 파일 확인</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 파드에 마운트된 /config 아래 파일 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-configmap-multi-volume -- ls /config
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="시크릿과-컨피그맵의-공통-주제">시크릿과 컨피그맵의 공통 주제</h3>
-<h4 id="사용-구분">사용 구분</h4>
+</div><h4 id="시크릿과-컨피그맵의-공통-주제">시크릿과 컨피그맵의 공통 주제</h4>
+<h5 id="사용-구분">사용 구분</h5>
 <ul>
 <li>시크릿 데이터는 etcd에 저장됨</li>
 <li>쿠버네티스 노드상에 영구적으로 데이터가 남지 않게 tmpfs 영역에 저장</li>
@@ -955,24 +957,24 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h4 id="마운트-시-퍼미션-변경">마운트 시 퍼미션 변경</h4>
+<h5 id="마운트-시-퍼미션-변경">마운트 시 퍼미션 변경</h5>
 <ul>
 <li>파드에서 실행하는 경우 볼륨을 생성할 때 실행 권한 부여 가능</li>
 <li>기본값 0644(rw-r&ndash;r&ndash;)로 마운트</li>
 <li>퍼미션은 8진수 표기에서 10진수 표기로 변환한 형태를 사용</li>
 </ul>
-<h4 id="동적-컨피그맵-업데이트">동적 컨피그맵 업데이트</h4>
+<h5 id="동적-컨피그맵-업데이트">동적 컨피그맵 업데이트</h5>
 <ul>
 <li>볼륨 마운트 사용시 일정 기간 마다 파일 교체 (기본값 60초)</li>
 <li>환경 변수를 사용한 컨피그맵은 동적 업데이트 불가</li>
 </ul>
-<h4 id="데이터-변경-거부">데이터 변경 거부</h4>
+<h5 id="데이터-변경-거부">데이터 변경 거부</h5>
 <ul>
 <li>immutable 설정 변경하면 데이터 변경 방지 가능</li>
 <li>변경하려면 리소스를 삭제하고 다시 생성</li>
 <li>볼륨 마운트의 경우 파드 재생성 필요</li>
 </ul>
-<h2 id="볼륨-영구-볼륨-영구-볼륨-클레임의-차이">볼륨, 영구 볼륨, 영구 볼륨 클레임의 차이</h2>
+<h3 id="볼륨-영구-볼륨-영구-볼륨-클레임의-차이">볼륨, 영구 볼륨, 영구 볼륨 클레임의 차이</h3>
 <ul>
 <li>볼륨
 <ul>
@@ -995,7 +997,7 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h2 id="볼륨">볼륨</h2>
+<h3 id="볼륨">볼륨</h3>
 <ul>
 <li>추상화하여 파드와 느슨하게 결합된 리소스
 <ul>
@@ -1010,7 +1012,7 @@ if (!doNotTrack) {
 </li>
 <li>파드에 정적으로 볼륨을 지정 -&gt; 플러그인에 따라 충돌 가능성</li>
 </ul>
-<h3 id="emptydir">emptyDir</h3>
+<h4 id="emptydir">emptyDir</h4>
 <ul>
 <li>파드용 임시 디스크 영역으로 사용 가능</li>
 <li>파드 종료시 삭제</li>
@@ -1023,7 +1025,7 @@ if (!doNotTrack) {
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 기동 중인 쿠버네티스 노드의 디스크 영역 할당 확인</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 기동 중인 쿠버네티스 노드의 디스크 영역 할당 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-emptydir -- df -h <span class="p">|</span> grep /cache
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1043,10 +1045,10 @@ if (!doNotTrack) {
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 150MB 파일을 /cache/dummy에 생성</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 150MB 파일을 /cache/dummy에 생성</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-emptydir-limit -- dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>/cache/dummy <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">count</span><span class="o">=</span><span class="m">150</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 파드 상태 모니터링</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 파드 상태 모니터링</span>
 </span></span><span class="line"><span class="cl">$ kubectl describe pods sample-emptydir-limit
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1061,11 +1063,11 @@ if (!doNotTrack) {
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># tmpfs 영역 할당 확인</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## tmpfs 영역 할당 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-emptydir-memory -- df -h <span class="p">|</span> grep /cache
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="hostpath">hostPath</h3>
+</div><h4 id="hostpath">hostPath</h4>
 <ul>
 <li>쿠버네티스 노드상의 영역을 컨테이너에 매핑하는 플러그인</li>
 <li>호스트의 임의 영역 마운트 가능
@@ -1089,14 +1091,14 @@ if (!doNotTrack) {
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 호스트 OS 이미지 확인</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 호스트 OS 이미지 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-hostpath -- cat /srv/os-release <span class="p">|</span> grep PRETTY_NAME
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 컨테이너 OS 이미지 확인</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 컨테이너 OS 이미지 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-hostpath -- cat /etc/os-release <span class="p">|</span> grep PRETTY_NAME
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="downwardapi">downwardAPI</h3>
+</div><h4 id="downwardapi">downwardAPI</h4>
 <ul>
 <li>파드 정보 등을 파일로 배치하기 위한 플러그인</li>
 <li>환경 변수 fieldRef와 ResourceFieldRef 사용 방법과 동일</li>
@@ -1107,11 +1109,11 @@ if (!doNotTrack) {
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 파드 정보등이 파일로 배치</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 파드 정보등이 파일로 배치</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-downward-api -- ls /srv
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="projectd">projectd</h3>
+</div><h4 id="projectd">projectd</h4>
 <ul>
 <li>시크릿/컨피그맵/downwardAPI/serviceAccountToken의 볼륨 마운트롤 하나의 디렉터리에 통합하는 플러그인</li>
 </ul>
@@ -1127,32 +1129,32 @@ if (!doNotTrack) {
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># /srv 디렉터리 확인</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## /srv 디렉터리 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-projectd -- ls /srv
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># /srv/configmap 디렉터리 확인</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## /srv/configmap 디렉터리 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-projectd -- ls /srv/configmap
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># /srv/secret 디렉터리 확인</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## /srv/secret 디렉터리 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-projectd -- ls /srv/secret
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="영구볼륨pv">영구볼륨(PV)</h2>
+</div><h3 id="영구볼륨pv">영구볼륨(PV)</h3>
 <ul>
 <li>기본적으로 네트워크를 통해 디스크를 attach하는 디스크 타입</li>
 <li>개별 리소스로 생성 후 사용</li>
 <li>pluggable한 구조로 되어 있음</li>
 </ul>
-<h3 id="생성">생성</h3>
-<h4 id="레이블">레이블</h4>
+<h4 id="생성">생성</h4>
+<h5 id="레이블">레이블</h5>
 <ul>
 <li>동적 프로비저닝을 사용하지 않고 영구 볼륨을 생성하는 경우 영구 볼륨 종류를 알 수 없으므로, 레이블을 사용하는 것이 좋음</li>
 </ul>
-<h4 id="용량">용량</h4>
+<h5 id="용량">용량</h5>
 <ul>
 <li>동적 브로비저닝을 사용할 수 없는 상황에서는 작은 용량의 영구 볼륨도 준비해야함 (가장 비슷한 용량이 할당되므로)</li>
 </ul>
-<h4 id="접근-모드">접근 모드</h4>
+<h5 id="접근-모드">접근 모드</h5>
 <ul>
 <li>ReadWriteOnce: 단일 노드에서 Read/Write 가능</li>
 <li>ReadOnlyMany: 여러 노드에서 Read 가능
@@ -1163,7 +1165,7 @@ if (!doNotTrack) {
 </li>
 <li>ReadWriteMany: 여러 노드에서 Read/Write 가능</li>
 </ul>
-<h4 id="reclaim-policy">Reclaim Policy</h4>
+<h5 id="reclaim-policy">Reclaim Policy</h5>
 <ul>
 <li>영구 볼륨 사용 후 처리 방법을 제어하는 정책</li>
 <li>영구 볼륨 클레임에서 사용된 후 영구 볼륨 클레임이 삭제되었을 때 영구 볼륨 자체의 동작 설정</li>
@@ -1188,16 +1190,16 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h4 id="스토리지클래스">스토리지클래스</h4>
+<h5 id="스토리지클래스">스토리지클래스</h5>
 <ul>
 <li>동적으로 영구 볼륨을 프로비저닝하는 구조</li>
 </ul>
-<h2 id="영구-볼륨-클레임pvc">영구 볼륨 클레임(PVC)</h2>
+<h3 id="영구-볼륨-클레임pvc">영구 볼륨 클레임(PVC)</h3>
 <ul>
 <li>영구 볼륨을 요청하는 리소스</li>
 <li>PVC에서 지정된 조건(용량, 레이블)을 기반으로 PV에 대한 요청이 들어오면 스케줄러는 현재 가지고 있는 PV에서 적당한 볼륨을 할당</li>
 </ul>
-<h3 id="설정">설정</h3>
+<h4 id="설정">설정</h4>
 <ul>
 <li>다음과 같은 항목 설정 가능
 <ul>
@@ -1210,13 +1212,13 @@ if (!doNotTrack) {
 <li>PVC 용량이 PV 보다 작아야 할당(PV보다 큰 용량이 할당됨)</li>
 <li>파드에서 사용하려면 spec.volumes에 persistentVolumeClaim.claimName 지정</li>
 </ul>
-<h3 id="동적-프로비저닝">동적 프로비저닝</h3>
+<h4 id="동적-프로비저닝">동적 프로비저닝</h4>
 <ul>
 <li>PVC가 생성되는 타이밍에 동적으로 영구 볼륨 생성</li>
 <li>사전에 영구 볼륨을 생성할 필요 없으며, 용량 낭비 발생하지 않음</li>
 <li>사전에 어떤 PV를 생성할지 정의한 스토리지클래스 생성</li>
 </ul>
-<h4 id="영구-볼륨-할당-타이밍-제어">영구 볼륨 할당 타이밍 제어</h4>
+<h5 id="영구-볼륨-할당-타이밍-제어">영구 볼륨 할당 타이밍 제어</h5>
 <ul>
 <li>동적 프로닝 사용 -&gt; PVC 생성시 파드에 PVC가 붙어있지 않아도 PV가 생성됨</li>
 <li>실제 파드에 붙기전에 PV가 생성되고 연결할 수 있음</li>
@@ -1240,7 +1242,7 @@ if (!doNotTrack) {
 </tr>
 </tbody>
 </table></div>
-<h3 id="pvc-조정을-사용한-볼륨-확장">PVC 조정을 사용한 볼륨 확장</h3>
+<h4 id="pvc-조정을-사용한-볼륨-확장">PVC 조정을 사용한 볼륨 확장</h4>
 <ul>
 <li>동적 프로비저닝을 사용하고 크기 조정을 지원하는 볼륨 플러그인을 사용할 땐 PVC 확장 가능</li>
 <li>사전에 스토리지클래스에 allowVolumeExpantion:true 설정</li>
@@ -1255,19 +1257,19 @@ if (!doNotTrack) {
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 마운트된 PV 크기 확인</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 마운트된 PV 크기 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-pvc-resize-pod --df -h <span class="p">|</span> grep /usr/share/nginx/html
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># PVC에서 요청하는 용량 변경</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## PVC에서 요청하는 용량 변경</span>
 </span></span><span class="line"><span class="cl">$ kubectl patch pvc sample-pvc-resize --patch <span class="s1">&#39;{&#34;spec&#34;: {&#34;resources&#34;: {&#34;requests&#34;: {&#34;storage&#34;: &#34;16Gi&#34;}}}}&#39;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="스테이트풀셋에서-pvc">스테이트풀셋에서 PVC</h3>
+</div><h4 id="스테이트풀셋에서-pvc">스테이트풀셋에서 PVC</h4>
 <ul>
 <li>spec.volumeClaimTemplate 항목을 사용하면 PVC를 별도 정의하지 않아도 자동으로 생성 가능</li>
 </ul>
-<h2 id="volumemounts에서-사용-가능한-옵션">volumeMounts에서 사용 가능한 옵션</h2>
-<h3 id="읽기-전용readonly-마운트">읽기 전용(ReadOnly) 마운트</h3>
+<h3 id="volumemounts에서-사용-가능한-옵션">volumeMounts에서 사용 가능한 옵션</h3>
+<h4 id="읽기-전용readonly-마운트">읽기 전용(ReadOnly) 마운트</h4>
 <ul>
 <li>여러 볼륨을 컨테이너에 마운트할 때 readonly 옵션 지정 가능</li>
 <li>hostPath는 컨테이너에 호스트 영역을 보여주므로 보안상 좋지 않음
@@ -1276,7 +1278,7 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h3 id="subpath">subPath</h3>
+<h4 id="subpath">subPath</h4>
 <ul>
 <li>볼륨 마운트시 특정 디렉터리를 루트로 마운트하는 기능</li>
 <li>각 컨테이너가 하나의 볼륨을 사용하면서도 서로 영향이 없도록 디렉터리 나눌 수 있음</li>
@@ -1290,10 +1292,10 @@ if (!doNotTrack) {
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># subPath /path1을 지정한 컨테이너</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## subPath /path1을 지정한 컨테이너</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-subpath -c container-b -- find /data
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># subPath를 지정하지 않은 컨테이너</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## subPath를 지정하지 않은 컨테이너</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-subpath -c container-a -- find /data
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1613,102 +1615,62 @@ if (!doNotTrack) {
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#환경-변수-사용">환경 변수 사용</a>
+    <li><a href="#컨피그--스토리지-api-카테고리">컨피그 &amp; 스토리지 API 카테고리</a>
       <ol>
-        <li><a href="#정적-설정">정적 설정</a></li>
-        <li><a href="#파드-정보">파드 정보</a></li>
-        <li><a href="#컨테이너-정보">컨테이너 정보</a></li>
-        <li><a href="#환경-변수-사용시-주의-사항">환경 변수 사용시 주의 사항</a></li>
-      </ol>
-    </li>
-    <li><a href="#시크릿">시크릿</a>
-      <ol>
-        <li><a href="#범용-시크릿opaque">범용 시크릿(Opaque)</a>
+        <li><a href="#환경-변수-사용">환경 변수 사용</a>
           <ol>
-            <li><a href="#kubectl로-파일에서-값을-참조하여-생성--from-file">kubectl로 파일에서 값을 참조하여 생성(&ndash;from-file)</a></li>
-            <li><a href="#kubectl로-envfile에서-값을-참조하여-생성--from-env-file">kubectl로 envfile에서 값을 참조하여 생성(&ndash;from-env-file)</a></li>
-            <li><a href="#kubectl로-값을-직접-전달하여-생성--from-literal">kubectl로 값을 직접 전달하여 생성(&ndash;from-literal)</a></li>
-            <li><a href="#매니페스트에서-생성-f">매니페스트에서 생성(-f)</a></li>
+            <li><a href="#정적-설정">정적 설정</a></li>
+            <li><a href="#파드-정보">파드 정보</a></li>
+            <li><a href="#컨테이너-정보">컨테이너 정보</a></li>
+            <li><a href="#환경-변수-사용시-주의-사항">환경 변수 사용시 주의 사항</a></li>
           </ol>
         </li>
-        <li><a href="#tls-타입-시크릿">TLS 타입 시크릿</a></li>
-        <li><a href="#도커-레지스트리-타입-시크릿">도커 레지스트리 타입 시크릿</a>
+        <li><a href="#시크릿">시크릿</a>
           <ol>
-            <li><a href="#이미지-다운로드-시-시크릿-사용">이미지 다운로드 시 시크릿 사용</a></li>
+            <li><a href="#범용-시크릿opaque">범용 시크릿(Opaque)</a></li>
+            <li><a href="#tls-타입-시크릿">TLS 타입 시크릿</a></li>
+            <li><a href="#도커-레지스트리-타입-시크릿">도커 레지스트리 타입 시크릿</a></li>
+            <li><a href="#기본-인증-타입의-시크릿">기본 인증 타입의 시크릿</a></li>
+            <li><a href="#ssh-인증-타입의-시크릿">SSH 인증 타입의 시크릿</a></li>
+            <li><a href="#시크릿-사용">시크릿 사용</a></li>
+            <li><a href="#볼륨으로-마운트">볼륨으로 마운트</a></li>
+            <li><a href="#동적-시크릿-업데이트">동적 시크릿 업데이트</a></li>
           </ol>
         </li>
-        <li><a href="#기본-인증-타입의-시크릿">기본 인증 타입의 시크릿</a>
+        <li><a href="#컨피그맵">컨피그맵</a>
           <ol>
-            <li><a href="#kubectl로-직접-값을-전달하여-생성--from-literal">kubectl로 직접 값을 전달하여 생성(&ndash;from-literal)</a></li>
-            <li><a href="#매니페스트에서-생성-f-1">매니페스트에서 생성(-f)</a></li>
+            <li><a href="#컨피그맵-사용">컨피그맵 사용</a></li>
+            <li><a href="#시크릿과-컨피그맵의-공통-주제">시크릿과 컨피그맵의 공통 주제</a></li>
           </ol>
         </li>
-        <li><a href="#ssh-인증-타입의-시크릿">SSH 인증 타입의 시크릿</a>
+        <li><a href="#볼륨-영구-볼륨-영구-볼륨-클레임의-차이">볼륨, 영구 볼륨, 영구 볼륨 클레임의 차이</a></li>
+        <li><a href="#볼륨">볼륨</a>
           <ol>
-            <li><a href="#kubectl로-파일에서-값을-참조하여-생성--from-file-1">kubectl로 파일에서 값을 참조하여 생성(&ndash;from-file)</a></li>
-            <li><a href="#매니페스트에서-생성-f-2">매니페스트에서 생성(-f)</a></li>
+            <li><a href="#emptydir">emptyDir</a></li>
+            <li><a href="#hostpath">hostPath</a></li>
+            <li><a href="#downwardapi">downwardAPI</a></li>
+            <li><a href="#projectd">projectd</a></li>
           </ol>
         </li>
-        <li><a href="#시크릿-사용">시크릿 사용</a>
+        <li><a href="#영구볼륨pv">영구볼륨(PV)</a>
           <ol>
-            <li><a href="#환경-변수로-전달">환경 변수로 전달</a></li>
+            <li><a href="#생성">생성</a></li>
           </ol>
         </li>
-        <li><a href="#볼륨으로-마운트">볼륨으로 마운트</a></li>
-        <li><a href="#동적-시크릿-업데이트">동적 시크릿 업데이트</a></li>
-      </ol>
-    </li>
-    <li><a href="#컨피그맵">컨피그맵</a>
-      <ol>
-        <li><a href="#컨피그맵-사용">컨피그맵 사용</a></li>
-        <li><a href="#시크릿과-컨피그맵의-공통-주제">시크릿과 컨피그맵의 공통 주제</a>
+        <li><a href="#영구-볼륨-클레임pvc">영구 볼륨 클레임(PVC)</a>
           <ol>
-            <li><a href="#사용-구분">사용 구분</a></li>
-            <li><a href="#마운트-시-퍼미션-변경">마운트 시 퍼미션 변경</a></li>
-            <li><a href="#동적-컨피그맵-업데이트">동적 컨피그맵 업데이트</a></li>
-            <li><a href="#데이터-변경-거부">데이터 변경 거부</a></li>
+            <li><a href="#설정">설정</a></li>
+            <li><a href="#동적-프로비저닝">동적 프로비저닝</a></li>
+            <li><a href="#pvc-조정을-사용한-볼륨-확장">PVC 조정을 사용한 볼륨 확장</a></li>
+            <li><a href="#스테이트풀셋에서-pvc">스테이트풀셋에서 PVC</a></li>
           </ol>
         </li>
-      </ol>
-    </li>
-    <li><a href="#볼륨-영구-볼륨-영구-볼륨-클레임의-차이">볼륨, 영구 볼륨, 영구 볼륨 클레임의 차이</a></li>
-    <li><a href="#볼륨">볼륨</a>
-      <ol>
-        <li><a href="#emptydir">emptyDir</a></li>
-        <li><a href="#hostpath">hostPath</a></li>
-        <li><a href="#downwardapi">downwardAPI</a></li>
-        <li><a href="#projectd">projectd</a></li>
-      </ol>
-    </li>
-    <li><a href="#영구볼륨pv">영구볼륨(PV)</a>
-      <ol>
-        <li><a href="#생성">생성</a>
+        <li><a href="#volumemounts에서-사용-가능한-옵션">volumeMounts에서 사용 가능한 옵션</a>
           <ol>
-            <li><a href="#레이블">레이블</a></li>
-            <li><a href="#용량">용량</a></li>
-            <li><a href="#접근-모드">접근 모드</a></li>
-            <li><a href="#reclaim-policy">Reclaim Policy</a></li>
-            <li><a href="#스토리지클래스">스토리지클래스</a></li>
+            <li><a href="#읽기-전용readonly-마운트">읽기 전용(ReadOnly) 마운트</a></li>
+            <li><a href="#subpath">subPath</a></li>
           </ol>
         </li>
-      </ol>
-    </li>
-    <li><a href="#영구-볼륨-클레임pvc">영구 볼륨 클레임(PVC)</a>
-      <ol>
-        <li><a href="#설정">설정</a></li>
-        <li><a href="#동적-프로비저닝">동적 프로비저닝</a>
-          <ol>
-            <li><a href="#영구-볼륨-할당-타이밍-제어">영구 볼륨 할당 타이밍 제어</a></li>
-          </ol>
-        </li>
-        <li><a href="#pvc-조정을-사용한-볼륨-확장">PVC 조정을 사용한 볼륨 확장</a></li>
-        <li><a href="#스테이트풀셋에서-pvc">스테이트풀셋에서 PVC</a></li>
-      </ol>
-    </li>
-    <li><a href="#volumemounts에서-사용-가능한-옵션">volumeMounts에서 사용 가능한 옵션</a>
-      <ol>
-        <li><a href="#읽기-전용readonly-마운트">읽기 전용(ReadOnly) 마운트</a></li>
-        <li><a href="#subpath">subPath</a></li>
       </ol>
     </li>
   </ol>

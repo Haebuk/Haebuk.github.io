@@ -12,6 +12,8 @@
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='dask' /><meta property='article:tag' content='python' /><meta property='article:published_time' content='2022-01-10T17:12:39&#43;09:00'/><meta property='article:modified_time' content='2022-01-10T17:12:39&#43;09:00'/>
 <meta name="twitter:title" content="Dask 튜토리얼">
 <meta name="twitter:description" content="Dask Tutorial">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7CM424CQYT"></script>
 <script>
 var doNotTrack = false;
@@ -322,16 +324,16 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="들어가며">들어가며</h1>
+    <h2 id="들어가며">들어가며</h2>
 <p>현업에서 간단하게 로컬에서 데이터를 뽑아보려해도 수 GB는 훌쩍 넘어가는 경우가 다반사기 때문에, Pandas로는 한계가 있음을 느꼈습니다.</p>
 <p>Dask를 사용하여 기초적인 병렬 계산, 데이터프레임 다루기, 간단한 신경망을 통해 학습하는 과정을 살펴보겠습니다.</p>
 <p><a class="link" href="https://www.youtube.com/watch?v=Alwgx_1qsj4"  target="_blank" rel="noopener"
     >https://www.youtube.com/watch?v=Alwgx_1qsj4</a>를 참고했습니다.</p>
 <p>예전에 촬영되어서 그대로 코드를 작성하면 작동하지 않는 코드가 여럿 있습니다. 2022년 1월 10일 기준으로 작동하도록 수정했습니다.</p>
-<h1 id="pre-required">Pre-required</h1>
+<h2 id="pre-required">Pre-required</h2>
 <p>dask와 함께 진행에는 영향이 없지만 아래에서 제공하는 시각화를 위해서는 graphviz 라이브러리를 설치해야합니다.</p>
 <p>또한 Machine Learning 파트에서 Tensorflow를 사용합니다. M1 맥북에서 실행했기 때문에 출력문에 약간의 차이가 발생할 수 있습니다.</p>
-<h1 id="basic">Basic</h1>
+<h2 id="basic">Basic</h2>
 <p>첫번째로 dask가 제공하는 병렬 계산에 대해 살펴보도록 하겠습니다.</p>
 <p>아래와 같이 함수가 작동할 때 마다 1초씩 대기하는 코드가 있습니다.</p>
 <div class="highlight"><div class="chroma">
@@ -486,7 +488,7 @@ Wall time: 2.01 s
 </code></pre>
 <p><code>z</code>의 값은 5가 나왔고, 실행 시간은 2초가 나왔습니다.
 각 <code>inc(x)</code> <code>inc(y)</code>가 병렬로 수행되는 데 1초, <code>add(x+y)</code>에서 1초가 소요되었기 때문입니다.</p>
-<h1 id="for-loop">For loop</h1>
+<h2 id="for-loop">For loop</h2>
 <p>조금 더 오래걸리는 예제를 살펴보겠습니다.</p>
 <p>파이썬의 for문은 악명이 자자한데요, 데이터 수를 무자비하게 늘리기보다는 앞에서 사용했던 함수를 사용해 시간을 늘려보겠습니다.</p>
 <p>1부터 8까지 담겨져 있는 파이썬 리스트를 선언합니다.</p>
@@ -580,7 +582,7 @@ Wall time: 1.01 s
 	
 ></p>
 <p>처음에 이 그래프를 보고 감탄했던 기억이(&hellip;) 아름답게 병렬 계산을 하는 것을 알 수 있습니다.</p>
-<h1 id="dataframe">DataFrame</h1>
+<h2 id="dataframe">DataFrame</h2>
 <p>dask하면 생각나는 것이 바로 대용량 dataframe입니다. dask를 이용해 빠르게 로드하고 집계하는 방법에 대해 살펴보겠습니다.</p>
 <p>먼저 데이터는 약 200MB의 데이터로 뉴욕 공항의 항공기 이착륙 관련 데이터입니다.</p>
 <p>아래와 같이 데이터를 다운로드 하고 로드합니다.</p>
@@ -797,7 +799,7 @@ Wall time: 1.61 s
 ></p>
 <p>각각의 파티션(총 10개)에서 최대값 후보를 선정한다음에 최종 최대값을 선출해냄을 알 수 있습니다.</p>
 <p>단순하게 생각하면 pandas 집계보다 10배 빠르다고 볼 수도 있겠습니다.</p>
-<h1 id="ml-with-dask">ML with Dask</h1>
+<h2 id="ml-with-dask">ML with Dask</h2>
 <p>마지막으로 간단한 신경망을 통해 학습하는 방법을 살펴보고 마치겠습니다.</p>
 <p>먼저 학습에 사용할 데이터를 정의하고 정보를 확인합니다.</p>
 <div class="highlight"><div class="chroma">
@@ -918,7 +920,7 @@ Epoch 5/5
 &lt;keras.callbacks.History at 0x298c5f040&gt;
 </code></pre>
 <p>여기서는 학습을 할 수 있다에 초점을 맞췄기 때문에, 성능 검증은 다루지 않습니다.</p>
-<h1 id="마치며">마치며</h1>
+<h2 id="마치며">마치며</h2>
 <p>대용량 데이터에 적합한 라이브러리인 dask에 대해 기초를 다뤄봤습니다. 심화된 기능은 공식 홈페이지에 상세히 나와있습니다.</p>
 <p>dask의 기능을 좀 더 숙지한다면 매우 많은 부분에서 pandas를 대체할 수 있을것이라 기대합니다.</p>
 <p>더 소개할만한 기능을 수집해서 다음 포스팅에 공유하도록 하겠습니다. 감사합니다.</p>
@@ -1145,7 +1147,44 @@ Epoch 5/5
             >
 
             </main>
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">목차</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#들어가며">들어가며</a></li>
+    <li><a href="#pre-required">Pre-required</a></li>
+    <li><a href="#basic">Basic</a></li>
+    <li><a href="#for-loop">For loop</a></li>
+    <li><a href="#dataframe">DataFrame</a></li>
+    <li><a href="#ml-with-dask">ML with Dask</a></li>
+    <li><a href="#마치며">마치며</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
         </div>
         <script 

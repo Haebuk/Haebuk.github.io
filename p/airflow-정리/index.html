@@ -13,6 +13,8 @@
 <meta name="twitter:title" content="Airflow 정리">
 <meta name="twitter:description" content="Airflow 기본 요소 및 내용 정리"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://Haebuk.github.io/p/airflow-%EC%A0%95%EB%A6%AC/AirflowLogo.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7CM424CQYT"></script>
 <script>
 var doNotTrack = false;
@@ -335,8 +337,8 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="what-is-airflow">What is Airflow?</h1>
-<h2 id="core-components">Core Components</h2>
+    <h2 id="what-is-airflow">What is Airflow?</h2>
+<h3 id="core-components">Core Components</h3>
 <ul>
 <li>Web server: UI 담당 웹 서버</li>
 <li>Scheduler: 워크플로우 스케줄링</li>
@@ -344,7 +346,7 @@ if (!doNotTrack) {
 <li>Executor: 작업이 어디서 실행될지 정의</li>
 <li>Worker: 작업이 실행되는 프로세스</li>
 </ul>
-<h2 id="dag">DAG</h2>
+<h3 id="dag">DAG</h3>
 <ul>
 <li><code>dag_id</code>: 유니크한 dag 이름</li>
 <li><code>start_date</code>: dag가 처음 스케줄되는 시간. <code>datetime</code> 모듈로 정의</li>
@@ -361,14 +363,14 @@ if (!doNotTrack) {
 </li>
 <li><code>catchup</code>: airflow가 트리거하지 않았던 날짜에 대해 실행 여부, <code>False</code>로 하는 것이 좋음</li>
 </ul>
-<h2 id="dagrun">DAGrun</h2>
+<h3 id="dagrun">DAGrun</h3>
 <ul>
 <li>스케줄러가 DAGrun object 생성</li>
 <li>주어진 시간의 dag 정보를 담고 있는 인스턴스</li>
 <li>실행될 task들을 가지고 있음</li>
 <li>원자성, 멱등성</li>
 </ul>
-<h2 id="operator">Operator</h2>
+<h3 id="operator">Operator</h3>
 <ul>
 <li>Operator = Task</li>
 <li>실행하고자 하는 작업을 캡슐화했다고 생각하면 된다.</li>
@@ -381,15 +383,15 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h1 id="how-airflow-works">How Airflow works?</h1>
-<h2 id="one-node-architecture">One Node Architecture</h2>
+<h2 id="how-airflow-works">How Airflow works?</h2>
+<h3 id="one-node-architecture">One Node Architecture</h3>
 <ol>
 <li>Web server가 metastore에서 메타데이터 정보를 가져온다.</li>
 <li>Schduler가 Metastore와 Executor에서 DAG, 작업을 트리거한다.</li>
 <li>Executor가 작업 업데이트를 metastore에 완료되었다고 업데이트한다.</li>
 <li>Executor에는 큐가 있는데, 실행이 정해진 순서대로 되게 한다.</li>
 </ol>
-<h2 id="multi-nodes-architecture-celery">Multi Nodes Architecture (Celery)</h2>
+<h3 id="multi-nodes-architecture-celery">Multi Nodes Architecture (Celery)</h3>
 <ol>
 <li>Node1에는 웹서버, 스케줄러, 익스큐터가 있음</li>
 <li>Node2에는 메타스토어와 큐가 있음. 큐는 rabbit MQ나 redis 같은 서비스를 사용함</li>
@@ -397,7 +399,7 @@ if (!doNotTrack) {
 <li>실행 방식은 1 노드 구조와 유사하나, 익스큐터는 외부 큐에 작업을 푸시한다.</li>
 <li>큐 내부에 있는 작업은 워커에 의해 풀 된다.</li>
 </ol>
-<h2 id="folder-dags">folder dags</h2>
+<h3 id="folder-dags">folder dags</h3>
 <ol>
 <li>dags 폴더에 파일이 저장</li>
 <li>웹 서버와 스케쥴러가 이를 파싱함</li>
@@ -409,13 +411,13 @@ if (!doNotTrack) {
 <li>dagrun이 종료되었는지 검증</li>
 <li>웹서버가 metastore의 정보를 ui에 업데이트</li>
 </ol>
-<h3 id="caution">caution</h3>
+<h4 id="caution">caution</h4>
 <ul>
 <li>dag에 파일이 업데이트 되면 <code>dag_dir_list_interval</code> 주기 후 (기본 5분) UI상에서 확인 가능하다.</li>
 <li><code>min_file_process_interval</code> (기본 30초) dag를 파싱하는 시간. dag 코드가 업데이트 되도 해당 시간 후 반영된다.</li>
 </ul>
-<h1 id="commands">Commands</h1>
-<h2 id="useful-commands">useful commands</h2>
+<h2 id="commands">Commands</h2>
+<h3 id="useful-commands">useful commands</h3>
 <ul>
 <li><code>airflow run</code>: 하나의 task 인스턴스 실행</li>
 <li><code>airflow list_dags</code>: dag 목록</li>
@@ -423,11 +425,11 @@ if (!doNotTrack) {
 <li><code>airflow task_state</code>: task 상태</li>
 <li><code>airflow test</code>: 테스트</li>
 </ul>
-<h2 id="test">test</h2>
+<h3 id="test">test</h3>
 <ul>
 <li><code>$ airflow tasks test DAG_ID TASK_ID DATE</code></li>
 </ul>
-<h2 id="dependencies">dependencies</h2>
+<h3 id="dependencies">dependencies</h3>
 <ul>
 <li>task 디펜던시 줄 때 줄바꾸기</li>
 </ul>
@@ -441,9 +443,9 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="n">task3</span> <span class="o">&gt;&gt;</span> <span class="n">task4</span> <span class="o">&gt;&gt;</span> <span class="n">task5</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="dag-details">DAG Details</h1>
-<h2 id="date-options">date options</h2>
-<h3 id="start_date"><code>start_date</code></h3>
+</div><h2 id="dag-details">DAG Details</h2>
+<h3 id="date-options">date options</h3>
+<h4 id="start_date"><code>start_date</code></h4>
 <ul>
 <li>DAG의 task들이 언제부터 트리거되고 스케줄되는지 시간을 정의.
 <ul>
@@ -459,7 +461,7 @@ if (!doNotTrack) {
 </li>
 <li><code>datetime.now()</code>와 같이 동적으로 할당하지 말 것</li>
 </ul>
-<h3 id="schedule_interval"><code>schedule_interval</code></h3>
+<h4 id="schedule_interval"><code>schedule_interval</code></h4>
 <ul>
 <li><code>start_date</code>의 최소값으로 부터 트리거되는 시간 간격
 <ul>
@@ -473,17 +475,17 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h3 id="execution_date"><code>execution_date</code></h3>
+<h4 id="execution_date"><code>execution_date</code></h4>
 <ul>
 <li>dag가 실행된 시각이 <strong>아님</strong></li>
 <li><code>start_date</code> - <code>schedule_interval</code></li>
 </ul>
-<h3 id="end_date"><code>end_date</code></h3>
+<h4 id="end_date"><code>end_date</code></h4>
 <ul>
 <li>dag/task가 더이상 스케줄되지 않는 시간</li>
 <li>기본값은 None</li>
 </ul>
-<h2 id="backfill">Backfill</h2>
+<h3 id="backfill">Backfill</h3>
 <ul>
 <li>실행되지 않았던 dag/task를 실행하는 기능</li>
 <li><code>catchup=True</code>로 설정 시 수행</li>
@@ -491,44 +493,44 @@ if (!doNotTrack) {
 <li>CLI를 통해 실행 가능. <a class="link" href="https://airflow.apache.org/docs/apache-airflow/stable/dag-run.html#backfill"  target="_blank" rel="noopener"
     >airflow 공식문서</a></li>
 </ul>
-<h2 id="depends_on_past"><code>depends_on_past</code></h2>
+<h3 id="depends_on_past"><code>depends_on_past</code></h3>
 <ul>
 <li>task 레벨에서 정의</li>
 <li><code>default_args</code>에 정의 해서 모든 task에도 적용 가능</li>
 <li>이전 dagrun의 특정 task가 실패했다면, 이번 dagrun에서 그 task가 실행되는 것을 막을 수 있음</li>
 </ul>
-<h2 id="wait_for_downstream"><code>wait_for_downstream</code></h2>
+<h3 id="wait_for_downstream"><code>wait_for_downstream</code></h3>
 <ul>
 <li>task 레벨에서 정의</li>
 <li><code>default_args</code>에 정의 해서 모든 task에도 적용 가능</li>
 <li><code>wait_for_downtstream</code>이 정의된 task의 downstream task들이 이전 dagrun에서 완료될 때 까지 이번 dagrun 대기</li>
 </ul>
-<h2 id="dags-folder-structure">DAGs folder structure</h2>
-<h3 id="1-zip">1. Zip</h3>
+<h3 id="dags-folder-structure">DAGs folder structure</h3>
+<h4 id="1-zip">1. Zip</h4>
 <ul>
 <li>dag 파일은 zip 파일 root에 위치해야함</li>
 <li>모듈 디펜던시가 필요하면 virtualenv와 pip 사용</li>
 </ul>
-<h3 id="2-dagbag">2. DAGBag</h3>
+<h4 id="2-dagbag">2. DAGBag</h4>
 <ul>
 <li>DAG 모음. 폴더 구조로 dag를 다룬다.</li>
 <li>dev/staging/prod와 같이 환경 분리에 이점이 있다</li>
 <li>dagbag이 깨지면 airflow UI상에서 에러가 뜨지 않고 웹서버 로그로만 확인 가능하므로 주의</li>
 </ul>
-<h3 id="3-airflowignore">3. .airflowignore</h3>
+<h4 id="3-airflowignore">3. .airflowignore</h4>
 <ul>
 <li>.gitignore와 유사</li>
 <li>모든 dags 폴더에 넣는 것이 좋음</li>
 </ul>
-<h2 id="failure-detection">Failure Detection</h2>
-<h3 id="dags">DAGs</h3>
+<h3 id="failure-detection">Failure Detection</h3>
+<h4 id="dags">DAGs</h4>
 <ul>
 <li><code>dagrun_timeout</code>: dagrun이 타임아웃되는 시간. 스케줄된 dag만 해당하며(수동 실행은 해당되지 않음) 실행중인 dag의 수가 <code>max_active_runs</code>와 일치하는 경우에만 해당</li>
 <li><code>sla_miss_callback</code></li>
 <li><code>on_failure_callback</code></li>
 <li><code>on_success_callback</code></li>
 </ul>
-<h3 id="tasks">Tasks</h3>
+<h4 id="tasks">Tasks</h4>
 <ul>
 <li><code>email</code></li>
 <li><code>email_on_failure</code></li>
@@ -542,38 +544,38 @@ if (!doNotTrack) {
 <li><code>on_success_callback</code></li>
 <li><code>on_retry_callback</code></li>
 </ul>
-<h1 id="test-1">Test</h1>
-<h2 id="dag-validation-tests">DAG validation tests</h2>
+<h2 id="test-1">Test</h2>
+<h3 id="dag-validation-tests">DAG validation tests</h3>
 <ul>
 <li>유효한지</li>
 <li>cycle이 없는지</li>
 <li>default arguments가 잘 설정됐는지</li>
 </ul>
-<h2 id="dagpipeline-definition-tests">DAG/Pipeline Definition Tests</h2>
+<h3 id="dagpipeline-definition-tests">DAG/Pipeline Definition Tests</h3>
 <ul>
 <li>task의 숫자가 맞는지</li>
 <li>(로직이 아닌) task가 잘 정의 됐는지</li>
 <li>task의 upstream, downstream 디펜던시가 잘 정의됐는지</li>
 </ul>
-<h2 id="unit-tests">Unit tests</h2>
+<h3 id="unit-tests">Unit tests</h3>
 <ul>
 <li>로직 체크</li>
 <li>operator가 잘 동작되는지만 체크</li>
 <li>복잡한 로직을 airflow가 하게 두지 마라 (airflow는 오케스트레이션 툴이다)</li>
 </ul>
-<h2 id="integration-tests">Integration tests</h2>
+<h3 id="integration-tests">Integration tests</h3>
 <ul>
 <li>task가 데이터를 잘 교환하는지</li>
 <li>task의 input 체크</li>
 <li>여러 task간 의존성 체크</li>
 </ul>
-<h2 id="end-to-end-pipeline-tests">End to End Pipeline tests</h2>
+<h3 id="end-to-end-pipeline-tests">End to End Pipeline tests</h3>
 <ul>
 <li>결과가 올바른지</li>
 <li>전체 로직 체크</li>
 <li>성능 체크</li>
 </ul>
-<h1 id="local-executor">Local Executor</h1>
+<h2 id="local-executor">Local Executor</h2>
 <ul>
 <li>병렬 실행 가능 (개발시 local executor 사용 권장)</li>
 <li><code>parallelism = 0</code>: unlimit</li>
@@ -589,7 +591,7 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h1 id="subdags">SubDAGs</h1>
+<h2 id="subdags">SubDAGs</h2>
 <ul>
 <li>유사한 DAG를 하나의 그룹으로 묶어 UI상에서 마치 하나의 DAG인 것 처럼 표시할 수 있음</li>
 <li><code>SubDagOperator</code> 사용
@@ -602,7 +604,7 @@ if (!doNotTrack) {
 <li>subDAG는 부모 DAG와 동일한 시각에 스케줄되어야 함. 그렇지 않으면 예상치 못한 결과를 낳을 수 있음</li>
 <li>데드락이 발생할 수 있음</li>
 </ul>
-<h1 id="branching">Branching</h1>
+<h2 id="branching">Branching</h2>
 <ul>
 <li>DAG가 특정 task의 결과에 따라 경로를 선택할 수 있게끔 하는 것</li>
 <li><code>BranchPythonOperator</code></li>
@@ -615,12 +617,12 @@ if (!doNotTrack) {
 </li>
 <li>마지막 task도 skipped로 뜨는 것을 막고 싶다면 마지막 task operator에 <code>trigger_rule='one_success'</code>추가</li>
 </ul>
-<h1 id="trigger-rule">Trigger Rule</h1>
+<h2 id="trigger-rule">Trigger Rule</h2>
 <ul>
 <li><code>depends_on_past</code>와 사용 가능</li>
 <li>upstream task중 skipped task가 있으면 <code>all_success</code>와 <code>all_failed</code>는 skipped 상태로 표시됨</li>
 </ul>
-<h2 id="kinds">Kinds</h2>
+<h3 id="kinds">Kinds</h3>
 <ul>
 <li><code>all_success</code>: upstream task가 모두 성공하면 run</li>
 <li><code>all_failed</code>: upstream task가 모두 실패하면 run</li>
@@ -631,23 +633,23 @@ if (!doNotTrack) {
 <li><code>none_skipped</code>: upstream task가 skipped가 없어야 run</li>
 <li><code>dummy</code></li>
 </ul>
-<h1 id="variables">Variables</h1>
+<h2 id="variables">Variables</h2>
 <ul>
 <li>metadata DB에 저장되는 값</li>
 <li>Key, value, Is encrypted로 구성</li>
 <li>JSON 형식 가능</li>
 </ul>
-<h1 id="templating">Templating</h1>
+<h2 id="templating">Templating</h2>
 <ul>
 <li>placeholder <code>{{}}</code> 를 사용하여 값을 대체</li>
 <li>Jinja template</li>
 </ul>
-<h1 id="macros">Macros</h1>
+<h2 id="macros">Macros</h2>
 <ul>
 <li><a class="link" href="https://airflow.apache.org/docs/apache-airflow/stable/templates-ref.html#macros"  target="_blank" rel="noopener"
     >https://airflow.apache.org/docs/apache-airflow/stable/templates-ref.html#macros</a></li>
 </ul>
-<h1 id="xcoms">XCOMs</h1>
+<h2 id="xcoms">XCOMs</h2>
 <ul>
 <li>task 간 메세지 공유</li>
 <li>key, value, timestamp로 구성</li>
@@ -663,7 +665,7 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h1 id="triggerdagrunoperator">TriggerDagRunOperator</h1>
+<h2 id="triggerdagrunoperator">TriggerDagRunOperator</h2>
 <ul>
 <li>다른 DAG(컨트롤러)의 조건에 따라 특정 DAG(타겟)를 시작하게 함</li>
 <li>branch나 subdag로는 너무 복잡해질때 사용</li>
@@ -674,7 +676,7 @@ if (!doNotTrack) {
 <li>타겟 interval은 None이어야 함</li>
 <li>두 dag간에 메세지를 주고받을 수 있음(xcoms 대체)</li>
 </ul>
-<h1 id="externaltasksensor">ExternalTaskSensor</h1>
+<h2 id="externaltasksensor">ExternalTaskSensor</h2>
 <ul>
 <li>DAG간 종속성 줄 때 사용</li>
 <li>예를 들어 DAG1(<code>t1 &gt;&gt; t2 &gt;&gt; t3</code>), DAG2(<code>t3 &gt;&gt; t4 &gt;&gt; t5</code>)가 있을 때 t3가 완료되면 (DAG1이 완료되면) DAG2가 실행되도록 한다. (t4부터)</li>
@@ -685,12 +687,12 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h1 id="logging">Logging</h1>
+<h2 id="logging">Logging</h2>
 <ul>
 <li><code>airflow.cfg</code>의 <code>base_log_folder</code>: log 저장 경로</li>
 <li><code>fab_logging_level</code>: flask app builder의 로깅 수준. (flask 기반 웹서버)</li>
 </ul>
-<h1 id="metrics">Metrics</h1>
+<h2 id="metrics">Metrics</h2>
 <ul>
 <li>Counters: 실패한 task 수</li>
 <li>Gauges: queued task 수</li>
@@ -906,7 +908,116 @@ if (!doNotTrack) {
             >
 
             </main>
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">목차</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#what-is-airflow">What is Airflow?</a>
+      <ol>
+        <li><a href="#core-components">Core Components</a></li>
+        <li><a href="#dag">DAG</a></li>
+        <li><a href="#dagrun">DAGrun</a></li>
+        <li><a href="#operator">Operator</a></li>
+      </ol>
+    </li>
+    <li><a href="#how-airflow-works">How Airflow works?</a>
+      <ol>
+        <li><a href="#one-node-architecture">One Node Architecture</a></li>
+        <li><a href="#multi-nodes-architecture-celery">Multi Nodes Architecture (Celery)</a></li>
+        <li><a href="#folder-dags">folder dags</a>
+          <ol>
+            <li><a href="#caution">caution</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#commands">Commands</a>
+      <ol>
+        <li><a href="#useful-commands">useful commands</a></li>
+        <li><a href="#test">test</a></li>
+        <li><a href="#dependencies">dependencies</a></li>
+      </ol>
+    </li>
+    <li><a href="#dag-details">DAG Details</a>
+      <ol>
+        <li><a href="#date-options">date options</a>
+          <ol>
+            <li><a href="#start_date"><code>start_date</code></a></li>
+            <li><a href="#schedule_interval"><code>schedule_interval</code></a></li>
+            <li><a href="#execution_date"><code>execution_date</code></a></li>
+            <li><a href="#end_date"><code>end_date</code></a></li>
+          </ol>
+        </li>
+        <li><a href="#backfill">Backfill</a></li>
+        <li><a href="#depends_on_past"><code>depends_on_past</code></a></li>
+        <li><a href="#wait_for_downstream"><code>wait_for_downstream</code></a></li>
+        <li><a href="#dags-folder-structure">DAGs folder structure</a>
+          <ol>
+            <li><a href="#1-zip">1. Zip</a></li>
+            <li><a href="#2-dagbag">2. DAGBag</a></li>
+            <li><a href="#3-airflowignore">3. .airflowignore</a></li>
+          </ol>
+        </li>
+        <li><a href="#failure-detection">Failure Detection</a>
+          <ol>
+            <li><a href="#dags">DAGs</a></li>
+            <li><a href="#tasks">Tasks</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#test-1">Test</a>
+      <ol>
+        <li><a href="#dag-validation-tests">DAG validation tests</a></li>
+        <li><a href="#dagpipeline-definition-tests">DAG/Pipeline Definition Tests</a></li>
+        <li><a href="#unit-tests">Unit tests</a></li>
+        <li><a href="#integration-tests">Integration tests</a></li>
+        <li><a href="#end-to-end-pipeline-tests">End to End Pipeline tests</a></li>
+      </ol>
+    </li>
+    <li><a href="#local-executor">Local Executor</a></li>
+    <li><a href="#subdags">SubDAGs</a></li>
+    <li><a href="#branching">Branching</a></li>
+    <li><a href="#trigger-rule">Trigger Rule</a>
+      <ol>
+        <li><a href="#kinds">Kinds</a></li>
+      </ol>
+    </li>
+    <li><a href="#variables">Variables</a></li>
+    <li><a href="#templating">Templating</a></li>
+    <li><a href="#macros">Macros</a></li>
+    <li><a href="#xcoms">XCOMs</a></li>
+    <li><a href="#triggerdagrunoperator">TriggerDagRunOperator</a></li>
+    <li><a href="#externaltasksensor">ExternalTaskSensor</a></li>
+    <li><a href="#logging">Logging</a></li>
+    <li><a href="#metrics">Metrics</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
         </div>
         <script 

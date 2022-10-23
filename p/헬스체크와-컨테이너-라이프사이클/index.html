@@ -13,6 +13,8 @@
 <meta name="twitter:title" content="헬스체크와 컨테이너 라이프사이클">
 <meta name="twitter:description" content="헬스체크, 컨테이너 라이프사이클"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://Haebuk.github.io/p/%ED%97%AC%EC%8A%A4%EC%B2%B4%ED%81%AC%EC%99%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4/Kubernetes-Logo.wine.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7CM424CQYT"></script>
 <script>
 var doNotTrack = false;
@@ -335,13 +337,13 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="헬스-체크와-컨테이너-라이프-사이클">헬스 체크와 컨테이너 라이프 사이클</h1>
-<h2 id="헬스-체크">헬스 체크</h2>
+    <h2 id="헬스-체크와-컨테이너-라이프-사이클">헬스 체크와 컨테이너 라이프 사이클</h2>
+<h3 id="헬스-체크">헬스 체크</h3>
 <ul>
 <li>파드가 정상인지 판단하는 기능</li>
 <li>이상 종료된 경우 spec.restartPolicy에 따라 파드 재시작</li>
 </ul>
-<h3 id="헬스체크-방법">헬스체크 방법</h3>
+<h4 id="헬스체크-방법">헬스체크 방법</h4>
 <div class="table-wrapper"><table>
 <thead>
 <tr>
@@ -377,7 +379,7 @@ if (!doNotTrack) {
 </li>
 <li>Startup Probe: 처음 기동하는데 시간이 오래 걸릴 경우 사용, 완료까지 다른 Probe나 서비스가 시작되지 않음</li>
 </ul>
-<h3 id="헬스체크-방식">헬스체크 방식</h3>
+<h4 id="헬스체크-방식">헬스체크 방식</h4>
 <ul>
 <li>헬스 체크는 컨테이너별로 이루어짐</li>
 <li>하나의 컨테이너라도 실패하면 전체 파드가 실패한 것으로 간주</li>
@@ -404,7 +406,7 @@ if (!doNotTrack) {
 </tr>
 </tbody>
 </table></div>
-<h4 id="명령어-기반의-체크exec">명령어 기반의 체크(exec)</h4>
+<h5 id="명령어-기반의-체크exec">명령어 기반의 체크(exec)</h5>
 <ul>
 <li>명령어로 실행하고 종료 코드로 확인</li>
 <li>가장 유연성이 높은 체크</li>
@@ -422,7 +424,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;test&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;-e&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;/ok.txt&#34;</span><span class="p">]</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="http-기반의-체크httpget">HTTP 기반의 체크(httpGet)</h4>
+</div><h5 id="http-기반의-체크httpget">HTTP 기반의 체크(httpGet)</h5>
 <ul>
 <li>HTTP GET 요청의 Status Code로 확인</li>
 <li>HTTP GET 요청은 kubelet에서 이루어짐</li>
@@ -451,7 +453,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">Bearer Token</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="tcp-기반의-체크tcpsocket">TCP 기반의 체크(tcpSocket)</h4>
+</div><h5 id="tcp-기반의-체크tcpsocket">TCP 기반의 체크(tcpSocket)</h5>
 <ul>
 <li>TCP 세션 활성화를 검증하여 확인</li>
 </ul>
@@ -467,7 +469,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="헬스-체크-간격">헬스 체크 간격</h3>
+</div><h4 id="헬스-체크-간격">헬스 체크 간격</h4>
 <ul>
 <li>Liveness Probe는 실패시 파드가 재시작하므로 실패까지의 체크 횟수를 설정</li>
 <li>successThreshold는 1이상, Liveness Probe와 Startup Probe의 경우 반드시 1</li>
@@ -521,7 +523,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">failureThreshold</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="헬스-체크-생성">헬스 체크 생성</h3>
+</div><h4 id="헬스-체크-생성">헬스 체크 생성</h4>
 <ul>
 <li>헬스 체크 방법 세 가지와 헬스 체크 방식 세가지로 총 9가지 패턴의 헬스 체크 가능</li>
 <li>Liveness, Readiness, Startup Probe는 하나 이상 지정 가능</li>
@@ -532,11 +534,11 @@ if (!doNotTrack) {
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 파드에 생성된 Probe 확인</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 파드에 생성된 Probe 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl describe pod sample-healthcheck <span class="p">|</span> egrep -E <span class="s2">&#34;Liveness|Readiness&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="추가-ready-조건을-추가하는-파드-readyreadinessgate">추가 Ready 조건을 추가하는 파드 ready++(ReadinessGate)</h4>
+</div><h5 id="추가-ready-조건을-추가하는-파드-readyreadinessgate">추가 Ready 조건을 추가하는 파드 ready++(ReadinessGate)</h5>
 <ul>
 <li>파드가 정말 Ready 상태인지 추가 체크</li>
 <li>클라우드 외부 로드밸런서와의 연계에 시간이 걸리는 경우 사용</li>
@@ -544,12 +546,12 @@ if (!doNotTrack) {
 <li>ReadinessGate를 통과할 때까지 서비스 전송 대상 x, 롤링 업데이트 시 다음 파드 기동으로 이동 x</li>
 <li>여러개 사용 가능. 모든 상태가 Ready가 되지 않으면 파드는 Ready 상태가 되지 않음</li>
 </ul>
-<h4 id="readiness-probe를-무시한-서비스-생성">Readiness Probe를 무시한 서비스 생성</h4>
+<h5 id="readiness-probe를-무시한-서비스-생성">Readiness Probe를 무시한 서비스 생성</h5>
 <ul>
 <li>스테이트풀셋에서 Headless 서비스 사용 시 파드가 Ready가 되지 않아도 클러스터 구성을 위해 파드의 이름 해석이 필요한 경우가 존재</li>
 <li>Readiness Probe가 실패한 경우에도 서비스에 연결되게 하려면 spec.publishNotReadyAddresses를 true로 설정</li>
 </ul>
-<h3 id="startup-probe를-사용한-지연-체크와-실패">Startup Probe를 사용한 지연 체크와 실패</h3>
+<h4 id="startup-probe를-사용한-지연-체크와-실패">Startup Probe를 사용한 지연 체크와 실패</h4>
 <ul>
 <li>Startup Probe의 경우 failureThreshold의 값을 충분히 크게 두는 것이 좋음</li>
 </ul>
@@ -562,14 +564,14 @@ if (!doNotTrack) {
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># Startup Probe에서 감시하고 있는 파일 생성</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## Startup Probe에서 감시하고 있는 파일 생성</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-startup -- touch /root/startup
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Startup Probe가 성공한 후 Liveness와 Readiness Probe가 실행된 것을 알 수 있음</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## Startup Probe가 성공한 후 Liveness와 Readiness Probe가 실행된 것을 알 수 있음</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-startup -- head /root/log
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="컨테이너-라이플사이클과-재기동restartpolicy">컨테이너 라이플사이클과 재기동(restartPolicy)</h2>
+</div><h3 id="컨테이너-라이플사이클과-재기동restartpolicy">컨테이너 라이플사이클과 재기동(restartPolicy)</h3>
 <ul>
 <li>컨테이너 프로세스 정지 또는 헬스 체크 실패시 컨테이너 재기동 여부, 방식 설정</li>
 <li>잡은 Always 선택 불가</li>
@@ -596,7 +598,7 @@ if (!doNotTrack) {
 </tr>
 </tbody>
 </table></div>
-<h2 id="초기화-컨테이너">초기화 컨테이너</h2>
+<h3 id="초기화-컨테이너">초기화 컨테이너</h3>
 <ul>
 <li>파드 내에서 메인이 되는 컨테이너 기동 전 별도의 컨테이너 기동</li>
 <li>설정에 필요한 스크립트 등을 메인 컨테이너에 보관하지 않는 상태 유지 가능(보안, 이미지 용량 감소)</li>
@@ -609,11 +611,11 @@ if (!doNotTrack) {
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 초기화 컨테이너에서 추가된 파일 순서 확인</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 초기화 컨테이너에서 추가된 파일 순서 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-initcontainer -- cat /usr/share/nginx/html/index.html
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="기동-직후와-종료-직전에-임의의-명령어-실행poststartprestop">기동 직후와 종료 직전에 임의의 명령어 실행(postStart/preStop)</h2>
+</div><h3 id="기동-직후와-종료-직전에-임의의-명령어-실행poststartprestop">기동 직후와 종료 직전에 임의의 명령어 실행(postStart/preStop)</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -632,18 +634,18 @@ if (!doNotTrack) {
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 기동 후 바로 확인한 상태</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 기동 후 바로 확인한 상태</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-lifecycle-exec -- ls /tmp
 </span></span><span class="line"><span class="cl">started
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 기동 20초 경과 후 확인한 상태</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 기동 20초 경과 후 확인한 상태</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-lifecycle-exec -- ls /tmp
 </span></span><span class="line"><span class="cl">poststart started
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 파드 정지</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 파드 정지</span>
 </span></span><span class="line"><span class="cl">$ kubectl delete -f sample-lifecycle-exec.yaml
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 삭제 요청 후 바로 확인한 상태</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 삭제 요청 후 바로 확인한 상태</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-lifecycle-exec -- ls /tmp
 </span></span><span class="line"><span class="cl">poststart prestop started
 </span></span></code></pre></td></tr></table>
@@ -657,7 +659,7 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h2 id="파드의-안전한-정지와-타이밍">파드의 안전한 정지와 타이밍</h2>
+<h3 id="파드의-안전한-정지와-타이밍">파드의 안전한 정지와 타이밍</h3>
 <ul>
 <li>기동 중인 파드의 삭제 요청이 쿠버네티스 API 서버에 도착시 비동기로 &lsquo;preStop 처리 + SIGTERM 처리&rsquo;와 &lsquo;서비스에서 제외 설정&rsquo;이 이루어짐</li>
 <li>서비스 제외 처리가 끝나기 전 몇 초간 &lsquo;preStop 처리 + SIGTERM 처리&rsquo;에서 대기하거나 요청을 받으면서 정지 처리하는 것이 효과적
@@ -683,14 +685,14 @@ if (!doNotTrack) {
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># terminationGracePeriodSeconds=3으로 삭제</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## terminationGracePeriodSeconds=3으로 삭제</span>
 </span></span><span class="line"><span class="cl">$ kubectl delete pod sample-termination --grace-period <span class="m">3</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 강제로 즉시 삭제</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 강제로 즉시 삭제</span>
 </span></span><span class="line"><span class="cl">$ kubectl delete pod sample-termination --grace-period <span class="m">0</span> --force
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="리소스를-삭제했을-때의-동작">리소스를 삭제했을 때의 동작</h2>
+</div><h3 id="리소스를-삭제했을-때의-동작">리소스를 삭제했을 때의 동작</h3>
 <ul>
 <li>레플리카셋등의 상위 리소스가 삭제되면 하위 리소스가 되는 파드 등을 삭제하기 위해 gc수행</li>
 <li>생성된 파드에는 어떤 레플리카셋으로 생성됐는지 판별하기 위해 metadata.ownerReferences 아래에 자동으로 정보 저장</li>
@@ -701,7 +703,7 @@ if (!doNotTrack) {
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 파드 정의에 포함돈 상위 리소스 정보 확인</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 파드 정의에 포함돈 상위 리소스 정보 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl get pods sample-rs-l23kds -o json <span class="p">|</span> jq .metadata.ownerReferences
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1045,31 +1047,24 @@ if (!doNotTrack) {
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#헬스-체크">헬스 체크</a>
+    <li><a href="#헬스-체크와-컨테이너-라이프-사이클">헬스 체크와 컨테이너 라이프 사이클</a>
       <ol>
-        <li><a href="#헬스체크-방법">헬스체크 방법</a></li>
-        <li><a href="#헬스체크-방식">헬스체크 방식</a>
+        <li><a href="#헬스-체크">헬스 체크</a>
           <ol>
-            <li><a href="#명령어-기반의-체크exec">명령어 기반의 체크(exec)</a></li>
-            <li><a href="#http-기반의-체크httpget">HTTP 기반의 체크(httpGet)</a></li>
-            <li><a href="#tcp-기반의-체크tcpsocket">TCP 기반의 체크(tcpSocket)</a></li>
+            <li><a href="#헬스체크-방법">헬스체크 방법</a></li>
+            <li><a href="#헬스체크-방식">헬스체크 방식</a></li>
+            <li><a href="#헬스-체크-간격">헬스 체크 간격</a></li>
+            <li><a href="#헬스-체크-생성">헬스 체크 생성</a></li>
+            <li><a href="#startup-probe를-사용한-지연-체크와-실패">Startup Probe를 사용한 지연 체크와 실패</a></li>
           </ol>
         </li>
-        <li><a href="#헬스-체크-간격">헬스 체크 간격</a></li>
-        <li><a href="#헬스-체크-생성">헬스 체크 생성</a>
-          <ol>
-            <li><a href="#추가-ready-조건을-추가하는-파드-readyreadinessgate">추가 Ready 조건을 추가하는 파드 ready++(ReadinessGate)</a></li>
-            <li><a href="#readiness-probe를-무시한-서비스-생성">Readiness Probe를 무시한 서비스 생성</a></li>
-          </ol>
-        </li>
-        <li><a href="#startup-probe를-사용한-지연-체크와-실패">Startup Probe를 사용한 지연 체크와 실패</a></li>
+        <li><a href="#컨테이너-라이플사이클과-재기동restartpolicy">컨테이너 라이플사이클과 재기동(restartPolicy)</a></li>
+        <li><a href="#초기화-컨테이너">초기화 컨테이너</a></li>
+        <li><a href="#기동-직후와-종료-직전에-임의의-명령어-실행poststartprestop">기동 직후와 종료 직전에 임의의 명령어 실행(postStart/preStop)</a></li>
+        <li><a href="#파드의-안전한-정지와-타이밍">파드의 안전한 정지와 타이밍</a></li>
+        <li><a href="#리소스를-삭제했을-때의-동작">리소스를 삭제했을 때의 동작</a></li>
       </ol>
     </li>
-    <li><a href="#컨테이너-라이플사이클과-재기동restartpolicy">컨테이너 라이플사이클과 재기동(restartPolicy)</a></li>
-    <li><a href="#초기화-컨테이너">초기화 컨테이너</a></li>
-    <li><a href="#기동-직후와-종료-직전에-임의의-명령어-실행poststartprestop">기동 직후와 종료 직전에 임의의 명령어 실행(postStart/preStop)</a></li>
-    <li><a href="#파드의-안전한-정지와-타이밍">파드의 안전한 정지와 타이밍</a></li>
-    <li><a href="#리소스를-삭제했을-때의-동작">리소스를 삭제했을 때의 동작</a></li>
   </ol>
 </nav>
         </div>

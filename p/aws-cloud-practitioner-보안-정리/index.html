@@ -12,6 +12,8 @@
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Cloud Practitioner' /><meta property='article:tag' content='Skill Builder' /><meta property='article:published_time' content='2022-10-23T14:55:30&#43;09:00'/><meta property='article:modified_time' content='2022-10-23T14:55:30&#43;09:00'/>
 <meta name="twitter:title" content="[AWS Cloud Practitioner] 보안 정리">
 <meta name="twitter:description" content="AWS Cloud Practitioner Essential 보안 정리">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7CM424CQYT"></script>
 <script>
 var doNotTrack = false;
@@ -322,7 +324,7 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="공동-책임-모델">공동 책임 모델</h1>
+    <h2 id="공동-책임-모델">공동 책임 모델</h2>
 <p>리소를 안전하게 유지할 책임은 AWS와 고객 둘 다 있음</p>
 <ul>
 <li>AWS 환경을 단일 객체로 취급하지 않기 때문</li>
@@ -358,8 +360,8 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h1 id="사용자-권한-및-액세스">사용자 권한 및 액세스</h1>
-<h2 id="identity-and-access-managementiam">Identity and Access Management(IAM)</h2>
+<h2 id="사용자-권한-및-액세스">사용자 권한 및 액세스</h2>
+<h3 id="identity-and-access-managementiam">Identity and Access Management(IAM)</h3>
 <p>AWS 서비스와 리소스에 대한 액세스를 안전하게 관리</p>
 <ul>
 <li>회사의 고유한 운영 및 보안 요구 사항에 따라 액세스 권한을 구성할 수 있는 유연성 제공</li>
@@ -371,7 +373,7 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h3 id="aws-계정-루트-사용자">AWS 계정 루트 사용자</h3>
+<h4 id="aws-계정-루트-사용자">AWS 계정 루트 사용자</h4>
 <ul>
 <li>AWS 계정을 처음 만들면 루트 사용자라는 자격 증명으로 시작</li>
 <li>모든 AWS 서비스 및 리소스에 대한 전체 액세스 권한 가짐</li>
@@ -382,35 +384,35 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h3 id="iam-사용자">IAM 사용자</h3>
+<h4 id="iam-사용자">IAM 사용자</h4>
 <ul>
 <li>사용자가 AWS에서 생성하는 자격 증명</li>
 <li>AWS 서비스 및 리소스와 상호 작용하는 사람 또는 애플리케이션</li>
 <li>IAM 사용자가 특정 작업을 수행할 수 있도록 허용하려면 IAM 사용자에게 필요한 권한을 부여</li>
 <li>AWS에 액세스하는 사용자별로 개별 IAM 사용자를 생성하는 것이 좋음</li>
 </ul>
-<h3 id="iam-정책">IAM 정책</h3>
+<h4 id="iam-정책">IAM 정책</h4>
 <ul>
 <li>AWS 서비스 및 리소스에 대한 권한을 허용하거나 거부하는 문서</li>
 <li>사용자가 리소스에 액세스할 수 있는 수준을 지정 가능</li>
 <li>권한 부여 시 <strong>최소 권한</strong> 보안 ********************************원칙을 따를 것</li>
 </ul>
-<h3 id="iam-그룹">IAM 그룹</h3>
+<h4 id="iam-그룹">IAM 그룹</h4>
 <ul>
 <li>IAM 사용자 모음</li>
 <li>그룹에 IAM 정책을 할당하면 해당 그룹의 모든 사용자에게 정책에 지정된 권한이 부여됨</li>
 </ul>
-<h3 id="iam-역할">IAM 역할</h3>
+<h4 id="iam-역할">IAM 역할</h4>
 <ul>
 <li>임시로 권한에 액세스하기 위해 수임할 수 있는 자격 증명</li>
 <li>서비스 또는 리소스에 대해 액세스 권한을 장기적이 아닌 일시적으로 부여하는 상황에 이상적</li>
 </ul>
-<h3 id="multi-factor-authentication">Multi-Factor Authentication</h3>
+<h4 id="multi-factor-authentication">Multi-Factor Authentication</h4>
 <ul>
 <li>AWS 계정에 추가 보안 계층 제공</li>
 <li>루트 사용자 및 계정 내 모든 IAM 사용자에 대해 MFA를 활성화하는 것이 가장 좋음</li>
 </ul>
-<h1 id="aws-organizations">AWS Organizations</h1>
+<h2 id="aws-organizations">AWS Organizations</h2>
 <p>중앙 위치에서 여러 AWS 계정을 통합하고 관리할 수 있음</p>
 <ul>
 <li>조직 생성 시 AWS Organizations가 조직 모든 계정에 대한 상위 컨테이너 루트 자동 생성</li>
@@ -422,31 +424,31 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h2 id="조직-단위">조직 단위</h2>
+<h3 id="조직-단위">조직 단위</h3>
 <ul>
 <li>AWS Organizations에서는 계정을 조직 단위(OU)로 그룹화해 비슷한 비즈니스 또는 보안 요구 사항이 있는 계정을 손쉽게 관리할 수 있음</li>
 <li>OU에 정책을 적용하면 OU에 모든 계정이 정책에 지정된 권한을 자동으로 상속</li>
 <li>개별 계정을 OU로 구성하면 특정 보안 요구 사항이 있는 워크로드 또는 애플리케이션을 보다 간편하게 격리 가능</li>
 </ul>
-<h1 id="규정-준수">규정 준수</h1>
-<h2 id="aws-artifact">AWS Artifact</h2>
+<h2 id="규정-준수">규정 준수</h2>
+<h3 id="aws-artifact">AWS Artifact</h3>
 <p>AWS 보안 및 규정 준수 보고서 및 일부 온라인 계약에 대한 온디맨드 액세스를 제공하는 서비스</p>
 <ul>
 <li>AWS Artifact Agreements와 AWS Artifact Reports 두 가지 기본 섹션으로 구성</li>
 </ul>
-<h3 id="aws-artifact-agreements">AWS Artifact Agreements</h3>
+<h4 id="aws-artifact-agreements">AWS Artifact Agreements</h4>
 <ul>
 <li>회사에서 AWS 서비스 전체에서 특정 유형의 정보를 사용하기 위해 AWS와 계약 체결 할 경우</li>
 <li>개별 계정 및 AWS Organizations 내 모든 계정에 대한 계약을 검토, 수락 및 관리 가능</li>
 <li>특정 규정의 적용을 받는 고객의 니즈를 해결하기 위한 다양한 유형의 계약 제공</li>
 </ul>
-<h3 id="aws-artifact-reports">AWS Artifact Reports</h3>
+<h4 id="aws-artifact-reports">AWS Artifact Reports</h4>
 <ul>
 <li>회사의 팀원 중 한 명이 특정 규제 표준을 준수하기 위한 책임에 대한 추가 정보가 필요할 경우</li>
 <li>외부 감사 기관이 작성한 규정 준수 보고서 제공</li>
 <li>감사 또는 규제 기관에 AWS 보안 제어 항목의 증거로서 AWS 감사 아티팩트를 제공하면 됨</li>
 </ul>
-<h2 id="고객-규정-준수-센터">고객 규정 준수 센터</h2>
+<h3 id="고객-규정-준수-센터">고객 규정 준수 센터</h3>
 <p>AWS 규정 준수에 대해 자세히 알아볼 수 있는 리소스가 포함</p>
 <ul>
 <li>고객 규정 준수 사례를 읽고 규제 대상 업종의 기업들이 다양한 규정 준수, 거버넌스 및 감사 과제를 어떻게 해결했는지 확인 가능</li>
@@ -463,33 +465,33 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h1 id="서비스-거부-공격">서비스 거부 공격</h1>
-<h2 id="서비스-거부-공격dos">서비스 거부 공격(DoS)</h2>
+<h2 id="서비스-거부-공격">서비스 거부 공격</h2>
+<h3 id="서비스-거부-공격dos">서비스 거부 공격(DoS)</h3>
 <p>사용자들이 웹 사이트 또는 애플리케이션을 이용할 수 없게 만드려는 의도적인 시도</p>
 <ul>
 <li>공격이 단일 소스로부터 발생</li>
 </ul>
-<h2 id="분산-서비스-거부ddos-공격">분산 서비스 거부(DDoS) 공격</h2>
+<h3 id="분산-서비스-거부ddos-공격">분산 서비스 거부(DDoS) 공격</h3>
 <p>여러 소스를 사용해 웹 사이트 또는 애플리케이션을 사용할 수 없게 만드는 공격</p>
 <ul>
 <li>감염된 여러 컴퓨터(봇)를 사용해 과도한 트래픽을 웹 사이트 또는 애플리케이션으로 전송할 수 있음</li>
 </ul>
-<h2 id="aws-shield">AWS Shield</h2>
+<h3 id="aws-shield">AWS Shield</h3>
 <p>DDoS 공격으로부터 애플리케이션을 보호하는 서비스</p>
-<h3 id="aws-shield-standard">AWS Shield Standard</h3>
+<h4 id="aws-shield-standard">AWS Shield Standard</h4>
 <ul>
 <li>모든 AWS 고객을 자동으로 보호하는 무료 서비스</li>
 <li>가장 자주 발생하는 일반적인 DDoS 공격으로부터 보호</li>
 <li>네트워크 트래픽이 애플리케이션으로 들어오면 다양한 분석 기법을 사용해 실시간으로 악성 트래픽을 탐지하고 자동으로 완화</li>
 </ul>
-<h3 id="aws-shield-advanced">AWS Shield Advanced</h3>
+<h4 id="aws-shield-advanced">AWS Shield Advanced</h4>
 <ul>
 <li>상세한 공격 진단 및 정교한 DDoS 공격을 탐지하고 완화할 수 있는 기능을 제공하는 유료 서비스</li>
 <li>CloudFront, Route 53, ELB과 같은 다른 서비스와도 통합 가능</li>
 <li>복잡한 DDoS 공격을 완화하기 위한 사용자 지정 규칙을 작성해 AWS Shield를 AWS WAF와 통합 가능</li>
 </ul>
-<h1 id="추가-보안-서비스">추가 보안 서비스</h1>
-<h2 id="aws-key-management-servicekms">AWS Key Management Service(KMS)</h2>
+<h2 id="추가-보안-서비스">추가 보안 서비스</h2>
+<h3 id="aws-key-management-servicekms">AWS Key Management Service(KMS)</h3>
 <p>암호화 키를 사용해 암호화 작업 수행</p>
 <ul>
 <li>암호화 키는 데이터 잠금(암호화) 및 잠금 해제(암호 해독)에 사용되는 임의의 숫자 문자열</li>
@@ -502,7 +504,7 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h2 id="aws-waf">AWS WAF</h2>
+<h3 id="aws-waf">AWS WAF</h3>
 <p>웹 애플리케이션으로 들어오는 네트워크 요청을 모니터링할 수 있는 웹 애플리케이션 방화벽</p>
 <ul>
 <li>CloudFront 및 ALB와 함께 작동</li>
@@ -512,7 +514,7 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h2 id="amazon-inspector">Amazon Inspector</h2>
+<h3 id="amazon-inspector">Amazon Inspector</h3>
 <p>자동화된 보안 평가를 실행해 애플리케이션의 보안 및 규정 준수를 개선할 수 있는 서비스</p>
 <ul>
 <li>EC2 인스턴스에 대한 오픈 액세스, 취약한 소프트웨어 버전 설치와 같은 보안 모범 사례 위반 및 보안 취약성을 애플리케이션에서 검사</li>
@@ -523,7 +525,7 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h2 id="amazon-guardduty">Amazon GuardDuty</h2>
+<h3 id="amazon-guardduty">Amazon GuardDuty</h3>
 <p>AWS 인프라 및 리소스에 대한 지능형 위협 탐지 기능을 제공하는 서비스</p>
 <ul>
 <li>AWS 환경 내의 네트워크 활동 및 계정 동작을 지속적으로 모니터링하여 위협 식별</li>
@@ -809,48 +811,57 @@ if (!doNotTrack) {
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#identity-and-access-managementiam">Identity and Access Management(IAM)</a>
+    <li><a href="#공동-책임-모델">공동 책임 모델</a></li>
+    <li><a href="#사용자-권한-및-액세스">사용자 권한 및 액세스</a>
       <ol>
-        <li><a href="#aws-계정-루트-사용자">AWS 계정 루트 사용자</a></li>
-        <li><a href="#iam-사용자">IAM 사용자</a></li>
-        <li><a href="#iam-정책">IAM 정책</a></li>
-        <li><a href="#iam-그룹">IAM 그룹</a></li>
-        <li><a href="#iam-역할">IAM 역할</a></li>
-        <li><a href="#multi-factor-authentication">Multi-Factor Authentication</a></li>
+        <li><a href="#identity-and-access-managementiam">Identity and Access Management(IAM)</a>
+          <ol>
+            <li><a href="#aws-계정-루트-사용자">AWS 계정 루트 사용자</a></li>
+            <li><a href="#iam-사용자">IAM 사용자</a></li>
+            <li><a href="#iam-정책">IAM 정책</a></li>
+            <li><a href="#iam-그룹">IAM 그룹</a></li>
+            <li><a href="#iam-역할">IAM 역할</a></li>
+            <li><a href="#multi-factor-authentication">Multi-Factor Authentication</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
-  </ol>
-
-  <ol>
-    <li><a href="#조직-단위">조직 단위</a></li>
-  </ol>
-
-  <ol>
-    <li><a href="#aws-artifact">AWS Artifact</a>
+    <li><a href="#aws-organizations">AWS Organizations</a>
       <ol>
-        <li><a href="#aws-artifact-agreements">AWS Artifact Agreements</a></li>
-        <li><a href="#aws-artifact-reports">AWS Artifact Reports</a></li>
+        <li><a href="#조직-단위">조직 단위</a></li>
       </ol>
     </li>
-    <li><a href="#고객-규정-준수-센터">고객 규정 준수 센터</a></li>
-  </ol>
-
-  <ol>
-    <li><a href="#서비스-거부-공격dos">서비스 거부 공격(DoS)</a></li>
-    <li><a href="#분산-서비스-거부ddos-공격">분산 서비스 거부(DDoS) 공격</a></li>
-    <li><a href="#aws-shield">AWS Shield</a>
+    <li><a href="#규정-준수">규정 준수</a>
       <ol>
-        <li><a href="#aws-shield-standard">AWS Shield Standard</a></li>
-        <li><a href="#aws-shield-advanced">AWS Shield Advanced</a></li>
+        <li><a href="#aws-artifact">AWS Artifact</a>
+          <ol>
+            <li><a href="#aws-artifact-agreements">AWS Artifact Agreements</a></li>
+            <li><a href="#aws-artifact-reports">AWS Artifact Reports</a></li>
+          </ol>
+        </li>
+        <li><a href="#고객-규정-준수-센터">고객 규정 준수 센터</a></li>
       </ol>
     </li>
-  </ol>
-
-  <ol>
-    <li><a href="#aws-key-management-servicekms">AWS Key Management Service(KMS)</a></li>
-    <li><a href="#aws-waf">AWS WAF</a></li>
-    <li><a href="#amazon-inspector">Amazon Inspector</a></li>
-    <li><a href="#amazon-guardduty">Amazon GuardDuty</a></li>
+    <li><a href="#서비스-거부-공격">서비스 거부 공격</a>
+      <ol>
+        <li><a href="#서비스-거부-공격dos">서비스 거부 공격(DoS)</a></li>
+        <li><a href="#분산-서비스-거부ddos-공격">분산 서비스 거부(DDoS) 공격</a></li>
+        <li><a href="#aws-shield">AWS Shield</a>
+          <ol>
+            <li><a href="#aws-shield-standard">AWS Shield Standard</a></li>
+            <li><a href="#aws-shield-advanced">AWS Shield Advanced</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#추가-보안-서비스">추가 보안 서비스</a>
+      <ol>
+        <li><a href="#aws-key-management-servicekms">AWS Key Management Service(KMS)</a></li>
+        <li><a href="#aws-waf">AWS WAF</a></li>
+        <li><a href="#amazon-inspector">Amazon Inspector</a></li>
+        <li><a href="#amazon-guardduty">Amazon GuardDuty</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>

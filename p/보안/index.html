@@ -13,6 +13,8 @@
 <meta name="twitter:title" content="보안">
 <meta name="twitter:description" content="보안"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://Haebuk.github.io/p/%EB%B3%B4%EC%95%88/Kubernetes-Logo.wine.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7CM424CQYT"></script>
 <script>
 var doNotTrack = false;
@@ -335,8 +337,8 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="보안">보안</h1>
-<h2 id="서비스-어카운트">서비스 어카운트</h2>
+    <h2 id="보안">보안</h2>
+<h3 id="서비스-어카운트">서비스 어카운트</h3>
 <ul>
 <li>사용자 어카운트(UserAccount): EKS에서는 IAM과 연결되어 있어 쿠버네티스 관리 대상이 아니고, 네임스페이스의 영향을 받지 않음</li>
 <li>서비스 어카운트(ServiceAccount): 쿠버네티스에서만 사용, 파드에서 실행되는 프로세스를 위해 할당. 네임스페이스와 연결된 리소스
@@ -346,14 +348,14 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h3 id="서비스-어카운트-생성">서비스 어카운트 생성</h3>
+<h4 id="서비스-어카운트-생성">서비스 어카운트 생성</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 서비스 어카운트 생성</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 서비스 어카운트 생성</span>
 </span></span><span class="line"><span class="cl">$ kubectl create serviceaccount sample-serviceaccount
 </span></span></code></pre></td></tr></table>
 </div>
@@ -367,12 +369,12 @@ if (!doNotTrack) {
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 생성 후 kubectl patch 명령어로 적용</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 생성 후 kubectl patch 명령어로 적용</span>
 </span></span><span class="line"><span class="cl">$ kubectl patch serviceaccount sample-serviceaccount <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>-p <span class="s1">&#39;{&#34;imagePullSecrets&#34;: [{&#34;name&#34;: &#34;myregistrykey&#34;}]}&#39;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="서비스-어카운트와-토큰">서비스 어카운트와 토큰</h3>
+</div><h4 id="서비스-어카운트와-토큰">서비스 어카운트와 토큰</h4>
 <ul>
 <li>생성할 때는 지정하지 않은 시크릿 항목이 존재
 <ul>
@@ -390,10 +392,10 @@ if (!doNotTrack) {
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 서비스 어카운트 정보 확인</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 서비스 어카운트 정보 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl get serviceaccounts sample-serviceaccount -o yaml
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 연결된 시크릿</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 연결된 시크릿</span>
 </span></span><span class="line"><span class="cl">$ kubectl get secrets sample-serviceaccount-token-nmmb9 -o yaml
 </span></span></code></pre></td></tr></table>
 </div>
@@ -412,10 +414,10 @@ if (!doNotTrack) {
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 토큰이 볼륨으로 마운트 된 것을 확인</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 토큰이 볼륨으로 마운트 된 것을 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl get pods sample-serviceaccount-pod -o yaml
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># API 서버 인증에 사용되는 토큰과 인증서 등의 파일 확인</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## API 서버 인증에 사용되는 토큰과 인증서 등의 파일 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-serviceaccount-pod -- ls /var/run/secrets/kubernetes.io/serviceaccount/
 </span></span></code></pre></td></tr></table>
 </div>
@@ -439,22 +441,22 @@ if (!doNotTrack) {
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 컨테이너에서 bash 실행</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 컨테이너에서 bash 실행</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-serviceaccount-pod -- bash
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># curl 명령어 설치</span>
-</span></span><span class="line"><span class="cl">root@sample-serviceaccount-pod:/# apt update <span class="o">&amp;&amp;</span> apt -y install curl
+</span></span><span class="line"><span class="cl"><span class="c1">## curl 명령어 설치</span>
+</span></span><span class="line"><span class="cl">root@sample-serviceaccount-pod:/## apt update <span class="o">&amp;&amp;</span> apt -y install curl
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 토큰을 환경변수로 정의 </span>
-</span></span><span class="line"><span class="cl">root@sample-serviceaccount-pod:/# <span class="nv">TOKEN</span><span class="o">=</span><span class="sb">`</span>cat /var/run/secrets/kubernetes.io/serviceaccount/token<span class="sb">`</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 토큰을 환경변수로 정의 </span>
+</span></span><span class="line"><span class="cl">root@sample-serviceaccount-pod:/## <span class="nv">TOKEN</span><span class="o">=</span><span class="sb">`</span>cat /var/run/secrets/kubernetes.io/serviceaccount/token<span class="sb">`</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 쿠버네티스 API 서버에서 파드 목록 확인</span>
-</span></span><span class="line"><span class="cl">root@sample-serviceaccount-pod:/# curl -H <span class="s2">&#34;Authorization: Bearer </span><span class="si">${</span><span class="nv">TOKEN</span><span class="si">}</span><span class="s2">&#34;</span> <span class="se">\
+</span></span><span class="line"><span class="cl"><span class="c1">## 쿠버네티스 API 서버에서 파드 목록 확인</span>
+</span></span><span class="line"><span class="cl">root@sample-serviceaccount-pod:/## curl -H <span class="s2">&#34;Authorization: Bearer </span><span class="si">${</span><span class="nv">TOKEN</span><span class="si">}</span><span class="s2">&#34;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>--cacert /var/run/secrets/kubernetes.io/serviceaccount/ca.crt <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>https://kubernetes/api/v1/namespaces/default/pods
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="토큰-자동-마운트">토큰 자동 마운트</h3>
+</div><h4 id="토큰-자동-마운트">토큰 자동 마운트</h4>
 <ul>
 <li>설정을 비활성화 하려면 automountServiceAccountToken을 false로 설정
 <ul>
@@ -463,7 +465,7 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h3 id="도커-레지스트리-인증-정보-자동-설정">도커 레지스트리 인증 정보 자동 설정</h3>
+<h4 id="도커-레지스트리-인증-정보-자동-설정">도커 레지스트리 인증 정보 자동 설정</h4>
 <ul>
 <li>imagePullSecret이 지정된 서비스 어카운트를 할당한 파드가 기동한 경우 자동으로 파드의 서비스 어카운트을 사용하여 도커 이미지를 가져온다.</li>
 </ul>
@@ -473,14 +475,14 @@ if (!doNotTrack) {
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># spec.imagePullSecrets가 자동으로 포함된 것을 확인</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## spec.imagePullSecrets가 자동으로 포함된 것을 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl get pods sample-sa-pullsecret-pod -o yaml
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>spec.imagePullSecrets는 서비스 어카운트에 복수로 지정이 가능하므로 자동으로 여러 인증 정보 설정 가능</li>
 </ul>
-<h2 id="rbacrole-based-access-control">RBAC(Role Based Access Control)</h2>
+<h3 id="rbacrole-based-access-control">RBAC(Role Based Access Control)</h3>
 <ul>
 <li>어떤 조작을 허용하는지를 결정하는 롤을 생성하고 서비스 어카운트 등의 사용자에게 롤을 연결(롤바인딩)하여 권한을 부여</li>
 <li>AggregationRule을 사용해 여러 롤을 집약한 롤을 생성하여 관리성을 향상할 수 있음</li>
@@ -491,7 +493,7 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h3 id="롤과-클러스터롤">롤과 클러스터롤</h3>
+<h4 id="롤과-클러스터롤">롤과 클러스터롤</h4>
 <ul>
 <li>네임스페이스 범위의 리소스를 대상으로 인가 설정 가능</li>
 <li>클러스터롤의 경우 노드/네임스페이스/영구볼륨과 같은 클러스터 범위의 리소스나 쿠버네티스 API 정보를 가져오는 nonResourceURL에 대한 권한도 설정 가능</li>
@@ -561,12 +563,12 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h4 id="롤-생성">롤 생성</h4>
+<h5 id="롤-생성">롤 생성</h5>
 <ul>
 <li>rules는 여러 개 설정 가능</li>
 <li>네임스페이스 지정</li>
 </ul>
-<h4 id="클러스터롤-생성">클러스터롤 생성</h4>
+<h5 id="클러스터롤-생성">클러스터롤 생성</h5>
 <ul>
 <li>rules에 noneResourceURLs 지정 가능
 <ul>
@@ -575,7 +577,7 @@ if (!doNotTrack) {
 </li>
 <li>metadata.namespace 지정 불가</li>
 </ul>
-<h4 id="클러스터롤의-aggregation">클러스터롤의 Aggregation</h4>
+<h5 id="클러스터롤의-aggregation">클러스터롤의 Aggregation</h5>
 <ul>
 <li>여러 클러스터롤의 정의를 읽는 기능</li>
 <li>클러스터롤에 정의된 레이블 기반, 집계되는 쪽 클러스터롤에 정의된 롤은 반영되지 않음</li>
@@ -586,14 +588,14 @@ if (!doNotTrack) {
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 집계된 클러스터롤 확인</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 집계된 클러스터롤 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl get clusterroles sample-aggregated-clusterrole -o yaml
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>나중에 집계되는 측의 클러스터롤을 변경하는 경우에도 집계되는 측의 클러스터롤에 자동으로 반영</li>
 </ul>
-<h4 id="쿠버네티스가-생성하는-클러스터롤">쿠버네티스가 생성하는 클러스터롤</h4>
+<h5 id="쿠버네티스가-생성하는-클러스터롤">쿠버네티스가 생성하는 클러스터롤</h5>
 <ul>
 <li>단순한 권한을 사용하는 경우 프리셋 사용</li>
 </ul>
@@ -623,7 +625,7 @@ if (!doNotTrack) {
 </tr>
 </tbody>
 </table></div>
-<h3 id="롤바인딩과-클러스터롤바인딩">롤바인딩과 클러스터롤바인딩</h3>
+<h4 id="롤바인딩과-클러스터롤바인딩">롤바인딩과 클러스터롤바인딩</h4>
 <ul>
 <li>roleRef에서 연결하는 롤과 subjects에 연결하는 사용자나 서비스 어카운트 지정</li>
 <li>하나의 롤바인딩당 하나의 롤만 가능, subjects에는 여러 사용자나 서비스 어카운트 지정 가능</li>
@@ -638,15 +640,15 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h4 id="롤바인딩-생성">롤바인딩 생성</h4>
+<h5 id="롤바인딩-생성">롤바인딩 생성</h5>
 <ul>
 <li>사용자에 대해 특정 네임스페이스에서 롤 또는 클러스터롤에 정의한 권한 부여</li>
 </ul>
-<h4 id="클러스터롤바인딩-생성">클러스터롤바인딩 생성</h4>
+<h5 id="클러스터롤바인딩-생성">클러스터롤바인딩 생성</h5>
 <ul>
 <li>사용자에 대해 모든 네임스페이스에서 클러스터롤로 정의된 권한 부여</li>
 </ul>
-<h2 id="보안-컨텍스트">보안 컨텍스트</h2>
+<h3 id="보안-컨텍스트">보안 컨텍스트</h3>
 <ul>
 <li>각 컨테이너에 대한 보안 설정</li>
 </ul>
@@ -693,12 +695,12 @@ if (!doNotTrack) {
 </tr>
 </tbody>
 </table></div>
-<h3 id="특수-권한-컨테이너-생성">특수 권한 컨테이너 생성</h3>
+<h4 id="특수-권한-컨테이너-생성">특수 권한 컨테이너 생성</h4>
 <ul>
 <li>spec.containers[].securityContext.privileged를 true로 설정</li>
 <li>컨테이너 내부에서 기동하는 프로세스의 리눅스 Capabilities가 호스트와 동등한 권한을 가짐</li>
 </ul>
-<h3 id="capabilities-부여">Capabilities 부여</h3>
+<h4 id="capabilities-부여">Capabilities 부여</h4>
 <ul>
 <li>더 세분화된 특정 Capabilities 부여/제거 가능</li>
 </ul>
@@ -708,11 +710,11 @@ if (!doNotTrack) {
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># Capabilities 확인</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## Capabilities 확인</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-capabilities -- capsh --print <span class="p">|</span> grep Current
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="root-파일-시스템의-읽기-전용-설정">root 파일 시스템의 읽기 전용 설정</h3>
+</div><h4 id="root-파일-시스템의-읽기-전용-설정">root 파일 시스템의 읽기 전용 설정</h4>
 <ul>
 <li>컨테이너 이미지에 포함된 파일 등을 읽기 전용으로 설정 가능</li>
 <li>root 파일 시스템을 읽기 전용으로 설정하면 커널 관련 파일 등을 변경할 수 없어 보안성 향상</li>
@@ -723,17 +725,17 @@ if (!doNotTrack) {
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 파일 시스템을 읽기 전용으로 마운트</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 파일 시스템을 읽기 전용으로 마운트</span>
 </span></span><span class="line"><span class="cl">$ kubectl <span class="nb">exec</span> -it sample-rootfile-readonly -- touch /etc/os-release
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="네트워크-정책">네트워크 정책</h2>
+</div><h3 id="네트워크-정책">네트워크 정책</h3>
 <ul>
 <li>클러스터 내부에서 파드 간에 통신할 경우 트래픽 룰을 규정</li>
 <li>네트워크 정책을 사용하지 않을 경우 모든 파드는 서로 통신이 가능</li>
 <li>네트워크 정책을 사용한다면 네임스페이스별로 트래픽을 전송하지 못하게 하거나 모든 파드 간 통신을 차단하고 특정 파드 간 통신을 허용하는 화이트리스트 방식 사용 가능</li>
 </ul>
-<h3 id="네트워크-정책-생성">네트워크 정책 생성</h3>
+<h4 id="네트워크-정책-생성">네트워크 정책 생성</h4>
 <ul>
 <li>네트워크 정책은 인그레스(수신)과 이그레스(송신)로 구성
 <ul>
@@ -771,31 +773,31 @@ if (!doNotTrack) {
 </tr>
 </tbody>
 </table></div>
-<h4 id="화이트리스트-방식과-블랙리스트-방식">화이트리스트 방식과 블랙리스트 방식</h4>
+<h5 id="화이트리스트-방식과-블랙리스트-방식">화이트리스트 방식과 블랙리스트 방식</h5>
 <ul>
 <li>화이트리스트 방식: 모든 트래픽을 차단해 두고 특정 트래픽만 허가</li>
 <li>블랙리스트 방식: 모든 트래픽 허가해 두고 특정 트래픽만 차단</li>
 <li>클라우드의 네트워크 기본 설정에서 인바운드는 전체를 차단하고 아웃바운드는 전체를 허용하는 것이 일반적</li>
 </ul>
-<h2 id="시크릿-리소스-암호화">시크릿 리소스 암호화</h2>
+<h3 id="시크릿-리소스-암호화">시크릿 리소스 암호화</h3>
 <ul>
 <li>시크릿 리소스는 base64로 인코드되어 있을 뿐으로 깃 저장소에 업로드하는 것은 보안상 위험할 수 있음</li>
 <li>별도의 암호화 필요</li>
 </ul>
-<h3 id="kubesec">kubesec</h3>
+<h4 id="kubesec">kubesec</h4>
 <ul>
 <li>오픈 소스 소프트웨어</li>
 <li>KMS를 사용해 암호화 가능</li>
 <li>파일 전체를 암호화하지 않고 시크릿 구조를 유지한 채 값만 암호화하므로 가독성 높음</li>
 <li>시크릿 매니페스트를 암호화하기 때문에 깃 저장소에도 업로드 가능</li>
 </ul>
-<h3 id="sealedsecret">SealedSecret</h3>
+<h4 id="sealedsecret">SealedSecret</h4>
 <ul>
 <li>오픈 소스 소프트웨어</li>
 <li>암호화된 SealedSecret이라는 커스텀 리소스 생성 후 클러스터에 등록하면 클러스터 내부에서 SealedSecret에서 시크릿 리소스로 변환되는 구조</li>
 <li>생성된 SealedSecret 리소스는 암호화되어 있기 때문에 깃 저장소에 배치 가능</li>
 </ul>
-<h3 id="externalsecret">ExternalSecret</h3>
+<h4 id="externalsecret">ExternalSecret</h4>
 <ul>
 <li>오픈 소스 소프트웨어</li>
 <li>SealedSecret과 유사한 구조</li>
@@ -1116,53 +1118,41 @@ if (!doNotTrack) {
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#서비스-어카운트">서비스 어카운트</a>
+    <li><a href="#보안">보안</a>
       <ol>
-        <li><a href="#서비스-어카운트-생성">서비스 어카운트 생성</a></li>
-        <li><a href="#서비스-어카운트와-토큰">서비스 어카운트와 토큰</a></li>
-        <li><a href="#토큰-자동-마운트">토큰 자동 마운트</a></li>
-        <li><a href="#도커-레지스트리-인증-정보-자동-설정">도커 레지스트리 인증 정보 자동 설정</a></li>
-      </ol>
-    </li>
-    <li><a href="#rbacrole-based-access-control">RBAC(Role Based Access Control)</a>
-      <ol>
-        <li><a href="#롤과-클러스터롤">롤과 클러스터롤</a>
+        <li><a href="#서비스-어카운트">서비스 어카운트</a>
           <ol>
-            <li><a href="#롤-생성">롤 생성</a></li>
-            <li><a href="#클러스터롤-생성">클러스터롤 생성</a></li>
-            <li><a href="#클러스터롤의-aggregation">클러스터롤의 Aggregation</a></li>
-            <li><a href="#쿠버네티스가-생성하는-클러스터롤">쿠버네티스가 생성하는 클러스터롤</a></li>
+            <li><a href="#서비스-어카운트-생성">서비스 어카운트 생성</a></li>
+            <li><a href="#서비스-어카운트와-토큰">서비스 어카운트와 토큰</a></li>
+            <li><a href="#토큰-자동-마운트">토큰 자동 마운트</a></li>
+            <li><a href="#도커-레지스트리-인증-정보-자동-설정">도커 레지스트리 인증 정보 자동 설정</a></li>
           </ol>
         </li>
-        <li><a href="#롤바인딩과-클러스터롤바인딩">롤바인딩과 클러스터롤바인딩</a>
+        <li><a href="#rbacrole-based-access-control">RBAC(Role Based Access Control)</a>
           <ol>
-            <li><a href="#롤바인딩-생성">롤바인딩 생성</a></li>
-            <li><a href="#클러스터롤바인딩-생성">클러스터롤바인딩 생성</a></li>
+            <li><a href="#롤과-클러스터롤">롤과 클러스터롤</a></li>
+            <li><a href="#롤바인딩과-클러스터롤바인딩">롤바인딩과 클러스터롤바인딩</a></li>
           </ol>
         </li>
-      </ol>
-    </li>
-    <li><a href="#보안-컨텍스트">보안 컨텍스트</a>
-      <ol>
-        <li><a href="#특수-권한-컨테이너-생성">특수 권한 컨테이너 생성</a></li>
-        <li><a href="#capabilities-부여">Capabilities 부여</a></li>
-        <li><a href="#root-파일-시스템의-읽기-전용-설정">root 파일 시스템의 읽기 전용 설정</a></li>
-      </ol>
-    </li>
-    <li><a href="#네트워크-정책">네트워크 정책</a>
-      <ol>
-        <li><a href="#네트워크-정책-생성">네트워크 정책 생성</a>
+        <li><a href="#보안-컨텍스트">보안 컨텍스트</a>
           <ol>
-            <li><a href="#화이트리스트-방식과-블랙리스트-방식">화이트리스트 방식과 블랙리스트 방식</a></li>
+            <li><a href="#특수-권한-컨테이너-생성">특수 권한 컨테이너 생성</a></li>
+            <li><a href="#capabilities-부여">Capabilities 부여</a></li>
+            <li><a href="#root-파일-시스템의-읽기-전용-설정">root 파일 시스템의 읽기 전용 설정</a></li>
           </ol>
         </li>
-      </ol>
-    </li>
-    <li><a href="#시크릿-리소스-암호화">시크릿 리소스 암호화</a>
-      <ol>
-        <li><a href="#kubesec">kubesec</a></li>
-        <li><a href="#sealedsecret">SealedSecret</a></li>
-        <li><a href="#externalsecret">ExternalSecret</a></li>
+        <li><a href="#네트워크-정책">네트워크 정책</a>
+          <ol>
+            <li><a href="#네트워크-정책-생성">네트워크 정책 생성</a></li>
+          </ol>
+        </li>
+        <li><a href="#시크릿-리소스-암호화">시크릿 리소스 암호화</a>
+          <ol>
+            <li><a href="#kubesec">kubesec</a></li>
+            <li><a href="#sealedsecret">SealedSecret</a></li>
+            <li><a href="#externalsecret">ExternalSecret</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
   </ol>
