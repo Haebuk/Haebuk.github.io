@@ -6,7 +6,67 @@
         <description>Recent content in Cloud Practitioner on 지식 공유, 협업 ✈️ 성장</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ko-kr</language>
-        <lastBuildDate>Sun, 23 Oct 2022 20:21:30 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/tags/cloud-practitioner/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 23 Oct 2022 23:21:30 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/tags/cloud-practitioner/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[AWS Cloud Practitioner] 클라우드 여정 정리</title>
+        <link>https://Haebuk.github.io/p/aws-cloud-practitioner-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%97%AC%EC%A0%95-%EC%A0%95%EB%A6%AC/</link>
+        <pubDate>Sun, 23 Oct 2022 23:21:30 +0900</pubDate>
+        
+        <guid>https://Haebuk.github.io/p/aws-cloud-practitioner-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%97%AC%EC%A0%95-%EC%A0%95%EB%A6%AC/</guid>
+        <description>&lt;h2 id=&#34;aws-well-architected-프레임워크&#34;&gt;AWS Well-Architected 프레임워크&lt;/h2&gt;
+&lt;h3 id=&#34;운영-우수성&#34;&gt;운영 우수성&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;시스템을 실행 및 모니터링하여 비즈니스 가치를 제공, 지속적으로 지원 프로세스 및 절차를 개선하는 능력&lt;/li&gt;
+&lt;li&gt;코드로 작업 수행, 문서에 주석 추가, 실패 예측, 되돌릴 수 있는 소규모 변경을 자주 수행이 포함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;보안성&#34;&gt;보안성&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;위험 평가 및 완화 전략을 통해 비즈니스 가치를 제공하는 동시에 정보, 시스템, 자산을 보호하는 능력&lt;/li&gt;
+&lt;li&gt;가능한 보안 모범 사례 자동화, 모든 계층에 보안 적용, 전송 중/저장 시 데이터 보호가 포함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;안정성&#34;&gt;안정성&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;인프라 또는 서비스 중단으로부타 복수, 컴퓨터 리소스 동적 확보로 수요 충족, 잘못된 구성 또는 일시적 네트워크 문제와 같은 중단 완화가 포함&lt;/li&gt;
+&lt;li&gt;복구 절차 테스트, 전체 시스템 가용성을 높이기 위한 수평 확장, 장애 발생 시 자동 복구가 포함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;성능-효율성&#34;&gt;성능 효율성&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;컴퓨팅 리소스의 효율적인 사용으로 시스템 요구 사항을 충족하고, 수요 변화와 기술 진화에 따라 효율성을 유지하는 능력&lt;/li&gt;
+&lt;li&gt;실험 빈도 증가, 서버리스 아키텍처 사용, 몇 분 만에 전세계 배포가 가능한 시스템 설계 등이 포함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;비용-최적화&#34;&gt;비용 최적화&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;가장 낮은 가격으로 비즈니스 가치를 제공하도록 시스템을 실행하는 능력&lt;/li&gt;
+&lt;li&gt;소비 모델 채택, 비용 분석 및 귀속, 관리형 서비스를 사용해 소유 비용 절감이 포함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;aws-클라우드의-이점&#34;&gt;AWS 클라우드의 이점&lt;/h2&gt;
+&lt;h3 id=&#34;선행-비용을-가변-비용으로-대체&#34;&gt;선행 비용을 가변 비용으로 대체&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;컴퓨팅 리소스를 사용할 때만 비용 지불&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;거대한-규모의-경제로-얻는-이점&#34;&gt;거대한 규모의 경제로 얻는 이점&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;인프라를 소유할 때보다 가변 비용 낮아짐&lt;/li&gt;
+&lt;li&gt;수많은 고객의 사용량이 클라우드에 누적되므로 AWS와 같은 공급자는 더 높은 규모의 경제 달성&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;용량-추정-불필요&#34;&gt;용량 추정 불필요&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;필요한 용량에만 액세스하고 수요에 따라 확장 또는 축소&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;속도-및-민첩성-개선&#34;&gt;속도 및 민첩성 개선&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;클라우드 컴퓨팅의 유연성 덕에 애플리케이션을 더 쉽게 개발하고 배포할 수 있음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;데이터-센터-운영-및-유지-관리에-비용-투자-불필요&#34;&gt;데이터 센터 운영 및 유지 관리에 비용 투자 불필요&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;인프라 및 서버 관리에 신경을 덜 쓰고 애플리케이션과 고객에 더 집중할 수 있음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;몇-분-만에-전-세계에-배포&#34;&gt;몇 분 만에 전 세계에 배포&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;전 세계 고객에게 짧은 지연 시간을 제공하면서 애플리케이션을 신속히 배포&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>[AWS Cloud Practitioner] 마이그레이션 및 혁신 정리</title>
         <link>https://Haebuk.github.io/p/aws-cloud-practitioner-%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98-%EB%B0%8F-%ED%98%81%EC%8B%A0-%EC%A0%95%EB%A6%AC/</link>
         <pubDate>Sun, 23 Oct 2022 20:21:30 +0900</pubDate>
