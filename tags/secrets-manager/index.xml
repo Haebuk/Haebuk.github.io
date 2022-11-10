@@ -55,14 +55,18 @@
 &lt;/div&gt;&lt;p&gt;MWAA와 Local Runner에서 위 config을 추가하는 방식은 약간 상이하기 때문에 나눠서 살펴보자.&lt;/p&gt;
 &lt;h3 id=&#34;mwaa&#34;&gt;MWAA&lt;/h3&gt;
 &lt;p&gt;본인의 MWAA 환경에서 편집버튼을 누르면 두 번째 페이지에 “Airflow 구성 옵션 - 선택 사항” 항목이 있다. 여기서 두 가지 옵션을 입력한다.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/0.png&#34;
+	width=&#34;1342&#34;
+	height=&#34;1016&#34;
+	srcset=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/0_hu0ad25c698639f5abf6451dfd36cad1ae_150808_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/0_hu0ad25c698639f5abf6451dfd36cad1ae_150808_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;MWAA 구성 옵션 화면&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;132&#34;
+		data-flex-basis=&#34;317px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;이 구성 옵션 항목에 입력하는 파라미터들이 &lt;code&gt;airflow.cfg&lt;/code&gt; 에 들어간다고 이해하면 편하다. 이후 저장하며 환경 구성을 업데이트한다. (약 10여분 소요된다.)&lt;/p&gt;
