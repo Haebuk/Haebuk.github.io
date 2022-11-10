@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Data Enginnering on 지식 공유, 협업 ✈️ 성장</title>
+        <link>https://Haebuk.github.io/categories/data-enginnering/</link>
+        <description>Recent content in Data Enginnering on 지식 공유, 협업 ✈️ 성장</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>ko-kr</language>
+        <lastBuildDate>Thu, 10 Nov 2022 19:03:39 +0900</lastBuildDate><atom:link href="https://Haebuk.github.io/categories/data-enginnering/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>AWS Secrets Manager를 사용해 Local Runner와 MWAA Secrets backend 통일하기</title>
+        <link>https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/</link>
+        <pubDate>Thu, 10 Nov 2022 19:03:39 +0900</pubDate>
+        
+        <guid>https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/</guid>
+        <description>&lt;img src="https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/AirflowLogo.png" alt="Featured image of post AWS Secrets Manager를 사용해 Local Runner와 MWAA Secrets backend 통일하기" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Local Runner(개발 환경)에서 개발한 dag(코드)를 MWAA(프로덕션 환경)에 업로드하는 경우, 개발 과정에서 프로덕션 환경의 Connections(연결) 및 Variables(변수)를 개발 환경에도 적용시키고 싶은 경우가 있다.&lt;/p&gt;
+&lt;p&gt;가장 단순하게는 Web UI나 CLI를 사용해 Airflow의 메타 저장소에 등록하여 사용해도 된다. 그러나 같은 두 환경 간 차이가 발생할 수 있으며 특히 개발 환경의 경우 reset-db를 하는 경우가 빈번하므로 그때마다 휘발된 변수 및 연결을 다시 등록하는 것은 매우 번거로울 것이다.&lt;/p&gt;
+&lt;p&gt;이 글에서는 Web UI나 CLI를 사용하여 Airflow의 연결과 변수를 등록하지 않고 Secrets Backend, 그 중에서도 AWS Secrets Manager를 사용해 개발과 프로덕션 환경의 연결과 변수를 통일하는 방법을 소개한다.&lt;/p&gt;
+&lt;h2 id=&#34;setting-config&#34;&gt;Setting Config&lt;/h2&gt;
+&lt;p&gt;먼저 이 글에서는 Local Runner와 MWAA는 이미 실행이 가능한 상태로 가정한다.&lt;/p&gt;
+&lt;h3 id=&#34;secrets-backend&#34;&gt;secrets backend&lt;/h3&gt;
+&lt;p&gt;Airflow의 secrets backend를 AWS Secret Manager로 사용하기 위해서는 아래와 같은 두 줄을 추가해야한다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;secrets&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;backend&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;airflow&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;providers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;amazon&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;aws&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;secrets&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;secrets_manager&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;SecretsManagerBackend&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;backend_kwargs&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;connections_prefix&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;airflow/connections&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;variables_prefix&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;airflow/variables&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;여기서 주목해야할 것은 &lt;code&gt;*_prefix&lt;/code&gt;인데, Airflow가 secrets backend에서 연결 및 변수를 가져오기 위해서는 각각의 id에 정확한 prefix를 붙여야 가져올 수 있다.&lt;/p&gt;
+&lt;p&gt;연결과 변수 구성에 대한 예를 들어보자.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;secrets backend에 &lt;code&gt;airflow/connections/my_conn_id&lt;/code&gt;를 정의한 경우 operator에서 &lt;code&gt;Connection(conn_id=&amp;quot;my_conn_id&amp;quot;)&lt;/code&gt;로 불러올 수 있다.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;airflow/variables/my_var&lt;/code&gt;를 정의한 경우 &lt;code&gt;Variable.get(&amp;quot;my_var&amp;quot;)&lt;/code&gt;로 내부에 저장된 값을 가져올 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;오타가 나면 &lt;code&gt;airflow.exceptions.AirflowNotFoundException: The conn_id isn&#39;t defined&lt;/code&gt; 에러가 발생하므로 주의하자.&lt;/p&gt;
+&lt;p&gt;만약 프로덕션에 사용되는 환경이 여러개고 각 환경마다 config를 다르게 구성하고 싶으면 다음과 같은 방식으로 prefix를 변경하여 사용 가능하다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;secrets&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;backend&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;airflow&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;providers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;amazon&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;aws&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;secrets&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;secrets_manager&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;SecretsManagerBackend&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;backend_kwargs&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;connections_prefix&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;my_airflow_env/connections&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;variables_prefix&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;my_airflow_env/variables&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;MWAA와 Local Runner에서 위 config을 추가하는 방식은 약간 상이하기 때문에 나눠서 살펴보자.&lt;/p&gt;
+&lt;h3 id=&#34;mwaa&#34;&gt;MWAA&lt;/h3&gt;
+&lt;p&gt;본인의 MWAA 환경에서 편집버튼을 누르면 두 번째 페이지에 “Airflow 구성 옵션 - 선택 사항” 항목이 있다. 여기서 두 가지 옵션을 입력한다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;MWAA 구성 옵션 화면&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;이 구성 옵션 항목에 입력하는 파라미터들이 &lt;code&gt;airflow.cfg&lt;/code&gt; 에 들어간다고 이해하면 편하다. 이후 저장하며 환경 구성을 업데이트한다. (약 10여분 소요된다.)&lt;/p&gt;
+&lt;p&gt;추가로 MWAA 환경의 실행 역할에 Secrets Manager 권한을 추가해야 한다. 여기서는 SecretsManagerReadWrite 정책을 추가했다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/p.png&#34;
+	width=&#34;1356&#34;
+	height=&#34;820&#34;
+	srcset=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/p_hu67ea218e20cb296b82cf0f2e41cb60d2_114742_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/p_hu67ea218e20cb296b82cf0f2e41cb60d2_114742_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;MWAA 실행 역할의 권한 정책 사진&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;165&#34;
+		data-flex-basis=&#34;396px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;만약 SecretsManagerReadWrite가 아닌 최소 정책을 추가하고 싶다면 아래와 같은 커스텀 정책을 추가하도록 한다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;Version&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;2012-10-17&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;Statement&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;Effect&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Allow&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;Action&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;s2&#34;&gt;&amp;#34;secretsmanager:GetResourcePolicy&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;s2&#34;&gt;&amp;#34;secretsmanager:GetSecretValue&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;s2&#34;&gt;&amp;#34;secretsmanager:DescribeSecret&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;s2&#34;&gt;&amp;#34;secretsmanager:ListSecretVersionIds&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;Resource&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;arn:aws:secretsmanager:us-west-2:012345678910:secret:*&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;Effect&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Allow&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;Action&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;secretsmanager:ListSecrets&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;Resource&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;*&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;local-runner&#34;&gt;Local Runner&lt;/h3&gt;
+&lt;p&gt;Local Runner의 경우 local-runner/docker/config/airflow.cfg에서 &lt;code&gt;[secret]&lt;/code&gt;항목의 다음 두 줄을 수정한다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;secret&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;backend&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;airflow&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;providers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;amazon&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;aws&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;secrets&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;secrets_manager&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;SecretsManagerBackend&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;backend_kwargs&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;connections_prefix&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;airflow/connections&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;variables_prefix&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;airflow/variables&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;region_name&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;ap-northeast-2&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/1.png&#34;
+	width=&#34;1104&#34;
+	height=&#34;850&#34;
+	srcset=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/1_hu5d89e5495c4e8e53a4e9d40e93f6e182_179930_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/1_hu5d89e5495c4e8e53a4e9d40e93f6e182_179930_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;129&#34;
+		data-flex-basis=&#34;311px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;2-1 MWAA 항목과 거의 유사하지만 &lt;code&gt;&amp;quot;region_name&amp;quot;: ap-northeast-2&lt;/code&gt; 항목이 추가되었다. local runner의 s3 sync를 사용하는 경우 local-runner/docker/config/.env.localrunner에 &lt;code&gt;AWS_ACCESS_KEY_ID&lt;/code&gt; 와 &lt;code&gt;AWS_SECERT_ACCESS_KEY&lt;/code&gt; 가 입력되어 있을 것이므로 &lt;code&gt;backend_kwargs&lt;/code&gt; 에서 생략이 가능하다. 만약 .env.localrunner 에 상기 항목을 등록하지 않은 경우 &lt;code&gt;backend_kwargs&lt;/code&gt; 에 추가해야한다.&lt;/p&gt;
+&lt;h2 id=&#34;create-secrets&#34;&gt;Create Secrets&lt;/h2&gt;
+&lt;p&gt;이제 Secrets Manager에 샘플 변수와 연결을 만들고 개발 및 프로덕션 환경에서 모두 적용되는지 확인해보자.&lt;/p&gt;
+&lt;h3 id=&#34;variables&#34;&gt;Variables&lt;/h3&gt;
+&lt;p&gt;AWS Secrets Manager - 암호 생성 - 다른 유형의 보안 암호 선택  - 일반 텍스트에 &lt;code&gt;hello i&#39;m variable&lt;/code&gt; 을 입력했다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/2.png&#34;
+	width=&#34;2092&#34;
+	height=&#34;1022&#34;
+	srcset=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/2_huf0a66c5aff7554ba490cd0498894011b_113209_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/2_huf0a66c5aff7554ba490cd0498894011b_113209_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;204&#34;
+		data-flex-basis=&#34;491px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;하단의 암호화 키 - 사용하고 있거나 새로 생성한다. 다음을 누른다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/3.png&#34;
+	width=&#34;1384&#34;
+	height=&#34;282&#34;
+	srcset=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/3_hu09b99c01bd45c06a694d332ff104c1c9_32333_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/3_hu09b99c01bd45c06a694d332ff104c1c9_32333_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;490&#34;
+		data-flex-basis=&#34;1177px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/4.png&#34;
+	width=&#34;1726&#34;
+	height=&#34;834&#34;
+	srcset=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/4_hu9c26525f65b0338bf1fe999d880b130f_80242_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/4_hu9c26525f65b0338bf1fe999d880b130f_80242_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;206&#34;
+		data-flex-basis=&#34;496px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;보안 암호 이름을 2에서 주었던 prefix와 동일하게 작성한다. 나는 &lt;code&gt;airflow/variables/sample_var_1&lt;/code&gt; 로 등록하였다. 설명은 옵션이므로 생략 가능하다. 다음을 선택한다.&lt;/p&gt;
+&lt;p&gt;교체 구성은 따로 건드리지 않고 다음을 누르고 저장한다. 완료 후 새로고침 시 생성이 된 것을 확인할 수 있다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/5.png&#34;
+	width=&#34;2610&#34;
+	height=&#34;478&#34;
+	srcset=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/5_hu530f44b09e9101e1521a569b09ddf4a9_73014_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/5_hu530f44b09e9101e1521a569b09ddf4a9_73014_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;생성 완료 모습&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;546&#34;
+		data-flex-basis=&#34;1310px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;connections&#34;&gt;Connections&lt;/h3&gt;
+&lt;p&gt;연결은 변수와 거의 비슷하지만 다른 점이 있다. 시크릿 값을 URI string으로 줄 것인가 key-value pair로 줄 것인지를 정해야 한다.&lt;/p&gt;
+&lt;p&gt;이 글을 따라왔다면 URI string으로 구성해야한다. key-value pair로 구성하기 위해서는 &lt;code&gt;backend-kwargs&lt;/code&gt; 구성에 &lt;code&gt;&amp;quot;full_url&amp;quot;: &amp;quot;true&amp;quot;&lt;/code&gt; 옵션을 추가로 줘야 한다. 자세한 설명은 &lt;a class=&#34;link&#34; href=&#34;https://airflow.apache.org/docs/apache-airflow-providers-amazon/stable/secrets-backends/aws-secrets-manager.html#storing-and-retrieving-connections&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Storing and Retrieving Connection&lt;/a&gt; 을 참고한다.&lt;/p&gt;
+&lt;p&gt;이해를 돕기 위해 sample connection은 mysqlOperator에 connection을 연결한다 가정하고 생성해보겠다.(데이터베이스는 따로 구성하지 않겠다.)&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://airflow.apache.org/docs/apache-airflow-providers-mysql/stable/operators.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MySqlOperator&lt;/a&gt;는 다음과 같은 파라미터를 받는다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/6.png&#34;
+	width=&#34;1738&#34;
+	height=&#34;600&#34;
+	srcset=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/6_hu43fe47f20819c14dd0fe2b9a00dcf4a5_66402_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/6_hu43fe47f20819c14dd0fe2b9a00dcf4a5_66402_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;289&#34;
+		data-flex-basis=&#34;695px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;위 파라미터를 URI string으로 구성한다. Airflow의 URI string은 다음과 같이 구성된다. (&lt;a class=&#34;link&#34; href=&#34;https://airflow.apache.org/docs/apache-airflow/stable/howto/connection.html#uri-format-example&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;URI format example&lt;/a&gt;)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;my-conn-type&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;://&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;login&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;password&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;host&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;schema&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;param1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;val1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;param2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;val2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;이를 참조해 sample connection URI string을 다음과 같이 작성할 수 있다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;mysql&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;://&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ID&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;PW&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;HostUrl&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3306&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;dbName&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;charset&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;utf8&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;3-1. Variable과 동일하게 AWS Secrets Manager에 새 보안 암호를 생성한다. 키/값 페어 항목에서 일반 텍스트에 연결 URI string을 입력한다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/7.png&#34;
+	width=&#34;2042&#34;
+	height=&#34;972&#34;
+	srcset=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/7_huacd28fb039bf9435a63435fd26d024a7_118031_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/7_huacd28fb039bf9435a63435fd26d024a7_118031_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;210&#34;
+		data-flex-basis=&#34;504px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;보안 암호 이름을 &lt;code&gt;airflow/connections/sample_connection_1&lt;/code&gt; 과 같이 작성하고 저장한다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/8.png&#34;
+	width=&#34;1686&#34;
+	height=&#34;864&#34;
+	srcset=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/8_hu276da0f07367ef6ab29a2a7ffa70a38d_81914_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/8_hu276da0f07367ef6ab29a2a7ffa70a38d_81914_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;195&#34;
+		data-flex-basis=&#34;468px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;연결과 변수를 모두 생성하였다.&lt;/p&gt;
+&lt;h2 id=&#34;run-examples&#34;&gt;Run Examples&lt;/h2&gt;
+&lt;p&gt;이제 개발 환경과 프로덕션 환경에서 두 시크릿을 가져올 수 있는지 확인해보자.&lt;/p&gt;
+&lt;p&gt;연결과 변수를 가져오는 두 task를 정의하는 dag(&lt;code&gt;sample_read_secret_manager_dag&lt;/code&gt;)를 작성한다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;airflow.decorators&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;task&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;airflow.models&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Variable&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;airflow.models.connection&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Connection&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;airflow.utils.dates&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;days_ago&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;default_args&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;owner&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;airflow&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;start_date&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;days_ago&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;depends_on_past&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;False&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;catchup&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;False&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nd&#34;&gt;@dag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;default_args&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;default_args&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;schedule_interval&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;@once&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;tags&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;read_secrets_manager&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;sample_read_secret_manager_dag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nd&#34;&gt;@task&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;print_variable_from_sm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Variable&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;sample_var_1&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nd&#34;&gt;@task&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;print_connection_from_sm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;c&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Connection&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;conn_id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;sample_connection_1&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;uri&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get_uri&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uri&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;print_variable_from_sm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;print_connection_from_sm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;dag&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sample_read_secret_manager_dag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;dag를 작성 후 실행시켜보면 개발 환경과 프로덕션 환경 모두 성공한 것을 확인할 수 있다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/10.png&#34;
+	width=&#34;2170&#34;
+	height=&#34;830&#34;
+	srcset=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/10_hu00e7d79088f480881e57ba4cea2c3080_106881_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/10_hu00e7d79088f480881e57ba4cea2c3080_106881_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;local runner Web UI&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;261&#34;
+		data-flex-basis=&#34;627px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/11.png&#34;
+	width=&#34;2016&#34;
+	height=&#34;826&#34;
+	srcset=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/11_hua838c231f49a858da2d89aa2fd61639c_101198_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/11_hua838c231f49a858da2d89aa2fd61639c_101198_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;MWAA Web UI&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;244&#34;
+		data-flex-basis=&#34;585px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;개발 환경과 프로덕션 환경 모두 두 task 로그를 확인해봤을 때 AWS Secrets Manager에 저장한 값을 잘 받아오는 것을 확인할 수 있다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/12.png&#34;
+	width=&#34;2810&#34;
+	height=&#34;1190&#34;
+	srcset=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/12_hufc5caedee98de8da8dc4408b3b615bb5_446493_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/12_hufc5caedee98de8da8dc4408b3b615bb5_446493_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;print_variable_from_sm task log. 변수값을 제대로 가져온 것을 알 수 있다.&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;236&#34;
+		data-flex-basis=&#34;566px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/13.png&#34;
+	width=&#34;2826&#34;
+	height=&#34;1176&#34;
+	srcset=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/13_hu23dbc7a29edb740ba81b342ed838ae22_475562_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/13_hu23dbc7a29edb740ba81b342ed838ae22_475562_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;print_connection_from_sm task log. URI string을 잘 가져오고, 패스워드는 마스킹 처리되서 출력된다.&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;240&#34;
+		data-flex-basis=&#34;576px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;마치며&#34;&gt;마치며&lt;/h2&gt;
+&lt;p&gt;Airflow secrets backend, 그 중에서도 AWS Secrets Manager를 사용하여 Airflow의 연결 및 변수를 통일하는 작업을 살펴봤다. 연결 및 변수 정보를 외부에 한 번 저장하는 것으로 두 환경에서 받아올 수 있었다. 이를 통해 좀 더 빠른 개발을 가능하게 할 수 있을 것으로 기대 된다.&lt;/p&gt;
+&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a class=&#34;link&#34; href=&#34;https://docs.aws.amazon.com/mwaa/latest/userguide/connections-secrets-manager.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Configuring an Apache Airflow connection using a Secrets Manager secret&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;strong&gt;&lt;a class=&#34;link&#34; href=&#34;https://airflow.apache.org/docs/apache-airflow-providers-amazon/stable/secrets-backends/aws-secrets-manager.html#aws-secrets-manager-backend&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;AWS Secrets Manager Backend&lt;/a&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
