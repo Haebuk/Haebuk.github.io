@@ -74,7 +74,7 @@
 &lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/p.png&#34;
 	width=&#34;1356&#34;
 	height=&#34;820&#34;
-	srcset=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/p_hu67ea218e20cb296b82cf0f2e41cb60d2_114742_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/p_hu67ea218e20cb296b82cf0f2e41cb60d2_114742_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/p_hu67ea218e20cb296b82cf0f2e41cb60d2_105952_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/p_hu67ea218e20cb296b82cf0f2e41cb60d2_105952_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;MWAA 실행 역할의 권한 정책 사진&#34;
@@ -403,7 +403,7 @@
 &lt;p&gt;&lt;img src=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/13.png&#34;
 	width=&#34;2826&#34;
 	height=&#34;1176&#34;
-	srcset=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/13_hu23dbc7a29edb740ba81b342ed838ae22_475562_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/13_hu23dbc7a29edb740ba81b342ed838ae22_475562_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/13_hudbe204a5040cddaa8ef839fb5ebdef52_573736_480x0_resize_box_3.png 480w, https://Haebuk.github.io/p/aws-secrets-manager%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-local-runner%EC%99%80-mwaa-secrets-backend-%ED%86%B5%EC%9D%BC%ED%95%98%EA%B8%B0/13_hudbe204a5040cddaa8ef839fb5ebdef52_573736_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;print_connection_from_sm task log. URI string을 잘 가져오고, 패스워드는 마스킹 처리되서 출력된다.&#34;
