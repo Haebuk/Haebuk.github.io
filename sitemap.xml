@@ -3,7 +3,19 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://Haebuk.github.io/</loc>
-    <lastmod>2022-11-10T19:03:39+09:00</lastmod>
+    <lastmod>2022-12-12T15:30:39+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/categories/book/</loc>
+    <lastmod>2022-12-12T15:30:39+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/post/</loc>
+    <lastmod>2022-12-12T15:30:39+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/p/%EC%95%84%EC%9D%B4%EB%94%94%EC%96%B4-%EB%B6%88%ED%8C%A8%EC%9D%98-%EB%B2%95%EC%B9%99-%ED%9B%84%EA%B8%B0/</loc>
+    <lastmod>2022-12-12T15:30:39+09:00</lastmod>
+  </url><url>
+    <loc>https://Haebuk.github.io/categories/</loc>
+    <lastmod>2022-12-12T15:30:39+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/tags/airflow/</loc>
     <lastmod>2022-11-10T19:03:39+09:00</lastmod>
@@ -20,9 +32,6 @@
     <loc>https://Haebuk.github.io/tags/mwaa/</loc>
     <lastmod>2022-11-10T19:03:39+09:00</lastmod>
   </url><url>
-    <loc>https://Haebuk.github.io/post/</loc>
-    <lastmod>2022-11-10T19:03:39+09:00</lastmod>
-  </url><url>
     <loc>https://Haebuk.github.io/tags/secrets-backend/</loc>
     <lastmod>2022-11-10T19:03:39+09:00</lastmod>
   </url><url>
@@ -31,12 +40,6 @@
   </url><url>
     <loc>https://Haebuk.github.io/tags/</loc>
     <lastmod>2022-11-10T19:03:39+09:00</lastmod>
-  </url><url>
-    <loc>https://Haebuk.github.io/categories/</loc>
-    <lastmod>2022-11-10T19:03:39+09:00</lastmod>
-  </url><url>
-    <loc>https://Haebuk.github.io/categories/book/</loc>
-    <lastmod>2022-11-04T07:02:39+09:00</lastmod>
   </url><url>
     <loc>https://Haebuk.github.io/tags/growth-hacking/</loc>
     <lastmod>2022-11-04T07:02:39+09:00</lastmod>
