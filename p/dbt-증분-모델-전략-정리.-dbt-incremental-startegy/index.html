@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="ko-kr" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='DBT에서 Incremental Model (증분 모델)을 만드는 방법에 대해 정리한 글입니다.'><title>DBT 증분 모델 전략 정리. DBT Incremental Startegy</title>
+
+<link rel='canonical' href='https://Haebuk.github.io/p/dbt-%EC%A6%9D%EB%B6%84-%EB%AA%A8%EB%8D%B8-%EC%A0%84%EB%9E%B5-%EC%A0%95%EB%A6%AC.-dbt-incremental-startegy/'>
+
+<link rel="stylesheet" href="/scss/style.min.ac77dcf8b111b51da39a92990f431923f210f3876d85798a2125667f96dc33a4.css"><meta property='og:title' content='DBT 증분 모델 전략 정리. DBT Incremental Startegy'>
+<meta property='og:description' content='DBT에서 Incremental Model (증분 모델)을 만드는 방법에 대해 정리한 글입니다.'>
+<meta property='og:url' content='https://Haebuk.github.io/p/dbt-%EC%A6%9D%EB%B6%84-%EB%AA%A8%EB%8D%B8-%EC%A0%84%EB%9E%B5-%EC%A0%95%EB%A6%AC.-dbt-incremental-startegy/'>
+<meta property='og:site_name' content='지식 공유, 협업 ✈️ 성장'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='DBT' /><meta property='article:tag' content='Incremental Starategy' /><meta property='article:published_time' content='2023-03-23T23:12:39&#43;09:00'/><meta property='article:modified_time' content='2023-03-23T23:12:39&#43;09:00'/><meta property='og:image' content='https://Haebuk.github.io/p/dbt-%EC%A6%9D%EB%B6%84-%EB%AA%A8%EB%8D%B8-%EC%A0%84%EB%9E%B5-%EC%A0%95%EB%A6%AC.-dbt-incremental-startegy/dbt%20logo.png' />
+<meta name="twitter:title" content="DBT 증분 모델 전략 정리. DBT Incremental Startegy">
+<meta name="twitter:description" content="DBT에서 Incremental Model (증분 모델)을 만드는 방법에 대해 정리한 글입니다."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://Haebuk.github.io/p/dbt-%EC%A6%9D%EB%B6%84-%EB%AA%A8%EB%8D%B8-%EC%A0%84%EB%9E%B5-%EC%A0%95%EB%A6%AC.-dbt-incremental-startegy/dbt%20logo.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7CM424CQYT"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-7CM424CQYT', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="메뉴 여닫기">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/me_huf51a70a7adb149ae5d10a476e9d3ddf5_156361_300x0_resize_q75_box.jpg" width="300"
+                            height="400" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">지식 공유, 협업 ✈️ 성장</a></h1>
+            <h2 class="site-description">커피와 데이터를 좋아하는 뒤끝의 데이터 엔지니어 카데입니다.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/Haebuk'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://instagram.com/kade.data'
+                        target="_blank"
+                        title="Instagram"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <rect x="4" y="4" width="16" height="16" rx="4" />
+  <circle cx="12" cy="12" r="3" />
+  <line x1="16.5" y1="7.5" x2="16.5" y2="7.501" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.linkedin.com/in/jaesungryu/'
+                        target="_blank"
+                        title="LinkedIn"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-linkedin" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <rect x="4" y="4" width="16" height="16" rx="2" />
+  <line x1="8" y1="11" x2="8" y2="16" />
+  <line x1="8" y1="8" x2="8" y2="8.01" />
+  <line x1="12" y1="16" x2="12" y2="11" />
+  <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about-me/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About Me</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>다크 모드</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/dbt-%EC%A6%9D%EB%B6%84-%EB%AA%A8%EB%8D%B8-%EC%A0%84%EB%9E%B5-%EC%A0%95%EB%A6%AC.-dbt-incremental-startegy/">
+                <img src="/p/dbt-%EC%A6%9D%EB%B6%84-%EB%AA%A8%EB%8D%B8-%EC%A0%84%EB%9E%B5-%EC%A0%95%EB%A6%AC.-dbt-incremental-startegy/dbt%20logo_huce4bdc6e044b2798880701cbe66ba3df_4168_800x0_resize_box_3.png"
+                        srcset="/p/dbt-%EC%A6%9D%EB%B6%84-%EB%AA%A8%EB%8D%B8-%EC%A0%84%EB%9E%B5-%EC%A0%95%EB%A6%AC.-dbt-incremental-startegy/dbt%20logo_huce4bdc6e044b2798880701cbe66ba3df_4168_800x0_resize_box_3.png 800w, /p/dbt-%EC%A6%9D%EB%B6%84-%EB%AA%A8%EB%8D%B8-%EC%A0%84%EB%9E%B5-%EC%A0%95%EB%A6%AC.-dbt-incremental-startegy/dbt%20logo_huce4bdc6e044b2798880701cbe66ba3df_4168_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="293" 
+                        loading="lazy"
+                        alt="Featured image of post DBT 증분 모델 전략 정리. DBT Incremental Startegy" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/data-engineering/" >
+                Data Engineering
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/dbt-%EC%A6%9D%EB%B6%84-%EB%AA%A8%EB%8D%B8-%EC%A0%84%EB%9E%B5-%EC%A0%95%EB%A6%AC.-dbt-incremental-startegy/">DBT 증분 모델 전략 정리. DBT Incremental Startegy</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            DBT에서 Incremental Model (증분 모델)을 만드는 방법에 대해 정리한 글입니다.
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Mar 23, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    8 분 정도
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>DBT 공식 문서의 <a class="link" href="https://docs.getdbt.com/docs/build/incremental-models"  target="_blank" rel="noopener"
+    >Incremental Models</a> 를 번역 및 정리한 글입니다.</p>
+<p>DBT 모델을 배포할 때 여태까지는 데이터 사이즈가 그리 크지 않았기 때문에 full-refresh하는 방법으로 만들었었습니다.</p>
+<p>최근에는 데이터 사이즈가 커져 full-refresh 방법으로는 부담이 가서, 증분 전략(Incremental Strategy)를 사용하고자 했습니다.</p>
+<p>실제로 알아보니 엔지니어링 관점에서 공수를 줄일 수 있는 많은 편의성을 제공하는데요, 왜 DBT가 사랑 받는지 알 수 있는 또 다른 대목이 되었습니다.</p>
+<p>이 글에서는 materialization과 구체화를 혼용하여 사용합니다.</p>
+<h2 id="overview">Overview</h2>
+<p>증분 모델은 데이터 웨어하우스에서 테이블로 구축됩니다.</p>
+<ul>
+<li>모델을 <strong>처음 실행하면 소스 데이터의 모든 행을 변환</strong>하여 테이블이 구축됩니다.</li>
+<li>이후 실행 시에는 dbt가 소스 데이터에서 <strong>필터링하도록 지시한 행만 변환하여 이미 작성된 테이블인 대상 테이블에 삽입</strong>합니다.</li>
+</ul>
+<p>증분 실행에서 필터링하는 행은 대개 dbt를 마지막으로 실행한 이후 생성 또는 업데이트된 소스 데이터의 행입니다. 따라서 dbt를 실행할 때마다 모델이 증분 방식으로 빌드됩니다.</p>
+<p>증분 모델을 사용하면 변환해야 하는 데이터의 양이 제한되어 변환의 런타임이 크게 단축됩니다. 따라서 웨어하우스 성능이 향상되고 컴퓨팅 비용이 절감됩니다.</p>
+<h2 id="using-incremental-materializations">Using incremental materializations</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="err">{{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">config</span><span class="p">(</span><span class="n">materialized</span><span class="o">=</span><span class="s1">&#39;incremental&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">}}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="p">..</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>incremental materializations(증분 구체화)를 통해 증분 모델을 사용하려면 다음을 명시해야 합니다:</p>
+<ul>
+<li>증분 실행에서 행을 필터링하는 방법</li>
+<li>모델의 Primary Key(선택 사항)</li>
+</ul>
+<h3 id="증분-실행에서-행을-필터링하는-방법">증분 실행에서 행을 필터링하는 방법</h3>
+<p>증분 실행 시 어떤 행을 변환해야 하는지 dbt에 알려주려면, 이러한 행을 필터링하는 유효한 SQL을 <code>is_incremental()</code> macro에 래핑해야 합니다.</p>
+<p>dbt가 이 모델을 마지막으로 실행한 이후 생성된 행을 필터링하고 싶을 때가 많습니다. 이 모델을 가장 최근에 실행한 타임스탬프를 찾는 가장 좋은 방법은 대상 테이블에서 가장 최근의 타임스탬프를 확인하는 것입니다. dbt를 사용하면 &ldquo;<a class="link" href="https://docs.getdbt.com/reference/dbt-jinja-functions/this"  target="_blank" rel="noopener"
+    >{{ this }}</a>&rdquo; 변수를 사용하여 대상 테이블을 쉽게 쿼리할 수 있습니다.</p>
+<p>또한 새 레코드와 업데이트된 레코드를 모두 캡처하려는 경우도 흔합니다. 업데이트된 레코드의 경우, 수정된 레코드를 중복으로 가져오지 않도록 고유 키를 정의해야 합니다. <code>is_incremental()</code> 코드는 dbt가 이 모델을 마지막으로 실행한 이후 생성되거나 수정된 행이 있는지 확인합니다.</p>
+<p>예를 들어, 열에 계산 속도가 느린 변환을 포함하는 모델은 다음과 같이 증분적으로 구축할 수 있습니다:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="err">{{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">config</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">materialized</span><span class="o">=</span><span class="s1">&#39;incremental&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">}}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">*</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">my_slow_function</span><span class="p">(</span><span class="n">my_column</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">raw_app_data</span><span class="p">.</span><span class="n">events</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">{</span><span class="o">%</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">is_incremental</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">-- 이 필터는 증분 실행시 적용됩니다.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="k">where</span><span class="w"> </span><span class="n">event_time</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">event_time</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="err">}}</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">{</span><span class="o">%</span><span class="w"> </span><span class="n">endif</span><span class="w"> </span><span class="o">%</span><span class="err">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>CTE(일반 테이블 표현식)를 사용하는 보다 복잡한 증분 모델의 경우, <code>is_incremental()</code>매크로의 위치가 쿼리 성능에 미치는 영향을 고려해야 합니다.</p>
+<p>일부 웨어하우스에서는 레코드를 조기에 필터링하면 쿼리 실행 시간을 크게 개선할 수 있습니다!</p>
+<h3 id="모델의-primary-key선택-사항">모델의 Primary Key(선택 사항)</h3>
+<p><code>unique_key</code>를 사용하면 새 행을 추가하는 대신 기존 행을 <strong>업데이트</strong>할 수 있습니다.</p>
+<p>기존 <code>unique_key</code>에 대한 새 정보가 도착하면 해당 새 정보가 테이블에 추가되는 대신 현재 정보를 대체할 수 있습니다. 중복 행이 도착하면 무시할 수 있습니다.</p>
+<p><code>unique_key</code>를 지정하지 않으면 추가 전용 동작이 발생하며, 이는 dbt가 모델의 SQL에서 반환된 모든 행을 <strong>중복 여부와 관계없이 기존 대상 테이블에 삽입</strong>한다는 의미입니다. (선택 사항이지만 정합성을 위해서는 어쩔 수 없이 선택 해야 할 옵션처럼 보이네요.)</p>
+<p><code>unique_key</code>는 모델 상단의 구성 블록에서 정의할 수 있으며, 단일 열 이름 또는 열 이름 목록이 될 수 있습니다.</p>
+<p><code>unique_key</code>는 모델 정의에서 단일 열을 나타내는 문자열 또는 함께 사용할 수 있는 작은따옴표로 묶인 열 이름의 목록(예:<code>['col1', 'col2', ...]</code>)으로 제공해야 합니다.</p>
+<ul>
+<li>이 방식으로 사용되는 열에는 Null이 포함되어서는 안 되며, 그렇지 않으면 증분 모델 실행이 실패할 수 있습니다.
+<ul>
+<li>각 열에 Null값이 없도록 대체하거나(예: <code>coalesce(COLUMN_NAME, 'VALUE_IF_NULL'</code>),</li>
+<li>단일 열 <a class="link" href="https://docs.getdbt.com/terms/surrogate-key"  target="_blank" rel="noopener"
+    >대리 키</a>를 정의합니다(예: <code>dbt_utils.generate_surrogate_key</code> 사용).</li>
+</ul>
+</li>
+</ul>
+<p>각 행을 고유하게 식별하기 위해 여러 열을 조합해야 하는 경우, 이러한 열을 문자열 표현식(<code>unique_key = 'concat(user_id, session_number)'</code>)이 아닌 목록(<code>unique_key = ['user_id', 'session_number']</code>)으로 전달할 것을 권장합니다.</p>
+<ul>
+<li>두 번째 구문을 사용하면 데이터베이스에 적합한 방식으로 증분 모델 구체화에 열이 템플릿화되도록 보장할 수 있습니다.</li>
+<li>마찬가지로 각 열에 Null이 포함되어 있지 않은지 확인해야 하며, 그렇지 않으면 증분 모델 실행이 실패할 수 있습니다.</li>
+<li>또는 단일 열 대리 키를 정의할 수도 있습니다(예: <code>dbt_utils.generate_surrogate_key</code>).</li>
+</ul>
+<h3 id="unique_key-예시"><code>unique_key</code> 예시</h3>
+<p>이벤트 스트림을 기반으로 일일 활성 사용자 수(DAU)를 계산하는 모델을 생각해 보겠습니다.</p>
+<p>소스 데이터가 도착하면 dbt가 마지막으로 실행된 날과 그 이후의 모든 날에 대한 DAU를 계산하는 모델입니다:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="err">{{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">config</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">materialized</span><span class="o">=</span><span class="s1">&#39;incremental&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">unique_key</span><span class="o">=</span><span class="s1">&#39;date_day&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">}}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">date_trunc</span><span class="p">(</span><span class="s1">&#39;day&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">event_at</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">date_day</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">user_id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">daily_active_users</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">raw_app_data</span><span class="p">.</span><span class="n">events</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">{</span><span class="o">%</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">is_incremental</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">-- 증분 실행 시 실행되는 조건문
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="k">where</span><span class="w"> </span><span class="n">date_day</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">date_day</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="err">}}</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">{</span><span class="o">%</span><span class="w"> </span><span class="n">endif</span><span class="w"> </span><span class="o">%</span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="증분-모델을-다시-빌드하려면">증분 모델을 다시 빌드하려면?</h2>
+<p>증분 모델 로직이 변경된 경우 새 데이터 행의 변환이 대상 테이블에 저장된 과거 변환과 다를 수 있습니다. 이 경우 증분 모델을 다시 빌드해야 합니다.</p>
+<p>dbt가 전체 증분 모델을 처음부터 다시 작성하도록 하려면 명령줄에서<code>--full-refresh</code> 플래그를 사용합니다. 이 플래그를 사용하면 dbt가 데이터베이스의 기존 대상 테이블을 삭제한 후 완전히 다시 빌드합니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dbt run --full-refresh --select my_incremental_model+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>모델 명 뒤에 <code>+</code>를 명시하여 모든 다운스트림 모델도 다시 빌드하는 것이 좋습니다.</p>
+<h2 id="증분-모델을-쓰기에-적절한-상황">증분 모델을 쓰기에 적절한 상황</h2>
+<p><code>table</code> 구체화는 모델을 테이블로 만들기도 하지만, 각 dbt 실행 시 테이블을 다시 빌드합니다. 이러한 실행은 다음과 같은 경우 많은 컴퓨팅을 사용한다는 점에서 문제가 될 수 있습니다:</p>
+<ul>
+<li>소스 데이터 테이블에 수백만 또는 수십억 개의 행이 있는 경우.</li>
+<li>소스 데이터의 변환이 계산 비용이 많이 들거나(즉, 실행하는 데 오랜 시간이 걸리는 경우), 복잡한 정규식 함수를 사용하거나, 데이터를 변환하는 데 UDF를 사용하는 경우.</li>
+</ul>
+<p>프로그래밍의 많은 부분과 마찬가지로, 증분 모델은 복잡성과 성능 사이의 <strong>절충점</strong>입니다. 증분 모델은 <code>view</code> 및 <code>table</code> materialization만큼 간단하지는 않지만, DBT 실행의 성능을 크게 향상시킬 수 있습니다.</p>
+<h2 id="is_incremental-macro-살펴보기">is_incremental() macro 살펴보기</h2>
+<p>다음 조건이 모두 충족되면 <code>is_incremental()</code>매크로는 <code>True</code>를 반환합니다:</p>
+<ul>
+<li>대상 테이블이 데이터베이스에 이미 존재할 때</li>
+<li>dbt가 full-refresh 모드로 실행되고 있지 않을 때</li>
+<li>실행 중인 모델이 <code>materialized='incremental'</code>으로 구성되어 있을 때</li>
+</ul>
+<h2 id="증분-모델의-백그라운드-동작">증분 모델의 백그라운드 동작</h2>
+<p>DBT의 증분 구체화는 데이터베이스마다 다르게 작동합니다. 지원되는 경우, <code>merge</code> 문은 새 레코드를 삽입하고 기존 레코드를 업데이트하는 데 사용됩니다.</p>
+<p><code>merge</code> 문을 지원하지 않는 웨어하우스에서는 먼저 <code>delete</code> 문을 사용하여 업데이트할 대상 테이블의 레코드를 삭제한 다음 <code>insert</code> 문을 사용하여 병합을 구현합니다.</p>
+<p>트랜잭션 관리는 이 작업이 단일 작업 단위로 실행되도록 하는 데 사용됩니다.</p>
+<h2 id="증분-모델의-스키마가-중간에-변경되는-경우">증분 모델의 스키마가 중간에 변경되는 경우</h2>
+<p><code>on_schema_change</code> 옵션을 사용하면 스키마 변경이 있는 경우에도 증분 모델을 계속 실행할 수 있으므로 <code>—full-refresh</code> 시나리오가 줄어들고 쿼리 비용이 절감됩니다.</p>
+<p>다음과 같이 <code>on_schema_change</code> 설정을 구성할 수 있습니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># dbt_project.yml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">models</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">+on_schema_change</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;sync_all_columns&#34;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="err">{{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">config</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">materialized</span><span class="o">=</span><span class="s1">&#39;incremental&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">unique_key</span><span class="o">=</span><span class="s1">&#39;date_day&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">on_schema_change</span><span class="o">=</span><span class="s1">&#39;fail&#39;</span><span class="w"> </span><span class="c1">-- &lt;- here
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">}}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>on_schema_change</code>에 사용할 수 있는 값은 다음과 같습니다:</p>
+<ul>
+<li><code>ignore</code>: default.
+<ul>
+<li>증분 모델에 열을 추가하고 dbt 실행을 실행하는 경우 이 열은 대상 테이블에 나타나지 않습니다.</li>
+<li>마찬가지로 증분 모델에서 열을 제거하고 dbt 실행을 실행하는 경우 이 열은 대상 테이블에서 제거되지 않습니다.</li>
+<li>대신 증분 로직이 변경될 때마다 증분 모델과 다운스트림 모델 모두에 대한 full-refresh 실행을 통해 업데이트는 가능합니다.</li>
+</ul>
+</li>
+<li><code>fail</code>: 소스 스키마와 대상 스키마가 다를 때 오류 메시지를 트리거합니다.</li>
+<li><code>append_new_columns</code>: 기존 테이블에 새 열을 추가합니다. 이 설정은 새 데이터에 없는 열을 기존 테이블에서 제거하지 않습니다.</li>
+<li><code>sync_all_columns</code>: 기존 테이블에 새 열을 추가하고 <strong>현재 누락된 열을 제거</strong>합니다. 여기에는 데이터 유형 변경이 포함됩니다. BigQuery에서 열 유형을 변경하려면 전체 테이블을 스캔해야 하므로 구현할 때 장단점을 염두에 두어야 합니다.</li>
+</ul>
+<p>참고: 새로 추가된 열에 대한 이전 레코드의 값을 다시 채우는 <code>on_schema_change</code> 동작은 없습니다. 이러한 값을 채워야 하는 경우 수동 업데이트를 실행하거나 <code>--full-refresh</code>를 트리거하는 것이 좋습니다.</p>
+<p>주의:  <code>on_schema_change</code>는 최상위 수준 변경을 추적합니다.
+현재 <code>on_schema_change</code>는 최상위 수준 열 변경 사항만 추적합니다. 중첩된 열 변경은 추적하지 않습니다. 예를 들어, BigQuery에서 중첩된 열을 추가, 제거 또는 수정하면 <code>on_schema_change</code>가 적절하게 설정되어 있더라도 스키마 변경이 트리거되지 않습니다.</p>
+<h2 id="incremetal_strategy">incremetal_strategy</h2>
+<p>일부 어댑터에서는 선택적 <code>incremental_strategy</code> 구성이 dbt가 증분 모델을 빌드하는 데 사용하는 코드를 제어합니다. 데이터의 양, <code>unique_key</code>의 신뢰성 또는 특정 기능의 가용성에 따라 접근 방식에 따라 효과가 달라질 수 있습니다.</p>
+<p><a class="link" href="https://docs.getdbt.com/reference/resource-configs/snowflake-configs#merge-behavior-incremental-models"  target="_blank" rel="noopener"
+    >Snowflake</a>: <code>merge</code>(기본값), <code>delete+insert</code>(선택 사항), <code>append</code>(선택 사항)
+<a class="link" href="https://docs.getdbt.com/reference/resource-configs/bigquery-configs#merge-behavior-incremental-models"  target="_blank" rel="noopener"
+    >BigQuery</a>: <code>merge</code>(기본값), <code>insert_overwrite</code>(선택 사항)
+<a class="link" href="https://docs.getdbt.com/reference/resource-configs/spark-configs#incremental-models"  target="_blank" rel="noopener"
+    >Spark</a>: <code>append</code>(기본값), <code>insert_overwrite</code>(선택 사항), <code>merge</code>(선택 사항, Delta-only)</p>
+<h3 id="configuring-incremental-strategy">Configuring incremental strategy</h3>
+<p><code>incremental_stategy</code> 구성은 특정 모델에 지정하거나 <code>dbt_project.yml</code>파일에 있는 모든 모델에 지정할 수 있습니다:</p>
+<ul>
+<li>
+<p>특정 모델에만 지정하는 방법</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">#</span><span class="w"> </span><span class="n">models</span><span class="o">/</span><span class="n">my_model</span><span class="p">.</span><span class="k">sql</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">{{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">config</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">materialized</span><span class="o">=</span><span class="s1">&#39;incremental&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">unique_key</span><span class="o">=</span><span class="s1">&#39;date_day&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">incremental_strategy</span><span class="o">=</span><span class="s1">&#39;delete+insert&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">}}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="p">...</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>dbt_project.yml에 모든 모델 지정하는 방법</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">models</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">+incremental_strategy</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;insert_overwrite&#34;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="strategy-specifig-configs">Strategy-specifig configs</h3>
+<p><code>merge</code> 전략을 사용 중이고 <code>unique_key</code>를 지정한 경우 기본적으로 dbt는 일치하는 행을 새 값으로 완전히 덮어씁니다.</p>
+<p><code>merge</code> 전략을 지원하는 어댑터(Snowflake, BigQuery, Apache Spark 및 Databricks 포함)에서는 선택적으로 <code>merge_update_columns</code> 구성에 열 이름 목록을 전달할 수 있습니다. 이 경우 dbt는 구성에 지정된 열만 업데이트하고 다른 열의 이전 값은 유지합니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="err">{{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">config</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">materialized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;incremental&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">unique_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">merge_update_columns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ip_address&#39;</span><span class="p">],</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">}}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="p">...</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="incremental_predicates">Incremental_predicates</h3>
+<p><code>incremental_predicates</code>는 데이터가 너무 커서 성능에 대한 추가 투자를 정당화할 수 있을 때 복잡성을 증가시켜 성능을 향상시키는 옵션입니다.</p>
+<p>다음은 Snowflake에서 볼 수 있는 <code>yml</code> 파일의 모델 구성 예시입니다:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">models</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="n">my_incremental_model</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">config</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">materialized</span><span class="p">:</span><span class="w"> </span><span class="n">incremental</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">unique_key</span><span class="p">:</span><span class="w"> </span><span class="n">id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">cluster_by</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;session_start&#39;</span><span class="p">]</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">incremental_strategy</span><span class="p">:</span><span class="w"> </span><span class="n">merge</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="o">#</span><span class="w"> </span><span class="o">`</span><span class="n">incremental_predicates</span><span class="o">`</span><span class="err">는</span><span class="w"> </span><span class="n">SQL문</span><span class="w"> </span><span class="err">리스트를</span><span class="w"> </span><span class="err">받습니다</span><span class="p">.</span><span class="w"> </span><span class="err">이렇게</span><span class="w"> </span><span class="err">하면</span><span class="w"> </span><span class="err">기존</span><span class="w"> </span><span class="err">테이블의</span><span class="w"> </span><span class="err">스캔이</span><span class="w"> </span><span class="err">최근</span><span class="w"> </span><span class="mi">7</span><span class="err">일간의</span><span class="w"> </span><span class="err">데이터로</span><span class="w"> </span><span class="err">제한됩니다</span><span class="p">.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">incremental_predicates</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;DBT_INTERNAL_DEST.session_start &gt; datediff(day, -7, current_date)&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="o">#</span><span class="w"> </span><span class="n">DBT_INTERNAL_DEST</span><span class="o">`</span><span class="w"> </span><span class="err">및</span><span class="w"> </span><span class="o">`</span><span class="n">DBT_INTERNAL_SOURCE</span><span class="o">`</span><span class="err">는</span><span class="w"> </span><span class="n">merge</span><span class="w"> </span><span class="err">전략을</span><span class="w"> </span><span class="err">사용하여</span><span class="w"> </span><span class="err">증분</span><span class="w"> </span><span class="err">실행하는</span><span class="w"> </span><span class="err">동안</span><span class="w"> </span><span class="err">사용하는</span><span class="w"> </span><span class="err">대상</span><span class="w"> </span><span class="err">테이블과</span><span class="w"> </span><span class="err">임시</span><span class="w"> </span><span class="err">테이블의</span><span class="w"> </span><span class="err">표준</span><span class="w"> </span><span class="err">별칭입니다</span><span class="p">.</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>또는 모델 파일 내에 동일한 구성을 구성하는 방법도 있습니다:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- in models/my_incremental_model.sql
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">{{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">config</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">materialized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;incremental&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">unique_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">cluster_by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;session_start&#39;</span><span class="p">],</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">incremental_strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;merge&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">incremental_predicates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="s2">&#34;DBT_INTERNAL_DEST.session_start &gt; datediff(day, -7, current_date)&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">}}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">...</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>이렇게 하면 dbt.log 파일에 다음과 같은 병합 문이 템플릿으로 생성됩니다:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">merge</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="o">&lt;</span><span class="n">existing_table</span><span class="o">&gt;</span><span class="w"> </span><span class="n">DBT_INTERNAL_DEST</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">from</span><span class="w"> </span><span class="o">&lt;</span><span class="n">temp_table_with_new_records</span><span class="o">&gt;</span><span class="w"> </span><span class="n">DBT_INTERNAL_SOURCE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">on</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">-- unique key
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">        </span><span class="n">DBT_INTERNAL_DEST</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DBT_INTERNAL_SOURCE</span><span class="p">.</span><span class="n">id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">and</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">-- custom predicate: limits data scan in the &#34;old&#34; data / existing table
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">        </span><span class="n">DBT_INTERNAL_DEST</span><span class="p">.</span><span class="n">session_start</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">datediff</span><span class="p">(</span><span class="k">day</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="k">current_date</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">when</span><span class="w"> </span><span class="n">matched</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="k">update</span><span class="w"> </span><span class="p">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">when</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="n">matched</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="p">...</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>증분 모델 SQL 본문 내에서 업스트림 테이블의 데이터 스캔을 제한하여 처리/변환되는 &ldquo;새&rdquo; 데이터의 양을 제한하는 방법도 있습니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">with</span><span class="w"> </span><span class="n">large_source_table</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="k">ref</span><span class="p">(</span><span class="s1">&#39;large_source_table&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="err">{</span><span class="o">%</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">is_incremental</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">where</span><span class="w"> </span><span class="n">session_start</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">dateadd</span><span class="p">(</span><span class="k">day</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="k">current_date</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="err">{</span><span class="o">%</span><span class="w"> </span><span class="n">endif</span><span class="w"> </span><span class="o">%</span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">...</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>참고: 구문은 <code>incremental_strategy</code>을 구성하는 방법에 따라 다릅니다:</p>
+<ul>
+<li><code>merge</code> 전략을 사용하는 경우, 열의 별칭을 <code>DBT_INTERNAL_DEST</code>(&ldquo;이전&rdquo; 데이터) 또는 <code>DBT_INTERNAL_SOURCE</code>(&ldquo;새&rdquo; 데이터)로 명시적으로 지정해야 할 수 있습니다.
+삽입_오버라이트 증분 전략과 개념적으로 상당 부분 겹치는 부분이 있습니다.</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/dbt/">DBT</a>
+        
+            <a href="/tags/incremental-starategy/">Incremental Starategy</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">관련 글</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/airflow-%EC%A0%95%EB%A6%AC/">
+        
+        
+            <div class="article-image">
+                <img src="/p/airflow-%EC%A0%95%EB%A6%AC/AirflowLogo.149b0c3cde643cc23b26eaa1b1a3fbac_hubc3c506518d9161c24efab84ad5b3982_59053_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Airflow 정리"
+                        
+                        data-hash="md5-FJsMPN5kPMI7JuqhsaP7rA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Airflow 정리</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/dask-%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Dask 튜토리얼</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9C%BC%EB%A1%9C-%EC%97%98%EB%9D%BC%EC%8A%A4%ED%8B%B1-%EC%84%9C%EC%B9%98-%EC%BF%BC%EB%A6%AC%ED%95%98%EA%B8%B0/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">파이썬으로 엘라스틱 서치 쿼리하기</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="haebuk/blog-comments"
+        issue-term="title"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 지식 공유, 협업 ✈️ 성장
+    </section>
+    
+    <section class="powerby">
+        <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>로 만듦 <br />
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>의 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.13.0">Stack</a></b> 테마 사용 중
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">목차</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#using-incremental-materializations">Using incremental materializations</a>
+      <ol>
+        <li><a href="#증분-실행에서-행을-필터링하는-방법">증분 실행에서 행을 필터링하는 방법</a></li>
+        <li><a href="#모델의-primary-key선택-사항">모델의 Primary Key(선택 사항)</a></li>
+        <li><a href="#unique_key-예시"><code>unique_key</code> 예시</a></li>
+      </ol>
+    </li>
+    <li><a href="#증분-모델을-다시-빌드하려면">증분 모델을 다시 빌드하려면?</a></li>
+    <li><a href="#증분-모델을-쓰기에-적절한-상황">증분 모델을 쓰기에 적절한 상황</a></li>
+    <li><a href="#is_incremental-macro-살펴보기">is_incremental() macro 살펴보기</a></li>
+    <li><a href="#증분-모델의-백그라운드-동작">증분 모델의 백그라운드 동작</a></li>
+    <li><a href="#증분-모델의-스키마가-중간에-변경되는-경우">증분 모델의 스키마가 중간에 변경되는 경우</a></li>
+    <li><a href="#incremetal_strategy">incremetal_strategy</a>
+      <ol>
+        <li><a href="#configuring-incremental-strategy">Configuring incremental strategy</a></li>
+        <li><a href="#strategy-specifig-configs">Strategy-specifig configs</a></li>
+        <li><a href="#incremental_predicates">Incremental_predicates</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
